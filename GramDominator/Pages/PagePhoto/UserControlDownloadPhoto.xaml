@@ -1,0 +1,157 @@
+﻿<UserControl x:Class="GramDominator.Pages.PagePhoto.UserControlDownloadPhoto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+              xmlns:app="clr-namespace:GramDominator.Classes"
+             mc:Ignorable="d" 
+            d:DesignHeight="400" d:DesignWidth="900">
+
+    <Grid>
+        <Grid.DataContext>
+            <app:Validation x:Name="objform" />
+        </Grid.DataContext>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="107*"/>
+                <RowDefinition Height="131*"/>
+                <RowDefinition Height="162*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="User Input" Margin="0,0,10,0" BorderBrush="Black">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="76*"/>
+                        <RowDefinition Height="9*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="55*"/>
+                        <ColumnDefinition Width="36*"/>
+                        <ColumnDefinition Width="56"/>
+                        <ColumnDefinition Width="108"/>
+                        <ColumnDefinition Width="29"/>
+                        <ColumnDefinition Width="9"/>
+                        <ColumnDefinition Width="39*"/>
+                        <ColumnDefinition Width="51*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--  <TextBox Name="txtMessage_Like_LoadMessages" Margin="10,28,10,4.308" TextWrapping="Wrap" Text="" Grid.Column="1" Height="25" Grid.ColumnSpan="2"/>-->
+                    <Label Content="User Name" Margin="0,19,0,35" Grid.ColumnSpan="3"/>
+                    <ComboBox Grid.ColumnSpan="3" Name="combo_selectoption_Downloadphoto" Grid.Column="3" Margin="0,19,0,0" VerticalAlignment="Top" SelectionChanged="combo_selectoption_Downloadphoto_SelectionChanged">
+                        <ComboBoxItem IsSelected="True" Content="More Option To Download"/>
+                        <ComboBoxItem Content="Using Username"/>
+                        <ComboBoxItem Content="Using Hashtag"/>
+                    </ComboBox>
+
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Settings" Margin="0,0,10,0" Grid.Row="1" BorderBrush="Black">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="104*"/>
+                        <ColumnDefinition Width="80*"/>
+                        <ColumnDefinition Width="28*"/>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="82*"/>
+                        <ColumnDefinition Width="9*"/>
+                        <ColumnDefinition Width="73*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="19*"/>
+                        <RowDefinition Height="26*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="No. of threads" Height="26" VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0" Margin="0,10"  />
+                    <TextBox Name="txtMessage_Downloadphoto_NoOfThreads"  TextWrapping="Wrap" TextAlignment="Center" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,10" BorderThickness="1,1,1,2" />
+                    <Label Content="Delay"  VerticalAlignment="Center" Height="26" Grid.Column="0" Grid.Row="1" Margin="0,18,0,19" />
+                    <TextBox Name="txtMessage_Downloadphoto_DelayMin" TextAlignment="Center" Height="26" TextWrapping="Wrap" Text="30" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,18,0,19" BorderThickness="1,1,1,2" />
+                    <Label Content="To" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Grid.Column="2" Grid.Row="1" Margin="20,18,1,19" Width="18" Grid.ColumnSpan="2" />
+                    <TextBox Name="txtMessage_Download_DelayMax" TextAlignment="Center" Height="26" TextWrapping="Wrap" Text="40" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5" Grid.Row="1" Margin="0,18,0,19" BorderThickness="1,1,1,2"/>
+                    <Label Content="(In Seconds)"  VerticalAlignment="Center" Height="26" Grid.Column="7" Grid.Row="1" Margin="0,24,0,19"/>
+                    <Label Content="No.of Photo" Height="26" VerticalAlignment="Center"  Grid.Column="3" Grid.Row="0"  Margin="0,10" Grid.ColumnSpan="3"  />
+                    <TextBox x:Name="txtDownload_nophoto" TextAlignment="Center"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="6" Grid.Row="0" Margin="0,10" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" />
+
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Submit Action" Margin="0,0,10,0" Grid.Row="2" BorderBrush="Black">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="6*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="111*"/>
+                        <ColumnDefinition Width="39*"/>
+                        <ColumnDefinition Width="108*"/>
+                        <ColumnDefinition Width="29*"/>
+                        <ColumnDefinition Width="111*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button  BorderBrush="Green" Cursor="Hand"  Name="btnMessage_downloadphoto_Start" ToolTip="Download Images using single or multiple Hash tags or Usernames ." Content="START" VerticalAlignment="Center" Height="26" Click="btnMessage_downloadphoto_Start_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,4,0,5">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_downloadphoto_Stop" Content="STOP" VerticalAlignment="Center" Grid.Column="4" Height="26" Click="btnMessage_downloadphoto_Stop_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,4,0,5">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="Red" BorderThickness="1,1,1,2" Background="Azure">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button  BorderBrush="Blue" Cursor="Hand"  x:Name="btnMessage_downloadphoto_Clear" Content="CLEAR" VerticalAlignment="Center" Height="26" Click="btnMessage_downloadphoto_Clear_Click" Grid.Column="2" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,4,0,5">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="Green" BorderThickness="1,1,1,2" Background="Azure">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <Grid Margin="0,0,10,0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="237*"/>
+                <RowDefinition Height="163*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Header="Module Description" BorderBrush="Black">
+                <Grid>
+                    <ProgressBar Height="8" Name="PhotoDwonload_progess" Margin="0,207,0,0" VerticalAlignment="Bottom" Background="Transparent" Foreground="#FF1313EC"/>
+
+
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Accounts Report" Grid.Row="1" BorderBrush="Black">
+                <DataGrid Name="dtGrdDownloadImage_AccountsReport" >
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+
+                            <MenuItem Header="Refresh" Click="RefreshAccountreport_DownloadImage_Click"/>
+                            <MenuItem Header="Delete" Click="DeleteAccountModule_DownloadImage_Click"/>
+                            <MenuItem Header="Export" Click="ExportDownloadImage_Click"/>
+
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+            </GroupBox>
+        </Grid>
+    </Grid>
+
+</UserControl>

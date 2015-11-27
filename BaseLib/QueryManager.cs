@@ -55,6 +55,13 @@ namespace BaseLib
             return ds;
         }
 
+        public DataSet SelectAccountreport(string modulename)
+        {
+            string SelectQuery = "select * from tbl_AccountReport where ModuleName ='"+modulename+"'";
+            DataSet ds = DataBaseHandler.SelectQuery(SelectQuery,"tbl_AccountReport");
+            return ds;
+        }
+
         public DataSet SelectCampaignName(string TableName, string CampaignName)
         {
             DataSet ds = new DataSet();

@@ -19,6 +19,8 @@ namespace BaseLibID
 
         public static Dictionary<string, InstagramUser> loadedAccountsDictionary = new Dictionary<string, InstagramUser>();
 
+        #region Common URL
+
         public static List<string> listAccounts = new List<string>();
         public readonly string IGhomeurl = "http://websta.me/p/";
         public readonly string IGstagramurl = "http://web.stagram.com/";
@@ -31,7 +33,7 @@ namespace BaseLibID
         public readonly string IGWEPME = "http://websta.me/";
         public readonly string IGApi_media = "https://api.instagram.com/v1/media/";
 
-
+        #endregion
 
         #region For Account Module
 
@@ -51,8 +53,27 @@ namespace BaseLibID
         public readonly string IGiconsquarecommentUrl = "http://iconosquare.com/comments.php";
         public readonly string IGiconsquaremessageUrl = "http://iconosquare.com/messages.php";
         public readonly string IGiconsquaremessagepostUrl = "http://iconosquare.com/message_post_autocomplete.php";
+        public readonly string IGiconsquarecontrollerUrl = "http://iconosquare.com/controller_ajax.php";
+        public readonly string IGiconsquaremesagecontactUrl = "http://iconosquare.com/messages_by_contact.php?c=";
 
 
+
+        #endregion
+
+        #region For follow module
+
+        public readonly string IGFollowapiUrl = "http://websta.me/api/relationships/";
+        public readonly string IGwebstaSearchUrl = "http://websta.me/search/";
+
+        #endregion
+
+        #region for Photo module
+
+        public readonly string IGphotolikeurl = "http://websta.me/api/load_likes/";
+        public readonly string IGWebstahomepageUrl = "http://websta.me";
+        public readonly string IGUserfollowerurl = "http://websta.me/followed-by/";
+        public readonly string IGwebtagurl = "http://websta.me/tag/";
+        public readonly string IGwebstakeywordurl = "http://websta.me/keyword/";
 
         #endregion
 

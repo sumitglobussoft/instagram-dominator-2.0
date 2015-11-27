@@ -23,6 +23,7 @@ namespace CampaignDetailsManager
         #region Globals variable for Follow campaign module
 
       public static  int counter_follow = 0;
+      public static bool Skipprivate = false;
         public static string followCampaignName = string.Empty;
         public static string followCampaignAccount = string.Empty;
         public static string followCampaignFollowUserPath = string.Empty;
@@ -861,40 +862,31 @@ namespace CampaignDetailsManager
 
             }
 
-             public string Follow(string UserName, ref InstagramUser accountManager)
-        {
-            try
-            {
-                lstThreadsFollower.Add(Thread.CurrentThread);
-                lstThreadsFollower.Distinct();
-                Thread.CurrentThread.IsBackground = true;
-            }
-            catch (Exception ex)
-            {
-                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
-            }
-            GlobusHttpHelper obj = accountManager.globusHttpHelper;
-            string res_secondURL = obj.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
-
-            if (!UserName.Contains("http://websta.me/n/"))
-            {
-                UserName = "http://websta.me/n/" + UserName + "/";
-            }
-            string UserPageContent = string.Empty;
-
-            if (!string.IsNullOrEmpty(accountManager.proxyip) && !string.IsNullOrEmpty(accountManager.proxyport))
+            public string Follow(string UserName, ref InstagramUser accountManager)
             {
                 try
                 {
-                    UserPageContent = accountManager.globusHttpHelper.getHtmlfromUrlProxy(new Uri(UserName), accountManager.proxyip, Convert.ToInt32(accountManager.proxyport), accountManager.proxyusername, accountManager.proxypassword);
+                    lstThreadsFollower.Add(Thread.CurrentThread);
+                    lstThreadsFollower.Distinct();
+                    Thread.CurrentThread.IsBackground = true;
                 }
                 catch (Exception ex)
                 {
-
+                    GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
                 }
-                if (string.IsNullOrEmpty(UserPageContent))
+                GlobusHttpHelper obj = accountManager.globusHttpHelper;
+                // string res_secondURL = obj.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
+                string res_secondURL = obj.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
+
+                if (!UserName.Contains(IGGlobals.Instance.IGWEP_HomePage))
                 {
-                    Thread.Sleep(1000);
+                    //UserName = IGGlobals.Instance.IGWEP_HomePage + UserName + "/";
+                    UserName = "https://www.instagram.com/" + UserName + "/";
+                }
+                string UserPageContent = string.Empty;
+
+                if (!string.IsNullOrEmpty(accountManager.proxyip) && !string.IsNullOrEmpty(accountManager.proxyport))
+                {
                     try
                     {
                         UserPageContent = accountManager.globusHttpHelper.getHtmlfromUrlProxy(new Uri(UserName), accountManager.proxyip, Convert.ToInt32(accountManager.proxyport), accountManager.proxyusername, accountManager.proxypassword);
@@ -903,115 +895,170 @@ namespace CampaignDetailsManager
                     {
 
                     }
-                }
-            }
-            else
-            {
-                try
-                {
-                    UserPageContent = accountManager.globusHttpHelper.getHtmlfromUrlProxy(new Uri(UserName), "", 80, "", "");
-                }
-                catch { };
+                    if (string.IsNullOrEmpty(UserPageContent))
+                    {
+                        Thread.Sleep(1000);
+                        try
+                        {
+                            UserPageContent = accountManager.globusHttpHelper.getHtmlfromUrlProxy(new Uri(UserName), accountManager.proxyip, Convert.ToInt32(accountManager.proxyport), accountManager.proxyusername, accountManager.proxypassword);
+                        }
+                        catch (Exception ex)
+                        {
 
-                if (string.IsNullOrEmpty(UserPageContent))
+                        }
+                    }
+                }
+                else
                 {
-                    Thread.Sleep(1000);
                     try
                     {
                         UserPageContent = accountManager.globusHttpHelper.getHtmlfromUrlProxy(new Uri(UserName), "", 80, "", "");
                     }
                     catch { };
-                }
-            }
-            try
-            {
-                //if (UserPageContent.Contains("This user is private."))
-                //{
-                //    return "private";
-                //}
-                string PK = string.Empty;
-                if (UserPageContent.Contains(""))
-                {
-                    PK = Utils.getBetween(UserPageContent, "id=\"follow_btn_wrapper\"", ">").Replace("data-target=", "").Replace("\"", "").Trim();
-                }
 
-                if (string.IsNullOrEmpty(PK))
-                {
-                    PK = Utils.getBetween(UserPageContent, "id=\"message_user_id", ">").Replace(">", "").Replace("value=", string.Empty).Replace("\"", string.Empty).Trim();//.Replace("\"", "").Trim();
-                }
-
-                string PostData = "action=follow";//"&pk=" + PK + "&t=9208";
-                string FollowedPageSource = string.Empty;
-
-                if (!string.IsNullOrEmpty(PK))
-                {
-                    try
+                    if (string.IsNullOrEmpty(UserPageContent))
                     {
-                        FollowedPageSource = accountManager.globusHttpHelper.postFormData(new Uri("http://websta.me/api/relationships/" + PK), PostData, UserName, "http://websta.me");
-                    }
-                    catch { }
-                }
-                if (string.IsNullOrEmpty(FollowedPageSource))
-                {
-
-                }
-                //try
-                //{
-                //    nameval.Add("Origin", "http://web.stagram.com");
-                //    nameval.Add("X-Requested-With", "XMLHttpRequest");
-                //}
-                //catch { };
-
-                if (FollowedPageSource.Contains("OK"))
-                {
-                    //return "Followed";
-                    string status = string.Empty;
-                    try
-                    {
-                        status = QueryExecuter.getFollowStatus1(accountManager.username, UserName);
-                    }
-                    catch { }
-                    if (string.IsNullOrEmpty(status))
-                    {
-                        if (FollowedPageSource.Contains("requested"))
+                        Thread.Sleep(1000);
+                        try
                         {
-                            status = "requested";
+                            UserPageContent = accountManager.globusHttpHelper.getHtmlfromUrlProxy(new Uri(UserName), "", 80, "", "");
+                        }
+                        catch { };
+                    }
+                }
+                try
+                {
+                    if (Skipprivate == true)
+                    {
+                        if (UserPageContent.Contains("\"is_private\":true"))
+                        {
+                            return "User is Private";
                         }
                     }
-                    switch (status)
+                    //if (UserPageContent.Contains("This user is private."))
+                    //{
+                    //    return "private";
+                    //}
+                    string PK = string.Empty;
+                    if (UserPageContent.Contains(""))
                     {
-                        case "Followed":  //status = "Followed";
-                            QueryExecuter.updateFollowStatus(accountManager.username, UserName, "Unfollowed");
-                            break;
-
-                        case "Unfollowed": status = "Unfollowed";
-                            QueryExecuter.updateFollowStatus(accountManager.username, UserName, "Unfollowed");
-                            break;
-
-                        case "requested": status = "requested";
-                            QueryExecuter.updateFollowStatus(accountManager.username, UserName, "requested");
-                            break;
-                        default: status = "Followed";
-                            try
-                            {
-                                QueryExecuter.insertFollowInfo(accountManager.username, UserName, "Followed");
-                            }
-                            catch { }
-                            break;
+                        // PK = Utils.getBetween(UserPageContent, "id=\"follow_btn_wrapper\"", ">").Replace("data-target=", "").Replace("\"", "").Trim();
+                        PK = Utils.getBetween(UserPageContent, "\"id\":", "\",").Replace("\"", "");
                     }
-                    return status;
-                }
-                else
-                {
-                    return "UnFollowed";
-                }
-            }
-            catch (Exception)
-            {
-                return "Follow option is not available In page...!!";
-            }
 
-             }
+                    if (string.IsNullOrEmpty(PK))
+                    {
+                        PK = Utils.getBetween(UserPageContent, "id=\"message_user_id", ">").Replace(">", "").Replace("value=", string.Empty).Replace("\"", string.Empty).Trim();//.Replace("\"", "").Trim();
+                    }
+
+                    string PostData = "action=follow";//"&pk=" + PK + "&t=9208";
+                    string postData = "https://www.instagram.com/web/friendships/" + PK + "/follow/";
+                    string FollowedPageSource = string.Empty;
+
+                    if (!string.IsNullOrEmpty(PK))
+                    {
+                        try
+                        {
+                            string test = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri(UserName));
+                            string txt_name = Utils.getBetween(UserName, "www.instagram.com/", "/");
+                            string csrf_token = Utils.getBetween(UserPageContent, "csrf_token\":\"", "\"}");
+                            // FollowedPageSource = accountManager.globusHttpHelper.postFormDataFollower(new Uri(IGGlobals.Instance.IGFollowapiUrl + PK), PostData, UserName,"");
+                            //string cookies = "mid=VlgP7AAEAAGek4AP2tkKKkB1nVop; sessionid=IGSC23aaf0fd3e37cbe487ed42ff34c9b6fd2aafa7dffcc24d2174e46d716f61e7f3%3AViHt3HzffpuWQuVIIK3juvKlSeULsC7H%3A%7B%22_token_ver%22%3A2%2C%22_auth_user_id%22%3A2212052873%2C%22_token%22%3A%222212052873%3A00vc2gt5Bu7HtXh3McR53VUbU3xoUd4J%3Af29a940088bddd8e5c3d7411bcb32a7bac726f5ab580e8b5cdb58528a9b5f5df%22%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22last_refreshed%22%3A1450426011.547766%2C%22_platform%22%3A4%7D; s_network=; ig_pr=1; ig_vw=294; csrftoken=da65eda4fbe59f98d4f7d4d9664af428; ds_user_id=2212052873";
+                            //string[] dslfjsdlk = Regex.Split(cookies, ";");
+                            //accountManager.globusHttpHelper.gCookies = new System.Net.CookieCollection();
+                            //foreach (string item in dslfjsdlk)
+                            //{
+                            //    try
+                            //    {
+
+                            //        System.Net.Cookie cookies12 = new System.Net.Cookie();
+
+                            //        cookies12.Name = Regex.Split(item, "=")[0].Replace(" ", "");
+                            //        cookies12.Value = Regex.Split(item, "=")[1].Replace(" ", "");
+                            //        cookies12.Domain = "instagram.com";
+
+                            //        accountManager.globusHttpHelper.gCookies.Add(cookies12);
+
+
+
+                            //    }
+                            //    catch { };
+
+
+                            //}
+
+
+
+                            FollowedPageSource = accountManager.globusHttpHelper.postFormDatainta(new Uri(postData), "", "https://www.instagram.com/" + txt_name + "/", csrf_token);
+                        }
+                        catch { }
+                    }
+                    if (string.IsNullOrEmpty(FollowedPageSource))
+                    {
+
+                    }
+
+
+                    if (FollowedPageSource.Contains("followed_by_viewer\":true") || FollowedPageSource.Contains("requested_by_viewer\":true"))
+                    {
+
+                        string status = string.Empty;
+                        try
+                        {
+                            status = QueryExecuter.getFollowStatus1(accountManager.username, UserName);
+                        }
+                        catch { }
+                        if (string.IsNullOrEmpty(status))
+                        {
+                            if (FollowedPageSource.Contains("has_requested_viewer\":true") || FollowedPageSource.Contains("requested_by_viewer\":true"))
+                            {
+                                status = "requested";
+                            }
+                            if (FollowedPageSource.Contains("followed_by_viewer\":true"))
+                            {
+                                status = "Followed";
+                            }
+
+                        }
+                        switch (status)
+                        {
+                            case "Followed":  //status = "Followed";
+                                QueryExecuter.updateFollowStatus(accountManager.username, UserName, "Unfollowed");
+                                break;
+
+                            case "Unfollowed": status = "Unfollowed";
+                                QueryExecuter.updateFollowStatus(accountManager.username, UserName, "Unfollowed");
+                                break;
+
+                            case "requested": status = "requested";
+                                QueryExecuter.updateFollowStatus(accountManager.username, UserName, "requested");
+                                break;
+                            default: status = "Followed";
+                                try
+                                {
+                                    QueryExecuter.insertFollowInfo(accountManager.username, UserName, "Followed");
+                                }
+                                catch { }
+                                break;
+                        }
+                        return status;
+                    }
+                    if (FollowedPageSource.Contains("Instagram API does not respond"))
+                    {
+                        return "Instagram API does not respond";
+                    }
+                    else
+                    {
+                        return "UnFollowed";
+                    }
+                }
+                catch (Exception)
+                {
+                    return "Follow option is not available In page...!!";
+                }
+
+
+            }
         }
 
         public class CampaignPhotoLike
@@ -1564,10 +1611,12 @@ namespace CampaignDetailsManager
                     {
                         GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
                     }
+                    List<string> phto_list = new List<string>();
                     string Photolink = string.Empty;
                     string FollowedPageSource = string.Empty;
                     string like = string.Empty;
                     string new_repce = string.Empty;
+                    bool value = true;
                     if (IGGlobals.Check_likephoto_Byusername == true)
                     {
                         try
@@ -1575,39 +1624,96 @@ namespace CampaignDetailsManager
 
                             int temp = noPhotoLike_username;
                             int flag = 0;
-                            string Url_user = IGGlobals.Instance.IGWEP_HomePage + PhotoId;
+                            string Url_user = "https://www.instagram.com/" + PhotoId;
                             string responce_user = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(Url_user), "");
-                            string[] data = Regex.Split(responce_user, "class=\"mainimg_wrapper\"");
-                            GlobusHttpHelper obj = Photo_likebyID.globusHttpHelper;
-                            foreach (string item in data)
+                            string token = Utils.getBetween(responce_user, "csrf_token\":\"", "\"}");
+                            string[] photo_code = Regex.Split(responce_user, "code\":");
+                            foreach (string list in photo_code)
                             {
+                                if (list.Contains("date"))
+                                {
+                                    string photo_codes = Utils.getBetween("@" + list, "@\"", "\"");
+                                    phto_list.Add(photo_codes);
+                                }
+                            }
+                            if (responce_user.Contains("has_next_page\":true"))
+                            {
+                                while (value)
+                                {
+                                    if (responce_user.Contains("has_next_page\":true") && phto_list.Count < temp)
+                                    {
+                                        string IDD = Utils.getBetween(responce_user, "\"id\":\"", "\"");
+                                        string code_ID = Utils.getBetween(responce_user, "end_cursor\":\"", "\"");
+                                        string postdata = "q=ig_user(" + IDD + ")+%7B+media.after(" + code_ID + "%2C+12)+%7B%0A++count%2C%0A++nodes+%7B%0A++++caption%2C%0A++++code%2C%0A++++comments+%7B%0A++++++count%0A++++%7D%2C%0A++++date%2C%0A++++dimensions+%7B%0A++++++height%2C%0A++++++width%0A++++%7D%2C%0A++++display_src%2C%0A++++id%2C%0A++++is_video%2C%0A++++likes+%7B%0A++++++count%0A++++%7D%2C%0A++++owner+%7B%0A++++++id%0A++++%7D%2C%0A++++thumbnail_src%0A++%7D%2C%0A++page_info%0A%7D%0A+%7D&ref=users%3A%3Ashow";
+                                        responce_user = Photo_likebyID.globusHttpHelper.postFormDatainta(new Uri("https://www.instagram.com/query/"), postdata, "https://www.instagram.com/" + PhotoId, token);
+                                        string[] data1 = Regex.Split(responce_user, "code");
+                                        foreach (string val in data1)
+                                        {
+                                            if (val.Contains("date"))
+                                            {
+                                                if (phto_list.Count < temp)
+                                                {
+                                                    string photo_codes = Utils.getBetween(val, "\":\"", "\"");
+                                                    phto_list.Add(photo_codes);
+                                                }
+                                                else
+                                                {
+                                                    break;
+                                                }
+                                            }
+                                        }
+
+
+
+                                    }
+                                    else
+                                    {
+                                        value = false;
+                                    }
+
+                                }
+                            }
+
+
+
+
+                            foreach (string item in phto_list)
+                            {
+
+
+                                string resp_photodetail = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com/p/" + item), "");
+                                string phto_ID = Utils.getBetween(resp_photodetail, "content=\"instagram://media?id=", " />").Replace("\"", "");
+                                //string[] data = Regex.Split(responce_user, "class=\"mainimg_wrapper\"");
+                                //GlobusHttpHelper obj = Photo_likebyID.globusHttpHelper;
+                                //foreach (string item in data)
+                                //{
                                 if (flag < temp)
                                 {
 
                                     if (!item.Contains("!DOCTYPE html>"))
                                     {
-                                        PhotoId = Utils.getBetween(item, " href=\"/p/", "\"");
+                                        //PhotoId = Utils.getBetween(item, " href=\"/p/", "\"");
                                         flag++;
                                         try
                                         {
-                                            if (PhotoId.Contains(IGGlobals.Instance.IGhomeurl))
+                                            if (phto_ID.Contains("https://www.instagram.com/p/"))
                                             {
-                                                PhotoId = PhotoId.Replace(IGGlobals.Instance.IGhomeurl, string.Empty);
+                                                phto_ID = PhotoId.Replace(IGGlobals.Instance.IGhomeurl, string.Empty);
                                             }
-                                            if (!PhotoId.Contains(IGGlobals.Instance.IGstagramurl))
+                                            if (!phto_ID.Contains("https://www.instagram.com/p/"))
                                             {
-                                                Photolink = IGGlobals.Instance.IGLikewebsta_api + PhotoId + "/".Replace(IGGlobals.Instance.IGhomeurl, "");
+                                                Photolink = "https://www.instagram.com/web/likes/" + phto_ID + "/like/ ".Replace(IGGlobals.Instance.IGhomeurl, "");
                                             }
                                             else
                                             {
-                                                Photolink = PhotoId;
+                                                Photolink = item;
 
                                             }
-
-                                            string url = IGGlobals.Instance.IGhomeurl + PhotoId;
+                                            string url = "https://www.instagram.com/p/" + item;
                                             string Check_like = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(url), "");
-                                            string Data = Utils.getBetween(Check_like, "class=\"list-inline pull-left\">", "</ul>");
-                                            if (Data.Contains("</i> Like</button>"))
+                                            string token_paginaton = Utils.getBetween(Check_like, "csrf_token\":\"", "\"}");
+                                            //    string Data = Utils.getBetween(Check_like, "class=\"list-inline pull-left\">", "</ul>");
+                                            if (Check_like.Contains("\"viewer_has_liked\":false"))
                                             {
                                                 //string PageContent = accountManager.httpHelper.getHtmlfromUrl(new Uri(Photolink), "", "", accountManager.proxyAddress);
                                                 string PageContent = string.Empty;
@@ -1623,7 +1729,8 @@ namespace CampaignDetailsManager
                                                     }
                                                     else
                                                     {
-                                                        PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrlProxy(new Uri(Photolink), Photo_likebyID.proxyip, Convert.ToInt32(Photo_likebyID.proxyport), Photo_likebyID.proxyusername, Photo_likebyID.proxypassword);
+                                                        PageContent = Photo_likebyID.globusHttpHelper.PostData_LoginThroughInstagram(new Uri(Photolink), "", "https://www.instagram.com/", token_paginaton);
+                                                        //PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrlProxy(new Uri(Photolink), Photo_likebyID.proxyip, Convert.ToInt32(Photo_likebyID.proxyport), Photo_likebyID.proxyusername, Photo_likebyID.proxypassword);
                                                     }
 
                                                 }
@@ -1643,11 +1750,12 @@ namespace CampaignDetailsManager
                                                     }
                                                 }
 
-                                                if (PageContent.Contains("message\":\"LIKED\""))
+                                                if (PageContent.Contains("{\"status\":\"ok\"}"))
                                                 {
 
-
-                                                    FollowedPageSource = "LIKED";
+                                                    DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User, Photo_Id,Status) values('" + "PhotoLikeModule" + "','" + Photo_likebyID.username + "','" + item + "','" + "LIKED" + "')", "tbl_AccountReport");
+                                                    GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ " + Photo_likebyID.username + "  LIKED : " + PhotoId + "==>PhotoID===>" + item + "]");
+                                                    // FollowedPageSource = "LIKED";
 
                                                     try
                                                     {
@@ -1671,7 +1779,7 @@ namespace CampaignDetailsManager
 
                                                 }
                                             }
-                                            else if (Data.Contains("</i> Liked</button>"))
+                                            else if (Check_like.Contains("viewer_has_liked\":true"))
                                             {
                                                 FollowedPageSource = "Already LIKED";
                                             }
@@ -1681,13 +1789,28 @@ namespace CampaignDetailsManager
                                             GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
                                         }
 
-
                                     }
                                 }
 
+
+                                if (PhotoLikeCampaignDelayMin != 0)
+                                {
+                                    mindelay = PhotoLikeCampaignDelayMin;
+                                }
+                                if (PhotoLikeCampaignDelayMax != 0)
+                                {
+                                    maxdelay = PhotoLikeCampaignDelayMax;
+                                }
+
+
+                                int delayy = RandomNumberGenerator.GenerateRandom(mindelay, maxdelay);
+                                GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Delay For " + delayy + " Seconds For " + Photo_likebyID.username + " ]");
+                                Thread.Sleep(delayy * 1000);
                             }
 
                         }
+
+                     //   }
 
                         catch (Exception ex)
                         {
@@ -1700,26 +1823,31 @@ namespace CampaignDetailsManager
                         try
                         {
                             GlobusHttpHelper obj = Photo_likebyID.globusHttpHelper;
-                            string res_secondURL = obj.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
-                            if (PhotoId.Contains(IGGlobals.Instance.IGhomeurl))
+                            string res_secondURL = obj.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
+                            string get_photoId = obj.getHtmlfromUrl(new Uri("https://www.instagram.com/p/" + PhotoId), "");
+                            string photo_ID = Utils.getBetween(get_photoId, "content=\"instagram://media?id=", " />").Replace("\"", "");
+
+
+                            if (photo_ID.Contains("https://www.instagram.com/p/"))
                             {
-                                PhotoId = PhotoId.Replace(IGGlobals.Instance.IGhomeurl, string.Empty);
+                                photo_ID = PhotoId.Replace(IGGlobals.Instance.IGhomeurl, string.Empty);
                             }
-                            if (!PhotoId.Contains(IGGlobals.Instance.IGstagramurl))
+                            if (!photo_ID.Contains("https://www.instagram.com/p/"))
                             {
-                                Photolink = IGGlobals.Instance.IGLikewebsta_api + PhotoId + "/".Replace(IGGlobals.Instance.IGhomeurl, "");
+                                Photolink = "https://www.instagram.com/web/likes/" + photo_ID + "/like/ ".Replace(IGGlobals.Instance.IGhomeurl, "");
                             }
                             else
                             {
-                                Photolink = PhotoId;
+                                Photolink = photo_ID;
 
                             }
-                            string url = IGGlobals.Instance.IGhomeurl + PhotoId;
+                            string url = "https://www.instagram.com/p/" + PhotoId;
                             string Check_like = obj.getHtmlfromUrl(new Uri(url), "");
-                            string Data = Utils.getBetween(Check_like, "class=\"list-inline pull-left\">", "</ul>");
-                            if (Data.Contains("</i> Like</button>"))
+                            string token = Utils.getBetween(Check_like, "csrf_token\":\"", "\"}");
+                            //   string Data = Utils.getBetween(Check_like, "class=\"list-inline pull-left\">", "</ul>");
+                            if (Check_like.Contains("viewer_has_liked\":false"))
                             {
-                                // string PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(Photolink), "", "", Photo_likebyID.proxyip);
+
                                 string PageContent = string.Empty;
                                 if (string.IsNullOrEmpty(Photo_likebyID.proxyport))
                                 {
@@ -1733,7 +1861,8 @@ namespace CampaignDetailsManager
                                     }
                                     else
                                     {
-                                        PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrlProxy(new Uri(Photolink), Photo_likebyID.proxyip, Convert.ToInt32(Photo_likebyID.proxyport), Photo_likebyID.proxyusername, Photo_likebyID.proxypassword);
+
+                                        PageContent = Photo_likebyID.globusHttpHelper.PostData_LoginThroughInstagram(new Uri(Photolink), "", "https://www.instagram.com/", token);
                                     }
 
                                 }
@@ -1753,11 +1882,17 @@ namespace CampaignDetailsManager
                                     }
                                 }
 
-                                if (PageContent.Contains("message\":\"LIKED\""))
+                                if (PageContent.Contains("Instagram API does not respond"))
+                                {
+                                    FollowedPageSource = "Instagram API does not respond";
+                                }
+
+                                if (PageContent.Contains("{\"status\":\"ok\"}"))
                                 {
 
 
                                     FollowedPageSource = "LIKED";
+                                    DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User, Photo_Id,Status) values('" + "PhotoLikeModule" + "','" + Photo_likebyID.username + "','" + PhotoId + "','" + "LIKED" + "')", "tbl_AccountReport");
 
                                     try
                                     {
@@ -1781,10 +1916,11 @@ namespace CampaignDetailsManager
 
                                 }
                             }
-                            else if (Data.Contains("</i> Liked</button>"))
+                            else if (Check_like.Contains("viewer_has_liked\":true"))
                             {
                                 FollowedPageSource = "Already LIKED";
                             }
+
 
                         }
                         catch (Exception ex)
@@ -2205,7 +2341,7 @@ namespace CampaignDetailsManager
 
                 try
                 {
-                    string res_secondURL = User_comment.globusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
+                    string res_secondURL = User_comment.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
                     string CommentIdlink = string.Empty;
                     string commentIdLoggedInLink = string.Empty;
                     if (commentId.Contains(IGGlobals.Instance.IGhomeurl))
@@ -2213,14 +2349,14 @@ namespace CampaignDetailsManager
                         commentId = commentId.Replace(IGGlobals.Instance.IGhomeurl, string.Empty);
                     }
 
-                    if (!commentId.Contains(IGGlobals.Instance.IGstagramurl))
+                    if (!commentId.Contains("https://www.instagram.com/p/"))
                     {
                         try
                         {
 
-                            CommentIdlink = IGGlobals.Instance.IGstagramurl_2 + commentId + "/";
+                            CommentIdlink = "https://www.instagram.com/p/" + commentId + "/";
 
-                            commentIdLoggedInLink = IGGlobals.Instance.IGhomeurl + commentId;
+                            commentIdLoggedInLink = "https://www.instagram.com/p/" + commentId;
                         }
                         catch (Exception ex)
                         {
@@ -2236,49 +2372,28 @@ namespace CampaignDetailsManager
                     //InstagramAccountManager _InstagramAccountManager = new InstagramAccountManager(accountManager.Username, accountManager.Password, accountManager.proxyAddress, accountManager.proxyPassword, accountManager.proxyUsername, accountManager.proxyPassword);
 
                     string url = IGGlobals.Instance.IGStagram_api + commentId;
+                    string resp_photourl = User_comment.globusHttpHelper.getHtmlfromUrl(new Uri(CommentIdlink), "");
+                    string Cooment_ID = Utils.getBetween(resp_photourl, "content=\"instagram://media?id=", " />").Replace("\"", "");
+                    string postdata_url = "https://www.instagram.com/web/comments/" + Cooment_ID + "/add/";
+                    string poatdata = "comment_text=" + CommentMsg;
+                    string token = Utils.getBetween(resp_photourl, "csrf_token\":\"", "\"");
 
-                    bool checkunicode = ContainsUnicodeCharacter(CommentMsg);
-
-                    string CmntMSG = string.Empty;
-
-
-                    if (checkunicode == false)
-                    {
-                        try
-                        {
-                            CmntMSG = CommentMsg.Replace(" ", "+");
-
-                        }
-                        catch (Exception ex)
-                        {
-                            return ex.Message;
-                        };
-                    }
-                    else
-                    {
-                        try
-                        {
-                            CmntMSG = Uri.EscapeDataString(CommentMsg);
-                        }
-                        catch (Exception ex)
-                        {
-                            return ex.Message;
-                        };
-                    }
-
-                    //  string commentPostData = "comment=+" + CmntMSG + "&media_id=" + commentId;
                     try
                     {
-                        string commentPostData = "comment=+++" + CmntMSG + "&media_id=" + commentId;
-
-                        FollowedPageSource = User_comment.globusHttpHelper.postFormData(new Uri(url), commentPostData, CommentIdlink, "");
+                        FollowedPageSource = User_comment.globusHttpHelper.postFormDatainta(new Uri(postdata_url), poatdata, "https://www.instagram.com/", token);
                     }
                     catch (Exception ex)
                     {
-                        return ex.Message;
+
                     }
 
-                    if (FollowedPageSource.Contains("status\":\"OK\"") || FollowedPageSource.Contains("created_time"))
+
+
+
+
+
+
+                    if (FollowedPageSource.Contains("status\":\"ok\"") || FollowedPageSource.Contains("created_time"))
                     {
                         try
                         {
@@ -2291,14 +2406,21 @@ namespace CampaignDetailsManager
                     }
                     else
                     {
-                        try
+                        if (FollowedPageSource.Contains("Instagram API does not respond"))
                         {
-                            FollowedPageSource = "Fail";
+                            FollowedPageSource = "Instagram API does not respond";
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            return ex.Message;
-                        };
+                            try
+                            {
+                                FollowedPageSource = "Fail";
+                            }
+                            catch (Exception ex)
+                            {
+                                return ex.Message;
+                            };
+                        }
                     }
                     #endregion
 
@@ -2325,7 +2447,7 @@ namespace CampaignDetailsManager
                     //string login = "https://instagram.com/accounts/login/?force_classic_login=&next=/oauth/authorize/%3Fclient_id%3D9d836570317f4c18bca0db6d2ac38e29%26redirect_uri%3Dhttp%3A//websta.me/%26response_type%3Dcode%26scope%3Dcomments%2Brelationships%2Blikes";
                     //string postdata_Login = "csrfmiddlewaretoken=" + Token + "&username=" + Username + "&password=" + Password + "";
 
-                    //string res_postdata_Login = _InstagramAccountManager.httpHelper.postFormData(new Uri(login), postdata_Login, login, "");
+                    // string res_postdata_Login = _InstagramAccountManager.httpHelper.postFormData(new Uri(login), postdata_Login, login, "");
 
                     //string PageContent = string.Empty;
                     //PageContent = _GlobusHttpHelper.getHtmlfromUrl(new Uri(commentIdLoggedInLink), "", "", _InstagramAccountManager.proxyPassword);
@@ -2412,7 +2534,10 @@ namespace CampaignDetailsManager
                     FollowedPageSource = string.Empty;
                 }
                 return FollowedPageSource;
+
             }
+
+
             public bool ContainsUnicodeCharacter(string input)
             {
                 const int MaxAnsiCode = 255;

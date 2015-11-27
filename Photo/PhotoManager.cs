@@ -243,12 +243,10 @@ namespace Photo
 
         private void StartActionLikePoster(ref InstagramUser fbUser)
         {
-
             try
             {
                 if (Like == true)
                 {
-
                     Start_LikePhoto_ID(ref fbUser);
                 }
                 if (unlike == true)
@@ -285,10 +283,10 @@ namespace Photo
             }
             try
             {
-                ClGlobul.PhotoList.Clear();
+              //  ClGlobul.PhotoList.Clear();
                 GlobusHttpHelper obj = Unlike_ID.globusHttpHelper;
-                string res_secondURL = obj.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
-
+           //     string res_secondURL = obj.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
+                string res_secondURL = obj.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
 
                 if (string.IsNullOrEmpty(UnLikePhoto_ID_Path))
                 {
@@ -306,7 +304,7 @@ namespace Photo
                             {
 
 
-                                ClGlobul.PhotoList.Add(UnLikePhoto_ID);
+                                ClGlobul.PhotoList.Add(item);
                             }
                         }
                         else
@@ -340,24 +338,74 @@ namespace Photo
                         }
                         int count_user = 0;
                         int Usercount = 1;
-                        int temp = no_photounlike_Username;
-                        
-                        foreach (string item in ClGlobul.Userlist)
+                        int temp = no_photounlike_Username ;
+                        bool value = true;
+                        List<string> lstUserlist = ClGlobul.Userlist;
+
+                        foreach (string item in lstUserlist)
                         {
                             count_user = 0;
-                            string Url_foruser = "http://websta.me/n/" + item;
+                            string photoID_username = string.Empty;
+                            string Url_foruser = "https://www.instagram.com/" + item+"/";
                             string resp_foruser = Unlike_ID.globusHttpHelper.getHtmlfromUrl(new Uri(Url_foruser), "");
-                            string[] data = Regex.Split(resp_foruser, "<div class=\"mainimg_wrapper\">");
+                            string token = Utils.getBetween(resp_foruser, "csrf_token\":\"", "\"}");
+                            string[] data = Regex.Split(resp_foruser, "code");
                             foreach (string item1 in data)
                             {
-                                if (!item1.Contains("!DOCTYPE html>"))
+                                if (item1.Contains("date"))
                                 {
                                     if (temp > count_user)
                                     {
-                                        string photoID_username = Utils.getBetween(item1, "<a href=\"/p/", "\"");
+                                         photoID_username = Utils.getBetween(item1, "\":\"", "\"");
+                                      //  string photo_respo = Unlike_ID.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com/p/" + photoID_username), "");
+                                       // string photo_ID = Utils.getBetween(photo_respo, "content=\"instagram://media?id=", "\" />");
                                         ClGlobul.PhotoList.Add(photoID_username);
+                                        ClGlobul.PhotoList= ClGlobul.PhotoList.Distinct().ToList();
                                         count_user++;
                                     }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                            if (resp_foruser.Contains("has_next_page\":true"))
+                            {
+                                while (value)
+                                {
+                                    if (resp_foruser.Contains("has_next_page\":true") && ClGlobul.PhotoList.Count < temp)
+                                    {
+                                        string IDD = Utils.getBetween(resp_foruser, "\"id\":\"", "\"");
+                                        string code_ID = Utils.getBetween(resp_foruser, "end_cursor\":\"", "\"");
+                                        string postdata = "q=ig_user(" + IDD + ")+%7B+media.after(" + code_ID + "%2C+12)+%7B%0A++count%2C%0A++nodes+%7B%0A++++caption%2C%0A++++code%2C%0A++++comments+%7B%0A++++++count%0A++++%7D%2C%0A++++date%2C%0A++++dimensions+%7B%0A++++++height%2C%0A++++++width%0A++++%7D%2C%0A++++display_src%2C%0A++++id%2C%0A++++is_video%2C%0A++++likes+%7B%0A++++++count%0A++++%7D%2C%0A++++owner+%7B%0A++++++id%0A++++%7D%2C%0A++++thumbnail_src%0A++%7D%2C%0A++page_info%0A%7D%0A+%7D&ref=users%3A%3Ashow";
+                                        resp_foruser = Unlike_ID.globusHttpHelper.postFormDatainta(new Uri("https://www.instagram.com/query/"), postdata, "https://www.instagram.com/" + photoID_username, token);
+                                        string[] data1 = Regex.Split(resp_foruser, "code");
+                                        foreach (string val in data1)
+                                        {
+                                            if (val.Contains("date"))
+                                            {
+                                                if (count_user < temp)
+                                                {
+                                                    string photo_codes = Utils.getBetween(val, "\":\"", "\"");
+                                                    ClGlobul.PhotoList.Add(photo_codes);
+                                                    ClGlobul.PhotoList = ClGlobul.PhotoList.Distinct().ToList();
+                                                    count_user++;
+                                                }
+                                                else
+                                                {
+                                                    break;
+                                                }
+                                            }
+                                        }
+
+
+
+                                    }
+                                    else
+                                    {
+                                        value = false;
+                                    }
+
                                 }
                             }
                         }
@@ -375,6 +423,7 @@ namespace Photo
                 if (ClGlobul.PhotoList.Count > 0)
                 {
                     unlikeCompletionCount = 0;
+                    ClGlobul.PhotoList.Distinct();
                     Lst_photoLikethread.Clear();
                     _boolUnlike = false;
                     GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Starting Photo Unlike Process ]");
@@ -401,8 +450,8 @@ namespace Photo
             try
             {
                 GlobusHttpHelper obj = unlikephoto_ID.globusHttpHelper;
-                string res_secondURL = obj.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
-
+                string res_secondURL = obj.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
+                int count = 0;
 
                 foreach (string itemPhotos in ClGlobul.PhotoList)
                 {
@@ -418,55 +467,58 @@ namespace Photo
                     try
                     {
                         string pageSource = string.Empty;
-                        pageSource = unlikephoto_ID.globusHttpHelper.getHtmlfromUrlProxy(new Uri("http://websta.me/p/" + itemPhotos), "", 80, "", "");
+                        pageSource = unlikephoto_ID.globusHttpHelper.getHtmlfromUrlProxy(new Uri("https://www.instagram.com/p/" + itemPhotos), "", 80, "", "");
+                        string Photo_ID_unlike = Utils.getBetween(pageSource,"content=\"instagram://media?id=","\" />");
+                        string token = Utils.getBetween(pageSource, "csrf_token\":\"", "\"}");
                         if (!string.IsNullOrEmpty(pageSource))
                         {
                             string like = string.Empty;
-                            if (pageSource.Contains("likeButton") & pageSource.Contains("</button>"))
+                            if (pageSource.Contains("viewer_has_liked\":true"))
                             {
                                 try
                                 {
-                                    like = Utils.getBetween(pageSource, "likeButton", "</button>");
-                                }
-                                catch (Exception ex)
-                                {
-
-                                }
-                            }
-
-                            if (like.Contains("Liked"))
-                            {
-                                string url_Unlike = IGGlobals.Instance.IGApi_Remove_like;
-                                url_Unlike += itemPhotos;
-                                string response = string.Empty;
-                                response = unlikephoto_ID.globusHttpHelper.getHtmlfromUrlProxy(new Uri(url_Unlike), "", 80, "", "");
-
-                                if (!string.IsNullOrEmpty(response))
-                                {
-                                    if (response.Contains("OK"))
+                                    string unlike_postdata = "https://www.instagram.com/web/likes/" + Photo_ID_unlike + "/unlike/";
+                                    string refer = "https://www.instagram.com/p/" + itemPhotos + "/";
+                                    string response = unlikephoto_ID.globusHttpHelper.PostData_LoginThroughInstagram(new Uri(unlike_postdata), "", refer, token);
+                                    if (!string.IsNullOrEmpty(response))
                                     {
-                                        if (_boolUnlike) return;
-                                        GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Unliked " + itemPhotos + " From : " + unlikephoto_ID.username + " ]");
+                                        if (response.Contains("{\"status\":\"ok\"}"))
+                                        {
+                                            if (_boolUnlike) return;
+                                            DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User,DateTime,Photo_Id, Status) values('" + "PhotoUnlikeModule" + "','" + unlikephoto_ID.username + "','" + DateTime.Now + "','" + itemPhotos + "','" + "Unliked" + "')", "tbl_AccountReport");
+                                            GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Unliked " + itemPhotos + " From : " + unlikephoto_ID.username + " ]");
+                                        }
+                                        else
+                                        {
+                                            if (_boolUnlike) return;
+                                            GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Failed To Unlike From : " + unlikephoto_ID.username + " ]");
+                                        }
                                     }
                                     else
                                     {
                                         if (_boolUnlike) return;
                                         GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Failed To Unlike From : " + unlikephoto_ID.username + " ]");
                                     }
-                                }
-                                else
-                                {
-                                    if (_boolUnlike) return;
-                                    GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Failed To Unlike From : " + unlikephoto_ID.username + " ]");
-                                }
 
+
+                                }
+                                catch (Exception ex)
+                                {
+
+                                }
                             }
                             else
                             {
-                                if (_boolUnlike) return;
-                                GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ " + itemPhotos + " is not liked previously From : " + unlikephoto_ID.username + " ]");
-                            }
+                                if (pageSource.Contains("viewer_has_liked\":false"))
+                                {
+                                   // if (_boolUnlike) return;
+                                    GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ " + itemPhotos + " is not liked previously From : " + unlikephoto_ID.username + " ]");
 
+                                    // GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Already Unliked " + itemPhotos + " From : " + unlikephoto_ID.username + " ]");
+                                }
+                            }
+                        }
+                        ClGlobul.PhotoList.Remove(itemPhotos);
                             if (minDelayUnLikePoster != 0)
                             {
                                 mindelay = minDelayUnLikePoster;
@@ -481,9 +533,14 @@ namespace Photo
                                 int delay = RandomNumberGenerator.GenerateRandom(mindelay, maxdelay);
                                 GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Delay For " + delay + " Seconds For " + unlikephoto_ID.username + " ]");
                                 Thread.Sleep(delay * 1000);
+                                count++;
                             }
+                            //if (ClGlobul.PhotoList.Count == count)
+                            //{
+                            //    break;
+                            //}
 
-                        }
+                        
                     }
                     catch (Exception ex)
                     {
@@ -491,7 +548,8 @@ namespace Photo
                     }
                 }
                 GlobusLogHelper.log.Info("----------------------------------");
-                GlobusLogHelper.log.Info("----- UnLike Process Completed -----");
+                  GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ UnLike Process Completed For " + unlikephoto_ID.username + " ]");
+               // GlobusLogHelper.log.Info("----- UnLike Process Completed for " +  );
                 GlobusLogHelper.log.Info("------------------------------------");
             }
             catch { };
@@ -515,8 +573,8 @@ namespace Photo
             {
                 
                 GlobusHttpHelper obj = Like_photo.globusHttpHelper;
-                string res_secondURL = obj.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
-
+               // string res_secondURL = obj.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
+                string res_secondURL = obj.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
                 if (!string.IsNullOrEmpty(LikePhoto_Username))
                 {
                     ClGlobul.PhotoList.Clear();
@@ -646,7 +704,7 @@ namespace Photo
             try
             {
                 GlobusHttpHelper obj = Photo_likee.globusHttpHelper;
-                string res_secondURL = obj.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
+                string res_secondURL = obj.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
                 foreach (string PhotoList_item in ClGlobul.PhotoList)
                 {
 
@@ -670,8 +728,14 @@ namespace Photo
                             string Result = string.Empty;
                             try
                             {
-                                Result = photolike(photoId, ref Photo_likee);
-
+                                if (IGGlobals.Check_likephoto_Byusername == true)
+                                {
+                                    photolike(photoId, ref Photo_likee);
+                                }
+                                else
+                                {
+                                    Result = photolike(photoId, ref Photo_likee);
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -691,7 +755,7 @@ namespace Photo
                                     else
                                     {
                                         QueryExecuter.insertLikeStatus(photoId, Photo_likee.username, 1);
-                                        GlobusLogHelper.log.Info("photoID in Incorrect");
+                                        //GlobusLogHelper.log.Info("photoID in Incorrect");
                                     }
 
                                     try
@@ -739,6 +803,7 @@ namespace Photo
                                 {
                                     if (Result.Contains("LIKED"))
                                     {
+                                        
                                         GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ " + Photo_likee.username + "   LIKED : " + PhotoList_item + " ]");
                                     }
                                 }
@@ -801,6 +866,7 @@ namespace Photo
                                 {
                                     if (Result.Contains("LIKED"))
                                     {
+                                        
                                         GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ " + Photo_likee.username + "  LIKED : " + PhotoList_item + " ]");
                                     }
                                 }
@@ -861,10 +927,12 @@ namespace Photo
             {
                 GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
             }
+            List<string> phto_list = new List<string>();
             string Photolink = string.Empty;
             string FollowedPageSource = string.Empty;
             string like = string.Empty;
             string new_repce = string.Empty;
+            bool value = true;
             if (IGGlobals.Check_likephoto_Byusername == true)
             {
                 try
@@ -872,119 +940,200 @@ namespace Photo
 
                     int temp = noPhotoLike_username;
                     int flag = 0;
-                    string Url_user = IGGlobals.Instance.IGWEP_HomePage + PhotoId;
+                    string Url_user = "https://www.instagram.com/" + PhotoId;
                     string responce_user = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(Url_user), "");
-                    string[] data = Regex.Split(responce_user, "class=\"mainimg_wrapper\"");
-                    GlobusHttpHelper obj = Photo_likebyID.globusHttpHelper;
-                    foreach (string item in data)
+                    string token = Utils.getBetween(responce_user, "csrf_token\":\"", "\"}");
+                    string[] photo_code = Regex.Split(responce_user, "code\":");
+                    foreach (string list in photo_code)
                     {
-                        if (flag < temp)
+                        if (list.Contains("date"))
                         {
-
-                            if (!item.Contains("!DOCTYPE html>"))
+                            string photo_codes = Utils.getBetween("@"+list, "@\"", "\"");
+                            phto_list.Add(photo_codes);
+                        }
+                    }
+                    if(responce_user.Contains("has_next_page\":true"))
+                    {
+                        while(value)
+                        {
+                            if(responce_user.Contains("has_next_page\":true") && phto_list.Count<temp)
                             {
-                                PhotoId = Utils.getBetween(item, " href=\"/p/", "\"");
-                                flag++;
-                                try
+                                string IDD = Utils.getBetween(responce_user,"\"id\":\"","\"");
+                                string code_ID = Utils.getBetween(responce_user,"end_cursor\":\"","\"");
+                                string postdata = "q=ig_user(" + IDD + ")+%7B+media.after(" + code_ID + "%2C+12)+%7B%0A++count%2C%0A++nodes+%7B%0A++++caption%2C%0A++++code%2C%0A++++comments+%7B%0A++++++count%0A++++%7D%2C%0A++++date%2C%0A++++dimensions+%7B%0A++++++height%2C%0A++++++width%0A++++%7D%2C%0A++++display_src%2C%0A++++id%2C%0A++++is_video%2C%0A++++likes+%7B%0A++++++count%0A++++%7D%2C%0A++++owner+%7B%0A++++++id%0A++++%7D%2C%0A++++thumbnail_src%0A++%7D%2C%0A++page_info%0A%7D%0A+%7D&ref=users%3A%3Ashow";
+                                responce_user = Photo_likebyID.globusHttpHelper.postFormDatainta(new Uri("https://www.instagram.com/query/"), postdata, "https://www.instagram.com/" + PhotoId, token);
+                                string[] data1 = Regex.Split(responce_user, "code");
+                                foreach(string val in data1)
                                 {
-                                    if (PhotoId.Contains(IGGlobals.Instance.IGhomeurl))
+                                    if (val.Contains("date"))
                                     {
-                                        PhotoId = PhotoId.Replace(IGGlobals.Instance.IGhomeurl, string.Empty);
+                                        if (phto_list.Count < temp)
+                                        {
+                                            string photo_codes = Utils.getBetween(val, "\":\"", "\"");
+                                            phto_list.Add(photo_codes);
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
                                     }
-                                    if (!PhotoId.Contains(IGGlobals.Instance.IGstagramurl))
+                                }
+                            
+                            
+                            
+                            }
+                            else
+                            {
+                                value = false;
+                            }
+
+                        }
+                    }
+
+
+
+
+                    foreach (string item in phto_list)
+                    {
+
+
+                        string resp_photodetail = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com/p/" + item), "");
+                            string phto_ID = Utils.getBetween(resp_photodetail, "content=\"instagram://media?id=", " />").Replace("\"", "");
+                            //string[] data = Regex.Split(responce_user, "class=\"mainimg_wrapper\"");
+                            //GlobusHttpHelper obj = Photo_likebyID.globusHttpHelper;
+                            //foreach (string item in data)
+                            //{
+                            if (flag < temp)
+                            {
+
+                                if (!item.Contains("!DOCTYPE html>"))
+                                {
+                                    //PhotoId = Utils.getBetween(item, " href=\"/p/", "\"");
+                                    flag++;
+                                    try
                                     {
-                                        Photolink = IGGlobals.Instance.IGLikewebsta_api + PhotoId + "/".Replace(IGGlobals.Instance.IGhomeurl, "");
-                                    }
-                                    else
-                                    {
-                                        Photolink = PhotoId;
-
-                                    }
-
-                                    string url = IGGlobals.Instance.IGhomeurl + PhotoId;
-                                    string Check_like = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(url), "");
-                                    string Data = Utils.getBetween(Check_like, "class=\"list-inline pull-left\">", "</ul>");
-                                    if (Data.Contains("</i> Like</button>"))
-                                    {
-                                        //string PageContent = accountManager.httpHelper.getHtmlfromUrl(new Uri(Photolink), "", "", accountManager.proxyAddress);
-                                        string PageContent = string.Empty;
-                                        if (string.IsNullOrEmpty(Photo_likebyID.proxyport))
+                                        if (phto_ID.Contains("https://www.instagram.com/p/"))
                                         {
-                                            Photo_likebyID.proxyport = "80";
+                                            phto_ID = PhotoId.Replace(IGGlobals.Instance.IGhomeurl, string.Empty);
                                         }
-                                        try
+                                        if (!phto_ID.Contains("https://www.instagram.com/p/"))
                                         {
-                                            if (ClGlobul.checkHashTagLiker == true)
-                                            {
-                                                PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(Photolink), "");
-                                            }
-                                            else
-                                            {
-                                                PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrlProxy(new Uri(Photolink), Photo_likebyID.proxyip, Convert.ToInt32(Photo_likebyID.proxyport), Photo_likebyID.proxyusername, Photo_likebyID.proxypassword);
-                                            }
+                                            Photolink = "https://www.instagram.com/web/likes/" + phto_ID + "/like/ ".Replace(IGGlobals.Instance.IGhomeurl, "");
+                                        }
+                                        else
+                                        {
+                                            Photolink = item;
 
                                         }
-                                        catch (Exception ex)
+                                        string url = "https://www.instagram.com/p/" + item;
+                                        string Check_like = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(url), "");
+                                        string token_paginaton = Utils.getBetween(Check_like, "csrf_token\":\"", "\"}");
+                                        //    string Data = Utils.getBetween(Check_like, "class=\"list-inline pull-left\">", "</ul>");
+                                        if (Check_like.Contains("\"viewer_has_liked\":false"))
                                         {
-                                            GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
-                                        }
-                                        if (string.IsNullOrEmpty(PageContent))
-                                        {
-                                            if (ClGlobul.checkHashTagLiker == true)
+                                            //string PageContent = accountManager.httpHelper.getHtmlfromUrl(new Uri(Photolink), "", "", accountManager.proxyAddress);
+                                            string PageContent = string.Empty;
+                                            if (string.IsNullOrEmpty(Photo_likebyID.proxyport))
                                             {
-                                                PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(Photolink));
+                                                Photo_likebyID.proxyport = "80";
                                             }
-                                            else
-                                            {
-                                                PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrlProxy(new Uri(Photolink), "", 80, "", "");
-                                            }
-                                        }
-
-                                        if (PageContent.Contains("message\":\"LIKED\""))
-                                        {
-
-
-                                            FollowedPageSource = "LIKED";
-
                                             try
                                             {
                                                 if (ClGlobul.checkHashTagLiker == true)
                                                 {
-                                                    try
-                                                    {
-                                                        DataBaseHandler.InsertQuery("insert into liker_hash_tag (account_holder, photo_id, like_date, like_status) values ('" + Photo_likebyID.username + "','" + PhotoId + "','" + Convert.ToString(DateTime.Now) + "','" + FollowedPageSource + "')", "liker_hash_tag");
-                                                    }
-                                                    catch (Exception ex)
-                                                    {
-                                                        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
-                                                    }
+                                                    PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(Photolink), "");
                                                 }
+                                                else
+                                                {
+                                                    PageContent = Photo_likebyID.globusHttpHelper.PostData_LoginThroughInstagram(new Uri(Photolink), "", "https://www.instagram.com/", token_paginaton);
+                                                    //PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrlProxy(new Uri(Photolink), Photo_likebyID.proxyip, Convert.ToInt32(Photo_likebyID.proxyport), Photo_likebyID.proxyusername, Photo_likebyID.proxypassword);
+                                                }
+
                                             }
                                             catch (Exception ex)
                                             {
                                                 GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
                                             }
+                                            if (string.IsNullOrEmpty(PageContent))
+                                            {
+                                                if (ClGlobul.checkHashTagLiker == true)
+                                                {
+                                                    PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(Photolink));
+                                                }
+                                                else
+                                                {
+                                                    PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrlProxy(new Uri(Photolink), "", 80, "", "");
+                                                }
+                                            }
+
+                                            if (PageContent.Contains("{\"status\":\"ok\"}"))
+                                            {
+
+                                                DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User,DateTime,Photo_Id,Status) values('" + "PhotoLikeModule" + "','" + Photo_likebyID.username + "','" + DateTime.Now + "','" + item + "','" + "LIKED" + "')", "tbl_AccountReport");
+                                                GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ " + Photo_likebyID.username + "  LIKED : " + PhotoId + "==>PhotoID===>" + item + "]");
+                                                // FollowedPageSource = "LIKED";
+
+                                                try
+                                                {
+                                                    if (ClGlobul.checkHashTagLiker == true)
+                                                    {
+                                                        try
+                                                        {
+                                                            DataBaseHandler.InsertQuery("insert into liker_hash_tag (account_holder, photo_id, like_date, like_status) values ('" + Photo_likebyID.username + "','" + PhotoId + "','" + Convert.ToString(DateTime.Now) + "','" + FollowedPageSource + "')", "liker_hash_tag");
+                                                        }
+                                                        catch (Exception ex)
+                                                        {
+                                                            GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+                                                        }
+                                                    }
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+                                                }
 
 
+                                            }
+                                        }
+                                        else if (Check_like.Contains("viewer_has_liked\":true"))
+                                        {
+                                            FollowedPageSource = "Already LIKED";
+                                            GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ " + Photo_likebyID.username + "  Already LIKED : " + PhotoId + "==>PhotoID===>" + item + "]");
                                         }
                                     }
-                                    else if (Data.Contains("</i> Liked</button>"))
+                                    catch (Exception ex)
                                     {
-                                        FollowedPageSource = "Already LIKED";
+                                        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
                                     }
-                                }
-                                catch (Exception ex)
-                                {
-                                    GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
-                                }
 
-
+                                }
                             }
+                            if (flag == temp)
+                            {
+                                break;
+                            }
+                        
+
+                        if (minDelayLikePoster != 0)
+                        {
+                            mindelay = minDelayLikePoster;
                         }
+                        if (maxDelayLikePoster != 0)
+                        {
+                            maxdelay = maxDelayLikePoster;
+                        }
+
+
+                        int delayy = RandomNumberGenerator.GenerateRandom(mindelay, maxdelay);
+                        GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Delay For " + delayy + " Seconds For " + Photo_likebyID.username + " ]");
+                        Thread.Sleep(delayy * 1000);
+
+                       
+                    }
 
                     }
 
-                }
+             //   }
 
                 catch (Exception ex)
                 {
@@ -997,26 +1146,31 @@ namespace Photo
                 try
                 {
                     GlobusHttpHelper obj = Photo_likebyID.globusHttpHelper;
-                    string res_secondURL = obj.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
-                    if (PhotoId.Contains(IGGlobals.Instance.IGhomeurl))
+                    string res_secondURL = obj.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
+                    string get_photoId = obj.getHtmlfromUrl(new Uri("https://www.instagram.com/p/" + PhotoId),"");
+                    string photo_ID = Utils.getBetween(get_photoId, "content=\"instagram://media?id=", " />").Replace("\"","");
+
+
+                    if (photo_ID.Contains("https://www.instagram.com/p/"))
                     {
-                        PhotoId = PhotoId.Replace(IGGlobals.Instance.IGhomeurl, string.Empty);
+                        photo_ID = PhotoId.Replace(IGGlobals.Instance.IGhomeurl, string.Empty);
                     }
-                    if (!PhotoId.Contains(IGGlobals.Instance.IGstagramurl))
+                    if (!photo_ID.Contains("https://www.instagram.com/p/"))
                     {
-                        Photolink = IGGlobals.Instance.IGLikewebsta_api + PhotoId + "/".Replace(IGGlobals.Instance.IGhomeurl, "");
+                        Photolink = "https://www.instagram.com/web/likes/" + photo_ID + "/like/ ".Replace(IGGlobals.Instance.IGhomeurl, "");
                     }
                     else
                     {
-                        Photolink = PhotoId;
+                        Photolink = photo_ID;
 
                     }
-                    string url = IGGlobals.Instance.IGhomeurl + PhotoId;
+                    string url = "https://www.instagram.com/p/" + PhotoId;
                     string Check_like = obj.getHtmlfromUrl(new Uri(url), "");
-                    string Data = Utils.getBetween(Check_like, "class=\"list-inline pull-left\">", "</ul>");
-                    if (Data.Contains("</i> Like</button>"))
+                    string token = Utils.getBetween(Check_like, "csrf_token\":\"", "\"}");
+                 //   string Data = Utils.getBetween(Check_like, "class=\"list-inline pull-left\">", "</ul>");
+                    if (Check_like.Contains("viewer_has_liked\":false"))
                     {
-                        // string PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(Photolink), "", "", Photo_likebyID.proxyip);
+                       
                         string PageContent = string.Empty;
                         if (string.IsNullOrEmpty(Photo_likebyID.proxyport))
                         {
@@ -1030,10 +1184,8 @@ namespace Photo
                             }
                             else
                             {
-                              // string postdata = "https://www.instagram.com/web/likes/" + PhotoId + "/like/";
-                              // PageContent = Photo_likebyID.globusHttpHelper.postFormData(new Uri("https://www.instagram.com/"), postdata, "https://www.instagram.com/", "");
-                              //  PageContent = Photo_likebyID.globusHttpHelper.PostDataWithInstagram(new Uri("https://www.instagram.com/"), postdata, "https://www.instagram.com/");
-                                PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrlProxy(new Uri(Photolink), Photo_likebyID.proxyip, Convert.ToInt32(Photo_likebyID.proxyport), Photo_likebyID.proxyusername, Photo_likebyID.proxypassword);
+
+                                PageContent = Photo_likebyID.globusHttpHelper.PostData_LoginThroughInstagram(new Uri(Photolink), "", "https://www.instagram.com/", token);
                             }
 
                         }
@@ -1058,11 +1210,12 @@ namespace Photo
                             FollowedPageSource = "Instagram API does not respond";
                         }
 
-                        if (PageContent.Contains("message\":\"LIKED\""))
+                        if (PageContent.Contains("{\"status\":\"ok\"}"))
                         {
 
 
                             FollowedPageSource = "LIKED";
+                            DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User, Photo_Id,Status) values('" + "PhotoLikeModule" + "','" + Photo_likebyID.username + "','" + PhotoId + "','" + "LIKED" + "')", "tbl_AccountReport");
 
                             try
                             {
@@ -1086,7 +1239,7 @@ namespace Photo
 
                         }
                     }
-                    else if (Data.Contains("</i> Liked</button>"))
+                    else if (Check_like.Contains("viewer_has_liked\":true"))
                     {
                         FollowedPageSource = "Already LIKED";
                     }
@@ -1103,7 +1256,7 @@ namespace Photo
             }
         }
 
-
+        public static List<Thread> lstDownloadingPhoto = new List<Thread>();
         public void StartDownload_Photo(ref InstagramUser Download_pic)
         {
             try
@@ -1111,6 +1264,11 @@ namespace Photo
                 lstThreadsLikePoster.Add(Thread.CurrentThread);
                 lstThreadsLikePoster.Distinct();
                 Thread.CurrentThread.IsBackground = true;
+                lstDownloadingPhoto.Add(Thread.CurrentThread);
+                if(lstDownloadingPhoto.Count()>1)
+                {
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -1119,7 +1277,7 @@ namespace Photo
             try
             {
                 GlobusHttpHelper objGlobusHttpHelper = Download_pic.globusHttpHelper;
-                string resp = objGlobusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
+                string resp = objGlobusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
                 if (string.IsNullOrEmpty(UserphotoDownload_Multiple))
                 {
                     if (!string.IsNullOrEmpty(UserphotoDownload_Single))
@@ -1167,7 +1325,7 @@ namespace Photo
             try
             {
                 GlobusHttpHelper objGlobusHttpHelper = Download_Photo.globusHttpHelper;
-                string resp = objGlobusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
+                string resp = objGlobusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
                 Globals.lstThread.Add(Thread.CurrentThread);
                 Thread.CurrentThread.IsBackground = true;
                 Globals.lstThread = Globals.lstThread.Distinct().ToList();
@@ -1222,17 +1380,21 @@ namespace Photo
             GlobusHttpHelper objGlobusHttpHelper = Download.globusHttpHelper;
             List<string> lstCountImage = new List<string>();
             string url = string.Empty;
-            string mainUrl = IGGlobals.Instance.IGWEPME;
+            string mainUrl = "https://www.instagram.com";
+            List<string> list_pics = new List<string>();
+            bool value = true;
+            string postdata = string.Empty;
             if (IsDownLoadImageUsingHashTag)
             {
 
-                url = mainUrl + "tag/" + itemImageTag.Replace("#", "");
+               // url = mainUrl + "tag/" + itemImageTag.Replace("#", "");
+                url = "https://www.instagram.com/explore/tags/" + itemImageTag.Replace("#", "");
                 GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] =>[Process Using HashTag =" + itemImageTag);
             }
 
             else if (IsDownLoadImageUsingUserName)
             {
-                url = mainUrl + "n/" + itemImageTag;
+                url = mainUrl + "/" + itemImageTag+"/";
                 GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] =>[Process Selected Using UserName  =" + itemImageTag);
             }
 
@@ -1256,84 +1418,145 @@ namespace Photo
             }
             if (!string.IsNullOrEmpty(pageSource))
             {
-                if (pageSource.Contains("<div class=\"mainimg_wrapper\">"))
+                string token = Utils.getBetween(pageSource, "csrf_token\":\"", "\"}");
+                if (pageSource.Contains("code"))
                 {
-                    string[] arr = Regex.Split(pageSource, "<div class=\"mainimg_wrapper\">");
-                    if (arr.Length > 1)
+                    string[] arr = Regex.Split(pageSource, "code");
+                    foreach (string var in arr)
                     {
-                        arr = arr.Skip(1).ToArray();
+                        if (var.Contains("date"))
+                        {
+                            list_pics.Add(var);
+                        }
+                    }
+                    if(pageSource.Contains("has_next_page\":true"))
+                    {
+                        while (value)
+                        {
+                            if (pageSource.Contains("has_next_page\":true") && list_pics.Count < no_photo_Download)
+                            {
+                                string IDD = Utils.getBetween(pageSource, "\"id\":\"", "\"");
+                                string code_ID = Utils.getBetween(pageSource, "end_cursor\":\"", "\"");
+                                if (IsDownLoadImageUsingUserName)
+                                {
+                                     postdata = "q=ig_user(" + IDD + ")+%7B+media.after(" + code_ID + "%2C+12)+%7B%0A++count%2C%0A++nodes+%7B%0A++++caption%2C%0A++++code%2C%0A++++comments+%7B%0A++++++count%0A++++%7D%2C%0A++++date%2C%0A++++dimensions+%7B%0A++++++height%2C%0A++++++width%0A++++%7D%2C%0A++++display_src%2C%0A++++id%2C%0A++++is_video%2C%0A++++likes+%7B%0A++++++count%0A++++%7D%2C%0A++++owner+%7B%0A++++++id%0A++++%7D%2C%0A++++thumbnail_src%0A++%7D%2C%0A++page_info%0A%7D%0A+%7D&ref=users%3A%3Ashow";
+                                }
+                                else
+                                {
+                                    postdata = "q=ig_hashtag(" + itemImageTag.Replace("#","") + ")+%7B+media.after(" + code_ID + "%2C+12)+%7B%0A++count%2C%0A++nodes+%7B%0A++++caption%2C%0A++++code%2C%0A++++comments+%7B%0A++++++count%0A++++%7D%2C%0A++++date%2C%0A++++dimensions+%7B%0A++++++height%2C%0A++++++width%0A++++%7D%2C%0A++++display_src%2C%0A++++id%2C%0A++++is_video%2C%0A++++likes+%7B%0A++++++count%0A++++%7D%2C%0A++++owner+%7B%0A++++++id%0A++++%7D%2C%0A++++thumbnail_src%0A++%7D%2C%0A++page_info%0A%7D%0A+%7D&ref=users%3A%3Ashow";
+                                }
+                                pageSource = Download.globusHttpHelper.postFormDatainta(new Uri("https://www.instagram.com/query/"), postdata, url, token);
+                                string[] data1 = Regex.Split(pageSource, "code");
+                                foreach (string val in data1)
+                                {
+                                    if (val.Contains("date"))
+                                    {
+                                        if (list_pics.Count < no_photo_Download)
+                                        {
 
-                        foreach (string itemarr in arr)
+                                            list_pics.Add(val);
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+                                    }
+                                }
+
+
+
+                            }
+                            else
+                            {
+                                value = false;
+                            }
+
+                        }
+                    }
+
+
+
+
+
+
+
+
+
+                    if (list_pics.Count > 1)
+                    {
+                        arr = list_pics.Skip(1).ToArray();
+
+                        foreach (string itemarr in list_pics)
                         {
 
                             try
                             {
-                                string startString = "<a href=\"";
-                                string endString = "\" class=\"mainimg\"";
-                                string imageId = string.Empty;
-                                string imageSrc = string.Empty;
-                                if (itemarr.Contains("<a href=\"/p/"))
+                                if (itemarr.Contains("date"))
                                 {
-                                    int indexStart = itemarr.IndexOf("<a href=\"/p/");
-                                    string itemarrNow = itemarr.Substring(indexStart);
-                                    if (itemarrNow.Contains(startString) && itemarrNow.Contains(endString))
-                                    {
-                                        try
+                                    //string startString = "<a href=\"";
+                                    //string endString = "\" class=\"mainimg\"";
+                                    string imageId = string.Empty;
+                                    string imageSrc = string.Empty;
+                                   
+                                        
+                                            try
+                                            {
+
+                                                imageId = Utils.getBetween(itemarr, "\":\"", "\"");
+                                            }
+                                            catch { }
+                                            if (!string.IsNullOrEmpty(imageId))
+                                            {
+
+                                            }
+
+
+                                            if (itemarr.Contains("display_src"))
                                         {
-                                           
-                                            imageId = Utils.getBetween(itemarrNow, startString, endString).Replace("/", "");
+                                            try
+                                            {
+                                                imageSrc = Utils.getBetween(itemarr, "display_src\":\"", "\"}").Replace("\\","");
+
+                                            }
+                                            catch { }
+                                            counter++;
+
+
+                                            SaveImageWithUrl(imageSrc, FileData, imageId + "_" + counter);
+
+
+                                            lstCountImage.Add(imageSrc);
+                                            lstCountImage = lstCountImage.Distinct().ToList();
+                                            DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User,DateTime,UserName,Photo_Id, Status) values('" + "DownloadImage" + "','" + Download.username + "','" + DateTime.Now + "','" + itemImageTag + "','" + imageId + "','" + "Downloaded" + "')", "tbl_AccountReport");
+                                            GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] =>[Image DownLoaded with user=" + itemImageTag + "_" + imageId + "_" + counter);
+                                            if (minDelayDownloadPoster != 0)
+                                            {
+                                                mindelay = minDelayDownloadPoster;
+                                            }
+                                            if (maxDelayDownloadPoster != 0)
+                                            {
+                                                maxdelay = maxDelayDownloadPoster;
+                                            }
+                                            lock (_lockObject)
+                                            {
+                                                int delay = RandomNumberGenerator.GenerateRandom(mindelay, maxdelay);
+                                                GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Delay For " + delay + " Seconds ]");
+                                                Thread.Sleep(delay * 1000);
+                                            }
+
+                                            if (lstCountImage.Count >= no_photo_Download)
+                                            {
+                                                return;
+                                            }
+
+
+                                            try
+                                            {
+
+                                            }
+                                            catch { }
                                         }
-                                        catch { }
-                                        if (!string.IsNullOrEmpty(imageId))
-                                        {
-                                           
-                                        }
-                                    }
-
-                                    if (itemarrNow.Contains("<img src=\""))
-                                    {
-                                        try
-                                        {
-                                            imageSrc = Utils.getBetween(itemarrNow, "<img src=\"", "\"");
-                                        }
-                                        catch { }
-                                        counter++;
-
-
-                                        SaveImageWithUrl(imageSrc, FileData, imageId + "_" + counter);
-
-
-                                        lstCountImage.Add(imageSrc);
-                                        lstCountImage = lstCountImage.Distinct().ToList();
-                                       
-                                        GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] =>[Image DownLoaded with user=" + itemImageTag + "_" + imageId + "_" + counter);
-                                        if (minDelayDownloadPoster != 0)
-                                        {
-                                            mindelay = minDelayDownloadPoster;
-                                        }
-                                        if (maxDelayDownloadPoster != 0)
-                                        {
-                                            maxdelay = maxDelayDownloadPoster;
-                                        }
-                                        lock (_lockObject)
-                                        {
-                                            int delay = RandomNumberGenerator.GenerateRandom(mindelay, maxdelay);
-                                            GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Delay For " + delay + " Seconds ]");
-                                            Thread.Sleep(delay * 1000);
-                                        }
-
-                                        if (lstCountImage.Count >= no_photo_Download)
-                                        {
-                                            return;
-                                        }
-
-
-                                        try
-                                        {
-
-                                        }
-                                        catch { }
-                                    }
+                                    
                                 }
                             }
                             catch { }
@@ -1632,6 +1855,7 @@ namespace Photo
             }
         }
 
+        
         public void StartLike_liker(ref InstagramUser likerr_obj)
         {
             try
@@ -1657,7 +1881,18 @@ namespace Photo
                     string PPagesource = string.Empty;
                     try
                     {
-                        PPagesource = likerr_obj.globusHttpHelper.getHtmlfromUrlProxy(new Uri(IGGlobals.Instance.IGWEP_HomePage + itemUsername + ""), "", 444, "", "");
+                        PPagesource = likerr_obj.globusHttpHelper.getHtmlfromUrlProxy(new Uri("https://www.instagram.com/" + itemUsername + ""), "", 444, "", "");
+                        string[] spite = Regex.Split(PPagesource, "code");
+                            foreach(string var in spite)
+                            {
+                                if(var.Contains("date"))
+                                {
+                                    string phto_Id = Utils.getBetween(var, "\":\"", "\"");
+                                    string URL = "https://www.instagram.com/p/" + phto_Id;
+                                    
+                                    //string respo = likerr_obj
+                                }
+                            }
                     }
                     catch (Exception ex)
                     {
@@ -1703,7 +1938,7 @@ namespace Photo
                         {
                             string Id = item;
                             string New_Url = IGGlobals.Instance.IGApi_media + Id + "/likes?access_token=" + accessToken;
-                            string newurl =  "http://websta.me/api/load_likes/"+Id ;
+                            string newurl = IGGlobals.Instance.IGphotolikeurl + Id;
                             string new_urlresp = likerr_obj.globusHttpHelper.getHtmlfromUrlProxy(new Uri(newurl), "", 444, "", "");
                             string split = "";
                             string[] data = Regex.Split(new_urlresp, "\"username\":");
@@ -1749,9 +1984,9 @@ namespace Photo
                         }
 
                         
-                        int delay = RandomNumberGenerator.GenerateRandom(mindelay, maxdelay);
-                        GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Delay For " + delay + " Seconds For " + likerr_obj.username + " ]");
-                        Thread.Sleep(delay * 1000);
+                        //int delay = RandomNumberGenerator.GenerateRandom(mindelay, maxdelay);
+                        //GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Delay For " + delay + " Seconds For " + likerr_obj.username + " ]");
+                        //Thread.Sleep(delay * 1000);
                        
                         int PhotosCount = ClGlobul.PhotosCount;
 
@@ -1801,7 +2036,11 @@ namespace Photo
 
                                             if (finalPagesource.Contains("OK") && finalPagesource.Contains("LIKED"))
                                             {
+                                                DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User,DateTime,Photo_Id, Status) values('" + "Like_LikerPhoto" + "','" + likerr_obj.username + "','" + DateTime.Now + "','" + itemToken + "','" + "LIKED" + "')", "tbl_AccountReport");
                                                 GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [" + ++i + " Liked" + "Photo_ID" + itemToken + "]");
+                                                int delay = RandomNumberGenerator.GenerateRandom(mindelay, maxdelay);
+                                                GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Delay For " + delay + " Seconds For " + likerr_obj.username + " ]");
+                                                Thread.Sleep(delay * 1000);
 
                                                 PhotosCount--;
                                             }

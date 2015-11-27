@@ -1,0 +1,675 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{091C18BD-F362-4E4E-ACEC-49CC627E8589}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GramDominator</RootNamespace>
+    <AssemblyName>GramDominator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ChilkatDotNet2">
+      <HintPath>..\Libs\Libs\32 Bit dlls\ChilkatDotNet2.dll</HintPath>
+    </Reference>
+    <Reference Include="De.TorstenMandelkow.MetroChart">
+      <HintPath>..\Libs\Libs\De.TorstenMandelkow.MetroChart.dll</HintPath>
+    </Reference>
+    <Reference Include="FirstFloor.ModernUI">
+      <HintPath>..\packages\ModernUI.WPF.1.0.6\lib\net45\FirstFloor.ModernUI.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Libs\Libs\32 Bit dlls\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity">
+      <HintPath>..\Libs\Libs\32 Bit dlls\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.97.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Libs\32 Bit dlls\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\Libs\Libs\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AccountNotifyPropertyChanged.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="CustomUserControls\PhotoDownload_username.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlAddUserAgent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlcampaignfollowersScheduler.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlCampaign_Comment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControldividedata.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlHashTagsComment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlHashtagsfollower.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlHashTagsLikeModule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlLikePhotoByID.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlLikePhotoByUserName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlLoadfollowCampaign.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlLoadPhotoIdCampiagn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlLoadTextMessage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomUserControls\UserControlMentionUserLoadMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlMentionUsersInsertUrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlMentionUsersUploadUrls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlMentionUsersUseScrapedUrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlPhotoDownload_Hashtag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlScheduleMentionUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlSchedulerphotolikecampiagn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlSchedul_Comment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlScrapeUserScrapeFollowing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlScrapeUserScrapeHashTag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlScrapeUserScrapePhotoURL.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlScrapeUsersScrapeFollower.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlScrapeUsersWhoCommentOnPhoto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlScrapeUserWhereToMention.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlScrapeUserWhoLikeUserPhoto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlSingleAccountUpload.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlScarpeUser_Keyword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlScrapeuserbyUsername.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UsercontrolSingleUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlUnlikePhotoByPhotoId.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlUnlikePhotoByUsername.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\usercontrolusesingleAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UsercontrolUsingUsernamecomment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UsercontrolUsingUsernamelike.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControlUsingUsernamelikeandcomment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomUserControls\UserControl_FollowerScrape.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LicensingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="CheckListBoxViewModel.cs" />
+    <Compile Include="Classes\NotifyPropertyChange.cs" />
+    <Compile Include="Classes\SelectAccountViewModel.cs" />
+    <Compile Include="Classes\Validation.cs" />
+    <Compile Include="CustomUserControls\PhotoDownload_username.xaml.cs">
+      <DependentUpon>PhotoDownload_username.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlAddUserAgent.xaml.cs">
+      <DependentUpon>UserControlAddUserAgent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlcampaignfollowersScheduler.xaml.cs">
+      <DependentUpon>UserControlcampaignfollowersScheduler.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlCampaign_Comment.xaml.cs">
+      <DependentUpon>UserControlCampaign_Comment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControldividedata.xaml.cs">
+      <DependentUpon>UserControldividedata.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlHashTagsComment.xaml.cs">
+      <DependentUpon>UserControlHashTagsComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlHashtagsfollower.xaml.cs">
+      <DependentUpon>UserControlHashtagsfollower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlHashTagsLikeModule.xaml.cs">
+      <DependentUpon>UserControlHashTagsLikeModule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlLikePhotoByID.xaml.cs">
+      <DependentUpon>UserControlLikePhotoByID.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlLikePhotoByUserName.xaml.cs">
+      <DependentUpon>UserControlLikePhotoByUserName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlLoadfollowCampaign.xaml.cs">
+      <DependentUpon>UserControlLoadfollowCampaign.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlLoadPhotoIdCampiagn.xaml.cs">
+      <DependentUpon>UserControlLoadPhotoIdCampiagn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlLoadTextMessage.xaml.cs">
+      <DependentUpon>UserControlLoadTextMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlMentionUserLoadMessage.xaml.cs">
+      <DependentUpon>UserControlMentionUserLoadMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlMentionUsersInsertUrl.xaml.cs">
+      <DependentUpon>UserControlMentionUsersInsertUrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlMentionUsersUploadUrls.xaml.cs">
+      <DependentUpon>UserControlMentionUsersUploadUrls.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlMentionUsersUseScrapedUrl.xaml.cs">
+      <DependentUpon>UserControlMentionUsersUseScrapedUrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlPhotoDownload_Hashtag.xaml.cs">
+      <DependentUpon>UserControlPhotoDownload_Hashtag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlScheduleMentionUsers.xaml.cs">
+      <DependentUpon>UserControlScheduleMentionUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlSchedulerphotolikecampiagn.xaml.cs">
+      <DependentUpon>UserControlSchedulerphotolikecampiagn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlSchedul_Comment.xaml.cs">
+      <DependentUpon>UserControlSchedul_Comment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlScrapeUserScrapeFollowing.xaml.cs">
+      <DependentUpon>UserControlScrapeUserScrapeFollowing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlScrapeUserScrapeHashTag.xaml.cs">
+      <DependentUpon>UserControlScrapeUserScrapeHashTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlScrapeUserScrapePhotoURL.xaml.cs">
+      <DependentUpon>UserControlScrapeUserScrapePhotoURL.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlScrapeUsersScrapeFollower.xaml.cs">
+      <DependentUpon>UserControlScrapeUsersScrapeFollower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlScrapeUsersWhoCommentOnPhoto.xaml.cs">
+      <DependentUpon>UserControlScrapeUsersWhoCommentOnPhoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlScrapeUserWhereToMention.xaml.cs">
+      <DependentUpon>UserControlScrapeUserWhereToMention.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlScrapeUserWhoLikeUserPhoto.xaml.cs">
+      <DependentUpon>UserControlScrapeUserWhoLikeUserPhoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlSingleAccountUpload.xaml.cs">
+      <DependentUpon>UserControlSingleAccountUpload.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlScarpeUser_Keyword.xaml.cs">
+      <DependentUpon>UserControlScarpeUser_Keyword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlScrapeuserbyUsername.xaml.cs">
+      <DependentUpon>UserControlScrapeuserbyUsername.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UsercontrolSingleUser.xaml.cs">
+      <DependentUpon>UsercontrolSingleUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlUnlikePhotoByPhotoId.xaml.cs">
+      <DependentUpon>UserControlUnlikePhotoByPhotoId.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlUnlikePhotoByUsername.xaml.cs">
+      <DependentUpon>UserControlUnlikePhotoByUsername.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\usercontrolusesingleAccount.xaml.cs">
+      <DependentUpon>usercontrolusesingleAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UsercontrolUsingUsernamecomment.xaml.cs">
+      <DependentUpon>UsercontrolUsingUsernamecomment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UsercontrolUsingUsernamelike.xaml.cs">
+      <DependentUpon>UsercontrolUsingUsernamelike.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControlUsingUsernamelikeandcomment.xaml.cs">
+      <DependentUpon>UserControlUsingUsernamelikeandcomment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomUserControls\UserControl_FollowerScrape.xaml.cs">
+      <DependentUpon>UserControl_FollowerScrape.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalDeclration.cs" />
+    <Compile Include="LicenseManager.cs" />
+    <Compile Include="LicensingWindow.xaml.cs">
+      <DependentUpon>LicensingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PageLoader.cs" />
+    <Compile Include="Pages\PageAccountGraph\UserControlAccountGraph.xaml.cs">
+      <DependentUpon>UserControlAccountGraph.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageAccount\ManageAccounts.xaml.cs">
+      <DependentUpon>ManageAccounts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageAccount\ManageProfile.xaml.cs">
+      <DependentUpon>ManageProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageAccount\ProfileImageChnage.xaml.cs">
+      <DependentUpon>ProfileImageChnage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageCampaigns\UserControlCampaignComment.xaml.cs">
+      <DependentUpon>UserControlCampaignComment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageCampaigns\UserControlcampaignFollower.xaml.cs">
+      <DependentUpon>UserControlcampaignFollower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageCampaigns\UserControlcampaignPhotolike.xaml.cs">
+      <DependentUpon>UserControlcampaignPhotolike.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageComment\UserControlCommentPhoto.xaml.cs">
+      <DependentUpon>UserControlCommentPhoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageFollower\UserControlFollower.xaml.cs">
+      <DependentUpon>UserControlFollower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageFollower\UserControlUnfollower.xaml.cs">
+      <DependentUpon>UserControlUnfollower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageHashTags\UserControlHashTage.xaml.cs">
+      <DependentUpon>UserControlHashTage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageMessage\UserControlDirectMessage.xaml.cs">
+      <DependentUpon>UserControlDirectMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PagePhoto\UserControlDownloadPhoto.xaml.cs">
+      <DependentUpon>UserControlDownloadPhoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PagePhoto\UserControlLikePhoto.xaml.cs">
+      <DependentUpon>UserControlLikePhoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PagePhoto\UserControlPhotoUserliker.xaml.cs">
+      <DependentUpon>UserControlPhotoUserliker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PagePhoto\UserControlUnlikePhoto.xaml.cs">
+      <DependentUpon>UserControlUnlikePhoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageProxy\UserControlProxyUpload.xaml.cs">
+      <DependentUpon>UserControlProxyUpload.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageScraper\UserControlScarpePhotoCommentUser.xaml.cs" />
+    <Compile Include="Pages\PageScraper\UserControlScrapefollower.xaml.cs">
+      <DependentUpon>UserControlScrapefollower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageScraper\UserControlScrapeFollowing.xaml.cs">
+      <DependentUpon>UserControlScrapeFollowing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageScraper\UserControlScrapeImageUrl.xaml.cs">
+      <DependentUpon>UserControlScrapeImageUrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageScraper\UserControlScrapePhotolikerUser.xaml.cs" />
+    <Compile Include="Pages\PageScraper\UserControlScrapeUser.xaml.cs">
+      <DependentUpon>UserControlScrapeUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageScraper\UserControlScrapeUserPhotoUrl.xaml.cs" />
+    <Compile Include="Pages\PageSettings\Appearance.xaml.cs">
+      <DependentUpon>Appearance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageSettings\AppearanceViewModel.cs" />
+    <Compile Include="Pages\PageSettings\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScrapeUsers\UserControlScrapeUsers.xaml.cs">
+      <DependentUpon>UserControlScrapeUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Using Username\UsercontrolUsingUserName.xaml.cs">
+      <DependentUpon>UsercontrolUsingUserName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Page Include="Pages\PageAccountGraph\UserControlAccountGraph.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageAccount\ManageAccounts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageAccount\ManageProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageAccount\ProfileImageChnage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageCampaigns\UserControlCampaignComment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageCampaigns\UserControlcampaignFollower.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageCampaigns\UserControlcampaignPhotolike.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageComment\UserControlCommentPhoto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageFollower\UserControlFollower.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageFollower\UserControlUnfollower.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageHashTags\UserControlHashTage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageMessage\UserControlDirectMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PagePhoto\UserControlDownloadPhoto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PagePhoto\UserControlLikePhoto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PagePhoto\UserControlPhotoUserliker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PagePhoto\UserControlUnlikePhoto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageProxy\UserControlProxyUpload.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageScraper\UserControlScarpePhotoCommentUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\PageScraper\UserControlScrapefollower.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageScraper\UserControlScrapeFollowing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageScraper\UserControlScrapeImageUrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageScraper\UserControlScrapePhotolikerUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\PageScraper\UserControlScrapeUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageScraper\UserControlScrapeUserPhotoUrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\PageSettings\Appearance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageSettings\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ScrapeUsers\UserControlScrapeUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Using Username\UsercontrolUsingUserName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Accounts\Accounts.csproj">
+      <Project>{6588f13f-37e9-4f9e-a053-b762f40f85c9}</Project>
+      <Name>Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaseLibID\BaseLibID.csproj">
+      <Project>{247c91c2-7f55-440e-a7c9-a24a2e03a391}</Project>
+      <Name>BaseLibID</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BaseLib\BaseLib.csproj">
+      <Project>{85977246-de21-44cc-b798-ee7cacef001f}</Project>
+      <Name>BaseLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CampaignDetailsManager\CampaignDetailsManager.csproj">
+      <Project>{20d757d9-0317-49e0-916c-a6f20913d5bd}</Project>
+      <Name>CampaignDetailsManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Comment\Comment.csproj">
+      <Project>{2957febd-cb6b-4cce-a25c-49507b82ab1c}</Project>
+      <Name>Comment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DirectMessage\DirectMessage.csproj">
+      <Project>{80048a0b-e09d-4ab4-b712-3ea23785a7ec}</Project>
+      <Name>DirectMessage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Follower\Follower.csproj">
+      <Project>{ceae42a3-8837-40e5-ad37-8095afe6d779}</Project>
+      <Name>Follower</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HashTagsManager\HashTagsManager.csproj">
+      <Project>{cc9987be-667c-4900-8c42-cc1862f712d0}</Project>
+      <Name>HashTagsManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Photo\Photo.csproj">
+      <Project>{ae5a47ad-0297-4133-b0c4-21cf207d0d65}</Project>
+      <Name>Photo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProxyChecker\ProxyChecker.csproj">
+      <Project>{99658144-cca4-4962-9fcd-53301e5a8b2a}</Project>
+      <Name>ProxyChecker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Scraping\Scraping.csproj">
+      <Project>{2e751f6d-6d5a-4d82-9fc1-bffa277cd9e7}</Project>
+      <Name>Scraping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UsingUsercontrol\UsingUsercontrol.csproj">
+      <Project>{c652c3ee-2358-4f24-bfd7-a74473243985}</Project>
+      <Name>UsingUsercontrol</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

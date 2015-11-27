@@ -18,19 +18,23 @@ namespace BaseLibID
         public static List<string> UsingUsername_onlycommentusernameList = new List<string>();
         public static List<string> Campiagn_CommentList = new List<string>();
         public static List<string> Campiagn_Comment_PhotoIDList = new List<string>();
-
+        public static List<string> Workingproxylist = new List<string>();
         public static List<string> UsingUsername_onlycommentmessageList = new List<string>();
         public static List<string> UsingUsername_likecommentUserList = new List<string>();
         public static List<string> UsingUsername_likecommentMessageList = new List<string>();
         public static List<string> UsingUsername_likecommentFollowerpicture = new List<string>();
+        public static List<string> ListPassword = new List<string>();
         public static List<string> UsingUername_likecommentPhotoIDList = new List<string>();
         public static List<string> UsingUsername_commentFollowerpicture = new List<string>();
         public static List<string> UsingUername_commentPhotoIDList = new List<string>();
         public static List<string> DM_UserList = new List<string>();
+        public static List<string> ListUsername_Manageprofile = new List<string>();
         public static List<string> lstStoreDownloadImageKeyword = new List<string>();
         public static List<string> UsingUsername_Usernmaelist = new List<string>();
         public static List<string> UsingUsername_likeFollowerpicture = new List<string>();
         public static List<string> UsingUername_PhotoIDList = new List<string>();
+
+        public static List<string> listOfScrapeFollowerUserame = new List<string>();
         public static int ProxyCheckNoOfThread = 0;
         public static int NoOfPhotoLikeThread = 0;
         public static int NoOfcommentThread = 0;
@@ -65,7 +69,7 @@ namespace BaseLibID
         public static string UnFollowerListUploadedPath = "";
         public static List<string> lstUrls = new List<string>();
 
-
+        public static List<string> listOfAccountToAddInGroup = new List<string>();
         public static string scrapeFollowerAndFollowingUsername = string.Empty;
 
        
@@ -111,6 +115,9 @@ namespace BaseLibID
         public static List<string> CommentCompletedList = new List<string>();
         public static List<string> NotCommentList = new List<string>();
 
+        public static List<string> lstHashTagUserIdTemp = new List<string>();
+       public static List<string> lstHashTagUserId = new List<string>();
+       public static List<string> lstPhotoId = new List<string>();
         #region New Like Module
 
         public static int PhotosCount = 0;

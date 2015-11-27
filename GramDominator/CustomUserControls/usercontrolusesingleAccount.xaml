@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="GramDominator.CustomUserControls.usercontrolusesingleAccount"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:objViewModel="clr-namespace:GramDominator.Classes"
+             mc:Ignorable="d" Height="270.376" Width="481.278" >
+
+    <Grid>
+        <Grid.DataContext>
+            <objViewModel:SelectAccountViewModel x:Name="objSelectAccountViewModel"/>
+        </Grid.DataContext>
+        <GroupBox Header="List of Account" HorizontalAlignment="Left" VerticalAlignment="Top" Width="481" Height="232">
+            <DataGrid  Name="dgv_List_of_Account" ItemsSource="{Binding ListOfAccount}" GridLinesVisibility="All" CanUserAddRows="False" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Username">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--<StackPanel Orientation="Horizontal">-->
+                                    <!--<CheckBox IsChecked="{Binding Ischecked}" Name="chk_SelectAccountFromGrid" />-->
+                                <TextBlock Text="{Binding Usernmame,Mode=TwoWay}"/>
+                                <!--</StackPanel>-->
+                            </DataTemplate>
+                            
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Username">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--<StackPanel Orientation="Horizontal">-->
+                                <CheckBox IsChecked="{Binding Ischecked,Mode=TwoWay}" Name="chk_SelectAccountFromGrid" Click="CheckedAccountFromDataGrid_Click" />
+                                    <!--<TextBlock Text="{Binding Usernmame,Mode=TwoWay}"/>-->
+                                <!--</StackPanel>-->
+                            </DataTemplate>
+
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <Button Content="Save" Name="Save_SelectedAccount" Click="btu_selected_Account_click" HorizontalAlignment="Left" Margin="375,237,0,0" VerticalAlignment="Top" Width="75"/>
+
+
+    </Grid>
+
+</UserControl>

@@ -373,7 +373,7 @@ namespace DirectMessage
                             string finalUrl = IGGlobals.Instance.IGiconsquarecontrollerUrl;
 
 
-                           
+
 
                             string finalpagesource = obj.postFormData(new Uri(finalUrl), finalPostData, refererForPopup, "");
 
@@ -384,6 +384,7 @@ namespace DirectMessage
 
                             if (string.IsNullOrEmpty(finalpagesource))
                             {
+                                DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User,DateTime UserName, Message,Status) values('" + "DirectMessage" + "','" + Obj_DMessage.username + "','" + DateTime.Now + "','" + username + "','" + message + "','" + status + "')", "tbl_AccountReport");
                                 GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Message send To : " + username + " ]");                                                                                          
                             }
                             else

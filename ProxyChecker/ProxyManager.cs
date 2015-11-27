@@ -22,9 +22,11 @@ namespace ProxyChecker
         int countParseProxiesThreads = 0;
         int count_ThreadController = 0;
         static int Proxystatus = 0;
-        public List<Thread> lstThreadsProxy = new List<Thread>();
+        public  List<Thread> lstThreadsProxy = new List<Thread>();
         public static int Nothread_Proxy = 0;
         public static readonly object locker_finalProxyList = new object();
+        private const string CSVHeader_Proxy = "WorkingProxy";
+        private string CSVPath_Proxy = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Gram Dominator\\WorkingProxy.csv";
       
 
 
@@ -40,10 +42,17 @@ namespace ProxyChecker
 
         public void StartProxyChecker()
         {
-            Thread.CurrentThread.IsBackground = true;
-            lstProxyThread.Add(Thread.CurrentThread);
-            lstProxyThread = lstProxyThread.Distinct().ToList();
-            Proxystatus = ClGlobul.ProxyList.Count;
+            try
+            {
+                Thread.CurrentThread.IsBackground = true;
+                lstProxyThread.Add(Thread.CurrentThread);
+                lstProxyThread = lstProxyThread.Distinct().ToList();
+                Proxystatus = ClGlobul.ProxyList.Count;
+            }
+            catch(Exception ex)
+            {
+                GlobusLogHelper.log.Info("Error :" + ex.StackTrace);
+            }
 
             GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Process For Proxy Checking ]");
 
@@ -159,8 +168,8 @@ namespace ProxyChecker
                 {
                     if (proxyStop)
                         return;
-                    //pagesource1 = GlobusHttpHelper.getHtmlfromUrlProxy(new Uri("http://websta.me/login"),proxyad, Convert.ToInt16(proxyport), proxyusername, proxyPassword);
-                    pagesource1 = GlobusHttpHelper.getHtmlfromUrlProxy(new Uri("http://websta.me/"), proxyad, Convert.ToInt16(proxyport), proxyusername, proxyPassword);
+
+                    pagesource1 = GlobusHttpHelper.getHtmlfromUrlProxy(new Uri(IGGlobals.Instance.IGWEPME), proxyad, Convert.ToInt16(proxyport), proxyusername, proxyPassword);
                 }
                 catch { };
 
@@ -168,7 +177,7 @@ namespace ProxyChecker
                 {
                     pagesource1 = string.Empty;
                     // pagesource1 = GlobusHttpHelper.getHtmlfromUrlProxy(new Uri("http://web.stagram.com/"), proxyad, Convert.ToInt32(proxyport), proxyusername, proxyPassword);
-                    pagesource1 = objchilkat.GetHtmlProxy("http://websta.me/", proxyad, (proxyport), proxyusername, proxyPassword);
+                    pagesource1 = objchilkat.GetHtmlProxy(IGGlobals.Instance.IGWEPME, proxyad, (proxyport), proxyusername, proxyPassword);
                 }
                 if (pagesource1.Contains("Access Denied"))
                 {
@@ -243,6 +252,14 @@ namespace ProxyChecker
 
         public void addInFinalCheckedProxyist(string proxyad, string proxyport, string proxyusername, string proxyPassword, string pagesource)
         {
+            try
+            {
+                Thread.CurrentThread.IsBackground = true;
+                lstProxyThread.Add(Thread.CurrentThread);
+                lstProxyThread = lstProxyThread.Distinct().ToList();
+            }
+            catch { }
+
             if (checkStatuse(pagesource))
             {
                 if (proxyStop)
@@ -251,6 +268,9 @@ namespace ProxyChecker
                 {
                     if (proxyStop)
                         return;
+                    ClGlobul.Workingproxylist.Add(proxyad+":"+proxyport);
+                    //string CSVData = proxyad.Replace(",", string.Empty) + "," + proxyport.Replace(",", string.Empty);
+                    //GlobusFileHelper.ExportDataCSVFile(CSVHeader_Proxy, CSVData, CSVPath_Proxy);
                     GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Working Proxy : " + proxyad + ":" + proxyport + " ]");
                    ClGlobul.isProxyCheckComplete = true;
                 }
@@ -321,6 +341,25 @@ namespace ProxyChecker
 
             return false;
         } 
+
+
+        public void exportproxy()
+        {
+            try
+            {
+                foreach(string item in ClGlobul.Workingproxylist)
+                {
+                    string CSVData = item.Replace(",", string.Empty);
+                    GlobusFileHelper.ExportDataCSVFile(CSVHeader_Proxy, CSVData, CSVPath_Proxy);
+                }
+                GlobusLogHelper.log.Info("Sucessfully CSV File Created");
+            }
+            catch(Exception ex)
+            {
+                GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
+            }
+        }
+
 
     }
 }

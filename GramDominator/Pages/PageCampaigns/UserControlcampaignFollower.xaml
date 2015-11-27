@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="GramDominator.Pages.PageCampaigns.UserControlcampaignFollower"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             xmlns:app="clr-namespace:GramDominator.Classes"
+             mc:Ignorable="d" d:DesignHeight="500" d:DesignWidth="700">
+    <ScrollViewer>
+        <Grid >
+            <Grid.DataContext>
+                <app:Validation x:Name="objform" />
+            </Grid.DataContext>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Margin="0,0,10,0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31*"/>
+                    <RowDefinition Height="67*"/>
+                </Grid.RowDefinitions>
+                <GroupBox Header="Campaign Input and Setting" Margin="0,0,0,4" BorderBrush="Black">
+                    <Grid Margin="0,2,-2,-1" VerticalAlignment="Top">
+                        <Grid Margin="0,9,0,61">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="269*"/>
+                                <ColumnDefinition Width="111*"/>
+                                <ColumnDefinition Width="277*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Campaign Name :" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Center" Height="25" Width="109"/>
+                            <TextBox Name="txt_followCampaignName" Height="25" Margin="114,8,0,0" TextWrapping="Wrap" Text="{Binding TxtUserField,Mode=TwoWay,ValidatesOnDataErrors=True}" VerticalAlignment="Center"/>
+                            <ComboBox Name="cmb_Follow_Account" Cursor="Hand" Margin="8,8,4,0" VerticalAlignment="Center" Grid.Column="2" Height="25" SelectedIndex="0"/>
+                            <Label Content="Select Account :" Margin="24,12,0,0" VerticalAlignment="Center" Height="25" Grid.Column="1"/>
+
+                        </Grid>
+                        <Grid Margin="0,75,0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="157*"/>
+                                <ColumnDefinition Width="37*"/>
+                                <ColumnDefinition Width="167*"/>
+                                <ColumnDefinition Width="193*"/>
+                                <ColumnDefinition Width="126*"/>
+                            </Grid.ColumnDefinitions>
+                            <RadioButton Name="chkfollowcampaignLoaduserfile" GroupName="chek_follower_cap" Content="Load Users To Follow" Margin="10,6,10,3" Checked="chkfollowcampaignLoaduserfile_Checked" VerticalAlignment="Center" Height="24"/>
+                            <RadioButton Name="chkfollowcampaignScheduleTimesettings" GroupName="chek_follower_cap" Content="Schedule Time Setting" Margin="0,5,0,3" Grid.Column="2" Height="25" VerticalAlignment="Center" Checked="chkfollowcampaignScheduleTimesettings_Checked"/>
+                            <Button  BorderBrush="Green" Cursor="Hand" Name="btnFollowCampaignSave" Content="Save" Grid.Column="4" VerticalAlignment="Bottom" Height="25" Click="btnFollowCampaignSave_Click" Margin="0,0,0,2" BorderThickness="1,1,1,2">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                            <RadioButton x:Name="chk_skipPrivate_user" GroupName="chek_follower_cap" Content="Skip Private User" Margin="0,5,0,3" Grid.Column="3" Height="25" VerticalAlignment="Center" Checked="chkSkip_private_user_checked"/>
+                        </Grid>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Saved Campaign Details" Grid.Row="1" BorderBrush="Black" >
+                    <Grid Margin="0,0,-2,0">
+                        <DataGrid Name="dgv_CampaignFollow" Cursor="Hand" GridLinesVisibility="All" CanUserAddRows="False" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button  Name="btn" BorderBrush="Green" Click="StartProcess">Start</Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button  Name="btn" BorderBrush="Red" Click="StopProcess">Stop</Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+
+                                    <MenuItem Header= "Delete  Campaign " Click="DeleteCampaign_Click"/>
+                                    <MenuItem Header= "Edit  Campaign " Click="EditCampaign_Click"/>
+                                    <MenuItem Header="Refresh Campaign" Click="RefreshCampaign_Click"/>
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                        </DataGrid>
+                    </Grid>
+                </GroupBox>
+
+            </Grid>
+
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>

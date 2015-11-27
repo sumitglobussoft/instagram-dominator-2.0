@@ -25,7 +25,7 @@ namespace Accounts
         public static string acc_status = string.Empty;
         public GlobusHttpHelper httpHelper = new GlobusHttpHelper();
         public ChilkatHttpHelpr chilkathttpHelper = new ChilkatHttpHelpr();
-
+        bool value = true;
                 
         public string LoginUsingGlobusHttp(ref InstagramUser InstagramUser)
         {
@@ -190,7 +190,7 @@ namespace Accounts
             //}
 
             #endregion
-
+            
             try
             {
                 string Status = "Failed";
@@ -199,12 +199,37 @@ namespace Accounts
                 string poatData = "username=" + InstagramUser.username + "&password=" + InstagramUser.password;  //csrftoken
                 url = IGGlobals.Instance.IGInstagramurlsecond;
                 string token = "";
-
                 string response = InstagramUser.globusHttpHelper.PostData_LoginThroughInstagram(new Uri(url), poatData, "", token);
                 string dataBeforelogin = InstagramUser.globusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGInstagramAuthorizeurl), IGGlobals.Instance.IGWEPME, "");
-                dataBeforelogin = InstagramUser.globusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGWebstaFeedUrl), IGGlobals.Instance.IGWEPME, "");
-                dataBeforelogin = InstagramUser.globusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGInstagramAuthorizeurl), IGGlobals.Instance.IGWEPME, "");
-                dataBeforelogin = InstagramUser.globusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGWebstaFeedUrl), IGGlobals.Instance.IGWEPME, "");
+
+                
+
+
+
+                if (dataBeforelogin.Contains("Was This You?"))
+             {
+                 string crs_token  = Utils.getBetween(response,"=\"csrfmiddlewaretoken\" value=\"","\"/>");
+                 string post_data = "csrfmiddlewaretoken=" + crs_token + "&approve=It+Was+Me";
+                 string next_hit = InstagramUser.globusHttpHelper.PostData_LoginThroughInstagram(new Uri("https://www.instagram.com/integrity/checkpoint/?next=%2F"), post_data,"",crs_token);
+                 string post_data2 = "csrfmiddlewaretoken="+crs_token+"&OK=OK";
+                 string finalhit = InstagramUser.globusHttpHelper.PostData_LoginThroughInstagram(new Uri("https://www.instagram.com/integrity/checkpoint/?next=%2F"), post_data2, "", crs_token);
+                 dataBeforelogin = InstagramUser.globusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGInstagramAuthorizeurl), IGGlobals.Instance.IGWEPME, "");
+             }
+
+                //#region For icono
+
+                //string Home_icon_Url = InstagramUser.globusHttpHelper.getHtmlfromUrl(new Uri("http://iconosquare.com"), "");
+                //string Icon_url = IGGlobals.Instance.IGiconosquareAuthorizeurl;
+                //string PPagesource = InstagramUser.globusHttpHelper.getHtmlfromUrl(new Uri(Icon_url), "");
+                //string responce_icon = InstagramUser.globusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGiconosquareviewUrl), "");
+
+                //#endregion
+
+
+                // dataBeforelogin = InstagramUser.globusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGInstagramAuthorizeurl), IGGlobals.Instance.IGWEPME, "");
+             //   dataBeforelogin = InstagramUser.globusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGWebstaFeedUrl), IGGlobals.Instance.IGWEPME, "");
+               // dataBeforelogin = InstagramUser.globusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGInstagramAuthorizeurl), IGGlobals.Instance.IGWEPME, "");
+             //   dataBeforelogin = InstagramUser.globusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGWebstaFeedUrl), IGGlobals.Instance.IGWEPME, "");
 
                 try
                 {
@@ -239,14 +264,18 @@ namespace Accounts
                 }
 
 
-                if (dataBeforelogin.Contains(InstagramUser.username))
+                if (dataBeforelogin.Contains(InstagramUser.username.ToLower()))//marieturnipseed55614
                 {
-                    GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Logged in with Account Success :" + InstagramUser.username + " ]");
+                    if (value)
+                    {
+                        GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Logged in with Account Success :" + InstagramUser.username + " ]");
+                    }
                     InstagramUser.isloggedin = true;
                     Status = "Success";
                     this.LoggedIn = true;
-                    string str = httpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGWEP_HomePage + InstagramUser.username));
+                    string str = httpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com/" + InstagramUser.username+"/"));
                     UpdateCampaign(InstagramUser.username, str, "Success");
+                    value = false;
                     
                 }
                 else
@@ -271,22 +300,22 @@ namespace Accounts
             string Following = "";
             try
             {
-                string[] postsList = Regex.Split(page, "counts_media");
-                post = Utils.getBetween(postsList[1], ">", "<");
+                //string[] postsList = Regex.Split(page, "counts_media");
+                post = Utils.getBetween(page, "media\":{\"count\":", ",\"");
             }
             catch { };
 
             try
             {
-                string[] FollowerList = Regex.Split(page, "counts_followed_by");
-                Follower = Utils.getBetween(FollowerList[1], ">", "<");
+                //string[] FollowerList = Regex.Split(page, "counts_followed_by");
+                Following = Utils.getBetween(page, "follows\":{\"count\":", "},");
             }
             catch { };
 
             try
             {
-                string[] FollowingList = Regex.Split(page, "following");
-                Following = Utils.getBetween(FollowingList[1], ">", "<");
+                //string[] FollowingList = Regex.Split(page, "following");
+                Follower = Utils.getBetween(page, "followed_by\":{\"count\":", "},");
             }
             catch { };
 

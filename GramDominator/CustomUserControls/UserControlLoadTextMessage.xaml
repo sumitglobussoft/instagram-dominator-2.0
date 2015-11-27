@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="FaceDominator3._0.PageWall.UserControlLoadTextMessage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+         xmlns:dialog="clr-namespace:FaceDominator3._0.PageWall"
+             mc:Ignorable="d" Height="300" Width="300">
+    <ScrollViewer>
+        
+        <Grid>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="23*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <TextBlock Text="Enter Text Here  " Name="UserControlHeader" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" FontStyle="Normal"/>
+            </StackPanel>
+            <GroupBox Header=" " Grid.Column="0" Grid.Row="1">
+                <RichTextBox Name="txtEnterSingleMessages" >
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run Text=""/>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+
+            </GroupBox>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

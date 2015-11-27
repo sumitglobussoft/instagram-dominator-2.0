@@ -11,6 +11,7 @@ namespace BaseLib
         private const string tableAccountInfo = "AccountInfo";
         private const string tableFollowInfo = "FollowInfo";
         private const string tableLikeInfo = "LikeInfo";
+        private const string tableAccountReport = "tbl_AccountReport";
 
         public static void insertAccount(string username, string password, string addr, string port, string user, string pass, string path)
         {
@@ -31,6 +32,17 @@ namespace BaseLib
             }
             catch { }
         }
+
+        public static void deleteQueryforAccountReport(string module)
+        {
+            try
+            {
+                string deleteQuery = "Delete from  tbl_AccountReport where ModuleName ='" + module + "'";
+                DBHandler.DeleteQuery(deleteQuery, "tbl_AccountReport");
+            }
+            catch { }
+        }
+      
 
         public DataSet getAccount()
         {

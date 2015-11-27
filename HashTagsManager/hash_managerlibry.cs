@@ -23,7 +23,7 @@ namespace HashTagsManager
         public static bool DivideByUser = false;
         public static int Divide_data_NoUser = 0;
         public static int DivideData_Thread = 0;
-
+        public static bool chkNotSendRequest = false;
 
 
         # region Global Variable
@@ -86,6 +86,9 @@ namespace HashTagsManager
 
                     list_listAccounts = Utils.Split(IGGlobals.listAccounts, numberOfAccountPatch);
 
+                  
+
+
                     foreach (List<string> listAccounts in list_listAccounts)
                     {
 
@@ -118,6 +121,7 @@ namespace HashTagsManager
                                             profilerThread.Start(new object[] { item });
 
                                             countThreadControllerHash_comment++;
+                                            
                                         }
                                     }
                                     catch (Exception ex)
@@ -130,6 +134,7 @@ namespace HashTagsManager
                             {
                                 GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
                             }
+                           
                         }
                     }
                 }
@@ -233,6 +238,7 @@ namespace HashTagsManager
                 }
                 if (Hash_Follow == true)
                 {
+                   
                     Start_hashFollow(ref fbUser);
                 }
             }
@@ -241,20 +247,13 @@ namespace HashTagsManager
                 GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
             }
         }
-
-
-
-
-
-
-
-
         #endregion
 
 
 
         #region Hash Follower
-
+        public static int Count_theard = 0;
+        public static List<Thread> lstFollower_hashtag = new List<Thread>();
         public void Start_hashFollow(ref InstagramUser obj_Hashfollow)
         {
             try
@@ -262,6 +261,12 @@ namespace HashTagsManager
                 lstThreadsHash_comment.Add(Thread.CurrentThread);
                 lstThreadsHash_comment.Distinct();
                 Thread.CurrentThread.IsBackground = true;
+                lstFollower_hashtag.Add(Thread.CurrentThread);
+                if(lstFollower_hashtag.Count>1)
+                {
+                    Thread.Sleep(10 * 5000);
+
+                }
             }
             catch (Exception ex)
             {
@@ -269,7 +274,7 @@ namespace HashTagsManager
             }
             try
             {
-                string res_secondURL = obj_Hashfollow.globusHttpHelper.getHtmlfromUrl(new Uri("http://websta.me/login"), "");
+                string res_secondURL = obj_Hashfollow.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com/"), "");
                 if (!string.IsNullOrEmpty(Hash_Follower_single))
                 {
                     ClGlobul.HashFollower.Clear();
@@ -282,14 +287,22 @@ namespace HashTagsManager
 
                             foreach (var item in Data)
                             {
-                                ClGlobul.HashFollower.Add(item);
+                                if (!ClGlobul.HashFollower.Contains(item))
+                                {
+                                    ClGlobul.HashFollower.Add(item);
+                                    ClGlobul.HashFollower = ClGlobul.HashFollower.Distinct().ToList();
+                                }
                             }
                         }
                         catch { };
                     }
                     else
                     {
-                        ClGlobul.HashFollower.Add(Hash_Follower_single);
+                        if (!ClGlobul.HashFollower.Contains(Hash_Follower_single))
+                        {
+                            ClGlobul.HashFollower.Add(Hash_Follower_single);
+                            ClGlobul.HashFollower = ClGlobul.HashFollower.Distinct().ToList();
+                        }
                     }
                 }
 
@@ -298,7 +311,7 @@ namespace HashTagsManager
                     if (hashFollower_Number != 0)
                     {
                         ClGlobul.NumberOfProfilesToFollow = hashFollower_Number;
-                        ClGlobul.SnapVideosCounterfollow = hashFollower_Number * ClGlobul.HashFollower.Count;
+                        ClGlobul.SnapVideosCounterfollow = hashFollower_Number * ClGlobul.HashFollower.Count*IGGlobals.listAccounts.Count;
 
                     }
                     else
@@ -310,22 +323,42 @@ namespace HashTagsManager
 
                 #region scrapHashTagFollowr
 
-                List<string> lstHashTagUserIdTemp = new List<string>();
-                List<string> lstHashTagUserId = new List<string>();
-
-
-                foreach (string hashKeyword in ClGlobul.HashFollower)
+                
+               // int Count_theard =0;
+               
+                int countForhashFollower = ClGlobul.HashFollower.Count;
+                try
                 {
-                    GlobusLogHelper.log.Info("[ " + DateTime.Now + "] " + "[ Scraping Users with HashTag " + hashKeyword + "]");
-                    lstHashTagUserIdTemp = GetUser(hashKeyword);
-                    lstHashTagUserId.AddRange(lstHashTagUserIdTemp);
+                    string[] list_follower = ClGlobul.HashFollower.ToArray();
+
+                    if (Count_theard < 1)
+                    {
+                        Count_theard++;
+                        foreach (string hashKeyword in list_follower)
+                        {
+                            try
+                            {
+
+                                GlobusLogHelper.log.Info("[ " + DateTime.Now + "] " + "[ Scraping Users with HashTag " + hashKeyword + "]");
+                                ClGlobul.lstHashTagUserIdTemp = GetUser(hashKeyword, ref obj_Hashfollow);
+                                ClGlobul.lstHashTagUserId.AddRange(ClGlobul.lstHashTagUserIdTemp);
+
+                            }
+                            catch { };
+                        }
+                    }
+                    else
+                    {
+                        Thread.Sleep(10 * 1000);
+                    }
                 }
+                catch { };
 
                 #endregion
 
                 try
                 {
-                    if (ClGlobul.HashFollower.Count != 0)
+                    if (countForhashFollower != 0)
                     {
                         try
                         {
@@ -337,7 +370,9 @@ namespace HashTagsManager
                         {
                             GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
                         }
-                        HashTagFollow(ref obj_Hashfollow, lstHashTagUserId);
+
+                        HashTagFollow(ref obj_Hashfollow, ClGlobul.lstHashTagUserId);
+                        
                     }
                 }
                 catch (Exception ex)
@@ -364,7 +399,7 @@ namespace HashTagsManager
             {
                 GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
             }
-            string res_secondURL = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri("http://websta.me/login"), "");
+            string res_secondURL = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com/"), "");
             try
             {
                 //Globals.lstScrapThreaddatahashliker.Add(Thread.CurrentThread);
@@ -434,7 +469,7 @@ namespace HashTagsManager
             string followStatus = string.Empty;
             try
             {
-                string res_secondURL = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri("http://websta.me/login"), "");
+                string res_secondURL = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com/"), "");
                 string user = accountManager.username;
                 try
                 {
@@ -456,12 +491,12 @@ namespace HashTagsManager
                         counterFollow++;
                         if (status == "Followed")
                         {
-
+                            DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User,FollowerName, Message,Photo_Id,HashOperation,Status) values('" + "HashComment" + "','" + accountManager.username + "','" + url + "','" + "-" + "','" + "-" + "','" + "#Follow" + "','" + "Success" + "')", "tbl_AccountReport");
                             GlobusLogHelper.log.Info("[ " + DateTime.Now + "] " + "[ Profile followed with url : " + url + " with User = " + user + " , " + "Count" + counterFollow + "]");
                         }
                         else
                         {
-                            GlobusLogHelper.log.Info("[ " + DateTime.Now + "] " + "[ Profile followed with url : " + url + " with User = " + user + " , " + "Count" + counterFollow + " ]");
+                            GlobusLogHelper.log.Info("[ " + DateTime.Now + "] " + "[ Profile Unfollowed with url : " + url + " with User = " + user + " , " + "Count" + counterFollow + " ]");
                             //Log("[ " + DateTime.Now + "] " + " [ " + ClGlobul.NumberOfProfilesToFollow + " profiles Unfollowed ]");
                         }
                     }
@@ -486,10 +521,14 @@ namespace HashTagsManager
             {
                 GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
             }
-            string res_secondURL = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri("http://websta.me/login"), "");
-            if (!UserName.Contains("http://websta.me/n/"))
+            GlobusHttpHelper obj = accountManager.globusHttpHelper;
+            // string res_secondURL = obj.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
+            string res_secondURL = obj.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
+
+            if (!UserName.Contains(IGGlobals.Instance.IGWEP_HomePage))
             {
-                UserName = "http://websta.me/n/" + UserName + "/";
+                //UserName = IGGlobals.Instance.IGWEP_HomePage + UserName + "/";
+                UserName = "https://www.instagram.com/" + UserName + "/";
             }
             string UserPageContent = string.Empty;
 
@@ -534,16 +573,21 @@ namespace HashTagsManager
                     catch { };
                 }
             }
+            if (chkNotSendRequest == true)
+            {
+                if (UserPageContent.Contains("\"is_private\":true"))
+                {
+                    return "User is Private";
+                }
+            }
             try
             {
-                //if (UserPageContent.Contains("This user is private."))
-                //{
-                //    return "private";
-                //}
+               
                 string PK = string.Empty;
                 if (UserPageContent.Contains(""))
                 {
-                    PK = Utils.getBetween(UserPageContent, "id=\"follow_btn_wrapper\"", ">").Replace("data-target=", "").Replace("\"", "").Trim();
+                   
+                    PK = Utils.getBetween(UserPageContent, "\"id\":", "\",").Replace("\"", "");
                 }
 
                 if (string.IsNullOrEmpty(PK))
@@ -552,13 +596,17 @@ namespace HashTagsManager
                 }
 
                 string PostData = "action=follow";//"&pk=" + PK + "&t=9208";
+                string postData = "https://www.instagram.com/web/friendships/" + PK + "/follow/";
                 string FollowedPageSource = string.Empty;
 
                 if (!string.IsNullOrEmpty(PK))
                 {
                     try
                     {
-                        FollowedPageSource = accountManager.globusHttpHelper.postFormData(new Uri("http://websta.me/api/relationships/" + PK), PostData, UserName, "http://websta.me");
+                        string test = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri(UserName));
+                        string txt_name = Utils.getBetween(UserName, "www.instagram.com/", "/");
+                        string csrf_token = Utils.getBetween(UserPageContent, "csrf_token\":\"", "\"}");
+                        FollowedPageSource = accountManager.globusHttpHelper.postFormDatainta(new Uri(postData), "", "https://www.instagram.com/" + txt_name + "/", csrf_token);
                     }
                     catch { }
                 }
@@ -566,16 +614,11 @@ namespace HashTagsManager
                 {
 
                 }
-                try
-                {
-                    // nameval.Add("Origin", "http://web.stagram.com");
-                    // nameval.Add("X-Requested-With", "XMLHttpRequest");
-                }
-                catch { };
 
-                if (FollowedPageSource.Contains("OK"))
+
+                if (FollowedPageSource.Contains("followed_by_viewer\":true"))
                 {
-                    //return "Followed";
+
                     string status = string.Empty;
                     try
                     {
@@ -584,14 +627,18 @@ namespace HashTagsManager
                     catch { }
                     if (string.IsNullOrEmpty(status))
                     {
-                        if (FollowedPageSource.Contains("requested"))
+                        if (FollowedPageSource.Contains("has_requested_viewer\":true"))
                         {
                             status = "requested";
+                        }
+                        if (FollowedPageSource.Contains("followed_by_viewer\":true"))
+                        {
+                            status = "Followed";
                         }
                     }
                     switch (status)
                     {
-                        case "Followed": status = "Already Followed";
+                        case "Followed":  //status = "Followed";
                             QueryExecuter.updateFollowStatus(accountManager.username, UserName, "Unfollowed");
                             break;
 
@@ -612,6 +659,10 @@ namespace HashTagsManager
                     }
                     return status;
                 }
+                if (FollowedPageSource.Contains("Instagram API does not respond"))
+                {
+                    return "Instagram API does not respond";
+                }
                 else
                 {
                     return "UnFollowed";
@@ -625,7 +676,7 @@ namespace HashTagsManager
         }
 
 
-        public List<string> GetUser(string hashTag)
+        public List<string> GetUser(string hashTag , ref InstagramUser obj_user)
         {
             try
             {
@@ -638,58 +689,62 @@ namespace HashTagsManager
                 GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
             }
             List<string> lstUser = new List<string>();
+            int count_listdata = 0;
+            string response = string.Empty;
             try
             {
-                string url = "http://websta.me/search/" + hashTag.Replace("#", "%23");
-                GlobusHttpHelper objInstagramUser = new GlobusHttpHelper();
-
-                string pageSource = objInstagramUser.getHtmlfromUrl(new Uri(url), "");
-                if (string.IsNullOrEmpty(pageSource))
+                string Home_icon_Url = obj_user.globusHttpHelper.getHtmlfromUrl(new Uri("http://iconosquare.com"), "");
+                string Icon_url = IGGlobals.Instance.IGiconosquareAuthorizeurl;
+                string PPagesource = obj_user.globusHttpHelper.getHtmlfromUrl(new Uri(Icon_url), "");
+                string responce_icon = obj_user.globusHttpHelper.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGiconosquareviewUrl), "");
+                if (!string.IsNullOrEmpty(responce_icon))
                 {
-                    pageSource = objInstagramUser.getHtmlfromUrl(new Uri(url), "");
-                }
 
-                if (!string.IsNullOrEmpty(pageSource))
-                {
-                    if (pageSource.Contains("username\" href="))
-                    {
-                        string ScrapUser = string.Empty;
-                        string[] arr = Regex.Split(pageSource, "username\" href=");
-                        if (arr.Length > 1)
+                    string url = "http://iconosquare.com/viewer.php#/search/" + hashTag;
+
+
+                    string referer = "http://iconosquare.com/viewer.php";
+                    string viewer_responce = obj_user.globusHttpHelper.getHtmlfromUrl(new Uri("http://iconosquare.com/viewer.php "), "");
+                    string crs_token = Utils.getBetween(viewer_responce, " <div id=\"accesstoken\" style=\"display:none;\">", "</div>");
+                    response = obj_user.globusHttpHelper.getHtmlfromUrl(new Uri(url), "");
+
+                    string postdata = "http://iconosquare.com/rqig.php?e=/users/search&a=ico2&t=" + crs_token + "&q=" + hashTag;
+                    string respon_scrapeuser = obj_user.globusHttpHelper.getHtmlfromUrl(new Uri(postdata), referer);
+                    string[] data_divided = Regex.Split(respon_scrapeuser, "username");
+                    
+
+                        count_listdata++;
+
+                        foreach (string var in data_divided)
                         {
-                            arr = arr.Skip(1).ToArray();
-                            foreach (string itemarr in arr)
+                            if (var.Contains("profile_picture"))
                             {
-                                try
+                                string User_list = Utils.getBetween(var, "\":\"", "\"");
+                                if (lstUser.Count < ClGlobul.NumberOfProfilesToFollow)
                                 {
-                                    if (itemarr.Contains("<a href="))
-                                    {
-                                        ScrapUser = Utils.getBetween(itemarr, "", "</a>");
-                                        string[] urldata = Regex.Split(ScrapUser, ">");
-                                        string username = urldata[1];
-                                        if (!string.IsNullOrEmpty(username))
-                                        {
-                                            lstUser.Add(username);
-                                            lstUser = lstUser.Distinct().ToList();
 
-                                            if (lstUser.Count >= ClGlobul.NumberOfProfilesToFollow)
-                                            {
-                                                return lstUser;
-                                            }
-                                        }
-                                    }
+                                    lstUser.Add(User_list);
+                                    // lstUser = lstUser.Distinct().ToList();
+
+
                                 }
-                                catch
+                                else
                                 {
+                                    return lstUser;
                                 }
                             }
                         }
+                }
+                    else
+                    {
+                        Thread.Sleep(1 * 1000);
                     }
                 }
-            }
+        
+
             catch (Exception ex)
             {
-                Console.Write(ex.Message);
+                GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
             }
             return lstUser;
         }
@@ -714,7 +769,7 @@ namespace HashTagsManager
             }
             try
             {
-                string res_secondURL = obj_hashcomment.globusHttpHelper.getHtmlfromUrl(new Uri("http://websta.me/login"), "");
+                string res_secondURL = obj_hashcomment.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
                 if (string.IsNullOrEmpty(Hash_comment_Usernamepath) && string.IsNullOrEmpty(Hash_comment_Messagepath))
                 {
                     if (!string.IsNullOrEmpty(Hash_comment_Usernamesingle) && !string.IsNullOrEmpty(Hash_comment_Messagesingle))
@@ -774,7 +829,7 @@ namespace HashTagsManager
                     if (Number_Hash_photocomment != 0)
                     {
                         ClGlobul.NumberofSnapsVideosToComment = Number_Hash_photocomment * IGGlobals.listAccounts.Count * ClGlobul.HashComment.Count;
-                        ClGlobul.SnapVideosCounterComment = Number_Hash_photocomment; //* ClGlobul.HashComment.Count;
+                        ClGlobul.SnapVideosCounterComment = Number_Hash_photocomment * ClGlobul.HashComment.Count;
                     }
                     else
                     {
@@ -809,10 +864,9 @@ namespace HashTagsManager
                 GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
             }
             GlobusHttpHelper obj = obj_hashcomment.globusHttpHelper;
-            string res_secondURL = obj.getHtmlfromUrl(new Uri("http://websta.me/login"), "");
+            string res_secondURL = obj.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
 
-            //string Url_hashcomment = "http://websta.me/tag/raj" + hashUser;
-            //string url = obj_hashcomment.globusHttpHelper.getHtmlfromUrl(new Uri(Url_hashcomment), "");
+           
             lstHashTagCommentUserId.Clear();
             foreach (string item in ClGlobul.HashComment)
             {
@@ -845,13 +899,15 @@ namespace HashTagsManager
             }
             try
             {
-                string res_secondURL = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri("http://websta.me/login"), "");
-
+                string res_secondURL = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
+                List<string> hashcomment_list = new List<string>();
                 foreach (string item in ClGlobul.HashComment)
                 {
                     int NoOfCommentsDone = 0;
                     i = 0;
-                    foreach (string urlToComment in hashTag.ToList())
+                    // hashcomment_list = hashTag.ToList().Distinct().ToList();
+
+                     foreach (string urlToComment in hashTag.ToList())
                     {
 
                         NoOfCommentsDone++;
@@ -860,7 +916,7 @@ namespace HashTagsManager
                             break;
                         }
                         CommentOnSnapsVideos(ref accountManager, urlToComment);
-                        Thread.Sleep(15 * 1000);
+                       // Thread.Sleep(15 * 1000);
                         if (minDelayHash_comment != 0)
                         {
                             mindelay = minDelayHash_comment;
@@ -875,7 +931,7 @@ namespace HashTagsManager
                         delay = obj_rand.Next(mindelay, maxdelay);
                         GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Delay For " + delay + " Seconds ]");
                         Thread.Sleep(delay * 1000);
-                        hashTag.Remove(urlToComment);
+                         hashTag.Remove(urlToComment);
                     }
                 }
             }
@@ -886,7 +942,7 @@ namespace HashTagsManager
             finally
             {
                 ClGlobul.countNoOFAccountHashComment--;
-                if (ClGlobul.countNoOFAccountHashComment == 0)
+                if (hashTag.Count() == 0)
                 {
                     GlobusLogHelper.log.Info("[ " + DateTime.Now + "] " + "[Process completed for Comment Using HashTag. ]");
                 }
@@ -913,8 +969,8 @@ namespace HashTagsManager
             string likeStatus = string.Empty;
             try
             {
-                string res_secondURL = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri("http://websta.me/login"), "");
-                GlobusLogHelper.log.Info("Login Sucess" + accountManager.username);
+                string res_secondURL = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
+                //GlobusLogHelper.log.Info("Login Sucess" + accountManager.username);
                 try
                 {
                     if (ClGlobul.HashCommentMessage.Count >= ClGlobul.NumberofSnapsVideosToComment)
@@ -954,7 +1010,9 @@ namespace HashTagsManager
 
                 }
                 catch (Exception ex)
-                { }
+                {
+                    GlobusLogHelper.log.Info("Error :" + ex.StackTrace);
+                }
 
                 if (!(commentStatus == "Success"))
                 {
@@ -965,6 +1023,8 @@ namespace HashTagsManager
                         Thread.Sleep(ClGlobul.hashTagDelay * 1000);
                         if (status == "Success")
                         {
+                           // string Photo_Db_ID = url.Replace("http://websta.me/p/", string.Empty);
+                            DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User, Message,Photo_Id,HashOperation,Status) values('" + "HashComment" + "','" + accountManager.username + "','" + message + "','" + url + "','" + "#Comment" + "','" + "Success" + "')", "tbl_AccountReport");
                             GlobusLogHelper.log.Info("[ " + DateTime.Now + "] " + "[ Commented on snap/video with url : " + url + " , " + " Count" + counterComment + " with this message : " + message + " ]");
                         }
                         else
@@ -1079,34 +1139,25 @@ namespace HashTagsManager
         {
 
             string FollowedPageSource = string.Empty;
+
             try
             {
-                lstThreadsHash_comment.Add(Thread.CurrentThread);
-                lstThreadsHash_comment.Distinct();
-                Thread.CurrentThread.IsBackground = true;
-            }
-            catch (Exception ex)
-            {
-                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
-            }
-            try
-            {
-                string res_secondURL = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri("http://websta.me/login"), "");
+                string res_secondURL = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
                 string CommentIdlink = string.Empty;
                 string commentIdLoggedInLink = string.Empty;
-                if (commentId.Contains("http://websta.me/p/"))
+                if (commentId.Contains(IGGlobals.Instance.IGhomeurl))
                 {
-                    commentId = commentId.Replace("http://websta.me/p/", string.Empty);
+                    commentId = commentId.Replace(IGGlobals.Instance.IGhomeurl, string.Empty);
                 }
 
-                if (!commentId.Contains("http://web.stagram.com/"))
+                if (!commentId.Contains("https://www.instagram.com/p/"))
                 {
                     try
                     {
 
-                        CommentIdlink = "http://web.stagram.com/p/" + commentId + "/";
+                        CommentIdlink = "https://www.instagram.com/p/" + commentId + "/";
 
-                        commentIdLoggedInLink = "http://websta.me/p/" + commentId;
+                        commentIdLoggedInLink = "https://www.instagram.com/p/" + commentId;
                     }
                     catch (Exception ex)
                     {
@@ -1115,50 +1166,35 @@ namespace HashTagsManager
                 }
 
                 #region Change
+                //GlobusHttpHelper _GlobusHttpHelper = new GlobusHttpHelper();
 
+                //ChilkatHttpHelpr _ChilkatHttpHelpr = new ChilkatHttpHelpr();
 
-                string url = "http://websta.me/api/comments/" + commentId;
+                //InstagramAccountManager _InstagramAccountManager = new InstagramAccountManager(accountManager.Username, accountManager.Password, accountManager.proxyAddress, accountManager.proxyPassword, accountManager.proxyUsername, accountManager.proxyPassword);
 
-                bool checkunicode = ContainsUnicodeCharacter(CommentMsg);
+                string url = IGGlobals.Instance.IGStagram_api + commentId;
+                string resp_photourl = accountManager.globusHttpHelper.getHtmlfromUrl(new Uri(CommentIdlink), "");
+                string Cooment_ID = Utils.getBetween(resp_photourl, "content=\"instagram://media?id=", " />").Replace("\"", "");
+                string postdata_url = "https://www.instagram.com/web/comments/" + Cooment_ID + "/add/";
+                string poatdata = "comment_text=" + CommentMsg;
+                string token = Utils.getBetween(resp_photourl, "csrf_token\":\"", "\"");
 
-                string CmntMSG = string.Empty;
-
-
-                if (checkunicode == false)
-                {
-                    try
-                    {
-                        CmntMSG = CommentMsg.Replace(" ", "+");
-
-                    }
-                    catch (Exception ex)
-                    {
-                        return ex.Message;
-                    };
-                }
-                else
-                {
-                    try
-                    {
-                        CmntMSG = Uri.EscapeDataString(CommentMsg);
-                    }
-                    catch (Exception ex)
-                    {
-                        return ex.Message;
-                    };
-                }
                 try
                 {
-                    string commentPostData = "comment=+++" + CmntMSG + "&media_id=" + commentId;
-
-                    FollowedPageSource = accountManager.globusHttpHelper.postFormData(new Uri(url), commentPostData, CommentIdlink, "");
+                    FollowedPageSource = accountManager.globusHttpHelper.postFormDatainta(new Uri(postdata_url), poatdata, "https://www.instagram.com/", token);
                 }
                 catch (Exception ex)
                 {
-                    return ex.Message;
+
                 }
 
-                if (FollowedPageSource.Contains("status\":\"OK\"") || FollowedPageSource.Contains("created_time"))
+
+
+
+
+
+
+                if (FollowedPageSource.Contains("status\":\"ok\"") || FollowedPageSource.Contains("created_time"))
                 {
                     try
                     {
@@ -1171,16 +1207,112 @@ namespace HashTagsManager
                 }
                 else
                 {
-                    try
+                    if (FollowedPageSource.Contains("Instagram API does not respond"))
                     {
-                        FollowedPageSource = "Fail";
+                        FollowedPageSource = "Instagram API does not respond";
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        return ex.Message;
-                    };
+                        try
+                        {
+                            FollowedPageSource = "Fail";
+                        }
+                        catch (Exception ex)
+                        {
+                            return ex.Message;
+                        };
+                    }
                 }
                 #endregion
+
+
+                #region commented
+                //string firstUrl = "https://api.instagram.com/oauth/authorize/?client_id=9d836570317f4c18bca0db6d2ac38e29&redirect_uri=http://websta.me/&response_type=code&scope=comments+relationships+likes";
+                //string secondURL = "https://instagram.com/oauth/authorize/?client_id=9d836570317f4c18bca0db6d2ac38e29&redirect_uri=http://websta.me/&response_type=code&scope=comments+relationships+likes";
+                //string res_secondURL =_InstagramAccountManager.httpHelper.getHtmlfromUrlProxy(new Uri(secondURL), proxyAddress, 80, proxyUsername, proxyPassword);
+
+                //string nextUrl = "https://instagram.com/accounts/login/?force_classic_login=&next=/oauth/authorize/%3Fclient_id%3D9d836570317f4c18bca0db6d2ac38e29%26redirect_uri%3Dhttp%3A//websta.me/%26response_type%3Dcode%26scope%3Dcomments%2Brelationships%2Blikes";
+                //string res_nextUrl = _InstagramAccountManager.httpHelper.getHtmlfromUrlProxy(new Uri(nextUrl), proxyAddress, 80, proxyUsername, proxyPassword);
+
+                //int FirstPointToken_nextUrl = res_nextUrl.IndexOf("csrfmiddlewaretoken");
+                //string FirstTokenSubString_nextUrl = res_nextUrl.Substring(FirstPointToken_nextUrl);
+                //int SecondPointToken_nextUrl = FirstTokenSubString_nextUrl.IndexOf("/>");
+                //string Token = FirstTokenSubString_nextUrl.Substring(0, SecondPointToken_nextUrl).Replace("csrfmiddlewaretoken", string.Empty).Replace("value=", string.Empty).Replace("\"", string.Empty).Replace("'", string.Empty).Trim();
+                //string Token = string.Empty;
+                //try
+                //{
+                //    Token = getBetween(res_nextUrl, "accessToken', '", "')");
+                //}
+                //catch { }
+
+                //string login = "https://instagram.com/accounts/login/?force_classic_login=&next=/oauth/authorize/%3Fclient_id%3D9d836570317f4c18bca0db6d2ac38e29%26redirect_uri%3Dhttp%3A//websta.me/%26response_type%3Dcode%26scope%3Dcomments%2Brelationships%2Blikes";
+                //string postdata_Login = "csrfmiddlewaretoken=" + Token + "&username=" + Username + "&password=" + Password + "";
+
+                // string res_postdata_Login = _InstagramAccountManager.httpHelper.postFormData(new Uri(login), postdata_Login, login, "");
+
+                //string PageContent = string.Empty;
+                //PageContent = _GlobusHttpHelper.getHtmlfromUrl(new Uri(commentIdLoggedInLink), "", "", _InstagramAccountManager.proxyPassword);
+                ////if (res_postdata_Login.Contains("logout") || postdata_Login.Contains("LOG OUT"))
+                ////{
+                ////    PageContent = _InstagramAccountManager.httpHelper.getHtmlfromUrl(new Uri(CommentIdlink), "", "", accountManager.proxyPassword);
+                ////PageContent = _InstagramAccountManager.httpHelper.getHtmlfromUrl(new Uri(commentIdLoggedInLink));
+
+                //PageContent = _GlobusHttpHelper.getHtmlfromUrl(new Uri(CommentIdlink), "", "", accountManager.proxyPassword);
+                //PageContent = _GlobusHttpHelper.getHtmlfromUrl(new Uri(commentIdLoggedInLink));
+                ////}
+
+
+
+                //string PageContent = accountManager.httpHelper.getHtmlfromUrl(new Uri(CommentIdlink), "", "", accountManager.proxyAddress);
+                //string PageContent = accountManager.httpHelper.getHtmlfromUrl(new Uri(CommentIdlink), "", "", accountManager.proxyPassword);
+
+                //  if (PageContent.Contains("id=\"textarea"))
+                // if (PageContent.Contains("<div class=\"comments"))
+                //{
+                //check unicode character
+                //if (success.Equals("Success"))
+                //{
+                //    bool checkunicode = ContainsUnicodeCharacter(CommentMsg);
+
+                //    string CmntMSG = string.Empty;
+
+                //    if (checkunicode == false)
+                //    {
+                //        CmntMSG = CommentMsg.Replace(" ", "+");
+                //    }
+                //    else
+                //    {
+                //        CmntMSG = Uri.EscapeDataString(CommentMsg);
+                //    }
+
+                //    string commentPostData = "comment=+" + CmntMSG + "&media_id=" + commentId;
+
+                //    FollowedPageSource=_GlobusHttpHelper.postFormData(new Uri("http://websta.me/api/comments/" + commentId),commentPostData,commentIdLoggedInLink,"");
+
+                //    //string commentPostData = ("message=" + CmntMSG + "&messageid=" + commentId + "&t=" + RandomNumber() + "").Trim();
+                //    //string commentPostData = "comment=+" + CmntMSG + "&media_id="+commentId;
+                //   // string commentPostData = ("comment=+" + CmntMSG + "&media_id=" + commentId + "".Trim());
+
+
+                //   // // comment=+heloo&media_id=815573304185069562_3373974
+                //   // //comment=+hi&media_id=815582504685487428_17999944
+                //   // //namevalue.Add("Accept-Language", "en-us,en;q=0.5");
+                //   // namevalue.Add("Accept-Language", "en-US,en;q=0.8");
+                //   // namevalue.Add("Accept-Encoding", "gzip,deflate");
+                //   // namevalue.Add("X-Requested-With", "XMLHttpRequest");
+                //   // //namevalue.Add("Origin", "http://web.stagram.com");
+                //   // namevalue.Add("Origin", "http://websta.me");
+                //   // namevalue.Add("X-Requested-With", "XMLHttpRequest");
+
+                //   //// FollowedPageSource = accountManager.httpHelper.postFormDataForFollowUser(new Uri("http://web.stagram.com/post_comment/"), commentPostData, CommentIdlink, namevalue);
+                //   // //FollowedPageSource = accountManager.httpHelper.postFormDataForFollowUser(new Uri("http://websta.me/api/comments/"), commentPostData, CommentIdlink, namevalue);
+                //   // //FollowedPageSource = _GlobusHttpHelper.postFormDataForFollowUser(new Uri("http://websta.me/api/comments/"), commentPostData, CommentIdlink, namevalue);
+                //   // //FollowedPageSource = _InstagramAccountManager.httpHelper.postFormDataForFollowUser(new Uri("http://websta.me/api/comments/" + commentId), commentPostData, CommentIdlink, namevalue);
+                //   // //FollowedPageSource = _GlobusHttpHelper.postFormDataForFollowUserNew(new Uri("http://websta.me/api/comments/" + commentId), commentPostData, commentIdLoggedInLink, namevalue);
+
+                //} 
+                #endregion
+
 
 
                 try
@@ -1526,212 +1658,334 @@ namespace HashTagsManager
 
             try
             {
-                //Globals.HasTagListListThread.Add(Thread.CurrentThread);
-                //Globals.HasTagListListThread.Distinct();
-                //Thread.CurrentThread.IsBackground = true;
+                lstThreadsHash_comment.Add(Thread.CurrentThread);
+                lstThreadsHash_comment.Distinct();
+                Thread.CurrentThread.IsBackground = true;
             }
             catch
             {
             }
 
-            //string url = "http://websta.me/" + "tag/" + hashTag;
-            string url = "http://websta.me/" + "tag/" + hashTag.Replace("%23", "").Replace("#", "");
-            GlobusHttpHelper objInstagramUser = new GlobusHttpHelper();
-            List<string> lstPhotoId = new List<string>();
+            string url = string.Empty;
+            bool value = true;
+            
+            try
+            {
+                url = "https://www.instagram.com/explore/tags/" + hashTag + "/";
+                GlobusHttpHelper objInstagramUser = new GlobusHttpHelper();
 
-            string pageSource = objInstagramUser.getHtmlfromUrl(new Uri(url), "");
-            if (string.IsNullOrEmpty(pageSource))
-            {
-                pageSource = objInstagramUser.getHtmlfromUrl(new Uri(url), "");
-            }
-            if (!string.IsNullOrEmpty(pageSource))
-            {
-                if (pageSource.Contains("<div class=\"mainimg_wrapper\">"))
+
+                string pageSource = objInstagramUser.getHtmlfromUrl(new Uri(url), "", "");
+                if (string.IsNullOrEmpty(pageSource))
                 {
-                    string[] arr = Regex.Split(pageSource, "<div class=\"mainimg_wrapper\">");
-                    if (arr.Length > 1)
+                    pageSource = objInstagramUser.getHtmlfromUrl(new Uri(url), "", "");
+                }
+
+                if (!string.IsNullOrEmpty(pageSource))
+                {
+                    if (pageSource.Contains("date"))
                     {
-                        arr = arr.Skip(1).ToArray();
-                        foreach (string itemarr in arr)
+                        string token = Utils.getBetween(pageSource, "csrf_token\":\"", "\"}");
+                        string[] arr = Regex.Split(pageSource, "code");
+                        string imageId = string.Empty;
+                        string imageSrc = string.Empty;
+                        if (arr.Length > 1)
                         {
-                            try
+                            arr = arr.Skip(1).ToArray();
+                            foreach (string itemarr in arr)
                             {
-                                string startString = "<a href=\"/p/";
-                                string endString = "\" class=\"mainimg\"";
-                                string imageId = string.Empty;
-                                string imageSrc = string.Empty;
-                                if (itemarr.Contains("<a href=\"/p/"))
+                                try
                                 {
-                                    int indexStart = itemarr.IndexOf("<a href=\"/p/");
-                                    string itemarrNow = itemarr.Substring(indexStart);
-                                    if (itemarrNow.Contains(startString) && itemarrNow.Contains(endString))
+                                    // By Anil 
+                                    if (itemarr.Contains("date"))
                                     {
-                                        try
-                                        {
-                                            imageId = Utils.getBetween(itemarrNow, startString, endString).Replace("/", "");
-                                        }
-                                        catch { }
+                                        imageId = Utils.getBetween(itemarr, "\":\"", "\"");
                                         if (!string.IsNullOrEmpty(imageId))
                                         {
-                                            lstPhotoId.Add(imageId);
-                                            lstPhotoId.Distinct();
-                                            if (lstPhotoId.Count >= ClGlobul.SnapVideosCounterComment)
+                                            //lstPhotoId.Add(imageId);
+                                            //  lstPhotoId.Distinct();
+                                            if (ClGlobul.lstPhotoId.Count < ClGlobul.SnapVideosCounterComment)
                                             {
-                                                return lstPhotoId;
+                                                if (!ClGlobul.lstPhotoId.Contains(imageId))
+                                                {
+                                                    ClGlobul.lstPhotoId.Add(imageId);
+                                                    ClGlobul.lstPhotoId.Distinct();
+                                                    //  return lstPhotoId;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                return ClGlobul.lstPhotoId;
                                             }
 
                                             //imageId = "http://websta.me"+imageId;
                                         }
                                     }
                                 }
-                            }
-                            catch (Exception ex)
-                            {
-
-                            }
-
-                        }
-
-                        #region pagination
-
-                        string pageLink = string.Empty;
-                        while (true)
-                        {
-
-                            try
-                            {
-                                //Globals.HasTagListListThread.Add(Thread.CurrentThread);
-                                //Globals.HasTagListListThread.Distinct();
-                                //Thread.CurrentThread.IsBackground = true;
-                            }
-                            catch
-                            {
-                            }
-                            //if (stopScrapImageBool) return;
-                            string startString = "<a href=\"/p/";
-                            string endString = "\" class=\"mainimg\"";
-                            string imageId = string.Empty;
-                            string imageSrc = string.Empty;
-
-                            if (!string.IsNullOrEmpty(pageLink))
-                            {
-                                pageSource = objInstagramUser.getHtmlfromUrl(new Uri(pageLink));
-                            }
-
-                            if (pageSource.Contains("<ul class=\"pager\">") && pageSource.Contains("rel=\"next\">"))
-                            {
-                                try
+                                catch (Exception ex)
                                 {
-                                    pageLink = Utils.getBetween(pageSource, "<ul class=\"pager\">", "rel=\"next\">");
+
                                 }
-                                catch { }
-                                if (!string.IsNullOrEmpty(pageLink))
+
+                            }
+                            #region Forpagination
+                            if (pageSource.Contains("has_next_page\":true"))
+                            {
+                                while (value)
                                 {
-                                    try
+                                    if (pageSource.Contains("has_next_page\":true") && ClGlobul.lstPhotoId.Count < ClGlobul.NumberofSnapsVideosToComment)
                                     {
-                                        int len = pageLink.IndexOf("<a href=\"");
-                                        len = len + ("<a href=\"").Length;
-                                        pageLink = pageLink.Substring(len);
-                                        pageLink = pageLink.Trim();
-                                        pageLink = pageLink.TrimEnd(new char[] { '"' });
-                                        pageLink = "http://websta.me/" + pageLink;
-                                    }
-                                    catch { }
-                                    if (!string.IsNullOrEmpty(pageLink))
-                                    {
-                                        string response = string.Empty;
-                                        try
+                                        string IDD = Utils.getBetween(pageSource, "\"id\":\"", "\"");
+                                        string code_ID = Utils.getBetween(pageSource, "end_cursor\":\"", "\"");
+                                        string postdata = "q=ig_user(" + IDD + ")+%7B+media.after(" + code_ID + "%2C+12)+%7B%0A++count%2C%0A++nodes+%7B%0A++++caption%2C%0A++++code%2C%0A++++comments+%7B%0A++++++count%0A++++%7D%2C%0A++++date%2C%0A++++dimensions+%7B%0A++++++height%2C%0A++++++width%0A++++%7D%2C%0A++++display_src%2C%0A++++id%2C%0A++++is_video%2C%0A++++likes+%7B%0A++++++count%0A++++%7D%2C%0A++++owner+%7B%0A++++++id%0A++++%7D%2C%0A++++thumbnail_src%0A++%7D%2C%0A++page_info%0A%7D%0A+%7D&ref=users%3A%3Ashow";
+                                        pageSource = objInstagramUser.postFormDatainta(new Uri("https://www.instagram.com/query/"), postdata, "https://www.instagram.com/" + hashTag, token);
+                                        string[] data1 = Regex.Split(pageSource, "code");
+                                        foreach (string val in data1)
                                         {
-                                            response = objInstagramUser.getHtmlfromUrl(new Uri(pageLink));
-                                        }
-                                        catch { }
-                                        if (!string.IsNullOrEmpty(response))
-                                        {
-                                            if (response.Contains("<div class=\"mainimg_wrapper\">"))
+                                            if (val.Contains("date"))
                                             {
-                                                try
+                                                if (ClGlobul.lstPhotoId.Count < ClGlobul.NumberofSnapsVideosToComment)
                                                 {
-                                                    string[] arr1 = Regex.Split(response, "<div class=\"mainimg_wrapper\">");
-                                                    if (arr1.Length > 1)
+                                                    string photo_codes = Utils.getBetween(val, "\":\"", "\"");
+                                                    if (!ClGlobul.lstPhotoId.Contains(photo_codes))
                                                     {
-                                                        arr1 = arr1.Skip(1).ToArray();
-                                                        foreach (string items in arr1)
-                                                        {
-                                                            try
-                                                            {
-                                                                //if (stopScrapImageBool) return;
-                                                                if (items.Contains("<a href=\"/p/"))
-                                                                {
-                                                                    int indexStart = items.IndexOf("<a href=\"/p/");
-                                                                    string itemarrNow = items.Substring(indexStart);
-
-                                                                    try
-                                                                    {
-                                                                        imageId = Utils.getBetween(itemarrNow, startString, endString).Replace("/", "");
-                                                                    }
-                                                                    catch { }
-                                                                    if (!string.IsNullOrEmpty(imageId))
-                                                                    {
-                                                                        lstPhotoId.Add(imageId);
-                                                                        lstPhotoId.Distinct();
-                                                                        if (lstPhotoId.Count >= ClGlobul.NumberofSnapsVideosToComment)
-                                                                        {
-                                                                            return lstPhotoId;
-                                                                        }
-
-                                                                        //imageId = "http://websta.me"+imageId;
-                                                                    }
-
-
-                                                                    //counter++;
-
-                                                                    //Addtologger("Image DownLoaded with ImageName  "+imageId+"_"+counter);
-                                                                    if (lstPhotoId.Count >= ClGlobul.NumberofSnapsVideosToComment)
-                                                                    {
-                                                                        return lstPhotoId;
-                                                                    }
-                                                                }
-                                                            }
-
-                                                            catch { }
-                                                        }
-                                                        if (lstPhotoId.Count >= ClGlobul.NumberofSnapsVideosToComment)
-                                                        {
-                                                            return lstPhotoId;
-                                                        }
+                                                        ClGlobul.lstPhotoId.Add(photo_codes);
                                                     }
                                                 }
-                                                catch { }
-
+                                                else
+                                                {
+                                                    return ClGlobul.lstPhotoId;
+                                                }
                                             }
                                         }
-                                        else
-                                        {
 
-                                        }
+
 
                                     }
                                     else
                                     {
-                                        break;
+                                        value = false;
                                     }
-                                }
-                                else
-                                {
-                                    break;
+
                                 }
                             }
-                            else
-                            {
-                                break;
-                            }
+                            #endregion
                         }
-                        #endregion
+
                     }
                 }
+
             }
 
-            return lstPhotoId;
+            catch (Exception ex)
+            {
+                GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
+            }
+
+
+
+
+
+
+
+
+            //string url = IGGlobals.Instance.IGWEPME + "tag/" + hashTag.Replace("%23", "").Replace("#", "");
+            //GlobusHttpHelper objInstagramUser = new GlobusHttpHelper();
+            //List<string> lstPhotoId = new List<string>();
+
+            //string pageSource = objInstagramUser.getHtmlfromUrl(new Uri(url), "");
+            //if (string.IsNullOrEmpty(pageSource))
+            //{
+            //    pageSource = objInstagramUser.getHtmlfromUrl(new Uri(url), "");
+            //}
+            //if (!string.IsNullOrEmpty(pageSource))
+            //{
+            //    if (pageSource.Contains("<div class=\"mainimg_wrapper\">"))
+            //    {
+            //        string[] arr = Regex.Split(pageSource, "<div class=\"mainimg_wrapper\">");
+            //        if (arr.Length > 1)
+            //        {
+            //            arr = arr.Skip(1).ToArray();
+            //            foreach (string itemarr in arr)
+            //            {
+            //                try
+            //                {
+            //                    string startString = "<a href=\"/p/";
+            //                    string endString = "\" class=\"mainimg\"";
+            //                    string imageId = string.Empty;
+            //                    string imageSrc = string.Empty;
+            //                    if (itemarr.Contains("<a href=\"/p/"))
+            //                    {
+            //                        int indexStart = itemarr.IndexOf("<a href=\"/p/");
+            //                        string itemarrNow = itemarr.Substring(indexStart);
+            //                        if (itemarrNow.Contains(startString) && itemarrNow.Contains(endString))
+            //                        {
+            //                            try
+            //                            {
+            //                                imageId = Utils.getBetween(itemarrNow, startString, endString).Replace("/", "");
+            //                            }
+            //                            catch { }
+            //                            if (!string.IsNullOrEmpty(imageId))
+            //                            {
+            //                                lstPhotoId.Add(imageId);
+            //                                lstPhotoId.Distinct();
+            //                                if (lstPhotoId.Count >= ClGlobul.SnapVideosCounterComment)
+            //                                {
+            //                                    return lstPhotoId;
+            //                                }
+
+            //                                //imageId = "http://websta.me"+imageId;
+            //                            }
+            //                        }
+            //                    }
+            //                }
+            //                catch (Exception ex)
+            //                {
+
+            //                }
+
+            //            }
+
+            //            #region pagination
+
+            //            string pageLink = string.Empty;
+            //            while (true)
+            //            {
+
+            //                try
+            //                {
+            //                    //Globals.HasTagListListThread.Add(Thread.CurrentThread);
+            //                    //Globals.HasTagListListThread.Distinct();
+            //                    //Thread.CurrentThread.IsBackground = true;
+            //                }
+            //                catch
+            //                {
+            //                }
+            //                //if (stopScrapImageBool) return;
+            //                string startString = "<a href=\"/p/";
+            //                string endString = "\" class=\"mainimg\"";
+            //                string imageId = string.Empty;
+            //                string imageSrc = string.Empty;
+
+            //                if (!string.IsNullOrEmpty(pageLink))
+            //                {
+            //                    pageSource = objInstagramUser.getHtmlfromUrl(new Uri(pageLink));
+            //                }
+
+            //                if (pageSource.Contains("<ul class=\"pager\">") && pageSource.Contains("rel=\"next\">"))
+            //                {
+            //                    try
+            //                    {
+            //                        pageLink = Utils.getBetween(pageSource, "<ul class=\"pager\">", "rel=\"next\">");
+            //                    }
+            //                    catch { }
+            //                    if (!string.IsNullOrEmpty(pageLink))
+            //                    {
+            //                        try
+            //                        {
+            //                            int len = pageLink.IndexOf("<a href=\"");
+            //                            len = len + ("<a href=\"").Length;
+            //                            pageLink = pageLink.Substring(len);
+            //                            pageLink = pageLink.Trim();
+            //                            pageLink = pageLink.TrimEnd(new char[] { '"' });
+            //                            pageLink = "http://websta.me/" + pageLink;
+            //                        }
+            //                        catch { }
+            //                        if (!string.IsNullOrEmpty(pageLink))
+            //                        {
+            //                            string response = string.Empty;
+            //                            try
+            //                            {
+            //                                response = objInstagramUser.getHtmlfromUrl(new Uri(pageLink));
+            //                            }
+            //                            catch { }
+            //                            if (!string.IsNullOrEmpty(response))
+            //                            {
+            //                                if (response.Contains("<div class=\"mainimg_wrapper\">"))
+            //                                {
+            //                                    try
+            //                                    {
+            //                                        string[] arr1 = Regex.Split(response, "<div class=\"mainimg_wrapper\">");
+            //                                        if (arr1.Length > 1)
+            //                                        {
+            //                                            arr1 = arr1.Skip(1).ToArray();
+            //                                            foreach (string items in arr1)
+            //                                            {
+            //                                                try
+            //                                                {
+            //                                                    //if (stopScrapImageBool) return;
+            //                                                    if (items.Contains("<a href=\"/p/"))
+            //                                                    {
+            //                                                        int indexStart = items.IndexOf("<a href=\"/p/");
+            //                                                        string itemarrNow = items.Substring(indexStart);
+
+            //                                                        try
+            //                                                        {
+            //                                                            imageId = Utils.getBetween(itemarrNow, startString, endString).Replace("/", "");
+            //                                                        }
+            //                                                        catch { }
+            //                                                        if (!string.IsNullOrEmpty(imageId))
+            //                                                        {
+            //                                                            lstPhotoId.Add(imageId);
+            //                                                            lstPhotoId.Distinct();
+            //                                                            if (lstPhotoId.Count >= ClGlobul.NumberofSnapsVideosToComment)
+            //                                                            {
+            //                                                                return lstPhotoId;
+            //                                                            }
+
+            //                                                            //imageId = "http://websta.me"+imageId;
+            //                                                        }
+
+
+            //                                                        //counter++;
+
+            //                                                        //Addtologger("Image DownLoaded with ImageName  "+imageId+"_"+counter);
+            //                                                        if (lstPhotoId.Count >= ClGlobul.NumberofSnapsVideosToComment)
+            //                                                        {
+            //                                                            return lstPhotoId;
+            //                                                        }
+            //                                                    }
+            //                                                }
+
+            //                                                catch { }
+            //                                            }
+            //                                            if (lstPhotoId.Count >= ClGlobul.NumberofSnapsVideosToComment)
+            //                                            {
+            //                                                return lstPhotoId;
+            //                                            }
+            //                                        }
+            //                                    }
+            //                                    catch { }
+
+            //                                }
+            //                            }
+            //                            else
+            //                            {
+
+            //                            }
+
+            //                        }
+            //                        else
+            //                        {
+            //                            break;
+            //                        }
+            //                    }
+            //                    else
+            //                    {
+            //                        break;
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    break;
+            //                }
+            //            }
+            //            #endregion
+            //        }
+            //    }
+            //}
+
+            return ClGlobul.lstPhotoId;
         }
 
 
@@ -1757,7 +2011,7 @@ namespace HashTagsManager
             {
 
 
-                string res_secondURL = obj_HashLike.globusHttpHelper.getHtmlfromUrl(new Uri("http://websta.me/login"), "");
+                string res_secondURL = obj_HashLike.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com/"), "");
                 if (!string.IsNullOrEmpty(Hash_Like_Unlike_single))
                 {
                     ClGlobul.HashLiker.Clear();
@@ -1847,7 +2101,7 @@ namespace HashTagsManager
             }
             try
             {
-                string res_secondURL = obj_hashlike.globusHttpHelper.getHtmlfromUrl(new Uri("http://websta.me/login"), "");
+                string res_secondURL = obj_hashlike.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
                 foreach (string urlToLike in hashTag)//hashTag //snapsVideoUrl
                 {
 
@@ -1856,11 +2110,16 @@ namespace HashTagsManager
 
                     if (result.Contains("LIKED"))
                     {
+                        DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User, Message,Photo_Id,HashOperation,Status) values('" + "HashComment" + "','" + obj_hashlike.username + "','" + "-" + "','" + urlToLike + "','" + "#Like" + "','" + "Success" + "')", "tbl_AccountReport");
                         GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Liked " + urlToLike + " Success ]");
                     }
                     if (result.Contains("Already LIKED"))
                     {
                         GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ Allready Liked " + urlToLike + " ]");
+                    }
+                    if(string.IsNullOrEmpty(result))
+                    {
+                        GlobusLogHelper.log.Info("------ Page Not found ------");
                     }
                     if (minDelayHash_comment != 0)
                     {
@@ -1911,106 +2170,117 @@ namespace HashTagsManager
             string FollowedPageSource = string.Empty;
             string like = string.Empty;
             string new_repce = string.Empty;
+            string resp_photodetail = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com/p/" + PhotoId+"/"), "");
+            string phto_ID = Utils.getBetween(resp_photodetail, "content=\"instagram://media?id=", " />").Replace("\"", "");
 
             try
             {
                 GlobusHttpHelper obj = Photo_likebyID.globusHttpHelper;
-                string res_secondURL = obj.getHtmlfromUrl(new Uri(IGGlobals.Instance.IGTestURL), "");
-                if (PhotoId.Contains(IGGlobals.Instance.IGhomeurl))
+                string res_secondURL = obj.getHtmlfromUrl(new Uri("https://www.instagram.com"), "");
+                if (PhotoId.Contains("https://www.instagram.com/p/"))
                 {
-                    PhotoId = PhotoId.Replace(IGGlobals.Instance.IGhomeurl, string.Empty);
+                    PhotoId = PhotoId.Replace("https://www.instagram.com/p/", string.Empty);
                 }
-                if (!PhotoId.Contains(IGGlobals.Instance.IGstagramurl))
+                if (!PhotoId.Contains("https://www.instagram.com/p/"))
                 {
-                    Photolink = IGGlobals.Instance.IGLikewebsta_api + PhotoId + "/".Replace(IGGlobals.Instance.IGhomeurl, "");
+                    Photolink = "https://www.instagram.com/web/likes/" + phto_ID + "/like/ ".Replace(IGGlobals.Instance.IGhomeurl, "");
                 }
                 else
                 {
                     Photolink = PhotoId;
 
                 }
-                string url = IGGlobals.Instance.IGhomeurl + PhotoId;
-                string Check_like = obj.getHtmlfromUrl(new Uri(url), "");
-                string Data = Utils.getBetween(Check_like, "class=\"list-inline pull-left\">", "</ul>");
-                if (Data.Contains("</i> Like</button>"))
-                {
-                    // string PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(Photolink), "", "", Photo_likebyID.proxyip);
-                    string PageContent = string.Empty;
-                    if (string.IsNullOrEmpty(Photo_likebyID.proxyport))
+                string url = "https://www.instagram.com/p/" + PhotoId;
+                    string Check_like = obj.getHtmlfromUrl(new Uri(url), "");
+                    string token = Utils.getBetween(Check_like, "csrf_token\":\"", "\"}");
+                 //   string Data = Utils.getBetween(Check_like, "class=\"list-inline pull-left\">", "</ul>");
+                    if (Check_like.Contains("viewer_has_liked\":false"))
                     {
-                        Photo_likebyID.proxyport = "80";
-                    }
-                    try
-                    {
-                        if (ClGlobul.checkHashTagLiker == true)
+                       
+                        string PageContent = string.Empty;
+                        if (string.IsNullOrEmpty(Photo_likebyID.proxyport))
                         {
-                            PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(Photolink), "");
+                            Photo_likebyID.proxyport = "80";
                         }
-                        else
-                        {
-                            PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrlProxy(new Uri(Photolink), Photo_likebyID.proxyip, Convert.ToInt32(Photo_likebyID.proxyport), Photo_likebyID.proxyusername, Photo_likebyID.proxypassword);
-                        }
-
-                    }
-                    catch (Exception ex)
-                    {
-                        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
-                    }
-                    if (string.IsNullOrEmpty(PageContent))
-                    {
-                        if (ClGlobul.checkHashTagLiker == true)
-                        {
-                            PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(Photolink));
-                        }
-                        else
-                        {
-                            PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrlProxy(new Uri(Photolink), "", 80, "", "");
-                        }
-                    }
-
-                    if (PageContent.Contains("message\":\"LIKED\""))
-                    {
-
-
-                        FollowedPageSource = "LIKED";
-
-
                         try
                         {
                             if (ClGlobul.checkHashTagLiker == true)
                             {
-                                try
-                                {
-                                    DataBaseHandler.InsertQuery("insert into liker_hash_tag (account_holder, photo_id, like_date, like_status) values ('" + Photo_likebyID.username + "','" + PhotoId + "','" + Convert.ToString(DateTime.Now) + "','" + FollowedPageSource + "')", "liker_hash_tag");
-                                }
-                                catch (Exception ex)
-                                {
-                                    GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
-                                }
+                                PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(Photolink), "");
                             }
+                            else
+                            {
+
+                                PageContent = Photo_likebyID.globusHttpHelper.PostData_LoginThroughInstagram(new Uri(Photolink), "", "https://www.instagram.com/", token);
+                            }
+
                         }
                         catch (Exception ex)
                         {
                             GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
                         }
+                        if (string.IsNullOrEmpty(PageContent))
+                        {
+                            if (ClGlobul.checkHashTagLiker == true)
+                            {
+                                PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrl(new Uri(Photolink));
+                            }
+                            else
+                            {
+                                PageContent = Photo_likebyID.globusHttpHelper.getHtmlfromUrlProxy(new Uri(Photolink), "", 80, "", "");
+                            }
+                        }
+
+                        if (PageContent.Contains("Instagram API does not respond"))
+                        {
+                            FollowedPageSource = "Instagram API does not respond";
+                        }
+
+                        if (PageContent.Contains("{\"status\":\"ok\"}"))
+                        {
 
 
+                            FollowedPageSource = "LIKED";
+                            //DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User, Photo_Id,Status) values('" + "PhotoLikeModule" + "','" + Photo_likebyID.username + "','" + PhotoId + "','" + "LIKED" + "')", "tbl_AccountReport");
+
+                            try
+                            {
+                                if (ClGlobul.checkHashTagLiker == true)
+                                {
+                                    try
+                                    {
+                                        DataBaseHandler.InsertQuery("insert into liker_hash_tag (account_holder, photo_id, like_date, like_status) values ('" + Photo_likebyID.username + "','" + PhotoId + "','" + Convert.ToString(DateTime.Now) + "','" + FollowedPageSource + "')", "liker_hash_tag");
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+                            }
+
+
+                        }
                     }
+                    else if (Check_like.Contains("viewer_has_liked\":true"))
+                    {
+                        FollowedPageSource = "Already LIKED";
+                    }
+                    
+
                 }
-                else if (Data.Contains("</i> Liked</button>"))
+                catch (Exception ex)
                 {
-                    FollowedPageSource = "Already LIKED";
+                    GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
                 }
 
-            }
-            catch (Exception ex)
-            {
-                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
-            }
 
-
-            return FollowedPageSource;
-        }
+                return FollowedPageSource;
+            }
+        
 
 
 
@@ -2029,204 +2299,120 @@ namespace HashTagsManager
                 GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
             }
             string url = string.Empty;
-            //string url = "http://websta.me/" + "tag/" + hashTag;
-            if (hashTag.Contains("#"))
-            {
-                url = "http://websta.me/" + "tag/" + hashTag.Replace("%23", "").Replace("#", "");
-            }
-            else
-            {
-                url = "http://websta.me/" + "tag/" + hashTag;
-            }
-
-            GlobusHttpHelper objInstagramUser = new GlobusHttpHelper();
+            bool value = true;
             List<string> lstPhotoId = new List<string>();
+            try
+            {
+                url = "https://www.instagram.com/explore/tags/" + hashTag + "/";
+                GlobusHttpHelper objInstagramUser = new GlobusHttpHelper();
+                
 
-            string pageSource = objInstagramUser.getHtmlfromUrl(new Uri(url), "");
-            if (string.IsNullOrEmpty(pageSource))
-            {
-                pageSource = objInstagramUser.getHtmlfromUrl(new Uri(url), "");
-            }
-            if (!string.IsNullOrEmpty(pageSource))
-            {
-                if (pageSource.Contains("<div class=\"mainimg_wrapper\">"))
+                string pageSource = objInstagramUser.getHtmlfromUrl(new Uri(url), "", "");
+                if (string.IsNullOrEmpty(pageSource))
                 {
-                    string[] arr = Regex.Split(pageSource, "<div class=\"mainimg_wrapper\">");
-                    if (arr.Length > 1)
+                    pageSource = objInstagramUser.getHtmlfromUrl(new Uri(url), "", "");
+                }
+
+                if (!string.IsNullOrEmpty(pageSource))
+                {
+                    if (pageSource.Contains("date"))
                     {
-                        arr = arr.Skip(1).ToArray();
-                        foreach (string itemarr in arr)
+                        string token = Utils.getBetween(pageSource, "csrf_token\":\"", "\"}");
+                        string[] arr = Regex.Split(pageSource, "code");
+                        string imageId = string.Empty;
+                        string imageSrc = string.Empty;
+                        if (arr.Length > 1)
                         {
-                            try
+                            arr = arr.Skip(1).ToArray();
+                            foreach (string itemarr in arr)
                             {
-                                string startString = "<a href=\"/p/";
-                                string endString = "\" class=\"mainimg\"";
-                                string imageId = string.Empty;
-                                string imageSrc = string.Empty;
-                                if (itemarr.Contains("<a href=\"/p/"))
+                                try
                                 {
-                                    int indexStart = itemarr.IndexOf("<a href=\"/p/");
-                                    string itemarrNow = itemarr.Substring(indexStart);
-                                    if (itemarrNow.Contains(startString) && itemarrNow.Contains(endString))
+                                    // By Anil 
+                                    if (itemarr.Contains("date"))
                                     {
-                                        try
-                                        {
-                                            imageId = Utils.getBetween(itemarrNow, startString, endString).Replace("/", "");
-                                        }
-                                        catch { }
+                                        imageId = Utils.getBetween(itemarr, "\":\"", "\"");
                                         if (!string.IsNullOrEmpty(imageId))
                                         {
-
-                                            lstPhotoId.Add(imageId);
-                                            lstPhotoId.Distinct();
-                                            if (lstPhotoId.Count >= ClGlobul.NumberofSnapsVideosToLike)
+                                            //lstPhotoId.Add(imageId);
+                                          //  lstPhotoId.Distinct();
+                                            if (lstPhotoId.Count < ClGlobul.NumberofSnapsVideosToLike)
+                                            {
+                                                lstPhotoId.Add(imageId);
+                                                lstPhotoId.Distinct();
+                                              //  return lstPhotoId;
+                                            }
+                                            else
                                             {
                                                 return lstPhotoId;
                                             }
 
-
+                                            //imageId = "http://websta.me"+imageId;
                                         }
                                     }
                                 }
-                            }
-                            catch (Exception ex)
-                            {
-
-                            }
-
-                        }
-
-                        #region pagination
-
-                        string pageLink = string.Empty;
-                        while (true)
-                        {
-                            //if (stopScrapImageBool) return;
-                            string startString = "<a href=\"/p/";
-                            string endString = "\" class=\"mainimg\"";
-                            string imageId = string.Empty;
-                            string imageSrc = string.Empty;
-
-                            if (!string.IsNullOrEmpty(pageLink))
-                            {
-                                pageSource = objInstagramUser.getHtmlfromUrl(new Uri(pageLink));
-                            }
-
-                            if (pageSource.Contains("<ul class=\"pager\">") && pageSource.Contains("rel=\"next\">"))
-                            {
-                                try
+                                catch (Exception ex)
                                 {
-                                    pageLink = Utils.getBetween(pageSource, "<ul class=\"pager\">", "rel=\"next\">");
+
                                 }
-                                catch { }
-                                if (!string.IsNullOrEmpty(pageLink))
+
+                            }
+                            #region Forpagination
+                            if (pageSource.Contains("has_next_page\":true"))
+                            {
+                                while (value)
                                 {
-                                    try
+                                    if (pageSource.Contains("has_next_page\":true") && lstPhotoId.Count < ClGlobul.NumberofSnapsVideosToLike)
                                     {
-                                        int len = pageLink.IndexOf("<a href=\"");
-                                        len = len + ("<a href=\"").Length;
-                                        pageLink = pageLink.Substring(len);
-                                        pageLink = pageLink.Trim();
-                                        pageLink = pageLink.TrimEnd(new char[] { '"' });
-                                        pageLink = "http://websta.me/" + pageLink;
-                                    }
-                                    catch { }
-                                    if (!string.IsNullOrEmpty(pageLink))
-                                    {
-                                        string response = string.Empty;
-                                        try
+                                        string IDD = Utils.getBetween(pageSource, "\"id\":\"", "\"");
+                                        string code_ID = Utils.getBetween(pageSource, "end_cursor\":\"", "\"");
+                                        string postdata = "q=ig_user(" + IDD + ")+%7B+media.after(" + code_ID + "%2C+12)+%7B%0A++count%2C%0A++nodes+%7B%0A++++caption%2C%0A++++code%2C%0A++++comments+%7B%0A++++++count%0A++++%7D%2C%0A++++date%2C%0A++++dimensions+%7B%0A++++++height%2C%0A++++++width%0A++++%7D%2C%0A++++display_src%2C%0A++++id%2C%0A++++is_video%2C%0A++++likes+%7B%0A++++++count%0A++++%7D%2C%0A++++owner+%7B%0A++++++id%0A++++%7D%2C%0A++++thumbnail_src%0A++%7D%2C%0A++page_info%0A%7D%0A+%7D&ref=users%3A%3Ashow";
+                                        pageSource = objInstagramUser.postFormDatainta(new Uri("https://www.instagram.com/query/"), postdata, "https://www.instagram.com/" + hashTag, token);
+                                        string[] data1 = Regex.Split(pageSource, "code");
+                                        foreach (string val in data1)
                                         {
-                                            response = objInstagramUser.getHtmlfromUrl(new Uri(pageLink));
-                                        }
-                                        catch { }
-                                        if (!string.IsNullOrEmpty(response))
-                                        {
-                                            if (response.Contains("<div class=\"mainimg_wrapper\">"))
+                                            if (val.Contains("date"))
                                             {
-                                                try
+                                                if (lstPhotoId.Count < ClGlobul.NumberofSnapsVideosToLike)
                                                 {
-                                                    string[] arr1 = Regex.Split(response, "<div class=\"mainimg_wrapper\">");
-                                                    if (arr1.Length > 1)
-                                                    {
-                                                        arr1 = arr1.Skip(1).ToArray();
-                                                        foreach (string items in arr1)
-                                                        {
-                                                            try
-                                                            {
-                                                                //if (stopScrapImageBool) return;
-                                                                if (items.Contains("<a href=\"/p/"))
-                                                                {
-                                                                    int indexStart = items.IndexOf("<a href=\"/p/");
-                                                                    string itemarrNow = items.Substring(indexStart);
-
-                                                                    try
-                                                                    {
-                                                                        imageId = Utils.getBetween(itemarrNow, startString, endString).Replace("/", "");
-                                                                    }
-                                                                    catch { }
-                                                                    if (!string.IsNullOrEmpty(imageId))
-                                                                    {
-                                                                        lstPhotoId.Add(imageId);
-                                                                        lstPhotoId.Distinct();
-                                                                        if (lstPhotoId.Count >= ClGlobul.NumberofSnapsVideosToLike)
-                                                                        {
-                                                                            return lstPhotoId;
-                                                                        }
-
-                                                                        //imageId = "http://websta.me"+imageId;
-                                                                    }
-
-
-                                                                    //counter++;
-
-                                                                    //Addtologger("Image DownLoaded with ImageName  "+imageId+"_"+counter);
-                                                                    if (lstPhotoId.Count >= ClGlobul.NumberofSnapsVideosToLike)
-                                                                    {
-                                                                        return lstPhotoId;
-                                                                    }
-                                                                }
-                                                            }
-
-                                                            catch { }
-                                                        }
-                                                        if (lstPhotoId.Count >= ClGlobul.NumberofSnapsVideosToLike)
-                                                        {
-                                                            return lstPhotoId;
-                                                        }
-                                                    }
+                                                    string photo_codes = Utils.getBetween(val, "\":\"", "\"");
+                                                    lstPhotoId.Add(photo_codes);
                                                 }
-                                                catch { }
-
+                                                else
+                                                {
+                                                    return lstPhotoId;
+                                                }
                                             }
                                         }
-                                        else
-                                        {
 
-                                        }
+
 
                                     }
                                     else
                                     {
-                                        break;
+                                        value = false;
                                     }
-                                }
-                                else
-                                {
-                                    break;
+
                                 }
                             }
-                            else
-                            {
-                                break;
-                            }
+                            #endregion
                         }
-                        #endregion
+
                     }
                 }
+               
             }
-
+                
+            catch (Exception ex)
+            {
+                GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
+            }
             return lstPhotoId;
         }
+    
+
+            
+        
 
 
         #endregion
@@ -2280,7 +2466,7 @@ namespace HashTagsManager
             {
 
 
-                //  string res_secondURL = globusHttpHelper.getHtmlfromUrl(new Uri("http://websta.me/login"), "");
+                
                 if (!string.IsNullOrEmpty(Hash_Like_Unlike_single))
                 {
                     ClGlobul.HashLiker.Clear();
@@ -2738,7 +2924,7 @@ namespace HashTagsManager
                 foreach (string hashKeyword in ClGlobul.HashFollower)
                 {
                     GlobusLogHelper.log.Info("[ " + DateTime.Now + "] " + "[ Scraping Users with HashTag " + hashKeyword + "]");
-                    lstHashTagUserIdTemp = GetUser(hashKeyword);
+                   // lstHashTagUserIdTemp = GetUser(hashKeyword);
                     lstHashTagUserId.AddRange(lstHashTagUserIdTemp);
                 }
 
@@ -2918,7 +3104,7 @@ namespace HashTagsManager
                 {
 
 
-                    //  string res_secondURL = globusHttpHelper.getHtmlfromUrl(new Uri("http://websta.me/login"), "");
+                    
                     if (!string.IsNullOrEmpty(Hash_Like_Unlike_single))
                     {
                         ClGlobul.HashLiker.Clear();
@@ -3279,7 +3465,7 @@ namespace HashTagsManager
                 foreach (string hashKeyword in ClGlobul.HashFollower)
                 {
                     GlobusLogHelper.log.Info("[ " + DateTime.Now + "] " + "[ Scraping Users with HashTag " + hashKeyword + "]");
-                    lstHashTagUserIdTemp = GetUser(hashKeyword);
+                   // lstHashTagUserIdTemp = GetUser(hashKeyword);
                     lstHashTagUserId.AddRange(lstHashTagUserIdTemp);
                 }
 
@@ -3353,6 +3539,9 @@ namespace HashTagsManager
         }
 
         #endregion
+
+
+        
 
 
     }

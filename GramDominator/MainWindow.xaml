@@ -1,0 +1,197 @@
+﻿<mui:ModernWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+        xmlns:tools="clr-namespace:GramDominator"
+    
+    
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="GramDominator.MainWindow"
+        Title="GramDominator 2.0"  IsTitleVisible="True" 
+        xmlns:app="clr-namespace:GramDominator"
+    
+
+    Style="{StaticResource BlankWindow}"    
+     
+        LogoData="F1 M 24.9015,43.0378L 25.0963,43.4298C 26.1685,49.5853 31.5377,54.2651 38,54.2651C 44.4623,54.2651 49.8315,49.5854 50.9037,43.4299L 51.0985,43.0379C 51.0985,40.7643 52.6921,39.2955 54.9656,39.2955C 56.9428,39.2955 58.1863,41.1792 58.5833,43.0379C 57.6384,52.7654 47.9756,61.75 38,61.75C 28.0244,61.75 18.3616,52.7654 17.4167,43.0378C 17.8137,41.1792 19.0572,39.2954 21.0344,39.2954C 23.3079,39.2954 24.9015,40.7643 24.9015,43.0378 Z M 26.7727,20.5833C 29.8731,20.5833 32.3864,23.0966 32.3864,26.197C 32.3864,29.2973 29.8731,31.8106 26.7727,31.8106C 23.6724,31.8106 21.1591,29.2973 21.1591,26.197C 21.1591,23.0966 23.6724,20.5833 26.7727,20.5833 Z M 49.2273,20.5833C 52.3276,20.5833 54.8409,23.0966 54.8409,26.197C 54.8409,29.2973 52.3276,31.8106 49.2273,31.8106C 46.127,31.8106 43.6136,29.2973 43.6136,26.197C 43.6136,23.0966 46.127,20.5833 49.2273,20.5833 Z"          
+        ContentSource="/Pages/AccountManager.xaml"
+        WindowStartupLocation="CenterScreen" Closing="ModernWindow_Closing" Height="603" Width="1050" Closed="ModernWindow_Closed"  >
+
+    <Grid Margin="0,10,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="57*"/>
+            <RowDefinition Height="13*"/>
+        </Grid.RowDefinitions>
+        <TabControl Margin="0,0,0,2">
+            <TabItem Header=" Account ">
+                <Grid Background="#FFE5E5E5">
+                    <mui:ModernTab Layout="List" SelectedSource="\Pages\PageAccount\ManageAccounts.xaml">
+                        <mui:ModernTab.Links>
+                            <mui:Link DisplayName="Accounts Manager" Source="\Pages\PageAccount\ManageAccounts.xaml" />
+                            <mui:Link DisplayName="Manage Profile" Source="\Pages\PageAccount\ManageProfile.xaml" />
+                           
+                        </mui:ModernTab.Links>
+                    </mui:ModernTab>
+                </Grid>
+            </TabItem>
+
+
+            <TabItem Header=" Follower ">
+                <Grid Background="#FFE5E5E5">                   
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="242*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="129*"/>
+                        </Grid.ColumnDefinitions>
+                    <mui:ModernTab Layout="List" Grid.ColumnSpan="3" SelectedSource="\Pages\PageFollower\UserControlFollower.xaml">
+                        <mui:ModernTab.Links>
+                            <mui:Link DisplayName=" Follow User's" Source="\Pages\PageFollower\UserControlFollower.xaml" />
+                            <mui:Link DisplayName="Unfollow User's" Source="\Pages\PageFollower\UserControlUnFollower.xaml" />
+                        </mui:ModernTab.Links>
+                    </mui:ModernTab>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header=" Comments ">
+                <Grid Background="#FFE5E5E5">
+                    <mui:ModernTab Layout="List" SelectedSource="\Pages\Pagecomment\UserControlCommentPhoto.xaml">
+                        <mui:ModernTab.Links>
+                            <mui:Link DisplayName=" Comment On Photo " Source="\Pages\Pagecomment\UserControlCommentPhoto.xaml" />
+                            <!-- ensures new LoremIpsum content is loaded for each uri -->
+                        </mui:ModernTab.Links>
+
+                    </mui:ModernTab>
+
+                </Grid>
+            </TabItem>
+
+            <!--<TabItem Header="Direct Message">
+                <Grid Background="#FFE5E5E5">
+                    <mui:ModernTab Layout="List" SelectedSource="\Pages\PageMessage\UserControlDirectMessage.xaml">
+                        <mui:ModernTab.Links>
+                            <mui:Link DisplayName=" Direct Message To Users " Source="\Pages\PageMessage\UserControlDirectMessage.xaml" />
+                            --><!-- ensures new LoremIpsum content is loaded for each uri --><!--
+                        </mui:ModernTab.Links>
+
+                    </mui:ModernTab>
+
+                </Grid>
+            </TabItem>-->
+
+            <TabItem Header="   Photo   ">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="242*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="129*"/>
+                    </Grid.ColumnDefinitions>
+                    <mui:ModernTab Layout="List" Grid.ColumnSpan="3" SelectedSource="\Pages\PagePhoto\UserControlLikePhoto.xaml">
+                        <mui:ModernTab.Links>
+                            <mui:Link DisplayName="Like Photo" Source="\Pages\PagePhoto\UserControlLikePhoto.xaml" />
+                            <mui:Link DisplayName="Unlike Photo" Source="\Pages\PagePhoto\UserControlUnlikePhoto.xaml" />
+                            <mui:Link DisplayName="Download Photo" Source="\Pages\PagePhoto\UserControlDownloadPhoto.xaml" />
+                            <mui:Link DisplayName="Photo User Liker" Source="\Pages\PagePhoto\UserControlPhotoUserliker.xaml" />
+                        </mui:ModernTab.Links>
+
+                    </mui:ModernTab>
+                </Grid>
+            </TabItem>
+            <TabItem Header="  Scraper  ">
+                <Grid Background="#FFE5E5E5">
+                    <mui:ModernTab Layout="List" SelectedSource="\Pages\PageScraper\UserControlScrapeUser.xaml">
+                        <mui:ModernTab.Links>
+                            <mui:Link DisplayName="Scrape User" Source="\Pages\PageScraper\UserControlScrapeUser.xaml" />
+                            <mui:Link DisplayName="Scrape Follower" Source="\Pages\PageScraper\UserControlScrapefollower.xaml" />
+                            <mui:Link DisplayName="Scrape Profile Image Url" Source="\Pages\PageScraper\UserControlScrapeImageUrl.xaml" />
+
+                            <mui:Link DisplayName="Scrape Following" Source="\Pages\PageScraper\UserControlScrapeFollowing.xaml" />
+                            <mui:Link DisplayName="Scrape Commented User" Source="\Pages\PageScraper\UserControlScarpePhotoCommentUser.xaml" />
+                            <mui:Link DisplayName="Scrape Users From Like" Source="\Pages\PageScraper\UserControlScrapePhotolikerUser.xaml" />
+                            <mui:Link DisplayName="Scrape Image Url" Source="\Pages\PageScraper\UserControlScrapeUserPhotoUrl.xaml" />                      
+                            
+                        </mui:ModernTab.Links>
+
+                    </mui:ModernTab>
+                </Grid>
+            </TabItem>
+
+
+            <TabItem Header=" Hash Tags ">
+                <Grid Background="#FFE5E5E5">
+                    <mui:ModernTab Layout="List" SelectedSource="\Pages\PageHashTags\UserControlHashTage.xaml">
+                        <mui:ModernTab.Links>
+                            <mui:Link DisplayName=" Hash Tags " Source="\Pages\PageHashTags\UserControlHashTage.xaml" />
+
+                            <!-- ensures new LoremIpsum content is loaded for each uri -->
+                        </mui:ModernTab.Links>
+
+                    </mui:ModernTab>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Using Username ">
+                <Grid Background="#FFE5E5E5">
+                    <mui:ModernTab Layout="List" SelectedSource="\Pages\Using Username\UsercontrolUsingUserName.xaml">
+                        <mui:ModernTab.Links>
+                            <mui:Link DisplayName="Using Uername" Source="\Pages\Using Username\UsercontrolUsingUserName.xaml" />
+                        </mui:ModernTab.Links>
+
+                    </mui:ModernTab>
+                </Grid>
+            </TabItem>
+            <TabItem Header=" Mention Users ">
+                <Grid Background="#FFE5E5E5">
+                    <mui:ModernTab Layout="List" SelectedSource="\Pages\ScrapeUsers\UserControlScrapeUsers.xaml">
+                        <mui:ModernTab.Links>
+                            <mui:Link DisplayName="Mention Users" Source="\Pages\ScrapeUsers\UserControlScrapeUsers.xaml" />
+                        </mui:ModernTab.Links>
+
+                    </mui:ModernTab>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Campaigns">
+                <Grid Background="#FFE5E5E5">
+                    <mui:ModernTab Layout="List" SelectedSource="Pages\PageCampaigns\UserControlcampaignFollower.xaml">
+                        <mui:ModernTab.Links>
+                            <mui:Link DisplayName="Follow campaigns" Source="Pages\PageCampaigns\UserControlcampaignFollower.xaml" />
+                            <mui:Link DisplayName="Photo like campaigns" Source="Pages\PageCampaigns\UserControlcampaignPhotolike.xaml" />
+                            <mui:Link DisplayName="Comment campaigns" Source="Pages\PageCampaigns\UserControlCampaignComment.xaml" />
+                        </mui:ModernTab.Links>
+
+                    </mui:ModernTab>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="   Proxy   ">
+                <Grid Background="#FFE5E5E5">
+                    <mui:ModernTab Layout="List" SelectedSource="\Pages\PageProxy\UserControlProxyUpload.xaml">
+                        <mui:ModernTab.Links>
+                            <mui:Link DisplayName="Proxy Checker" Source="\Pages\PageProxy\UserControlProxyUpload.xaml" />
+                        </mui:ModernTab.Links>
+
+                    </mui:ModernTab>
+                </Grid>
+            </TabItem>
+
+
+
+            <TabItem Header=" Settings ">
+                <Grid Background="#FFE5E5E5">
+                    <mui:ModernTab Layout="List" SelectedSource="\Pages\PageSettings\Appearance.xaml">
+                        <mui:ModernTab.Links>
+                            <mui:Link DisplayName=" Color Settings " Source="\Pages\PageSettings\Appearance.xaml" />
+
+                            <!-- ensures new LoremIpsum content is loaded for each uri -->
+                        </mui:ModernTab.Links>
+
+                    </mui:ModernTab>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <ListBox Name="lstLogger"  BorderThickness="2" Margin="0,3.045,0,0" Grid.Row="1"/>
+    </Grid>
+
+</mui:ModernWindow>

@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="GramDominator.CustomUserControls.UserControlScrapeUsersScrapeFollower"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="247*"/>
+            <ColumnDefinition Width="53*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="107*"/>
+            <RowDefinition Height="16*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Scrape Follower" Height="25" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="233,14,125.985,14"/>
+        <GroupBox Header="User Input" BorderBrush="Black" Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45*"/>
+                    <RowDefinition Height="48*"/>
+                    <RowDefinition Height="53*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="318"/>
+                </Grid.ColumnDefinitions>
+                <!--  <TextBox Name="txtMessage_Like_LoadMessages" Margin="10,28,10,4.308" TextWrapping="Wrap" Text="" Grid.Column="1" Height="25" Grid.ColumnSpan="2"/>-->
+                <Label Content="Enter Username of User To Scrape Follower " Grid.Row="0" VerticalContentAlignment="Center" HorizontalAlignment="Right" Height="25"  />
+                <TextBox Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" Name="Txt_ScrapeFolower" BorderThickness="1,1,1,2" Height="25"/>
+                <Label Content="Select Account " VerticalContentAlignment="Center" Grid.Row="1" HorizontalAlignment="Right" Grid.Column="0" Height="25" />
+                <ComboBox Grid.Column="1" Name="cmb_Select_To_Account" Grid.Row="1" Margin="0,1" Height="25">
+                    <ComboBoxItem IsSelected="True"/>
+                    <ComboBoxItem Content=""/>
+                </ComboBox>
+                <Label Content="Enter No of User To Scrape Follower " Grid.Row="2" VerticalContentAlignment="Center" HorizontalAlignment="Right" Height="25"/>
+                <TextBox Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Name="Txt_ScrapeUser_ScrapeFollower_NoOfUserToScrape" BorderThickness="1,1,1,2" Height="25" />
+            </Grid>
+        </GroupBox>
+        <Button  Name="btnSave_ScrapeUsers_ScrapeFollower" Grid.Row="2" Grid.Column="1" Height="25" Content="Save" Margin="10,4,10,3" Click="btnSave_ScrapeUsers_ScrapeFollower_Click" />
+    </Grid>
+</UserControl>

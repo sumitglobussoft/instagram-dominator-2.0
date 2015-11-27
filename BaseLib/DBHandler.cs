@@ -10,7 +10,7 @@ namespace BaseLib
     class DBHandler
     {
 
-        public static string CONstr = "Data Source=" + Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\gramdominator_db\\GramDominator.db" + ";Version=3;";
+        public static string CONstr = "Data Source=" + Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\gramdominator_db_2.0\\GramDominator.db" + ";Version=3;";
         //public static string CONstr = @"data source=C:\Users\GLB-117\Desktop\GramDominator 2.0(new)\GramDominator 2.0\GramDominator\bin\Debug\GramDominator.db";
         public static DataSet SelectQuery(string query, string tablename)
         {

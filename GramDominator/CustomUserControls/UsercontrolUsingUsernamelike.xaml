@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="GramDominator.CustomUserControls.UsercontrolUsingUsernamelike"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+              d:DesignHeight="250" d:DesignWidth="600">
+    <ScrollViewer>
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="206*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="136*"/>
+                <ColumnDefinition Width="113*"/>
+                <ColumnDefinition Width="115*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="26*"/>
+                <RowDefinition Height="183*"/>
+                <RowDefinition Height="41*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Only Like By UserName" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="174,0,57,0" Grid.ColumnSpan="4"/>
+            <GroupBox Header="Input" Grid.ColumnSpan="5" Margin="0,0,0,54" Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160*"/>
+                        <ColumnDefinition Width="169*"/>
+                        <ColumnDefinition Width="121*"/>
+                        <ColumnDefinition Width="9*"/>
+                        <ColumnDefinition Width="129*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="41*"/>
+                        <RowDefinition Height="46*"/>
+                    </Grid.RowDefinitions>
+                    <RadioButton Name="rdoBtn_UsingUsername_likeSingle" IsChecked="True" Content="Single User" Grid.Row="1" Grid.Column="1" Height="25" GroupName="UserName" HorizontalAlignment="Left"   Margin="28,12,0,10" Width="141" Checked="rdoBtn_UsingUsername_likeSingle_Checked"  />
+                    <RadioButton Name="rdoBtn_UsingUsername_likeMultiple" Content="Multiple Users" Grid.Row="1" Grid.Column="2" Height="25" GroupName="UserName" HorizontalAlignment="Right" Checked="rdoBtn_HashTagsfollower_MultipleUser" Margin="0,12,0,10" Width="121"/>
+                    <Label Name="Username" Content="User Name" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,6,0,11" Width="111"/>
+                    <TextBox Name="txt_UsingUsername_like" Grid.Column="1" IsReadOnly="True" Height="25" Margin="0,12,0,6" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Text="" BorderThickness="1,1,1,2"/>
+                    <Button Name="btn_UsingUserName_likeBrowse" Visibility="Hidden" Content="Browse" Grid.Column="4" Height="25" Margin="0,12,0,6" BorderBrush="Green" Click="btn_UsingUserName_likeBrowse_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+            </GroupBox>
+            <Label Content="No. of User" Margin="5,128.06,81,29" Height="26" VerticalAlignment="Center" Grid.Row="1"/>
+            <TextBox Name="txtMessage_UsingUsername_NoOfuser" Margin="130,128.06,0,29" TextAlignment="Center" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="1" BorderThickness="1,1,1,2"/>
+            <Button x:Name="btn_HashTagefollower_Clear" BorderBrush="Blue" Content="Clear" Grid.Column="4" Height="25" Click="btn_HashTagsfollower_Clear_Click" Margin="0,132,0,26" Grid.Row="1">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderBrush="Blue" BorderThickness="1,1,1,2" Background="Azure">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </ScrollViewer>
+
+</UserControl>

@@ -46,7 +46,7 @@ namespace Globussoft
             //gRequest.Headers["Accept-Charset"] = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
             //gRequest.Headers["Accept-Language"] = "en-us,en;q=0.5";
             //  gRequest.Headers.Add("Origin", "http://websta.me");//http://websta.me/?t=lo
-            gRequest.Headers.Add("Origin", "http://websta.me/?t=lo");
+            gRequest.Headers.Add("Origin", "https://www.instagram.com");
 
 
             gRequest.KeepAlive = true;
@@ -968,7 +968,7 @@ X-CSRFToken: a85658f691e429a7518cf9e9d355d5ff
 
             gRequest.Headers.Add("X-CSRFToken", ssrftoken);
             gRequest.Headers.Add("DNT", "1");
-            gRequest.Headers.Add("Accept-Encoding", "gzip, deflate");
+          //  gRequest.Headers.Add("Accept-Encoding", "gzip, deflate");
             gRequest.Headers.Add("Accept-Language", "en-US,en;q=0.8");
             gRequest.Referer = "https://www.instagram.com/";
 
@@ -1213,13 +1213,16 @@ X-CSRFToken: a85658f691e429a7518cf9e9d355d5ff
             gRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
             gRequest.KeepAlive = true;
             gRequest.ContentType = @"application/x-www-form-urlencoded";
-            gRequest.Host = "instagram.com";
-            gRequest.Headers.Add("Origin","https://instagram.com");
+            gRequest.Host = "www.instagram.com";
+            gRequest.Headers.Add("Origin", "https://www.instagram.com");
             try
             {
                 gRequest.Headers.Add("X-Requested-With", "XMLHttpRequest");
                 gRequest.Headers.Add("X-CSRFToken", Token);
             }
+            
+
+
             catch { };
            // gRequest.Headers.Add("","")
                 /*
@@ -1236,7 +1239,7 @@ X-CSRFToken: a85658f691e429a7518cf9e9d355d5ff
             }
             if (!string.IsNullOrEmpty(Token))
             {
-                gRequest.Headers.Add("Origin", Token);
+               // gRequest.Headers.Add("Origin", "https://www.instagram.com");
                 gRequest.Headers.Add("X-Requested-With", "XMLHttpRequest");
             }
             ///Modified BySumit 18-11-2011
@@ -1334,6 +1337,8 @@ X-CSRFToken: a85658f691e429a7518cf9e9d355d5ff
             }
 
         }
+
+
         public string postFormData(Uri url, string postData, string Referes, string Token)
         {
 
@@ -1349,7 +1354,7 @@ X-CSRFToken: a85658f691e429a7518cf9e9d355d5ff
             gRequest.KeepAlive = true;
             gRequest.ContentType = @"application/x-www-form-urlencoded";
             gRequest.Host = "iconosquare.com";
-            gRequest.Headers.Add("Origin", "http://iconosquare.com");
+            gRequest.Headers.Add("Origin", Token);
 
 
 
@@ -1459,6 +1464,135 @@ X-CSRFToken: a85658f691e429a7518cf9e9d355d5ff
             }
 
         }
+
+        public string postFormDataFollower(Uri url, string postData, string Referes, string Token)
+        {
+
+            gRequest = (HttpWebRequest)WebRequest.Create(url);
+
+            //gRequest.ServicePoint.Expect100Continue = false;
+
+            gRequest.UserAgent = UserAgent;
+
+            gRequest.CookieContainer = new CookieContainer();// gCookiesContainer;
+            gRequest.Method = "POST";
+            gRequest.Accept = " text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8, */*";
+            gRequest.KeepAlive = true;
+            gRequest.ContentType = @"application/x-www-form-urlencoded";
+
+
+
+
+            if (!string.IsNullOrEmpty(Referes))
+            {
+                gRequest.Referer = Referes;
+            }
+            if (!string.IsNullOrEmpty(Token))
+            {
+                gRequest.Headers.Add("Origin", Token);
+                gRequest.Headers.Add("X-Requested-With", "XMLHttpRequest");
+            }
+            ///Modified BySumit 18-11-2011
+            ChangeProxy(proxyAddress, port, proxyUsername, proxyPassword);
+
+            #region CookieManagement
+            if (this.gCookies != null && this.gCookies.Count > 0)
+            {
+                setExpect100Continue();
+                gRequest.CookieContainer.Add(gCookies);
+            }
+
+            //logic to postdata to the form
+            try
+            {
+                setExpect100Continue();
+                string postdata = string.Format(postData);
+                byte[] postBuffer = System.Text.Encoding.GetEncoding(1252).GetBytes(postData);
+                gRequest.ContentLength = postBuffer.Length;
+                Stream postDataStream = gRequest.GetRequestStream();
+                postDataStream.Write(postBuffer, 0, postBuffer.Length);
+                postDataStream.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                // Logger.LogText("Internet Connectivity Exception : "+ ex.Message,null);
+            }
+            //post data logic ends
+
+            //Get Response for this request url
+            string html;
+            try
+            {
+                gResponse = (HttpWebResponse)gRequest.GetResponse();
+            }
+            catch (WebException ex)
+            {
+                Console.WriteLine(ex.Message);
+                //Logger.LogText("Response from " + url + ":" + ex.Message, null);
+            }
+
+
+
+            //check if the status code is http 200 or http ok
+
+            if (gResponse.StatusCode == HttpStatusCode.OK)
+            {
+                //get all the cookies from the current request and add them to the response object cookies
+                setExpect100Continue();
+                gResponse.Cookies = gRequest.CookieContainer.GetCookies(gRequest.RequestUri);
+                //check if response object has any cookies or not
+                //Added by sandeep pathak
+                //gCookiesContainer = gRequest.CookieContainer;  
+
+                if (gResponse.Cookies.Count > 0)
+                {
+                    //check if this is the first request/response, if this is the response of first request gCookies
+                    //will be null
+                    if (this.gCookies == null)
+                    {
+                        gCookies = gResponse.Cookies;
+                    }
+                    else
+                    {
+                        foreach (Cookie oRespCookie in gResponse.Cookies)
+                        {
+                            bool bMatch = false;
+                            foreach (Cookie oReqCookie in this.gCookies)
+                            {
+                                if (oReqCookie.Name == oRespCookie.Name)
+                                {
+                                    oReqCookie.Value = oRespCookie.Value;
+                                    bMatch = true;
+                                    break; // 
+                                }
+                            }
+                            if (!bMatch)
+                                this.gCookies.Add(oRespCookie);
+                        }
+                    }
+                }
+            #endregion
+
+
+                StreamReader reader = new StreamReader(gResponse.GetResponseStream());
+                string responseString = reader.ReadToEnd();
+                reader.Close();
+                //Console.Write("Response String:" + responseString);
+                return responseString;
+            }
+            else
+            {
+                return "Error in posting data";
+            }
+
+        }
+
+
+
+
+
+
         public string getHtmlfromUrl(Uri url)
         {
 
@@ -2612,7 +2746,7 @@ X-CSRFToken: a85658f691e429a7518cf9e9d355d5ff
             gRequest.Credentials = System.Net.CredentialCache.DefaultCredentials;
 
             gRequest.Referer = "https://twitter.com/settings/profile";
-
+            
             //ChangeProxy(proxyAddress, port, proxyUsername, proxyPassword);
 
             ChangeProxy(proxyAddress, port, proxyUsername, proxyPassword);
@@ -2856,6 +2990,125 @@ X-CSRFToken: a85658f691e429a7518cf9e9d355d5ff
 
         }
 
+        public string HttpUploadProfilePic(string url, string file,string Token,string paramName, string contentType, NameValueCollection nvc, bool IsLocalFile, ref string status)
+        {
+            string boundary = "------WebKitFormBoundary" + DateTime.Now.Ticks.ToString("x");
+            byte[] FirstBoundaryBytes = System.Text.Encoding.ASCII.GetBytes(boundary + "\r\n");
+            byte[] boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n" + boundary + "\r\n");
+            gRequest = (HttpWebRequest)WebRequest.Create(url);
+            gRequest.KeepAlive = true;
+            gRequest.Headers["Cache-Control"] = "max-age=0";
+            gRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
+            gRequest.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.104 Safari/537.36";
+            gRequest.ContentType = "multipart/form-data; boundary=" + boundary.Replace("------", "----");
+          //  gRequest.X-CSRFToken = Token;
+            gRequest.Referer = "https://www.inst1agram.com/yanniadison/";
+            gRequest.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            gRequest.Headers["Accept-Language"] = "en-US,en;q=0.8";
+            gRequest.Method = "POST";
+            gRequest.Credentials = System.Net.CredentialCache.DefaultCredentials;
+            ChangeProxy(proxyAddress, port, proxyUsername, proxyPassword);
+            gRequest.AllowAutoRedirect = true;
+
+         
+
+            gRequest.CookieContainer = new CookieContainer(); //gCookiesContainer;
+
+            #region CookieManagment
+
+            if (this.gCookies != null && this.gCookies.Count > 0)
+            {
+                gRequest.CookieContainer.Add(gCookies);
+
+                //gRequest.CookieContainer.Add(new Cookie("__utma", "43838368.370306257.1336542481.1336542481.1336542481.1", "/", "twitter.com"));
+                //gRequest.CookieContainer.Add(new Cookie("__utmb", "43838368.25.10.1336542481", "/", "twitter.com"));
+                //gRequest.CookieContainer.Add(new Cookie("__utmc", "43838368", "/", "twitter.com"));
+                //gRequest.CookieContainer.Add(new Cookie("__utmz", "43838368.1336542481.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)", "/", "twitter.com"));
+            }
+            #endregion
+
+            using (Stream rs = gRequest.GetRequestStream())
+            {
+                string temp = string.Empty;
+
+                rs.Write(FirstBoundaryBytes, 0, FirstBoundaryBytes.Length);
+                temp += boundary + "\r\n";
+                string formdataTemplate = "Content-Disposition: form-data; {0}=\"{1}\"\r\n\r\n{1}";               
+                string file1 = string.Empty;
+                string ContentType = string.Empty;
+                foreach (string key in nvc.Keys)
+                {
+                    ContentType = Regex.Split(nvc[key], "<:><:><:>")[1];
+                    file = Regex.Split(nvc[key], "<:><:><:>")[0];
+                   
+                        string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\nContent-Type: {2}\r\n\r\n";
+                        string[] filename = Regex.Split(file, "\\\\");
+                        string header = string.Format(headerTemplate, key, filename[filename.Length - 1], ContentType);
+                        byte[] headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
+                        //temp += header;
+                        rs.Write(headerbytes, 0, headerbytes.Length);
+                        try
+                        {
+                            FileStream fileStream = new FileStream(file, FileMode.Open, FileAccess.Read);
+                            byte[] buffer = new byte[4096];
+                            int bytesRead = 0;
+                            while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
+                            {
+                                rs.Write(buffer, 0, bytesRead);
+                            }
+                            fileStream.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            GlobusLogHelper.log.Error(ex.StackTrace);
+                        }            
+                    
+                }
+               // rs.Write(boundarybytes, 0, boundarybytes.Length);
+                         
+                //byte[] trailer = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
+                //rs.Write(trailer, 0, trailer.Length);
+            }
+
+            #region CookieManagment
+
+            if (this.gCookies != null && this.gCookies.Count > 0)
+            {
+                gRequest.CookieContainer.Add(gCookies);
+            }
+
+            #endregion
+
+            WebResponse wresp = null;
+            try
+            {
+                //wresp = gRequest.GetResponse();
+                gResponse = (HttpWebResponse)gRequest.GetResponse();
+                using (StreamReader reader = new StreamReader(gResponse.GetResponseStream()))
+                {
+                    string responseString = reader.ReadToEnd();
+                    status = "okay";
+                    return responseString;
+                }
+            }
+            catch (Exception ex)
+            {
+                //log.Error("Error uploading file", ex);
+                if (wresp != null)
+                {
+                    wresp.Close();
+                    wresp = null;
+                }
+                return null;
+            }
+            finally
+            {
+                gRequest = null;
+            }
+            //}
+
+        }
+
         public void MultiPartImageUpload(string profileUsername, string profileLocation, string profileURL, string profileDescription, string localImagePath, string authenticity_token, ref string status)
         {
             bool IsLocalFile = true;
@@ -2923,6 +3176,18 @@ X-CSRFToken: a85658f691e429a7518cf9e9d355d5ff
             nvc.Add("name[profile_background_color]", "#00000");
             nvc.Add("name[profile_link_color]", "#0084B4");
             HttpUploadFileBackground("https://twitter.com/settings/design", localImagePath, "media_data[]", "", nvc, true, ref status);
+        }
+
+        public void MultiPartImageUploadProfileImageOnInstagram(string localImagePath, string authenticity_token, ref string status)
+        {
+            bool IsLocalFile = true;
+
+            NameValueCollection nvc = new NameValueCollection();
+
+            //nvc.Add("name", "profile_pic");           
+            nvc.Add("filename", "" + localImagePath + "<:><:><:>image/jpeg");
+
+            HttpUploadProfilePic("https://www.instagram.com/accounts/web_change_profile_picture/ ", localImagePath,authenticity_token, "filename", "", nvc, true, ref status);
         }
 
         public string postFormData(Uri formActionUrl, string postData, string Referes, string Token, string XRequestedWith, string XPhx, string Origin)

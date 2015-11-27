@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="GramDominator.CustomUserControls.UserControlMentionUsersUseScrapedUrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="297*"/>
+            <ColumnDefinition Width="53*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="82*"/>
+            <RowDefinition Height="27*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Use Scraped Data" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Height="25" />
+        <GroupBox Header="Select Url" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="147*"/>
+                    <ColumnDefinition Width="541*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Select Url From List : " Height="25" VerticalContentAlignment="Center" HorizontalAlignment="Right"/>
+                <ComboBox Name="cmbBox_MentionUser_UseScrapedUrl_LstOfUrls" Grid.Row="0" Grid.Column="1" Height="25" SelectedIndex="0"/>
+            </Grid>
+        </GroupBox>
+        <Button  BorderBrush="Green" Cursor="Hand"  Name="btn_MentionUsers_UseScrapedData_Save" Content="Save" Height="25" BorderThickness="1,1,1,2" Grid.Column="1" Grid.Row="2" Click="btn_MentionUsers_UseScrapedData_Save_Click" >
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+    </Grid>
+</UserControl>

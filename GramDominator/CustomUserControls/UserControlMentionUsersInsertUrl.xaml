@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="GramDominator.CustomUserControls.UserControlMentionUsersInsertUrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Height="200" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="259*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Insert URL" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Height="25" Grid.Row="0" Grid.Column="0"/>
+        <GroupBox Header="User Input" Grid.Column="0" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="53*"/>
+                    <ColumnDefinition Width="19*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="124*"/>
+                    <RowDefinition Height="27*"/>
+                </Grid.RowDefinitions>
+                <TextBox Grid.Column="0" Name="txtBlock_MentionUsers_InsertUrl" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <Button  BorderBrush="Green" Cursor="Hand"  Name="btn_MentionUser_InsertUrl_Save" Content="Save" Height="25" BorderThickness="1,1,1,2" Grid.Row="1" Grid.Column="1" Click="btn_MentionUser_InsertUrl_Save_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>
