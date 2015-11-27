@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="GramDominator.CustomUserControls.UsercontrolUsingUsernamecomment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+             mc:Ignorable="d" 
+          d:DesignHeight="250" d:DesignWidth="600">
+    <ScrollViewer>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="161*"/>
+                <ColumnDefinition Width="119*"/>
+                <ColumnDefinition Width="132*"/>
+                <ColumnDefinition Width="59*"/>
+                <ColumnDefinition Width="112*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Comment Only Using Username" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="0,0,0,224" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="2" Width="310"/>
+            <GroupBox Header="Input" Grid.ColumnSpan="5" Margin="0,35,0,47" Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="121*"/>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="116*"/>
+                        <ColumnDefinition Width="166*"/>
+                        <ColumnDefinition Width="134*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <RadioButton Name="rdoBtn_UsingUsername_onlycomment_SingleUser" IsChecked="True" Content="Single User" Grid.Row="0" Grid.Column="3" Height="25" GroupName="ScrapeByUserName" HorizontalAlignment="Right"  Margin="0,116,0,19" Width="116" Checked="rdoBtn_UsingUsername_onlycomment_SingleUser_Checked"   />
+                    <RadioButton Name="rdoBtn_UsingUsername_onlycomment_MultipleUser" Content="Multiple Users" Grid.Row="0" Grid.Column="4" GroupName="ScrapeByUserName" HorizontalAlignment="Right"  Margin="0,122,0,21" Width="166" Height="25" Checked="rdoBtn_UsingUsername_onlycomment_MultipleUser_Checked" />
+                    <Label Name="Message" Content="Comment Message" Grid.Column="1" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,90,0,43" Grid.ColumnSpan="2" Width="145"/>
+                    <TextBox Name="txt_UsingUsername_onlycommentmessage" Grid.Column="3" Height="25" Margin="0,90,0,43" VerticalContentAlignment="Center" Text="" Grid.ColumnSpan="2"/>
+                    <Button Name="btn_UsingUsername_Onlycomment_BrowseUsers" Content="Browse" Grid.Column="5" Height="25" Margin="10,46,0,85" BorderBrush="Green" Click="btn_UsingUsername_Onlycomment_BrowseUsers_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Label x:Name="Username_Copy" Content="User Name" Grid.Column="1" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,48,0,87" Grid.ColumnSpan="2" Width="145"/>
+                    <TextBox x:Name="txt_UsingUserName_onlycomment_User" Grid.Column="3" Height="25" Margin="0,46,0,85" Text="" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btn_UsingUserName_onlycomment_messagebrwer" Content="Browse" Grid.Column="5" Height="25" Margin="10,88,0,43" BorderBrush="Green" Click="btn_UsingUserName_onlycomment_messagebrwer_Click"  >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+            </GroupBox>
+            <Button Name="btn_UsingUsername_onlycomment_SaveUser" BorderBrush="Green" Content="Save" Grid.Row="1" Grid.Column="4" Height="25"  Margin="0,220,0,20" Click="btn_UsingUsername_onlycomment_SaveUser_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Label Content="No. of User" Margin="32,224,0,15" Height="26" VerticalAlignment="Center" Grid.Row="1"/>
+            <TextBox Name="txt_UsingUsername_onlycomment_nouser" Margin="13,224,0,15" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+            <Button x:Name="btn_UsingUsername_onlycomment_Clear_Copy" BorderBrush="Blue" Content="Clear" Grid.Row="1" Grid.Column="2" Height="25"  Margin="69,224,10,24" Click="btn_UsingUsername_onlycomment_Clear_Click" Grid.ColumnSpan="2">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderBrush="Blue" BorderThickness="1,1,1,2" Background="Azure">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
