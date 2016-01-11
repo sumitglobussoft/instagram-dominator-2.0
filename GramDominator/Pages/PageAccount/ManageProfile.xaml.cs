@@ -170,7 +170,7 @@ namespace GramDominator.Pages.PageAccount
                 }
                 Thread ForDivideUser = new Thread(obj_ManageProfiledata.startChangingPassword);
                 ForDivideUser.Start();
-                GlobusLogHelper.log.Info("------ Change Password Proccess Started ------");
+                GlobusLogHelper.log.Info("------ Change Profile Proccess Started ------");
 
             }
             catch(Exception ex)

@@ -42,7 +42,7 @@ namespace GramDominator.Pages.PageScraper
                 {
                     foreach (var item in IGGlobals.listAccounts)
                     {
-                        cmb_Select_To_Account.Items.Add(item.Split(':')[0]);
+                        cmb_Select_To_Account.Items.Add(new CheckBox() { Content = item.Split(':')[0] });
                     }
 
                 }
@@ -90,6 +90,41 @@ namespace GramDominator.Pages.PageScraper
 
                             GlobalDeclration.objScrapeUser.noOfPhotoToScrape = Convert.ToInt32(Txt_ScrapeUser_ScrapeUser_NoOfPhotoToScrape.Text);
                             GlobalDeclration.objScrapeUser.noOfUserToScrape = Convert.ToInt32(Txt_ScrapeUser_ScrapeFollowing_NoOfUserToScrape.Text);
+
+                            try
+                            {
+                                List<CheckBox> tempListOfAccount = new List<CheckBox>();
+                                foreach (CheckBox item in cmb_Select_To_Account.Items)
+                                {
+                                    tempListOfAccount.Add(item);
+                                }
+                                if (tempListOfAccount.Count > 0)
+                                {
+                                    tempListOfAccount = tempListOfAccount.Where(x => x.IsChecked == true).ToList();
+                                    if (tempListOfAccount.Count == 0)
+                                    {
+                                        GlobusLogHelper.log.Info("Please Select Account From List");
+                                        ModernDialog.ShowMessage("Please Select Account From List", "Select Account", MessageBoxButton.OK);
+                                        cmb_Select_To_Account.Focus();
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        foreach (CheckBox checkedItem in tempListOfAccount)
+                                        {
+                                            if (checkedItem.IsChecked == true)
+                                            {
+                                                GlobalDeclration.objScrapeUser.selectedAccountToScrape.Add(checkedItem.Content.ToString());
+                                            }
+                                        }
+                                        GlobusLogHelper.log.Info(GlobalDeclration.objScrapeUser.selectedAccountToScrape.Count + " Account Selected");
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                GlobusLogHelper.log.Error("Error ==> " + ex.Message);
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -189,6 +224,39 @@ namespace GramDominator.Pages.PageScraper
             {
                 GlobusLogHelper.log.Info("Error:" + ex.StackTrace);
             }
+        }
+
+        private void btnMessage_ScrapeUserPhotoUrl_Stop_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                GlobalDeclration.objScrapeUser.isStopScrapeUser = true;
+
+                List<Thread> lstTemp = new List<Thread>();
+                lstTemp = GlobalDeclration.objScrapeUser.lstofThreadScrapeUser.Distinct().ToList();
+
+                foreach (Thread item in lstTemp)
+                {
+                    try
+                    {
+                        item.Abort();
+                        GlobalDeclration.objScrapeUser.lstofThreadScrapeUser.Remove(item);
+                    }
+                    catch (Exception ex)
+                    {
+                        //Thread.ResetAbort();
+                        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+            }
+
+            GlobusLogHelper.log.Info("Process Stopped !");
+            GlobusLogHelper.log.Debug("Process Stopped !");
         }
     }
 }

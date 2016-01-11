@@ -115,7 +115,7 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <Button  BorderBrush="Red" Cursor="Hand" Name="btn_MentionUsers_Stop" Height="25" Content="STOP" BorderThickness="1,1,1,2" Grid.Column="1" Margin="10,16,110,16">
+                    <Button  BorderBrush="Red" Cursor="Hand" Name="btn_MentionUsers_Stop" Height="25" Content="STOP" BorderThickness="1,1,1,2" Grid.Column="1" Margin="10,16,110,16" Click="btn_MentionUsers_Stop_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Red" BorderThickness="1,1,1,2" Background="Azure">

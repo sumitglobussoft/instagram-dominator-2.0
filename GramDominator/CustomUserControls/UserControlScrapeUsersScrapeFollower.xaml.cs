@@ -44,16 +44,50 @@ namespace GramDominator.CustomUserControls
                     Txt_ScrapeFolower.Focus();
                     return;
                 }
-                if(!string.IsNullOrEmpty(cmb_Select_To_Account.Text))
+                //if(!string.IsNullOrEmpty(cmb_Select_To_Account.Text))
+                //{
+                //    GlobalDeclration.objScrapeUser.selectedAccountToScrape = cmb_Select_To_Account.Text;
+                //}
+                //else
+                //{
+                //    GlobusLogHelper.log.Info("Please Select Account To Scrape Follower");
+                //    ModernDialog.ShowMessage("Please Select Account To Scrape Follower", "Scrape Follower", MessageBoxButton.OK);
+                //    cmb_Select_To_Account.Focus();
+                //    return;
+                //}
+                try
                 {
-                    GlobalDeclration.objScrapeUser.selectedAccountToScrape = cmb_Select_To_Account.Text;
+                    List<CheckBox> tempListOfAccount = new List<CheckBox>();
+                    foreach (CheckBox item in cmb_Select_To_Account.Items)
+                    {
+                        tempListOfAccount.Add(item);
+                    }
+                    if (tempListOfAccount.Count > 0)
+                    {
+                        tempListOfAccount = tempListOfAccount.Where(x => x.IsChecked == true).ToList();
+                        if (tempListOfAccount.Count == 0)
+                        {
+                            GlobusLogHelper.log.Info("Please Select Account From List");
+                            ModernDialog.ShowMessage("Please Select Account From List", "Select Account", MessageBoxButton.OK);
+                            cmb_Select_To_Account.Focus();
+                            return;
+                        }
+                        else
+                        {
+                            foreach (CheckBox checkedItem in tempListOfAccount)
+                            {
+                                if (checkedItem.IsChecked == true)
+                                {
+                                    GlobalDeclration.objScrapeUser.selectedAccountToScrape.Add(checkedItem.Content.ToString());
+                                }
+                            }
+                            GlobusLogHelper.log.Info(GlobalDeclration.objScrapeUser.selectedAccountToScrape.Count + " Account Selected");
+                        }
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    GlobusLogHelper.log.Info("Please Select Account To Scrape Follower");
-                    ModernDialog.ShowMessage("Please Select Account To Scrape Follower", "Scrape Follower", MessageBoxButton.OK);
-                    cmb_Select_To_Account.Focus();
-                    return;
+                    GlobusLogHelper.log.Error("Error ==> " + ex.Message);
                 }
                 if (!string.IsNullOrEmpty(Txt_ScrapeUser_ScrapeFollower_NoOfUserToScrape.Text))
                 {

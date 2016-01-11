@@ -205,11 +205,16 @@ namespace Accounts
            {
                if(edit_profile)
                {
-                   Start_Change_Profile(ref obj_Gramuser);
+                   int Username = RandomNumberGenerator.GenerateRandom(0, ClGlobul.ListUsername_Manageprofile.Count);
+                   string email = ClGlobul.ListUsername_Manageprofile[Username];
+                   //ChangeEmail(email, ref objPinChange);
+                   Start_Change_Profile(email,ref obj_Gramuser);
                }
                if(edit_password)
                {
-                   Start_Change_password(ref obj_Gramuser);
+                   int Username = RandomNumberGenerator.GenerateRandom(0, ClGlobul.ListPassword.Count);
+                   string Password = ClGlobul.ListPassword[Username];
+                   Start_Change_password(Password, ref obj_Gramuser);
                }
            }
            catch(Exception ex)
@@ -218,39 +223,35 @@ namespace Accounts
            }
        }
 
-       public void Start_Change_password(ref InstagramUser obj_GDuser)
+       public void Start_Change_password(String NewPassword,ref InstagramUser obj_GDuser)
        {
            try
            {
-               foreach(string item in ClGlobul.ListPassword)
-               {
+               
                string url ="https://www.instagram.com/accounts/password/change/";
                string edit_password = obj_GDuser.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com"), "https://www.instagram.com", "");
                string edit_password2 = obj_GDuser.globusHttpHelper.getHtmlfromUrl(new Uri(url), "https://www.instagram.com/accounts/edit/", "");
                string crstoken = Utils.getBetween(edit_password2, "csrf_token", "\"}").Replace("\":\"",string.Empty);
-               string postdata = "old_password=" + obj_GDuser.password + "&new_password1=" + item + "&new_password2=" + item + "&csrfmiddlewaretoken=" + crstoken;
+               string postdata = "old_password=" + obj_GDuser.password + "&new_password1=" + NewPassword + "&new_password2=" + NewPassword + "&csrfmiddlewaretoken=" + crstoken;
                string resp = obj_GDuser.globusHttpHelper.PostDataWithInstagram(new Uri("https://www.instagram.com/accounts/password/change/"), postdata, "https://www.instagram.com/accounts/edit/");
                string responce_result = obj_GDuser.globusHttpHelper.getHtmlfromUrl(new Uri("https://www.instagram.com/accounts/password/change/done/"), "", "https://www.instagram.com/accounts/password/change/");
                if (responce_result.Contains("Thanks! You have successfully changed your password."))
                {
                    GlobusLogHelper.log.Info("Password Successfully change of Account ===> " + obj_GDuser.username);
                    DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User,Status) values('" + "Manage Account" + "','" + obj_GDuser.username + "','" + "Password Changed" + "')", "tbl_AccountReport");
-                   ClGlobul.ListPassword.Remove(item);
-                   break;                 
+                   GlobusLogHelper.log.Info("Password Successfully change of Account ===> " + obj_GDuser.username+"    newpassword=====>"+NewPassword);
+                   ClGlobul.ListPassword.Remove(NewPassword);
+                  // break;                 
                }
                else
                {
                    GlobusLogHelper.log.Info("Password Not Change Of Account ====>" + obj_GDuser.username);
-                   ClGlobul.ListPassword.Remove(item);
-                   break;
+                   ClGlobul.ListPassword.Remove(NewPassword);
+                   //break;
                }
                        
                }
-
-
-
-
-           }
+         
            catch(Exception ex)
            {
                GlobusLogHelper.log.Error("Error :" + ex.StackTrace);
@@ -259,7 +260,7 @@ namespace Accounts
 
 
 
-       public void Start_Change_Profile(ref InstagramUser Obj_gramUser)
+       public void Start_Change_Profile(string NewUsername, ref InstagramUser Obj_gramUser)
        {
            try
            {
@@ -273,10 +274,8 @@ namespace Accounts
                int count = 0;
 
 
-               lock (this)
-               {
-                   foreach (string item in ClGlobul.ListUsername_Manageprofile)
-                   {
+              
+                   
                        try
                        {
                        https://www.instagram.com/accounts/edit/
@@ -320,7 +319,7 @@ namespace Accounts
                                        }
                                        if(Gender == "--------")
                                        {
-                                           count = 3;
+                                           count = 1;
                                        }
                                    }
                                    if (value.Contains("biography_section"))
@@ -341,17 +340,23 @@ namespace Accounts
 
                            }
 
-                           string PastData_chnageUsername = "csrfmiddlewaretoken=" + crstoken + "&first_name=" + Name + "&email=" + Email_ID + "&username=" + item + "&phone_number=" + Phone_Number + "&gender=" + count + "&biography=" + Bio + "&external_url=" + url + "&chaining_enabled=on";
+                           string PastData_chnageUsername = "csrfmiddlewaretoken=" + crstoken + "&first_name=" + Name + "&email=" + Email_ID + "&username=" + NewUsername + "&phone_number=" + Phone_Number + "&gender=" + count + "&biography=" + Bio + "&external_url=" + url + "&chaining_enabled=on";
                            string resp_changeusername = Obj_gramUser.globusHttpHelper.PostDataWithInstagram(new Uri("https://www.instagram.com/accounts/edit/"), PastData_chnageUsername, "https://www.instagram.com/accounts/edit/");
                            if (resp_changeusername.Contains("Sorry, that username is taken"))
                            {
                                GlobusLogHelper.log.Info("Sorry, that username is taken" + "====>" + Obj_gramUser.username);
                            }
-                           if (resp_changeusername.Contains("Successfully updated your profile"))
+                           else if (resp_changeusername.Contains("Successfully updated your profile"))
                            {
                                DataBaseHandler.InsertQuery("insert into tbl_AccountReport(ModuleName,Account_User,Status) values('" + "Manage Account" + "','" + Obj_gramUser.username + "','" + "Username Changed" + "')", "tbl_AccountReport");
-                               GlobusLogHelper.log.Info("Successfully updated your profile Username ====>" + Obj_gramUser.username);
+                               GlobusLogHelper.log.Info("Successfully updated your profile Username ====>" + Obj_gramUser.username + "To==>" + NewUsername);
+                               ClGlobul.ListUsername_Manageprofile.Remove(NewUsername);
+                               //break;
                            }
+                           else if(resp_changeusername.Contains("Usernames can only use letters, numbers, underscores and periods."))
+                               {
+                                   GlobusLogHelper.log.Info("Sorry Change Fail ,Usernames can only use letters, numbers, underscores and periods" + "====>" + Obj_gramUser.username);
+                               }
                            else
                            {
                                GlobusLogHelper.log.Info("Fail To update your profile Username ===>" + Obj_gramUser.username);
@@ -359,8 +364,7 @@ namespace Accounts
 
 
 
-                           ClGlobul.ListUsername_Manageprofile.Remove(item);
-                           break;
+                           
                        }
 
                        catch (Exception ex)
@@ -370,8 +374,8 @@ namespace Accounts
 
 
                    } 
-               }
-           }
+               
+           
            catch(Exception ex)
            {
                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);

@@ -98,7 +98,7 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                        <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_ScrapePhotolikerUser_Stop" Content="STOP" Grid.Column="2" Height="25"  BorderThickness="1,1,1,2" Margin="0,2,74,2"  >
+                        <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_ScrapePhotolikerUser_Stop" Content="STOP" Grid.Column="2" Height="25"  BorderThickness="1,1,1,2" Margin="0,2,74,2" Click="btnMessage_ScrapePhotolikerUser_Stop_Click"  >
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border CornerRadius="5" BorderBrush="Red" BorderThickness="1,1,1,2" Background="Azure">

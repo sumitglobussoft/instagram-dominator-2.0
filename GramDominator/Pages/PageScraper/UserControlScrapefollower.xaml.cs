@@ -50,7 +50,7 @@ namespace GramDominator.Pages.PageScraper
                 {
                     foreach (var item in IGGlobals.listAccounts)
                     {
-                        Select_To_Account.Items.Add(item.Split(':')[0]);
+                        Select_To_Account.Items.Add(new CheckBox() { Content = item.Split(':')[0] });
                     }
 
                 }
@@ -93,9 +93,44 @@ namespace GramDominator.Pages.PageScraper
                     {
                         ScrapingManager.Mindelay_ScarpeFollower = Convert.ToInt32(txtMessage_Scrapefollower_DelayMin.Text);
                         ScrapingManager.Maxdelay_ScarpeFollower = Convert.ToInt32(txtMessage_Scrapefollower_Delaymax.Text);
-                        ScrapingManager.No_ThreadFollower = Convert.ToInt32(txtMessage_Scrapefollower_NoOfThreads.Text);
+                        ScrapingManager.No_ScrapeFollowerUser = Convert.ToInt32(txtMessage_Scrapefollower_Noofusertoscrape.Text);
                        // ScrapingManager.Username_ScrapFollower = Txt_ScrapeFolower.Text;
-                        ScrapingManager.selected_Account = Select_To_Account.Text.ToString();
+                       // ScrapingManager.selected_Account = Select_To_Account.Text.ToString();
+
+                        try
+                        {
+                            List<CheckBox> tempListOfAccount = new List<CheckBox>();
+                            foreach (CheckBox item in Select_To_Account.Items)
+                            {
+                                tempListOfAccount.Add(item);
+                            }
+                            if (tempListOfAccount.Count > 0)
+                            {
+                                tempListOfAccount = tempListOfAccount.Where(x => x.IsChecked == true).ToList();
+                                if (tempListOfAccount.Count == 0)
+                                {
+                                    GlobusLogHelper.log.Info("Please Select Account From List");
+                                    ModernDialog.ShowMessage("Please Select Account From List", "Select Account", MessageBoxButton.OK);
+                                    Select_To_Account.Focus();
+                                    return;
+                                }
+                                else
+                                {
+                                    foreach (CheckBox checkedItem in tempListOfAccount)
+                                    {
+                                        if (checkedItem.IsChecked == true)
+                                        {
+                                            ScrapingManager.selected_Account.Add(checkedItem.Content.ToString());
+                                        }
+                                    }
+                                    GlobusLogHelper.log.Info(ScrapingManager.selected_Account.Count + " Account Selected");
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            GlobusLogHelper.log.Error("Error ==> " + ex.Message);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -110,10 +145,10 @@ namespace GramDominator.Pages.PageScraper
                         ClGlobul.listOfScrapeFollowerUserame.Add(Txt_ScrapeFolower.Text);
                     }
 
-                    if (!string.IsNullOrEmpty(txtMessage_Scrapefollower_NoOfThreads.Text) && checkNo.IsMatch(txtMessage_Scrapefollower_NoOfThreads.Text))
-                    {
-                        threads = Convert.ToInt32(txtMessage_Scrapefollower_NoOfThreads.Text);
-                    }
+                    //if (!string.IsNullOrEmpty(txtMessage_Scrapefollower_NoOfThreads.Text) && checkNo.IsMatch(txtMessage_Scrapefollower_NoOfThreads.Text))
+                    //{
+                    //    threads = Convert.ToInt32(txtMessage_Scrapefollower_NoOfThreads.Text);
+                    //}
 
                     if (threads > maxThread)
                     {

@@ -306,7 +306,7 @@ namespace GramDominator.Pages.ScrapeUsers
                 dialog.MinHeight = 200;
                 dialog.MinWidth = 300;
 
-                var customButton = new Button() { Content = "Cancel" };
+                var customButton = new Button() { Content = "Close" };
                 customButton.Click += (ee, vv) => { dialog.Close(); };
                 dialog.Buttons = new Button[] { customButton };
                 dialog.ShowDialog();
@@ -620,6 +620,7 @@ namespace GramDominator.Pages.ScrapeUsers
         {
             try
             {
+                GlobalDeclration.objMentionUser.IsDailySchedule = true;
                 var dialog = new ModernDialog
                 {
                     Content = new UserControlScheduleMentionUsers()
@@ -637,6 +638,36 @@ namespace GramDominator.Pages.ScrapeUsers
             {
 
             }
+        }
+
+        private void btn_MentionUsers_Stop_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                GlobalDeclration.objMentionUser.IsStopMentionUser = true;
+                List<Thread> lstTemp = new List<Thread>();
+                lstTemp = GlobalDeclration.objMentionUser.listOfStopThreadMentionUser.Distinct().ToList();
+
+                foreach (Thread item in lstTemp)
+                {
+                    try
+                    {
+                        item.Abort();
+                        GlobalDeclration.objMentionUser.listOfStopThreadMentionUser.Remove(item);
+                    }
+                    catch (Exception ex)
+                    {
+                        //Thread.ResetAbort();
+                        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+            }
+            GlobusLogHelper.log.Info("Process Stopped");
         }
     }    
 }

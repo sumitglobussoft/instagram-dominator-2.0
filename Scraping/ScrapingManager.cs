@@ -60,7 +60,7 @@ namespace Scraping
         public List<string> lstScrapeUserURLsTitles = new List<string>();
         public List<string> lstCommentPostURLsScrapeFollower = new List<string>();
         //public List<string> lstScrapeUserURLsTitles = new List<string>();
-        public static string selected_Account = string.Empty;
+        public static List<string> selected_Account = new List<string>();
         public static int minDelayScrapeUser = 10;
         public static int maxDelayScrapeUser = 20;
         public static string status = string.Empty;
@@ -76,6 +76,7 @@ namespace Scraping
         public static int Mindelay_ScarpeFollower = 0;
         public static int Maxdelay_ScarpeFollower = 0;
         public static int No_ThreadFollower = 0;
+        public static int No_ScrapeFollowerUser = 0;
         private const string CSVHeader = "HashTag,UserName,UserLink";
         private string CSVPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "\\Gram Dominator\\scrapedUserDetails.csv";
         public static List<string> User_Bykey = new List<string>();
@@ -631,7 +632,9 @@ namespace Scraping
                                 {
                                     string[] data = Regex.Split(account, ":");
                                     string Accout = data[0];
-                                    if (Accout.Contains(selected_Account))
+
+                                    if (selected_Account.Contains(Accout))
+                                    //if (Accout.Contains(selected_Account))
                                     {
                                         lock (lockrThreadControlleScrapeFollower)
                                         {
@@ -808,9 +811,24 @@ namespace Scraping
                     {
                         if (var.Contains("profile_picture"))
                         {
-                            string user_name = Utils.getBetween(var, "\":\"", "\"");
-                            follower_list.Add(user_name);
-                            GlobusLogHelper.log.Info("Scraped===>" + user_name);
+                            if (No_ScrapeFollowerUser > follower_list.Count())
+                            {
+                                string user_name = Utils.getBetween(var, "\":\"", "\"");
+                                follower_list.Add(user_name);
+                                GlobusLogHelper.log.Info("Scraped===>" + user_name);
+                                try
+                                {
+                                    DataBaseHandler.InsertQuery("insert into ScrapedUsername(Username) values('" + user_name + "')", "ScrapedUsername");
+                                }
+                                catch (Exception ex)
+                                {
+                                    GlobusLogHelper.log.Error("Error:" + ex.StackTrace);
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
                         }
                     }
                     if (follow_respo.Contains("next_url"))
@@ -818,7 +836,7 @@ namespace Scraping
                         value = true;
                         while (value)
                         {
-                            if (follow_respo.Contains("next_url"))
+                            if (follow_respo.Contains("next_url") && No_ScrapeFollowerUser > follower_list.Count())
                             {
                                 string next_pageurl_token = Utils.getBetween(follow_respo, "next_cursor\":\"", "\"},");
                                 string page_Url = postdata + "&cursor=" + next_pageurl_token;
@@ -826,19 +844,22 @@ namespace Scraping
                                 string[] data1 = Regex.Split(follow_respo, "username");
                                 foreach (string item in data1)
                                 {
-                                    if (item.Contains("profile_picture"))
+                                    if (No_ScrapeFollowerUser > follower_list.Count())
                                     {
-                                        string username = Utils.getBetween(item, ":\"", "\"");
-                                        follower_list.Add(username);
-                                        GlobusLogHelper.log.Info("Scraped===>" + username);
-
-                                        try
+                                        if (item.Contains("profile_picture"))
                                         {
-                                            DataBaseHandler.InsertQuery("insert into ScrapedUsername(Username) values('" + username + "')", "ScrapedUsername");
-                                        }
-                                        catch (Exception ex)
-                                        {
+                                            string username = Utils.getBetween(item, ":\"", "\"");
+                                            follower_list.Add(username);
+                                            GlobusLogHelper.log.Info("Scraped===>" + username);
 
+                                            try
+                                            {
+                                                DataBaseHandler.InsertQuery("insert into ScrapedUsername(Username) values('" + username + "')", "ScrapedUsername");
+                                            }
+                                            catch (Exception ex)
+                                            {
+
+                                            }
                                         }
                                     }
                                 }
@@ -1651,7 +1672,7 @@ namespace Scraping
         public bool isStopScrapeUser = false;
 
         public string usernmeToScrape = string.Empty;     
-        public string selectedAccountToScrape = string.Empty;
+        public List<string> selectedAccountToScrape = new List<string>();
 
         public int noOfUserToScrape = 0;
         public int noOfPhotoToScrape = 0;
@@ -1734,7 +1755,8 @@ namespace Scraping
                                     string[] data = Regex.Split(account, ":");
                                     string Accout = data[0];
 
-                                    if (Accout.Contains(selectedAccountToScrape))
+                                    if (selectedAccountToScrape.Contains(Accout))
+                                    //if (Accout.Contains(selectedAccountToScrape))
                                     {
                                         lock (lockrThreadControlleScrapeFollower)
                                         {
@@ -1873,6 +1895,21 @@ namespace Scraping
 
         public void StartActionScrapeUser(ref InstagramUser objInstagramUser)
         {
+            if(isStopScrapeUser)
+            {
+                return;
+            }
+            try
+            {
+                lstofThreadScrapeUser.Add(Thread.CurrentThread);
+                lstofThreadScrapeUser.Distinct();
+                Thread.CurrentThread.IsBackground = true;
+            }
+            catch (Exception ex)
+            {
+                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+            }
+
             try
             {
                 if(isScrapeFollower)
@@ -1911,11 +1948,31 @@ namespace Scraping
             {
                 GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
             }
+            finally
+            {
+                GlobusLogHelper.log.Info("----- Process Completed --------");
+            }
         }
 
         public void Start_Scrapephotoliker(ref InstagramUser obj_GDUSER)
         {
+            if (isStopScrapeUser)
+            {
+                return;
+            }
+            try
+            {
+                lstofThreadScrapeUser.Add(Thread.CurrentThread);
+                lstofThreadScrapeUser.Distinct();
+                Thread.CurrentThread.IsBackground = true;
+            }
+            catch (Exception ex)
+            {
+                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+            }
+
             //string username_liker = usernmeToScrape; //"i_am_komal_jha";
+            isScrapePhotoLikeOfUser = false;
             int temp = noOfPhotoToScrape;
             string response = string.Empty;
             List<string> photoId_list = new List<string>();
@@ -1959,6 +2016,7 @@ namespace Scraping
                                         string photo_ID = Utils.getBetween(itemmm, "id\":\"", ",\"").Replace("\"", "");
                                         string imageUrl = "https://www.instagram.com/p/" + photo_ID + "/";
                                         photoId_list.Add(photo_ID);
+                                        photoId_list = photoId_list.Distinct().ToList();
                                         try
                                         {
                                             DataBaseHandler.InsertQuery("insert into ScrapedImage(Username,ImageURL,ImageID) values('" + username_liker + "','" + imageUrl + "','" + photo_ID + "')", "ScrapedImage");
@@ -1996,6 +2054,7 @@ namespace Scraping
                                                     string photo_ID = Utils.getBetween(itemmmm, "id\":\"", ",\"").Replace("\"", "");
                                                     string imageUrl = "https://www.instagram.com/p/" + photo_ID + "/";
                                                     photoId_list.Add(photo_ID);
+                                                    photoId_list = photoId_list.Distinct().ToList();
                                                     try
                                                     {
                                                         DataBaseHandler.InsertQuery("insert into ScrapedImage(Username,ImageURL,ImageID) values('" + username_liker + "','" + imageUrl + "','" + photo_ID + "')", "ScrapedImage");
@@ -2036,7 +2095,7 @@ namespace Scraping
                                     {
                                         if (listofUser.Contains("profile_picture"))
                                         {
-                                            string Username_photolike = Utils.getBetween(listofUser, "\":\"", "\"");
+                                            string Username_photolike = Utils.getBetween(listofUser, "\":\"", "\"");                                           
                                             User_photolike.Add(Username_photolike);
                                             User_photolike = User_photolike.Distinct().ToList();
                                             try
@@ -2078,12 +2137,32 @@ namespace Scraping
                 {
                     GlobusLogHelper.log.Info("Error:" + ex.StackTrace);
                 }
+                finally
+                {
+                    GlobusLogHelper.log.Info("----- Process Completed of Scrape user Form PhotoLiker ------");
+                }
             }
         }
 
         public void start_scrapephotocomment_User(ref InstagramUser obj_GDUSER)
         {
+            if (isStopScrapeUser)
+            {
+                return;
+            }
+            try
+            {
+                lstofThreadScrapeUser.Add(Thread.CurrentThread);
+                lstofThreadScrapeUser.Distinct();
+                Thread.CurrentThread.IsBackground = true;
+            }
+            catch (Exception ex)
+            {
+                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+            }
+
             List<string> PhotoId_list = new List<string>();
+            isScrapeUserWhoCommentOnPhoto = false;
             List<string> ListofUser_commentOnphoto = new List<string>();
             try
             {
@@ -2193,7 +2272,7 @@ namespace Scraping
                     }
                     catch (Exception ex)
                     {
-                        GlobusLogHelper.log.Info("Error:" + ex.StackTrace);
+                        GlobusLogHelper.log.Error("Error:" + ex.StackTrace);
                     }
                 }
             
@@ -2201,12 +2280,21 @@ namespace Scraping
             }
             catch (Exception ex)
             {
-                GlobusLogHelper.log.Info("Error:" + ex.StackTrace);
+                GlobusLogHelper.log.Error("Error:" + ex.StackTrace);
+            }
+            finally
+            {
+                GlobusLogHelper.log.Info("----- Process Completed Scrape USer Form Comment --------");
             }
         }
 
         public void ScrapUserNameFromHashTag(ref InstagramUser obj_newobject)
         {
+            if (isStopScrapeUser)
+            {
+                return;
+            }
+           
             try
             {
                 lstofThreadScrapeUser.Add(Thread.CurrentThread);
@@ -2241,8 +2329,24 @@ namespace Scraping
 
         public void ScrapePhotoURL(ref InstagramUser objInstagramUser)
         {
+            if (isStopScrapeUser)
+            {
+                return;
+            }
+            try
+            {
+                lstofThreadScrapeUser.Add(Thread.CurrentThread);
+                lstofThreadScrapeUser.Distinct();
+                Thread.CurrentThread.IsBackground = true;
+            }
+            catch (Exception ex)
+            {
+                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+            }
+
             List<string> PhotoUrlList = new List<string>();
             List<string> ListofUser_commentOnphoto = new List<string>();
+            isScrapePhotoURL = false;
             try
             {
                 foreach (string item in listOfPhotoUrl)
@@ -2339,10 +2443,20 @@ namespace Scraping
             {
                 GlobusLogHelper.log.Error("Error ==> " + ex.Message);
             }
+            finally
+            {
+                GlobusLogHelper.log.Info("-----Process Completed to scrape PhotoUrl------");
+            }
         }
 
         public void StartScrapeFollower(ref InstagramUser obj_folowerscrape)
         {
+            isScrapeFollower = false;
+            if (isStopScrapeUser)
+            {
+                return;
+            }        
+
             try
             {
                 lstofThreadScrapeUser.Add(Thread.CurrentThread);
@@ -2431,12 +2545,13 @@ namespace Scraping
             }
             catch (Exception ex)
             {
-                GlobusLogHelper.log.Info("Error :" + ex.StackTrace);
+                GlobusLogHelper.log.Error("Error :" + ex.StackTrace);
             }
         }
                
         public void StartScrapeFollowing(ref InstagramUser obj_folowerscrape)
         {
+            isScrapeFollowing = false;
             try
             {
                 lstofThreadScrapeUser.Add(Thread.CurrentThread);
@@ -2477,30 +2592,38 @@ namespace Scraping
                         if (var.Contains("profile_picture"))
                         {
                             string user_name = Utils.getBetween(var, "\":\"", "\"");
-                            if (ScrapeFollowingUser.Count < noOfUserToScrape)
+                            if (!ScrapeFollowingUser.Contains(user_name))
                             {
-                                ScrapeFollowingUser.Add(user_name);
+                                if (ScrapeFollowingUser.Count < noOfUserToScrape)
+                                {
+                                    ScrapeFollowingUser.Add(user_name);
+                                    ScrapeFollowingUser = ScrapeFollowingUser.Distinct().ToList();
 
-                                try
-                                {
-                                    GlobusLogHelper.log.Info("Scraped===>" + user_name);
-                                    string CSVData = usernmeToScrape.Replace(",", string.Empty) + "," + user_name.Replace(",", string.Empty);
-                                    GlobusFileHelper.ExportDataCSVFile(CSVHeader_following, CSVData, CSVPath_following);
-                                }
-                                catch(Exception ex)
-                                {
-                                    GlobusLogHelper.log.Info("Error ==> " + ex.StackTrace);
-                                }
+                                    try
+                                    {
+                                        GlobusLogHelper.log.Info("Scraped===>" + user_name);
+                                        string CSVData = usernmeToScrape.Replace(",", string.Empty) + "," + user_name.Replace(",", string.Empty);
+                                        GlobusFileHelper.ExportDataCSVFile(CSVHeader_following, CSVData, CSVPath_following);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        GlobusLogHelper.log.Error("Error ==> " + ex.StackTrace);
+                                    }
 
-                                try
-                                {
-                                    DataBaseHandler.InsertQuery("insert into ScrapedUsername(Username) values('" + user_name + "')", "ScrapedUsername");
+                                    try
+                                    {
+                                        DataBaseHandler.InsertQuery("insert into ScrapedUsername(Username) values('" + user_name + "')", "ScrapedUsername");
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        GlobusLogHelper.log.Error("Error ==> " + ex.StackTrace);
+                                    }
+                                    // GlobusLogHelper.log.Info("Scraped===>" + user_name);
                                 }
-                                catch(Exception ex)
+                                else
                                 {
-                                    GlobusLogHelper.log.Info("Error ==> " + ex.StackTrace);
+                                    break;
                                 }
-                                // GlobusLogHelper.log.Info("Scraped===>" + user_name);
                             }
                         }
                     }
@@ -2520,29 +2643,37 @@ namespace Scraping
                                     if (item.Contains("profile_picture"))
                                     {
                                         string follower = Utils.getBetween(item, ":\"", "\"");
-                                        if (ScrapeFollowingUser.Count < noOfUserToScrape)
+                                        if (!ScrapeFollowingUser.Contains(follower))
                                         {
-                                            ScrapeFollowingUser.Add(follower);
-                                            try
+                                            if (ScrapeFollowingUser.Count < noOfUserToScrape)
                                             {
-                                                GlobusLogHelper.log.Info("Scraped===>" + follower);
-                                                string CSVData = usernmeToScrape.Replace(",", string.Empty) + "," + follower.Replace(",", string.Empty);
-                                                GlobusFileHelper.ExportDataCSVFile(CSVHeader_following, CSVData, CSVPath_following);
-                                            }
-                                            catch(Exception ex)
-                                            {
-                                                GlobusLogHelper.log.Info("Error ==> " + ex.StackTrace);
-                                            }
+                                                ScrapeFollowingUser.Add(follower);
+                                                ScrapeFollowingUser = ScrapeFollowingUser.Distinct().ToList();
+                                                try
+                                                {
+                                                    GlobusLogHelper.log.Info("Scraped===>" + follower);
+                                                    string CSVData = usernmeToScrape.Replace(",", string.Empty) + "," + follower.Replace(",", string.Empty);
+                                                    GlobusFileHelper.ExportDataCSVFile(CSVHeader_following, CSVData, CSVPath_following);
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    GlobusLogHelper.log.Info("Error ==> " + ex.StackTrace);
+                                                }
 
-                                            try
-                                            {
-                                                DataBaseHandler.InsertQuery("insert into ScrapedUsername(Username) values('" + follower + "')", "ScrapedUsername");
+                                                try
+                                                {
+                                                    DataBaseHandler.InsertQuery("insert into ScrapedUsername(Username) values('" + follower + "')", "ScrapedUsername");
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    GlobusLogHelper.log.Error("Error ==> " + ex.StackTrace);
+                                                }
+                                                // GlobusLogHelper.log.Info("Scraped===>" + username);
                                             }
-                                            catch (Exception ex)
+                                            else
                                             {
-                                                GlobusLogHelper.log.Info("Error ==> " + ex.StackTrace);
+                                                break;
                                             }
-                                            // GlobusLogHelper.log.Info("Scraped===>" + username);
                                         }
                                     }
                                 }
@@ -2556,13 +2687,21 @@ namespace Scraping
                 }
                 catch (Exception ex)
                 {
-                    GlobusLogHelper.log.Info("Error :" + ex.StackTrace);
+                    GlobusLogHelper.log.Error("Error :" + ex.StackTrace);
+                }
+                finally
+                {
+                    GlobusLogHelper.log.Info("------Scraping Following Done------");
                 }
             }
         }
 
         public void startUserScraper(string itemHash, ref InstagramUser obj_scrapeuser)
         {
+            if (isStopScrapeUser)
+            {
+                return;
+            }         
 
             try
             {
@@ -2866,6 +3005,21 @@ namespace Scraping
 
         public void startScrapeImageFromHashtag(ref InstagramUser obj_GDUSER)
         {
+            if (isStopScrapeUser)
+            {
+                return;
+            }
+            try
+            {
+                lstofThreadScrapeUser.Add(Thread.CurrentThread);
+                lstofThreadScrapeUser.Distinct();
+                Thread.CurrentThread.IsBackground = true;
+            }
+            catch (Exception ex)
+            {
+                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+            }
+
             string username = usernmeToScrape;
             int temp = noOfPhotoToScrape;
             bool value = true;
@@ -2992,6 +3146,21 @@ namespace Scraping
 
         public void startScrapePhotoUrlByHashtag(ref InstagramUser obj_GDUSER)
         {
+            if (isStopScrapeUser)
+            {
+                return;
+            }
+            try
+            {
+                lstofThreadScrapeUser.Add(Thread.CurrentThread);
+                lstofThreadScrapeUser.Distinct();
+                Thread.CurrentThread.IsBackground = true;
+            }
+            catch (Exception ex)
+            {
+                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+            }
+
             string username = "Tree";
             int temp = 50;
             bool value = true;
@@ -3226,47 +3395,35 @@ namespace Scraping
             }
             finally
             {
-                if(IsDailySchedule)
-                {                    
-                        try
+                if (IsDailySchedule)
+                {
+                    try
+                    {
+                        DateTime d1 = DateTime.Parse(scheduleStartTime);
+                        DateTime d2 = DateTime.Parse(scheduleEndTime);
+                        TimeSpan t = d2 - DateTime.Now;
+
+                        while (true)
                         {
-                            DateTime d1 = DateTime.Parse(scheduleStartTime);
-                            DateTime d2 = DateTime.Parse(scheduleEndTime);
-                            TimeSpan t = d2 - DateTime.Now;
-
-                            //if (t.TotalSeconds <= 0)
+                            if (d1.Hour == (DateTime.Now.Hour) && d1.Minute == (DateTime.Now.Minute))
+                            {
+                                GlobusLogHelper.log.Info("Scheduler Started With Time ==> " + d1.ToString());
+                                StartMentionUser();
+                                break;
+                            }
+                            //if (d2.Hour == (DateTime.Now.Hour) && d2.Minute == (DateTime.Now.Minute))
                             //{
-                            //    AddToLog_Tweet("[ " + DateTime.Now + " ] => [ Time Already Completed Stopping For Account : " + tweetAccountManager.Username + " ]");
-                            //    return;
+                            //    GlobusLogHelper.log.Info("Scheduler Stopped With Time ==> " + d2.ToString());
                             //}
-                            //TweetAccountManager.StartTime = d1;
-                            //TweetAccountManager.EndTime = d2;
-
-                            //TimeSpan T = d2 - d1;
-
-                            //int Delay = T.Minutes;
-
-                            //int TotalTweets = 0;
-
-                            //if (!string.IsNullOrEmpty(txtNoOfTweets.Text) && NumberHelper.ValidateNumber(txtNoOfTweets.Text))
-                            //{
-                            //    TotalTweets = Convert.ToInt32(txtNoOfTweets.Text);
-                            //}
-                            //else
-                            //{
-                            //    TotalTweets = TweetAccountManager.NoOfTweetPerDay - tweetAccountManager.AlreadyTweeted;
-                            //}
-
-                            //int TotalDelay = (Delay * 60) / TotalTweets;
-
-                            //TweetAccountManager.DelayTweet = TotalDelay;
+                            Thread.Sleep(15 * 1000);
                         }
-                        catch (Exception ex)
-                        {
-                           
+                    }
+                    catch (Exception ex)
+                    {
 
-                        }
-                   
+
+                    }
+
                 }
             }
         }
