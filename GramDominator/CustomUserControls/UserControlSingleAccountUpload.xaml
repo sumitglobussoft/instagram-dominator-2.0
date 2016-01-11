@@ -37,6 +37,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
+<<<<<<< HEAD
         <TextBox Name="txt_AddSingleAccount_Account" HorizontalAlignment="Left" Height="30" Margin="105,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="267" BorderThickness="1,1,1,2"/>
         <TextBox Name="txt_AddSingleAccount_ProxyAddress" HorizontalAlignment="Left" Height="30" Margin="106,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="266" BorderThickness="1,1,1,2"/>
         <Label Content="Proxy Port : " Margin="5,117,352,232" RenderTransformOrigin="0.581,1.857" HorizontalContentAlignment="Right"/>
@@ -46,6 +47,17 @@
         <Label Content="Proxy Passowrd : " Margin="-13,193,352,160" RenderTransformOrigin="0.581,1.857" HorizontalContentAlignment="Right"/>
         <PasswordBox Name="txt_AddSingleAccount_ProxyPassword" HorizontalAlignment="Left" Height="27" Margin="106,193,0,0" VerticalAlignment="Top" Width="266" BorderThickness="1,1,1,2"/>
         <PasswordBox Name="txt_AddSingleAccount_Password"  HorizontalAlignment="Left" Margin="107,45,0,0" VerticalAlignment="Top" Width="265" Height="29" BorderThickness="1,1,1,2"/>
+=======
+        <TextBox Name="txt_AddSingleAccount_Account" HorizontalAlignment="Left" Height="30" Margin="105,10,0,0" TextWrapping="Wrap" Text="{Binding TxtUserField,Mode=TwoWay,ValidatesOnDataErrors=True}" VerticalAlignment="Top" Width="267"/>
+        <TextBox Name="txt_AddSingleAccount_ProxyAddress" HorizontalAlignment="Left" Height="30" Margin="106,81,0,0" TextWrapping="Wrap" Text="{Binding TxtField_two,Mode=TwoWay,ValidatesOnDataErrors=True}" VerticalAlignment="Top" Width="266"/>
+        <Label Content="Proxy Port : " Margin="5,117,352,232" RenderTransformOrigin="0.581,1.857" HorizontalContentAlignment="Right"/>
+        <TextBox Name="txt_AddSingleAccount_ProxyPort" HorizontalAlignment="Left" Height="31" Margin="106,117,0,0" TextWrapping="Wrap" Text="{Binding TxtField_three,Mode=TwoWay,ValidatesOnDataErrors=True}" VerticalAlignment="Top" Width="266"/>
+        <Label Content="Proxy Username : " Margin="-16,155,352,197" RenderTransformOrigin="0.581,1.857" HorizontalContentAlignment="Right"/>
+        <TextBox Name="txt_AddSingleAccount_ProxyUsername" HorizontalAlignment="Left" Height="28" Margin="107,155,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="266"/>
+        <Label Content="Proxy Passowrd : " Margin="-13,193,352,160" RenderTransformOrigin="0.581,1.857" HorizontalContentAlignment="Right"/>
+        <PasswordBox Name="txt_AddSingleAccount_ProxyPassword" HorizontalAlignment="Left" Height="27" Margin="106,193,0,0" VerticalAlignment="Top" Width="266"/>
+        <PasswordBox Name="txt_AddSingleAccount_Password"  HorizontalAlignment="Left" Margin="107,45,0,0" VerticalAlignment="Top" Width="265" Height="29"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         <Label Content=" Optional" HorizontalAlignment="Left" Margin="378,160,0,0" VerticalAlignment="Top" Width="54"/>
         <Label Content=" Optional" HorizontalAlignment="Left" Margin="379,199,0,0" VerticalAlignment="Top" Width="54"/>
     </Grid>

@@ -66,6 +66,7 @@ namespace GramDominator.CustomUserControls
             }
         }
 
+<<<<<<< HEAD
         //private void btn_HashTagsfollower_SaveUser_Click(object sender, RoutedEventArgs e)
         //{
         //    try
@@ -120,6 +121,62 @@ namespace GramDominator.CustomUserControls
         //        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
         //    }
         //}
+=======
+        private void btn_HashTagsfollower_SaveUser_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (IGGlobals.listAccounts.Count > 0)
+                {
+                    try
+                    {
+                        UsingUsernameManager.onlyLike = true;
+                        UsingUsernameManager.UsingUsername_like_Nouser = Convert.ToInt32(txtMessage_UsingUsername_NoOfuser.Text);
+                        if (string.IsNullOrEmpty(txt_UsingUsername_like.Text))
+                        {
+                            GlobusLogHelper.log.Info("Please Upload UserName");
+                            ModernDialog.ShowMessage("Please Upload UserName", "Upload Message", MessageBoxButton.OK);
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+                    }
+
+
+                    if (rdoBtn_UsingUsername_likeSingle.IsChecked == true)
+                    {
+                        UsingUsernameManager.UsingUsercontrol_Like_single = txt_UsingUsername_like.Text;
+
+                    }
+                    if (rdoBtn_UsingUsername_likeMultiple.IsChecked == true)
+                    {
+                        UsingUsernameManager.UsingUsercontrol_Like_path = txt_UsingUsername_like.Text;
+                        //ObjPhotoManager.message_comment = txtMessage_Comment_LoadMessages.Text;
+                    }
+
+
+                }
+
+
+                else
+                {
+                    GlobusLogHelper.log.Info("Please Load Accounts !");
+                    GlobusLogHelper.log.Debug("Please Load Accounts !");
+
+                }
+                if ((!string.IsNullOrEmpty(txt_UsingUsername_like.Text)) && (!string.IsNullOrEmpty(txtMessage_UsingUsername_NoOfuser.Text)))
+                {
+                    ModernDialog.ShowMessage("Your Data Has Been Saved Successfully!!", "Success Message", MessageBoxButton.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+            }
+        }
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 
         UsingUsernameManager obj_UsingUsernameManager = new UsingUsernameManager();
 

@@ -35,7 +35,11 @@
                             <ColumnDefinition Width="123*"/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Grid.Row="0" Content="Load Username To Follow : " Margin="0,21,0,17"/>
+<<<<<<< HEAD
                         <TextBox Name="txtFollowUsernameLocation" Grid.Column="1" Grid.Row="0" IsReadOnly="True" Margin="10,19" Text="" BorderThickness="1,1,1,2"/>
+=======
+                        <TextBox Name="txtFollowUsernameLocation" Grid.Column="1" Grid.Row="0" IsReadOnly="True" Margin="10,19" Text=""/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <Button  BorderBrush="Green" Name="btnFollowLoadUserName" Grid.Column="2" Height="25" Grid.Row="0" Content="Browse" Margin="5,19,10,19" Click="btnFollowLoadUserName_Click">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
@@ -46,7 +50,11 @@
                             </Button.Template>
                         </Button>
                         <Label Content="No Of Users To Be Follow : " Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+<<<<<<< HEAD
                         <TextBox Grid.Row="1" Grid.Column="1" Margin="10,0,112,0" TextAlignment="Center" Name="txtFollowCampaignNoOfUserTobeFollow" Text="5" BorderThickness="1,1,1,2"/>
+=======
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="10,0,112,0" Name="txtFollowCampaignNoOfUserTobeFollow" Text="5"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     </Grid>
                 </GroupBox>
                 <Button   BorderBrush="Green" Grid.Column="1" Content="Save" Name="btnUsercontrolFollowSaveLoadedData" Click="btnUsercontrolFollowSaveLoadedData_Click" Grid.Row="1" Height="25" Margin="70,10,10,10">

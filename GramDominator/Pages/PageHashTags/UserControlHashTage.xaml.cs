@@ -1,11 +1,17 @@
 ﻿using BaseLib;
+<<<<<<< HEAD
 using BaseLibID;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 using FirstFloor.ModernUI.Windows.Controls;
 using GramDominator.CustomUserControls;
 using HashTagsManager;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Data;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -32,12 +38,15 @@ namespace GramDominator.Pages.PageHashTags
         public UserControlHashTage()
         {
             InitializeComponent();
+<<<<<<< HEAD
             AccountReport_HashTageModule();
         }
 
         public void closeEvent()
         {
 
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         }
 
         private void Select_To_HashTags_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,6 +55,7 @@ namespace GramDominator.Pages.PageHashTags
             {
                 if (Select_To_TagsOption.SelectedIndex == 1)
                 {
+<<<<<<< HEAD
                     UserControlHashTagsLikeModule obj_UserControlHashTagsLikeModule = new UserControlHashTagsLikeModule();
                     var window = new ModernDialog
                     {
@@ -211,6 +221,35 @@ namespace GramDominator.Pages.PageHashTags
                     }
 
 
+=======
+                    var window = new ModernDialog
+                    {
+                        Content = new UserControlHashTagsLikeModule()
+                    };
+                    window.MinHeight = 300;
+                    window.MinWidth = 700;
+                    window.ShowDialog();
+                }
+                if (Select_To_TagsOption.SelectedIndex == 2)
+                {
+                    var window = new ModernDialog
+                    {
+                         Content = new UserControlHashTagsComment()
+                    };
+                    window.MinHeight = 300;
+                    window.MinWidth = 700;
+                    window.ShowDialog();
+                }
+                if (Select_To_TagsOption.SelectedIndex == 3)
+                {
+                    var window = new ModernDialog
+                    {
+                        Content = new UserControlHashtagsfollower()
+                    };
+                    window.MinHeight = 300;
+                    window.MinWidth = 700;
+                    window.ShowDialog();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 }
             }
             catch (Exception ex)
@@ -220,7 +259,10 @@ namespace GramDominator.Pages.PageHashTags
         }
 
         Utils objUtils = new Utils();
+<<<<<<< HEAD
         QueryManager Qm = new QueryManager();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         private void btnMessage_HashTags_Start_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -244,8 +286,12 @@ namespace GramDominator.Pages.PageHashTags
                 }
                 catch (Exception ex)
                 {
+<<<<<<< HEAD
                     GlobusLogHelper.log.Error("Enter in Correct Format/Fill all Field");
                     ModernDialog.ShowMessage("Enter in Correct Format/Fill all Field", "Error", MessageBoxButton.OK);
+=======
+                    GlobusLogHelper.log.Error("Enter in Correct Format");
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     return;
                 }
 
@@ -265,7 +311,10 @@ namespace GramDominator.Pages.PageHashTags
                 {
                     Thread ForDivideUser = new Thread(obj_hash_managerlibry.StartDivideUser);
                     ForDivideUser.Start();
+<<<<<<< HEAD
                     GlobusLogHelper.log.Info("------ HashTag Proccess Started ------");
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 }
                 else
                 {
@@ -273,13 +322,19 @@ namespace GramDominator.Pages.PageHashTags
                     {
                         Thread ForDivideEqual = new Thread(obj_hash_managerlibry.StartDivide);
                         ForDivideEqual.Start();
+<<<<<<< HEAD
                         GlobusLogHelper.log.Info("------ HashTag Proccess Started ------");
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     }
                     else
                     {
                         Thread CommentPosterThread = new Thread(obj_hash_managerlibry.StartHash_comment);
                         CommentPosterThread.Start();
+<<<<<<< HEAD
                         GlobusLogHelper.log.Info("------ HashTag Proccess Started ------");
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     }
                 }
             }
@@ -294,6 +349,7 @@ namespace GramDominator.Pages.PageHashTags
         {
             try
             {
+<<<<<<< HEAD
                 Thread objStopHashTag = new Thread(stopMultithreadHashTag);
                 objStopHashTag.Start();
             }
@@ -307,6 +363,8 @@ namespace GramDominator.Pages.PageHashTags
         {
             try
             {
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 obj_hash_managerlibry.isStopHash_comment = true;
 
                 List<Thread> lstTemp = new List<Thread>();
@@ -335,6 +393,7 @@ namespace GramDominator.Pages.PageHashTags
             GlobusLogHelper.log.Info("Process Stopped !");
             GlobusLogHelper.log.Debug("Process Stopped !");
         }
+<<<<<<< HEAD
 
         public void AccountReport_HashTageModule()
         {
@@ -442,5 +501,7 @@ namespace GramDominator.Pages.PageHashTags
 
 
 
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     }
 }

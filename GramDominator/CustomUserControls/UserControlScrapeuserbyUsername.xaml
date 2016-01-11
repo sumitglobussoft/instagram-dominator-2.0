@@ -4,7 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
+<<<<<<< HEAD
              d:DesignHeight="250" d:DesignWidth="600" >
+=======
+             d:DesignHeight="250" d:DesignWidth="600">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <ScrollViewer>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -18,7 +22,11 @@
                 <RowDefinition Height="83*"/>
             </Grid.RowDefinitions>
 
+<<<<<<< HEAD
             <TextBlock Grid.Row="0" Text="Scrape User By HashTag" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Grid.ColumnSpan="2"/>
+=======
+            <TextBlock Grid.Row="0" Text="Scrape User By Username" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Grid.ColumnSpan="2"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             <GroupBox Header="Input" Grid.Row="1" Grid.ColumnSpan="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -32,11 +40,19 @@
                         <RowDefinition Height="41*"/>
                         <RowDefinition Height="46*"/>
                     </Grid.RowDefinitions>
+<<<<<<< HEAD
                     <RadioButton Name="rdoBtn_ScrapeUserName_SingleUser" IsChecked="True" Content="Single HashTag" Grid.Row="0" Grid.Column="2" Height="25" GroupName="ScrapeByUserName" HorizontalAlignment="Right"  Checked="rdoBtn_LikeBy_ScrapeUserName_SingleUser_Checked" Margin="0,5,5,1"  />
                     <RadioButton Name="rdoBtn_ScrapeUserName_MultipleUser" Content="Multiple HashTag" Grid.Row="0" Grid.Column="3" Height="25" GroupName="ScrapeByUserName" HorizontalAlignment="Right" Checked="rdoBtn_ScarpeUserName_MultipleUser" Margin="0,6,45,2" Width="126"/>
                     <Label Name="Username" Content="User Name" Grid.Row="1" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,11" Grid.ColumnSpan="2" Width="111"/>
                     <TextBox Name="txt_ScrapeUserName_LoadUsersPath" IsReadOnly="False" Grid.Row="1" Grid.Column="2" Height="25" Margin="10,11,0,11" VerticalContentAlignment="Center" Grid.ColumnSpan="2" BorderThickness="1,1,1,2"/>
                     <Button Name="btn_ScrapeUserName_BrowseUsers" Visibility="Hidden" Content="Browse" Grid.Row="1" Grid.Column="4" Height="25" Margin="10,11" BorderBrush="Green" Click="btn_ScrapeUserName_BrowseUsers_Click">
+=======
+                    <RadioButton Name="rdoBtn_ScrapeUserName_SingleUser" IsChecked="True" Content="Single User" Grid.Row="0" Grid.Column="0" Height="25" GroupName="ScrapeByUserName" HorizontalAlignment="Right"  Checked="rdoBtn_LikeBy_ScrapeUserName_SingleUser_Checked"  />
+                    <RadioButton Name="rdoBtn_ScrapeUserName_MultipleUser" Content="Multiple Users" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="25" GroupName="ScrapeByUserName" HorizontalAlignment="Right" Checked="rdoBtn_ScarpeUserName_MultipleUser"/>
+                    <Label Name="Username" Content="User Name" Grid.Row="1" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,11" Grid.ColumnSpan="2" Width="111"/>
+                    <TextBox Name="txt_ScrapeUserName_LoadUsersPath" Grid.Row="1" Grid.Column="2" Height="25" Margin="10,11,0,11" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
+                    <Button Name="btn_ScrapeUserName_BrowseUsers" Content="Browse" Grid.Row="1" Grid.Column="4" Height="25" Margin="10,11" BorderBrush="Green" Click="btn_ScrapeUserName_BrowseUsers_Click">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -47,10 +63,25 @@
                     </Button>
                 </Grid>
             </GroupBox>
+<<<<<<< HEAD
             
             <Label Content="No. of User" Margin="5,10,360,14" Height="26" VerticalAlignment="Center" Grid.Row="2"/>
             <TextBox Name="txtMessage_UserName_NoOfUser" Margin="130,12.06,250,15.94" TextAlignment="Center" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="2" BorderThickness="1,1,1,2"/>
             <Button x:Name="btn_ScrapeUsername_Clear" BorderBrush="Blue" Content="Clear" Grid.Row="2" Height="25" Click="btn_ScrapeUsername_Clear_Click" Margin="0,12,0,18" Grid.Column="1">
+=======
+            <Button Name="btn_ScrapeUsername_SaveUser" BorderBrush="Green" Content="Save" Grid.Row="2" Grid.Column="1" Height="25" Click="btn_ScrapeUsername_SaveUser_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Label Content="No. of User" Margin="5,10,360,14" Height="26" VerticalAlignment="Center" Grid.Row="2"/>
+            <TextBox Name="txtMessage_UserName_NoOfUser" Margin="130,12.06,250,15.94" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="2"/>
+            <Button x:Name="btn_ScrapeUsername_Clear" BorderBrush="Blue" Content="Clear" Grid.Row="2" Height="25" Click="btn_ScrapeUsername_Clear_Click" Margin="360,15,10,15">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border CornerRadius="5" BorderBrush="Blue" BorderThickness="1,1,1,2" Background="Azure">

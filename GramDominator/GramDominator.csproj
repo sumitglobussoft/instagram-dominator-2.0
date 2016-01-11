@@ -49,19 +49,25 @@
     <Reference Include="ChilkatDotNet2">
       <HintPath>..\Libs\Libs\32 Bit dlls\ChilkatDotNet2.dll</HintPath>
     </Reference>
+<<<<<<< HEAD
     <Reference Include="De.TorstenMandelkow.MetroChart">
       <HintPath>..\Libs\Libs\De.TorstenMandelkow.MetroChart.dll</HintPath>
     </Reference>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Reference Include="FirstFloor.ModernUI">
       <HintPath>..\packages\ModernUI.WPF.1.0.6\lib\net45\FirstFloor.ModernUI.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\Libs\Libs\32 Bit dlls\log4net.dll</HintPath>
     </Reference>
+<<<<<<< HEAD
     <Reference Include="MahApps.Metro">
       <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Reference Include="MySql.Data.Entity">
       <HintPath>..\Libs\Libs\32 Bit dlls\MySql.Data.Entity.dll</HintPath>
     </Reference>
@@ -75,9 +81,12 @@
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
+<<<<<<< HEAD
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -89,20 +98,27 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+<<<<<<< HEAD
     <Reference Include="WPFToolkit.Extended">
       <HintPath>..\Libs\Libs\WPFToolkit.Extended.dll</HintPath>
     </Reference>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< HEAD
     <Compile Include="AccountNotifyPropertyChanged.cs" />
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+<<<<<<< HEAD
     <Page Include="CustomUserControls\PhotoDownload_username.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,6 +127,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Page Include="CustomUserControls\UserControlcampaignfollowersScheduler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +169,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="CustomUserControls\UserControlLoadTextMessage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -179,6 +198,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Page Include="CustomUserControls\UserControlSchedulerphotolikecampiagn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -187,6 +208,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="CustomUserControls\UserControlScrapeUserScrapeFollowing.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -215,6 +237,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Page Include="CustomUserControls\UserControlSingleAccountUpload.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,10 +251,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="CustomUserControls\UsercontrolSingleUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Page Include="CustomUserControls\UserControlUnlikePhotoByPhotoId.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -239,10 +266,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="CustomUserControls\usercontrolusesingleAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Page Include="CustomUserControls\UsercontrolUsingUsernamecomment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -267,6 +297,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+<<<<<<< HEAD
     <Compile Include="CheckListBoxViewModel.cs" />
     <Compile Include="Classes\NotifyPropertyChange.cs" />
     <Compile Include="Classes\SelectAccountViewModel.cs" />
@@ -277,6 +308,10 @@
     <Compile Include="CustomUserControls\UserControlAddUserAgent.xaml.cs">
       <DependentUpon>UserControlAddUserAgent.xaml</DependentUpon>
     </Compile>
+=======
+    <Compile Include="Classes\NotifyPropertyChange.cs" />
+    <Compile Include="Classes\Validation.cs" />
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Compile Include="CustomUserControls\UserControlcampaignfollowersScheduler.xaml.cs">
       <DependentUpon>UserControlcampaignfollowersScheduler.xaml</DependentUpon>
     </Compile>
@@ -307,6 +342,7 @@
     <Compile Include="CustomUserControls\UserControlLoadPhotoIdCampiagn.xaml.cs">
       <DependentUpon>UserControlLoadPhotoIdCampiagn.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="CustomUserControls\UserControlLoadTextMessage.xaml.cs">
       <DependentUpon>UserControlLoadTextMessage.xaml</DependentUpon>
     </Compile>
@@ -328,12 +364,15 @@
     <Compile Include="CustomUserControls\UserControlScheduleMentionUsers.xaml.cs">
       <DependentUpon>UserControlScheduleMentionUsers.xaml</DependentUpon>
     </Compile>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Compile Include="CustomUserControls\UserControlSchedulerphotolikecampiagn.xaml.cs">
       <DependentUpon>UserControlSchedulerphotolikecampiagn.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomUserControls\UserControlSchedul_Comment.xaml.cs">
       <DependentUpon>UserControlSchedul_Comment.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="CustomUserControls\UserControlScrapeUserScrapeFollowing.xaml.cs">
       <DependentUpon>UserControlScrapeUserScrapeFollowing.xaml</DependentUpon>
     </Compile>
@@ -355,6 +394,8 @@
     <Compile Include="CustomUserControls\UserControlScrapeUserWhoLikeUserPhoto.xaml.cs">
       <DependentUpon>UserControlScrapeUserWhoLikeUserPhoto.xaml</DependentUpon>
     </Compile>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Compile Include="CustomUserControls\UserControlSingleAccountUpload.xaml.cs">
       <DependentUpon>UserControlSingleAccountUpload.xaml</DependentUpon>
     </Compile>
@@ -364,18 +405,24 @@
     <Compile Include="CustomUserControls\UserControlScrapeuserbyUsername.xaml.cs">
       <DependentUpon>UserControlScrapeuserbyUsername.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="CustomUserControls\UsercontrolSingleUser.xaml.cs">
       <DependentUpon>UsercontrolSingleUser.xaml</DependentUpon>
     </Compile>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Compile Include="CustomUserControls\UserControlUnlikePhotoByPhotoId.xaml.cs">
       <DependentUpon>UserControlUnlikePhotoByPhotoId.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomUserControls\UserControlUnlikePhotoByUsername.xaml.cs">
       <DependentUpon>UserControlUnlikePhotoByUsername.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="CustomUserControls\usercontrolusesingleAccount.xaml.cs">
       <DependentUpon>usercontrolusesingleAccount.xaml</DependentUpon>
     </Compile>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Compile Include="CustomUserControls\UsercontrolUsingUsernamecomment.xaml.cs">
       <DependentUpon>UsercontrolUsingUsernamecomment.xaml</DependentUpon>
     </Compile>
@@ -388,7 +435,10 @@
     <Compile Include="CustomUserControls\UserControl_FollowerScrape.xaml.cs">
       <DependentUpon>UserControl_FollowerScrape.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="GlobalDeclration.cs" />
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Compile Include="LicenseManager.cs" />
     <Compile Include="LicensingWindow.xaml.cs">
       <DependentUpon>LicensingWindow.xaml</DependentUpon>
@@ -398,6 +448,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PageLoader.cs" />
+<<<<<<< HEAD
     <Compile Include="Pages\PageAccountGraph\UserControlAccountGraph.xaml.cs">
       <DependentUpon>UserControlAccountGraph.xaml</DependentUpon>
     </Compile>
@@ -410,6 +461,11 @@
     <Compile Include="Pages\PageAccount\ProfileImageChnage.xaml.cs">
       <DependentUpon>ProfileImageChnage.xaml</DependentUpon>
     </Compile>
+=======
+    <Compile Include="Pages\PageAccount\ManageAccounts.xaml.cs">
+      <DependentUpon>ManageAccounts.xaml</DependentUpon>
+    </Compile>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Compile Include="Pages\PageCampaigns\UserControlCampaignComment.xaml.cs">
       <DependentUpon>UserControlCampaignComment.xaml</DependentUpon>
     </Compile>
@@ -449,6 +505,7 @@
     <Compile Include="Pages\PageProxy\UserControlProxyUpload.xaml.cs">
       <DependentUpon>UserControlProxyUpload.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Pages\PageScraper\UserControlScarpePhotoCommentUser.xaml.cs" />
     <Compile Include="Pages\PageScraper\UserControlScrapefollower.xaml.cs">
       <DependentUpon>UserControlScrapefollower.xaml</DependentUpon>
@@ -464,6 +521,17 @@
       <DependentUpon>UserControlScrapeUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PageScraper\UserControlScrapeUserPhotoUrl.xaml.cs" />
+=======
+    <Compile Include="Pages\PageScraper\UserControlScrapefollower.xaml.cs">
+      <DependentUpon>UserControlScrapefollower.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageScraper\UserControlScrapeImageUrl.xaml.cs">
+      <DependentUpon>UserControlScrapeImageUrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageScraper\UserControlScrapeUser.xaml.cs">
+      <DependentUpon>UserControlScrapeUser.xaml</DependentUpon>
+    </Compile>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Compile Include="Pages\PageSettings\Appearance.xaml.cs">
       <DependentUpon>Appearance.xaml</DependentUpon>
     </Compile>
@@ -471,21 +539,28 @@
     <Compile Include="Pages\PageSettings\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Pages\ScrapeUsers\UserControlScrapeUsers.xaml.cs">
       <DependentUpon>UserControlScrapeUsers.xaml</DependentUpon>
     </Compile>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Compile Include="Pages\Using Username\UsercontrolUsingUserName.xaml.cs">
       <DependentUpon>UsercontrolUsingUserName.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <Page Include="Pages\PageAccountGraph\UserControlAccountGraph.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Page Include="Pages\PageAccount\ManageAccounts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Pages\PageAccount\ManageProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -494,6 +569,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Page Include="Pages\PageCampaigns\UserControlCampaignComment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -546,34 +623,46 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Pages\PageScraper\UserControlScarpePhotoCommentUser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Page Include="Pages\PageScraper\UserControlScrapefollower.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Pages\PageScraper\UserControlScrapeFollowing.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Page Include="Pages\PageScraper\UserControlScrapeImageUrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Pages\PageScraper\UserControlScrapePhotolikerUser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Page Include="Pages\PageScraper\UserControlScrapeUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Pages\PageScraper\UserControlScrapeUserPhotoUrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Page Include="Pages\PageSettings\Appearance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -582,10 +671,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="Pages\ScrapeUsers\UserControlScrapeUsers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     <Page Include="Pages\Using Username\UsercontrolUsingUserName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

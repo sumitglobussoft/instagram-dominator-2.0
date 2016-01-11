@@ -170,6 +170,7 @@ namespace GramDominator.CustomUserControls
                 GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
             }
         }
+<<<<<<< HEAD
 
         private void chkNotSendRequest_Checked(object sender, RoutedEventArgs e)
         {
@@ -184,5 +185,7 @@ namespace GramDominator.CustomUserControls
         }
 
         
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     }
 }

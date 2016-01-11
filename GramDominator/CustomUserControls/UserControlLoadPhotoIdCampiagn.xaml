@@ -39,7 +39,11 @@
                             <ColumnDefinition Width="115*"/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Grid.Row="0" Content="Load Photo Id To Like : " Margin="0,21,0,18"/>
+<<<<<<< HEAD
                         <TextBox Name="txtPhotolikeUsernameLocation" Text="" Grid.Column="1" Grid.Row="0" IsReadOnly="True" Margin="0,19,0,20" BorderThickness="1,1,1,2"/>
+=======
+                        <TextBox Name="txtPhotolikeUsernameLocation" Text="" Grid.Column="1" Grid.Row="0" IsReadOnly="True" Margin="0,19,0,20"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <Button  BorderBrush="Green" Name="btnPhotolikeLoadUserName" Grid.Column="3" Grid.Row="0" Content="Browse" Margin="0,19,10,20" Click="btnPhotolikeLoadUserName_Click" HorizontalAlignment="Right" Width="105">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
@@ -50,7 +54,11 @@
                             </Button.Template>
                         </Button>
                         <Label Content="No Of Photo to be Like : " Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Margin="0,64,10,0.96" Grid.RowSpan="2"/>
+<<<<<<< HEAD
                         <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,112,0.96" Name="txtPhotolikeCampaignNoOfUserTobelike" TextAlignment="Center" Text="5" Grid.RowSpan="2" BorderThickness="1,1,1,2"/>
+=======
+                        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,112,0.96" Name="txtPhotolikeCampaignNoOfUserTobelike" Text="5" Grid.RowSpan="2"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     </Grid>
                 </GroupBox>
                 <Button   BorderBrush="Green" Grid.Column="3" Content="Save" Name="btnUsercontrolPhotolikeSaveLoadedData" Click="btnUsercontrolPhotolikeSaveLoadedData_Click" Grid.Row="1" Height="25" Margin="0,10" HorizontalAlignment="Right" Width="97">

@@ -5,7 +5,10 @@ using FirstFloor.ModernUI.Windows.Controls;
 using Globussoft;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Data;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -31,19 +34,28 @@ namespace GramDominator.Pages.PageMessage
         public UserControlDirectMessage()
         {
             InitializeComponent();
+<<<<<<< HEAD
             AccountReport_DM();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         }
 
         private void rdo_DMInput_SingleUser_Checked(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
            
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             try
             {
                 ClGlobul.DM_Messagelist.Clear();
                  ClGlobul.DM_UserList.Clear();
+<<<<<<< HEAD
                  txtMessage_DirectMessage_LoadMessages.Clear();
                  txtMessage_DirectMessage_LoadUser.Clear();
 
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             }
             catch { };
             try
@@ -66,8 +78,11 @@ namespace GramDominator.Pages.PageMessage
             {
                 ClGlobul.DM_Messagelist.Clear();
                 ClGlobul.DM_UserList.Clear();
+<<<<<<< HEAD
                 txtMessage_DirectMessage_LoadMessages.Clear();
                 txtMessage_DirectMessage_LoadUser.Clear();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             }
             catch { }
             try
@@ -155,6 +170,7 @@ namespace GramDominator.Pages.PageMessage
                     int maxThread = 25 * processorCount;
                     try
                     {
+<<<<<<< HEAD
                         try
                         {
                             DirectMessageManager.minDelayDMoster = Convert.ToInt32(txt_Delay_DM_Min.Text);
@@ -167,6 +183,11 @@ namespace GramDominator.Pages.PageMessage
                             ModernDialog.ShowMessage("Enter in correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
                             return;
                         }
+=======
+                        DirectMessageManager.minDelayDMoster = Convert.ToInt32(txt_Delay_DM_Min.Text);
+                        DirectMessageManager.maxDelayDMPoster = Convert.ToInt32(txt_Delay_DM_Max.Text);
+                        DirectMessageManager.Nothread_DM = Convert.ToInt32(txt_no_Thread_DM.Text);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 
                         if (rdo_DMInput_MultipleUser.IsChecked == true)
                         {
@@ -198,7 +219,10 @@ namespace GramDominator.Pages.PageMessage
                     objDirectMessage.NoOfThreadsDirectmessagePoster = threads;
                     Thread CommentPosterThread = new Thread(objDirectMessage.StartCommentPoster);
                     CommentPosterThread.Start();
+<<<<<<< HEAD
                     GlobusLogHelper.log.Info("------ DirectMessage Proccess Started ------");
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 }
                 else
                 {
@@ -215,6 +239,7 @@ namespace GramDominator.Pages.PageMessage
 
         DirectMessageManager objDirectMessage = new DirectMessageManager();
 
+<<<<<<< HEAD
         private void btnMessage_DirectMessage_Stop_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -229,6 +254,13 @@ namespace GramDominator.Pages.PageMessage
         }
 
         public void stopMultithreadDirectMsg()
+=======
+
+
+
+
+        private void btnMessage_DirectMessage_Stop_Click(object sender, RoutedEventArgs e)
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         {
             try
             {
@@ -302,7 +334,13 @@ namespace GramDominator.Pages.PageMessage
 
             }
         }
+<<<<<<< HEAD
       
+=======
+
+        
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         private void btnDM_Clear_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -315,6 +353,7 @@ namespace GramDominator.Pages.PageMessage
                 GlobusLogHelper.log.Info("Error :" + ex.StackTrace);
             }
         }
+<<<<<<< HEAD
 
 
 
@@ -413,5 +452,7 @@ namespace GramDominator.Pages.PageMessage
         {
 
         }
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     }
 }

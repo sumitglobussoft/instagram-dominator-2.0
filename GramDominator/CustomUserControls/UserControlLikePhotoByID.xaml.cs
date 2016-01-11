@@ -57,13 +57,19 @@ namespace GramDominator.CustomUserControls
                     
                         if (rdoBtn_LikeBy_PhotoId_SingleUser.IsChecked == true)
                         {
+<<<<<<< HEAD
                             PhotoManager.LikePhoto_ID_path = string.Empty;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                             PhotoManager.LikePhoto_ID = txt_LikePhoto_Id_LoadUsersPath.Text;
                             
                         }
                         if (rdoBtn_LikeBy_PhotoId_MultipleUser.IsChecked == true)
                         {
+<<<<<<< HEAD
                             PhotoManager.LikePhoto_ID = string.Empty;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                             PhotoManager.LikePhoto_ID_path = txt_LikePhoto_Id_LoadUsersPath.Text;
                             //ObjPhotoManager.message_comment = txtMessage_Comment_LoadMessages.Text;
                         }
@@ -100,7 +106,11 @@ namespace GramDominator.CustomUserControls
             try
             {
                 btn_LikePhoto_Id_BrowseUsers.Visibility = Visibility.Hidden;
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             }
             catch (Exception ex)
             {
@@ -109,7 +119,11 @@ namespace GramDominator.CustomUserControls
             try
             {
                 txt_LikePhoto_Id_LoadUsersPath.IsReadOnly = false;
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             }
             catch (Exception ex)
             {
@@ -117,18 +131,25 @@ namespace GramDominator.CustomUserControls
             }
         }
 
+<<<<<<< HEAD
         public void closeEvent()
         {
         }
 
 
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         private void rdoBtn_LikeBy_PhotoId_MultipleUser_Checked(object sender, RoutedEventArgs e)
         {
             try
             {
                 btn_LikePhoto_Id_BrowseUsers.Visibility = Visibility.Visible;
+<<<<<<< HEAD
                 txt_LikePhoto_Id_LoadUsersPath.Visibility = Visibility.Visible;
                 
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             }
             catch { };
             try
@@ -185,16 +206,25 @@ namespace GramDominator.CustomUserControls
             }
         }
 
+<<<<<<< HEAD
         
 
         private void Clear_photolike_ByID_Click(object sender, RoutedEventArgs e)
+=======
+        private void btn_LikePhoto_Id_Clear_Click(object sender, RoutedEventArgs e)
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         {
             try
             {
                 txt_LikePhoto_Id_LoadUsersPath.Text = string.Empty;
+<<<<<<< HEAD
 
             }
             catch (Exception ex)
+=======
+            }
+            catch(Exception ex)
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             {
                 GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
             }

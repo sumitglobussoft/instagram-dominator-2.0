@@ -42,8 +42,13 @@
                         <ColumnDefinition Width="8*"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Message" Margin="0,0,0,10" Grid.Row="1"/>
+<<<<<<< HEAD
                     <TextBox Grid.Column="1" Height="25" TextWrapping="Wrap" Text="" Name="txtMessage_DirectMessage_LoadMessages" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1" BorderThickness="1,1,1,2"/>
                     <Button Content="Browse" BorderBrush="Green"  Grid.Column="4" ToolTip="Upload List of Messages ." Name="btnMessage_DirectMessage_LoadMessages" Click="btnMessage_DirectMessage_LoadMessages_Click" VerticalAlignment="Top" Height="25" Grid.Row="1">
+=======
+                    <TextBox Grid.Column="1" Height="25" TextWrapping="Wrap" Text="" Name="txtMessage_DirectMessage_LoadMessages" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1"/>
+                    <Button Content="Browse" BorderBrush="Green"  Grid.Column="4" Name="btnMessage_DirectMessage_LoadMessages" Click="btnMessage_DirectMessage_LoadMessages_Click" VerticalAlignment="Top" Height="25" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -53,9 +58,15 @@
                         </Button.Template>
                     </Button>
                     <Label Content="User" Height="25" Grid.Row="3" Margin="0,0,0,16" VerticalAlignment="Top" />
+<<<<<<< HEAD
                     <TextBox Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" Text="" Name="txtMessage_DirectMessage_LoadUser" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top" BorderThickness="1,1,1,2"/>
 
                     <Button Content="Browse" BorderBrush="Green" Click="btnMessage_DirectMessage_Loaduser_Click" ToolTip="Upload List of User ." Name="btnMessage_DirectMessage_LoadUser"  Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" Height="25" >
+=======
+                    <TextBox Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" Text="" Name="txtMessage_DirectMessage_LoadUser" Grid.ColumnSpan="2" Height="25" VerticalAlignment="Top"/>
+
+                    <Button Content="Browse" BorderBrush="Green" Click="btnMessage_DirectMessage_Loaduser_Click" Name="btnMessage_DirectMessage_LoadUser"  Grid.Column="4" Grid.Row="3" VerticalAlignment="Top" Height="25" >
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -86,11 +97,19 @@
                         <RowDefinition Height="61*"/>
                     </Grid.RowDefinitions>
                     <Label Content="No.of threads" Height="25" HorizontalAlignment="Left" Margin="0,16,0,0" VerticalAlignment="Top" Width="99"/>
+<<<<<<< HEAD
                     <TextBox Grid.Column="1" TextAlignment="Center" Height="23" Margin="0,16,0,0" TextWrapping="Wrap" Name="txt_no_Thread_DM" Text="5" VerticalAlignment="Top" BorderThickness="1,1,1,2"/>
                     <Label Content="Delay" Height="25" HorizontalAlignment="Left" Margin="0,19,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.536,0.812" Width="99"/>
                     <TextBox Grid.Column="1" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="0,19,0,0" TextWrapping="Wrap" x:Name="txt_Delay_DM_Min" Text="30" VerticalAlignment="Top" Width="78" Grid.Row="1" BorderThickness="1,1,1,2"/>
                     <Label Content="To" Height="25" Grid.Column="3" HorizontalAlignment="Left" Margin="0,19,0,0" VerticalAlignment="Top" Width="33" RenderTransformOrigin="-0.134,2.88" Grid.Row="1"/>
                     <TextBox Grid.Column="4" HorizontalAlignment="Left" TextAlignment="Center" Height="23" Margin="0,19,0,0" TextWrapping="Wrap" x:Name="txt_Delay_DM_Max" Text="40" VerticalAlignment="Top" Width="82" Grid.Row="1" BorderThickness="1,1,1,2"/>
+=======
+                    <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="0,16,0,0" TextWrapping="Wrap" Name="txt_no_Thread_DM" Text="5" VerticalAlignment="Top" Width="99" Grid.ColumnSpan="2"/>
+                    <Label Content="Delay" Height="25" HorizontalAlignment="Left" Margin="0,19,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.536,0.812" Width="99"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="0,19,0,0" TextWrapping="Wrap" x:Name="txt_Delay_DM_Min" Text="30" VerticalAlignment="Top" Width="78" Grid.Row="1"/>
+                    <Label Content="To" Height="25" Grid.Column="3" HorizontalAlignment="Left" Margin="0,19,0,0" VerticalAlignment="Top" Width="33" RenderTransformOrigin="-0.134,2.88" Grid.Row="1"/>
+                    <TextBox Grid.Column="4" HorizontalAlignment="Left" Height="23" Margin="0,19,0,0" TextWrapping="Wrap" x:Name="txt_Delay_DM_Max" Text="40" VerticalAlignment="Top" Width="82" Grid.Row="1"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     <Label Content="(In Second)" Height="25" Grid.Column="6" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Width="77" Grid.Row="1" Grid.ColumnSpan="2"/>
 
 
@@ -105,6 +124,7 @@
                         <RowDefinition Height="34*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
+<<<<<<< HEAD
                         <ColumnDefinition Width="101*"/>
                         <ColumnDefinition Width="46*"/>
                         <ColumnDefinition Width="92*"/>
@@ -112,6 +132,19 @@
                         <ColumnDefinition Width="92*"/>
                     </Grid.ColumnDefinitions>
                     <Button  BorderBrush="Green" Cursor="Hand" VerticalAlignment="Center" ToolTip="Sends Direct message to a particular person by username ."  Name="btnMessage_DirectMessage_Start" Content="START" Height="25" Click="btnMessage_DirectMessage_Start_Click" BorderThickness="1,1,1,2" Grid.Row="1" >
+=======
+                        <ColumnDefinition Width="18*"/>
+                        <ColumnDefinition Width="35*"/>
+                        <ColumnDefinition Width="116*"/>
+                        <ColumnDefinition Width="19*"/>
+                        <ColumnDefinition Width="27*"/>
+                        <ColumnDefinition Width="32*"/>
+                        <ColumnDefinition Width="73*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="72*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button  BorderBrush="Green" Cursor="Hand"  Name="btnMessage_DirectMessage_Start" Content="START" Click="btnMessage_DirectMessage_Start_Click" Grid.Column="2" BorderThickness="1,1,1,2" Height="25" Grid.Row="1" >
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -121,16 +154,27 @@
                         </Button.Template>
                     </Button>
                     <!--<Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_Comment_Stop" Content="STOP"  Grid.Column="4" Height="25" Click="btnMessage_Comment_Stop_Click" Grid.ColumnSpan="3" BorderThickness="1,1,1,2"  Grid.Row="1" Margin="4,4,10,4" />-->
+<<<<<<< HEAD
                     <Button  BorderBrush="Blue"  x:Name="btnDM_Clear_data" Content="CLEAR"  VerticalAlignment="Center" Height="25" Click="btnDM_Clear_Click" BorderThickness="1,1,1,2" Grid.Row="1" Grid.Column="2">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Green" BorderThickness="1,1,1,2" Background="Azure">
+=======
+                    <Button  BorderBrush="Blue" Cursor="Hand" ToolTip="Clear all Data" x:Name="btnDM_Clear_data" Content="CLEAR"  VerticalAlignment="Top" Height="25" Click="btnDM_Clear_Click"  Grid.Column="2" Grid.ColumnSpan="4" BorderThickness="1,1,1,2" Grid.Row="2" Margin="93,0,0,0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="Blue" BorderThickness="1,1,1,2" Background="Azure">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <Button  BorderBrush="Red"  Name="btnMessage_DirectMessage_Stop" VerticalAlignment="Center" Height="25"   Content="STOP" Click="btnMessage_DirectMessage_Stop_Click" Grid.Column="4" BorderThickness="1,1,1,2"  Grid.Row="1">
+=======
+                    <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_DirectMessage_Stop"   Content="STOP" Click="btnMessage_DirectMessage_Stop_Click" Grid.Column="5" Grid.ColumnSpan="3" Height="26" BorderThickness="1,1,1,2"  Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Red" BorderThickness="1,1,1,2" Background="Azure">
@@ -154,6 +198,7 @@
                 </Grid>
             </GroupBox>
             <GroupBox Header="Accounts Report" BorderBrush="Black" Grid.Row="1">
+<<<<<<< HEAD
                 <DataGrid Name="dtGrdDirectMessage_AccountsReport" >
                     <DataGrid.ContextMenu>
                         <ContextMenu>
@@ -165,6 +210,9 @@
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                 </DataGrid>
+=======
+                <DataGrid Name="dtGrdComment_Comment_AccountsReport" />
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             </GroupBox>
         </Grid>
     </Grid>

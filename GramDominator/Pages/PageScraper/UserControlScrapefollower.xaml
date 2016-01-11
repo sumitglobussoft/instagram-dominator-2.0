@@ -5,7 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
              xmlns:app="clr-namespace:GramDominator.Classes"
+<<<<<<< HEAD
              mc:Ignorable="d" d:DesignWidth="750" d:DesignHeight="500"
+=======
+             mc:Ignorable="d" 
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
              >
 
     <Grid>
@@ -16,8 +20,13 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+<<<<<<< HEAD
             <ColumnDefinition Width="479*"/>
             <ColumnDefinition Width="271*"/>
+=======
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="8*"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.RowDefinitions>
@@ -28,9 +37,14 @@
             <GroupBox Header="User Input" Margin="0,0,10,0" BorderBrush="Black">
                 <Grid>
                     <Grid.RowDefinitions>
+<<<<<<< HEAD
                         <RowDefinition Height="39*"/>
                         <RowDefinition Height="45*"/>
                         <RowDefinition Height="28*"/>
+=======
+                        <RowDefinition Height="76*"/>
+                        <RowDefinition Height="9*"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="53*"/>
@@ -41,6 +55,7 @@
                         <ColumnDefinition Width="12*"/>
                         <ColumnDefinition Width="33*"/>
                     </Grid.ColumnDefinitions>
+<<<<<<< HEAD
                     <RadioButton Name="rdoBtn_ScrapeFollower_LoadMessage_SingleUsername" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0" Content="Single Username " Height="25" Checked="rdoBtn_ScrapeFollower_LoadMessage_SingleUsername_Checked" />
                     <RadioButton Name="rdoBtn_ScrapeFollower_LoadMessage_MultipleUsername" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="4" Content="Enter Multiple Username" Height="25" Checked="rdoBtn_ScrapeFollower_LoadMessage_MultipleUsername_Checked" />
 
@@ -59,6 +74,14 @@
                     <Label Content="Select Account : "  Grid.Row="2" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
                     <ComboBox Grid.Column="1" Name="Select_To_Account" Grid.Row="2" Grid.ColumnSpan="5" Height="25">
                         <ComboBoxItem IsSelected="True" Content=""/>
+=======
+                    <!--  <TextBox Name="txtMessage_Like_LoadMessages" Margin="10,28,10,4.308" TextWrapping="Wrap" Text="" Grid.Column="1" Height="25" Grid.ColumnSpan="2"/>-->
+                    <Label Content="User Name" Margin="0,19,0,35"/>
+                    <TextBox Grid.Column="1" Height="23" Margin="0,18,0,0" TextWrapping="Wrap" Text="" Name="Txt_ScrapeFolower" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
+                    <Label Content="Account" Margin="0,47,0,7"/>
+                    <ComboBox Grid.ColumnSpan="3" Grid.Column="1" Name="Select_To_Account" Margin="0,46,0,0" VerticalAlignment="Top">
+                        <ComboBoxItem IsSelected="True" Content="Select Account"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <ComboBoxItem Content=""/>
 
                     </ComboBox>
@@ -81,11 +104,19 @@
                     </Grid.RowDefinitions>
 
                     <Label Content="No. of threads" Height="26" VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0" Margin="0,10,0,11"  />
+<<<<<<< HEAD
                     <TextBox Name="txtMessage_Scrapefollower_NoOfThreads" TextAlignment="Center"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,10,0,11" BorderThickness="1,1,1,2" />
                     <Label Content="Delay"  VerticalAlignment="Center" Height="26" Grid.Column="0" Grid.Row="1" Margin="0,19" />
                     <TextBox Name="txtMessage_Scrapefollower_DelayMin" TextAlignment="Center" Height="26" TextWrapping="Wrap" Text="30" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,19" BorderThickness="1,1,1,2" />
                     <Label Content="To" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Grid.Column="2" Grid.Row="1" Margin="19,18,0,20" Width="19" Grid.ColumnSpan="2" />
                     <TextBox Name="txtMessage_Scrapefollower_Delaymax" TextAlignment="Center" Height="26" TextWrapping="Wrap" Text="40" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5" Grid.Row="1" Margin="0,19" BorderThickness="1,1,1,2"/>
+=======
+                    <TextBox Name="txtMessage_Scrapefollower_NoOfThreads"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,10,0,11" />
+                    <Label Content="Delay"  VerticalAlignment="Center" Height="26" Grid.Column="0" Grid.Row="1" Margin="0,19" />
+                    <TextBox Name="txtMessage_Scrapefollower_DelayMin" Height="26" TextWrapping="Wrap" Text="30" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,19" />
+                    <Label Content="To" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Grid.Column="2" Grid.Row="1" Margin="19,18,0,20" Width="19" Grid.ColumnSpan="2" />
+                    <TextBox Name="txtMessage_Scrapefollower_Delaymax" Height="26" TextWrapping="Wrap" Text="40" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5" Grid.Row="1" Margin="0,19"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     <Label Content="(In Seconds)"  VerticalAlignment="Center" Height="26" Grid.Column="6" Grid.Row="1" Margin="0,19"/>
                     <Label Content="View Detail" Height="26" VerticalAlignment="Center"  Grid.Column="3" Grid.Row="0" Margin="0,10,0,11" Grid.ColumnSpan="3"  />
                     <ComboBox Grid.Column="6" Name="Scrapefollower_detail" SelectionChanged="Scrapefollower_detail_SelectionChanged" HorizontalAlignment="Left" Margin="0,9,0,0" VerticalAlignment="Top" Width="65">
@@ -104,6 +135,7 @@
                         <RowDefinition Height="6*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
+<<<<<<< HEAD
                         <ColumnDefinition Width="65*"/>
                         <ColumnDefinition Width="34*"/>
                         <ColumnDefinition Width="65*"/>
@@ -111,6 +143,18 @@
                         <ColumnDefinition Width="65*"/>
                     </Grid.ColumnDefinitions>
                     <Button  BorderBrush="Green" Cursor="Hand"  Name="btnMessage_Scrapefollower_Start" Content="START" VerticalAlignment="Center" Height="25" Click="btnMessage_Scrapefollower_Start_Click" BorderThickness="1,1,1,2" Grid.Row="1">
+=======
+                        <ColumnDefinition Width="31*"/>
+                        <ColumnDefinition Width="60*"/>
+                        <ColumnDefinition Width="27*"/>
+                        <ColumnDefinition Width="15*"/>
+                        <ColumnDefinition Width="26*"/>
+                        <ColumnDefinition Width="54*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="28*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button  BorderBrush="Green" Cursor="Hand"  Name="btnMessage_Scrapefollower_Start" Content="START" VerticalAlignment="Center" Height="26" Click="btnMessage_Scrapefollower_Start_Click" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -119,7 +163,11 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_Scrapefollower_Stop" Content="STOP" VerticalAlignment="Center" Grid.Column="4" Height="25" Click="btnMessage_Scrapefollower_Stop_Click" BorderThickness="1,1,1,2" Grid.Row="1">
+=======
+                    <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_Scrapefollower_Stop" Content="STOP" VerticalAlignment="Center" Grid.Column="4" Height="26" Click="btnMessage_Scrapefollower_Stop_Click" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Red" BorderThickness="1,1,1,2" Background="Azure">
@@ -128,10 +176,17 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <Button  BorderBrush="Green" Cursor="Hand"  x:Name="btnMessage_Scrapefollower_Clear" Content="CLEAR" VerticalAlignment="Center" Height="25" Click="btnMessage_Scrapefollower_Clear_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="1,0,0,0" Grid.Column="2">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Green" BorderThickness="1,1,1,2" Background="Azure">
+=======
+                    <Button  BorderBrush="Blue" Cursor="Hand"  x:Name="btnMessage_Scrapefollower_Clear" Content="CLEAR" VerticalAlignment="Center" Height="26" Click="btnMessage_Scrapefollower_Clear_Click" Grid.Column="2" Grid.ColumnSpan="3" BorderThickness="1,1,1,2" Grid.Row="2" Margin="0,5,0,0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="Blue" BorderThickness="1,1,1,2" Background="Azure">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
@@ -153,6 +208,7 @@
                 </Grid>
             </GroupBox>
             <GroupBox Header="Accounts Report" Grid.Row="1" BorderBrush="Black">
+<<<<<<< HEAD
                 <DataGrid Name="dtGrdScrape_Scrapefollower_AccountsReport" >
                     <DataGrid.ContextMenu>
                         <ContextMenu>
@@ -164,6 +220,9 @@
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                 </DataGrid>
+=======
+                <DataGrid Name="dtGrdMessage_ScrapeUser_AccountsReport" />
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             </GroupBox>
         </Grid>
     </Grid>

@@ -52,7 +52,10 @@
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
+<<<<<<< HEAD
                             <RadioButton x:Name="chk_skipPrivate_user" GroupName="chek_follower_cap" Content="Skip Private User" Margin="0,5,0,3" Grid.Column="3" Height="25" VerticalAlignment="Center" Checked="chkSkip_private_user_checked"/>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         </Grid>
                     </Grid>
                 </GroupBox>

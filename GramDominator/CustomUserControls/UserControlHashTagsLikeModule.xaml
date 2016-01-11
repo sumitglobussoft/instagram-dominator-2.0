@@ -19,7 +19,11 @@
                 <RowDefinition Height="114*"/>
             </Grid.RowDefinitions>
 
+<<<<<<< HEAD
             <TextBlock Grid.Row="0" Text="Photo Like By HashTag" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="102,0,108,216" Grid.RowSpan="2" Width="290"/>
+=======
+            <TextBlock Grid.Row="0" Text="Photo Like By HashTags" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="102,0,108,216" Grid.RowSpan="2" Width="290"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             <GroupBox Header="Input" Grid.Row="1" Margin="0,0,0,117">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -37,8 +41,13 @@
                     <RadioButton Name="rdoBtn_HashTags_SingleUser" IsChecked="True" Content="Single User" Grid.Column="1" Height="25" GroupName="single_multiple" HorizontalAlignment="Right"  Checked="rdoBtn_LikeBy_SingleUser_HashsTags_Checked" Margin="0,52,0,13" Width="119" Grid.Row="1" Grid.ColumnSpan="2"  />
                     <RadioButton Name="rdoBtn_LikeBy_PhotoUser_MultipleUser" Content="Multiple Users" Grid.Column="3" Height="25" GroupName="single_multiple" HorizontalAlignment="Right" Checked="rdoBtn_HashTags_MultipleUser_Checked" Margin="0,52,0,13" Width="142" Grid.ColumnSpan="2" Grid.Row="1"/>
                     <Label Name="Likeby_Username" Content="User Name" Grid.Column="0" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,0,0,63" Grid.ColumnSpan="2" Width="111" Grid.Row="1"/>
+<<<<<<< HEAD
                     <TextBox Name="txt_HashTags_like_Username_LoadUsersPath" IsReadOnly="False" Grid.Column="2" Margin="0,0,0,63" Text="" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Grid.Row="1" BorderThickness="1,1,1,2"/>
                     <Button Name="btn_HashTags_like_Username_BrowseUsers" Visibility="Hidden" Content="Browse" Grid.Column="5" Margin="10,0,10,63" BorderBrush="Green" Click="btn_HashTags_like_unlike_User_BrowseUsers_Click" Grid.Row="1">
+=======
+                    <TextBox Name="txt_HashTags_like_Username_LoadUsersPath" Grid.Column="2" Margin="0,0,0,63" Text="" VerticalContentAlignment="Center" Grid.ColumnSpan="3" Grid.Row="1"/>
+                    <Button Name="btn_HashTags_like_Username_BrowseUsers" Content="Browse" Grid.Column="5" Margin="10,0,10,63" BorderBrush="Green" Click="btn_HashTags_like_unlike_User_BrowseUsers_Click" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -61,10 +70,25 @@
                         <ColumnDefinition Width="80*"/>
                         <ColumnDefinition Width="11*"/>
                     </Grid.ColumnDefinitions>
+<<<<<<< HEAD
 
                     <Label Content="No.Photo" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Height="26" Width="84"/>
                     <TextBox Grid.Column="1" Name="Txt_Hashlike_count" HorizontalAlignment="Left" TextAlignment="Center" Height="25" Margin="0,22,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="100" BorderThickness="1,1,1,2"/>
                     <Button BorderBrush="Blue" Content="Clear" x:Name="Hashtags_Clear" Grid.Column="5" HorizontalAlignment="Right" Height="25" Margin="0,22,10,0" VerticalAlignment="Top" Width="76" Click="Hashtags_clear_Click" Grid.ColumnSpan="2">
+=======
+                    <Button BorderBrush="Green" Content="Save" Name="Hashtags_save" Height="25" Grid.Column="5" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Width="80" Click="Hashtags_save_Click">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Label Content="No.Photo" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top" Height="26" Width="84"/>
+                    <TextBox Grid.Column="1" Name="Txt_Hashlike_count" HorizontalAlignment="Left" Height="25" Margin="0,22,0,0" TextWrapping="Wrap" Text="5" VerticalAlignment="Top" Width="100"/>
+                    <Button BorderBrush="Blue" Content="Clear" x:Name="Hashtags_Clear" Grid.Column="3" HorizontalAlignment="Right" Height="25" Margin="0,22,0,0" VerticalAlignment="Top" Width="76" Click="Hashtags_clear_Click">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Blue" BorderThickness="1,1,1,2" Background="Azure">

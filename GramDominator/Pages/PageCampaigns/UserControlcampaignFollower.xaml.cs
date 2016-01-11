@@ -365,6 +365,7 @@ namespace GramDominator.Pages.PageCampaigns
 
 
         }
+<<<<<<< HEAD
 
         private void chkSkip_private_user_checked(object sender, RoutedEventArgs e)
         {
@@ -377,5 +378,7 @@ namespace GramDominator.Pages.PageCampaigns
                 GlobusLogHelper.log.Info("Error:" + ex.StackTrace);
             }
         }
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     }
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,33 @@ namespace LicensingManager
         public string FetchMacId()            
         {
 
+=======
+﻿using BaseLib;
+using FirstFloor.ModernUI.Windows.Controls;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.NetworkInformation;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Management;
+using BaseLibID;
+
+namespace GramDominator
+{
+    class LicenseManager
+    {
+
+        public void CreateLicense()
+        {
+
+        }
+
+
+        public string FetchMacId()
+        {
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             string macAddresses = "";
             try
             {
@@ -48,7 +76,11 @@ namespace LicensingManager
             }
             catch (Exception ex)
             {
+<<<<<<< HEAD
             
+=======
+                // MessageBox.Show(ex.Message);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             }
             return macAddresses;
         }
@@ -71,7 +103,11 @@ namespace LicensingManager
                 }
             }
             return cpuInfo;
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         }
 
 
@@ -82,11 +118,19 @@ namespace LicensingManager
         /// If status is Active, MainFrm starts
         /// </summary>
         public bool ValidateCPUID(ref string statusMessage, string cpuID)
+<<<<<<< HEAD
          {
             //string cpuID = getCPUID();
             try
             {
                 #region Drct
+=======
+        {
+            //string cpuID = getCPUID();
+            try
+            {
+                //#region Drct
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 //string cpuID = FetchMacId();
                 //string SelectQuery = "Select * from users where cpuid='" + cpuID + "'";
                 //DataSet ds = DataBaseHandler.SelectQuery(SelectQuery, "users");
@@ -109,8 +153,13 @@ namespace LicensingManager
                 //        return false;
                 //    }
                 //}
+<<<<<<< HEAD
                 
                 #endregion
+=======
+
+              //  #endregion
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 
                 #region Through php
 
@@ -185,7 +234,11 @@ namespace LicensingManager
                         if (result == MessageBoxResult.Yes)
                         {
                         }
+<<<<<<< HEAD
                       //  Modu.Show("Verification of your txn is under process.\n Please wait for your Transaction to be verified");
+=======
+                        //  Modu.Show("Verification of your txn is under process.\n Please wait for your Transaction to be verified");
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         return false;
                         // DisableControls();
                     }
@@ -209,7 +262,11 @@ namespace LicensingManager
                     {
                         statusMessage = "Some Error in Status Field";
                         return false;
+<<<<<<< HEAD
                     }                    
+=======
+                    }
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 }
                 else
                 {
@@ -228,7 +285,11 @@ namespace LicensingManager
             return false;
         }
 
+<<<<<<< HEAD
        
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 
         public string RegisterUser(string Username, string Password, string cpuID, string TransactionID, string Email, string servr)
         {
@@ -248,7 +309,11 @@ namespace LicensingManager
                 if (string.IsNullOrEmpty(res))
                 {
                     MessageBox.Show("Error Connecting to Facedominator Server,Please check if www.facedominator.com is opening for you.");
+<<<<<<< HEAD
                    // Application.Exit();
+=======
+                    // Application.Exit();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 }
             }
             catch (Exception ex)
@@ -262,12 +327,20 @@ namespace LicensingManager
         /// Checks the status of the CPUID from Database
         /// If status is Active, MainFrm starts
         /// </summary>
+<<<<<<< HEAD
         public bool ValidateCPUID(ref string statusMessage, string servr, ref string username,ref string Password , ref string txnID, string freeTrialKey, string cpuID,ref string Email)
+=======
+        public bool ValidateCPUID(ref string statusMessage, string servr, ref string username, ref string Password, ref string txnID, string freeTrialKey, string cpuID, ref string Email)
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         {
             //string cpuID = getCPUID();
             try
             {
+<<<<<<< HEAD
               
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 #region Drct
                 //string cpuID = FetchMacId();
                 //string SelectQuery = "Select * from users where cpuid='" + cpuID + "'";
@@ -296,7 +369,11 @@ namespace LicensingManager
 
                 #region Through php
 
+<<<<<<< HEAD
                
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 //string cpuID = FetchMacId();
                 //ChilkatHttpHelpr HttpHelpr = new ChilkatHttpHelpr();
                 HttpHelpr = new ChilkatHttpHelpr();
@@ -305,7 +382,11 @@ namespace LicensingManager
                 {
                     string res = string.Empty;
                     res = HttpHelpr.GetHtml("http://" + servr + "/GetUserData.php?cpid=" + cpuID + "");
+<<<<<<< HEAD
                    
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     if (string.IsNullOrEmpty(res))
                     {
                         System.Threading.Thread.Sleep(1000);
@@ -318,7 +399,11 @@ namespace LicensingManager
                     {
                         string activationstatus = string.Empty;
                         string dateTime = string.Empty;
+<<<<<<< HEAD
                   
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         string trimmed_response = res.Replace("<pre>", "").Replace("</pre>", "").Trim().ToLower();
 
                         string[] array_status = System.Text.RegularExpressions.Regex.Split(trimmed_response, "<:>");
@@ -401,22 +486,36 @@ namespace LicensingManager
                                 return true;
                             }
 
+<<<<<<< HEAD
                      
                             
 
                            
+=======
+
+
+
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         }
                         else if (activationstatus.ToLower() == "active")
                         {
                             statusMessage = "active";
+<<<<<<< HEAD
                           
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                             return true;
                             // DisableControls();
                         }
                         else if (activationstatus.ToLower() == "nonactive")
                         {
                             statusMessage = "nonactive";
+<<<<<<< HEAD
                           
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                             MessageBox.Show("Verification of your txn is under process.\n Please wait for your Transaction to be verified.\n Please Contact To Support Team to activate your license,   Skype Id Is :- Facedominatorsupport");
                             return false;
                             //DisableControls();
@@ -515,5 +614,9 @@ namespace LicensingManager
             }
             catch { return false; }
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     }
 }

@@ -16,8 +16,11 @@ using BaseLib;
 using BaseLibID;
 using HashTagsManager;
 using FirstFloor.ModernUI.Windows.Controls;
+<<<<<<< HEAD
 using Follower;
 using Comment;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 
 namespace GramDominator.CustomUserControls
 {
@@ -38,7 +41,10 @@ namespace GramDominator.CustomUserControls
                 if(rdo_DivideData_Equally.IsChecked==true)
                 {
                     hash_managerlibry.DivideEqual = true;
+<<<<<<< HEAD
                    
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     ModernDialog.ShowMessage("Your Data Has Been Saved Successfully!!", "Success Message", MessageBoxButton.OK);
                 }
                 if(rdo_DivideData_Mannully.IsChecked == true)
@@ -46,10 +52,13 @@ namespace GramDominator.CustomUserControls
                     hash_managerlibry.DivideByUser = true;
                     hash_managerlibry.Divide_data_NoUser = Convert.ToInt32(txt_DivideNoperUser.Text);
                     hash_managerlibry.DivideData_Thread = Convert.ToInt32(txt_Divide_noThread.Text);
+<<<<<<< HEAD
                     FollowerFollowing.Divide_data_NoUser = Convert.ToInt32(txt_DivideNoperUser.Text);
                     FollowerFollowing.DivideData_Thread = Convert.ToInt32(txt_Divide_noThread.Text);
                     CommentManager.Divide_data_NoUser = Convert.ToInt32(txt_DivideNoperUser.Text);
                     CommentManager.DivideData_Thread = Convert.ToInt32(txt_Divide_noThread.Text);
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     ModernDialog.ShowMessage("Your Data Has Been Saved Successfully!!", "Success Message", MessageBoxButton.OK);
                 }
             }

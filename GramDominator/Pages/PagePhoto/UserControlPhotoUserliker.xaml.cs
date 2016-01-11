@@ -1,11 +1,17 @@
 ﻿using BaseLib;
 using BaseLibID;
+<<<<<<< HEAD
 using FirstFloor.ModernUI.Windows.Controls;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 using Globussoft;
 using Photo;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Data;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -31,7 +37,10 @@ namespace GramDominator.Pages.PagePhoto
         public UserControlPhotoUserliker()
         {
             InitializeComponent();
+<<<<<<< HEAD
             AccountReport_likeLiker();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         }
 
         private void btu_UserPhoto_liker_Click(object sender, RoutedEventArgs e)
@@ -75,6 +84,7 @@ namespace GramDominator.Pages.PagePhoto
         {
             try
             {
+<<<<<<< HEAD
                 txt_UserPhoto_liker.Clear();
             }
             catch(Exception ex)
@@ -83,6 +93,8 @@ namespace GramDominator.Pages.PagePhoto
             }
             try
             {
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 btu_UserPhoto_liker.Visibility = Visibility.Hidden;
             }
             catch { };
@@ -117,6 +129,7 @@ namespace GramDominator.Pages.PagePhoto
                 ObjPhotoManager_new.isStopLikerPoster = false;
                 ObjPhotoManager_new.lstThreadsLikerPoster.Clear();
 
+<<<<<<< HEAD
                 if(string.IsNullOrEmpty(txt_UserPhoto_liker.Text))
                 {
                     GlobusLogHelper.log.Info("Uplaod Enter Username");
@@ -124,6 +137,8 @@ namespace GramDominator.Pages.PagePhoto
                     return;
                 }
 
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 Regex checkNo = new Regex("^[0-9]*$");
 
                 int processorCount = objUtils.GetProcessor();
@@ -141,18 +156,28 @@ namespace GramDominator.Pages.PagePhoto
                 }
                 catch (Exception ex)
                 {
+<<<<<<< HEAD
                     GlobusLogHelper.log.Info("Enter in Correct Formate/Fill all Field");
                     ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
+=======
+                    GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     return;
                 }
                 if (rdo_Userphoto_liker.IsChecked == true)
                 {
+<<<<<<< HEAD
                     PhotoManager.txt_username_Liker_Multiple = string.Empty;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     PhotoManager.txt_username_Liker_single = txt_UserPhoto_liker.Text;
                 }
                 if (rdo_Userphoto_liker_multipleUser.IsChecked ==true)
                 {
+<<<<<<< HEAD
                     PhotoManager.txt_username_Liker_single = string.Empty;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     PhotoManager.txt_username_Liker_Multiple = txt_UserPhoto_liker.Text;
                 }
 
@@ -166,9 +191,17 @@ namespace GramDominator.Pages.PagePhoto
                     threads = 25;
                 }
                 ObjPhotoManager_new.NoOfThreadsLikePoster = threads;
+<<<<<<< HEAD
                 Thread CommentPosterThread = new Thread(ObjPhotoManager_new.StartLikePoster);
                 CommentPosterThread.Start();
                 GlobusLogHelper.log.Info("------ PhotoUserLiker Proccess Started ------");
+=======
+
+
+
+                Thread CommentPosterThread = new Thread(ObjPhotoManager_new.StartLikePoster);
+                CommentPosterThread.Start();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             }
             catch (Exception ex)
             {
@@ -177,6 +210,7 @@ namespace GramDominator.Pages.PagePhoto
 
         }
         PhotoManager ObjPhotoManager_new = new PhotoManager();
+<<<<<<< HEAD
         QueryManager Qm = new QueryManager();
 
         private void btnMessage_Userphoto_liker_Stop_Click(object sender, RoutedEventArgs e)
@@ -193,6 +227,11 @@ namespace GramDominator.Pages.PagePhoto
         }
 
         public void stopMultiThreadPhotoUserLiker()
+=======
+
+
+        private void btnMessage_Userphoto_liker_Stop_Click(object sender, RoutedEventArgs e)
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         {
             try
             {
@@ -237,6 +276,7 @@ namespace GramDominator.Pages.PagePhoto
             }
         }
 
+<<<<<<< HEAD
         public void AccountReport_likeLiker()
         {
             try
@@ -337,6 +377,9 @@ namespace GramDominator.Pages.PagePhoto
                 GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
             }
         }
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 
 
     }

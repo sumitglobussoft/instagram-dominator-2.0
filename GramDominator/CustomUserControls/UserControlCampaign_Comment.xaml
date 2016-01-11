@@ -43,7 +43,11 @@
                     </Grid.RowDefinitions>
 
                     <Label Name="Message" Content="Comment Message" Grid.Column="1" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,94,0,47" Grid.ColumnSpan="2" Width="145"/>
+<<<<<<< HEAD
                     <TextBox Name="txt_Campaign_Comment_Message" Grid.Column="3" IsReadOnly="True" Height="25" Margin="0,94,10,47" VerticalContentAlignment="Center" Text="" Grid.ColumnSpan="2" BorderThickness="1,1,1,2"/>
+=======
+                    <TextBox Name="txt_Campaign_Comment_Message" Grid.Column="3" IsReadOnly="True" Height="25" Margin="0,94,10,47" VerticalContentAlignment="Center" Text="" Grid.ColumnSpan="2"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     <Button Name="btn_Campaign_Comment_BrowseUsers" Content="Browse" Grid.Column="5" Height="25" Margin="0,50,0,89" BorderBrush="Green" Click="btn_Campaign_Photoid_BrowseUsers_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
@@ -54,7 +58,11 @@
                         </Button.Template>
                     </Button>
                     <Label x:Name="Username_Copy" Content="Photo ID" Grid.Column="1" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,50,0,89" Grid.ColumnSpan="2" Width="145"/>
+<<<<<<< HEAD
                     <TextBox x:Name="txt_Campaign_Comment_UserName" IsReadOnly="True" Grid.Column="3" Height="25" Margin="0,50,10,89" Text="" VerticalContentAlignment="Center" Grid.ColumnSpan="2" BorderThickness="1,1,1,2"/>
+=======
+                    <TextBox x:Name="txt_Campaign_Comment_UserName" IsReadOnly="True" Grid.Column="3" Height="25" Margin="0,50,10,89" Text="" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                     <Button x:Name="btn_Campaign_Comment_messagebrwer"  Content="Browse" Grid.Column="5" Height="25" Margin="0,94,0,49" BorderBrush="Green" Click="btn_Campaign_Comment_messagebrwer_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
@@ -76,7 +84,11 @@
                 </Button.Template>
             </Button>
             <Label Content="No. of Photo" Margin="32,228,0,19" Height="26" VerticalAlignment="Center" Grid.Row="1"/>
+<<<<<<< HEAD
             <TextBox Name="txtMessage_Campaign_comment_NoOfphoto" TextAlignment="Center" Margin="13,228,0,19" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" BorderThickness="1,1,1,2"/>
+=======
+            <TextBox Name="txtMessage_Campaign_comment_NoOfphoto" Margin="13,228,0,19" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             <Button x:Name="btn_Campaign_comment_Clear" BorderBrush="Blue" Content="Clear" Grid.Row="1" Grid.Column="3" Height="25" Click="btn_Campaign_Comment_Clear_click" Margin="0,229,0,19">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">

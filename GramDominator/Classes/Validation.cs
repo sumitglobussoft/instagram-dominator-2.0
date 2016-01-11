@@ -12,7 +12,11 @@ using Comment;
 
 namespace GramDominator.Classes
 {
+<<<<<<< HEAD
     public class Validation : NotifyPropertyChanged, IDataErrorInfo
+=======
+    class Validation : NotifyPropertyChanged, IDataErrorInfo
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     {
         private string _delaymaximum = string.Empty;
         private string _delayminimum = string.Empty;
@@ -24,6 +28,7 @@ namespace GramDominator.Classes
         private string _NoFollower = string.Empty;
         private string _nounfollow = string.Empty;
         private string _NoPhoto = string.Empty;
+<<<<<<< HEAD
         private string _Usernmame = string.Empty;
         private bool _Ischecked;
 
@@ -59,6 +64,9 @@ namespace GramDominator.Classes
                 }
             }
         }
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 
         public string maxi
         {
@@ -451,6 +459,7 @@ namespace GramDominator.Classes
                 {
                     return string.IsNullOrEmpty(this._password) ? "Password Required" : null;
                 }
+<<<<<<< HEAD
                 if (columnName == "Username")
                 {
                     return string.IsNullOrEmpty(this._password) ? "Password Required" : null;
@@ -459,6 +468,8 @@ namespace GramDominator.Classes
                 {
                     //return bool.IsNullOrEmpty(this._password) ? "Password Required" : null;
                 }
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 return null;
             }
         }

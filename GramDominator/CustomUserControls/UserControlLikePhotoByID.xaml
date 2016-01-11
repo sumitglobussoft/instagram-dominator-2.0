@@ -16,6 +16,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="345*"/>
                 <ColumnDefinition Width="118*"/>
+<<<<<<< HEAD
                 <ColumnDefinition Width="137*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -26,6 +27,19 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Photo Like By Id" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="231,0,94,0" Grid.ColumnSpan="2"/>
             <GroupBox Header="Input" Grid.Row="1" Grid.ColumnSpan="3">
+=======
+                <ColumnDefinition Width="22*"/>
+                <ColumnDefinition Width="115*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24*"/>
+                <RowDefinition Height="109*"/>
+                <RowDefinition Height="34*"/>
+                <RowDefinition Height="83*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Photo Like By Id" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Margin="231,0,94,0" Grid.ColumnSpan="2"/>
+            <GroupBox Header="Input" Grid.Row="1" Grid.ColumnSpan="4">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="135*"/>
@@ -38,11 +52,19 @@
                         <RowDefinition Height="41*"/>
                         <RowDefinition Height="46*"/>
                     </Grid.RowDefinitions>
+<<<<<<< HEAD
                     <RadioButton Name="rdoBtn_LikeBy_PhotoId_SingleUser" IsChecked="True"  Content="Single ID" Grid.Row="0" Grid.Column="2" Height="25" GroupName="ScrapeByKeyWord" HorizontalAlignment="Right"  Checked="rdoBtn_LikeBy_PhotoID_SingleUser_Checked" Margin="0,8" Width="109"  />
                     <RadioButton Name="rdoBtn_LikeBy_PhotoId_MultipleUser"  Content="Multiple ID's" Grid.Row="0" Grid.Column="3" Height="25" GroupName="ScrapeByKeyWord" HorizontalAlignment="Right" Checked="rdoBtn_LikeBy_PhotoId_MultipleUser_Checked" Margin="0,8" Width="171"/>
                     <Label Name="Likeby_ID" Content="PHOTO ID" Grid.Row="1" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,11" Grid.ColumnSpan="2" Width="111"/>
                     <TextBox Name="txt_LikePhoto_Id_LoadUsersPath" IsReadOnly="False" Grid.Row="1" Grid.Column="2" Height="25" Text="" Margin="10,11,0,11" VerticalContentAlignment="Center" Grid.ColumnSpan="2" BorderThickness="1,1,1,2"/>
                     <Button Name="btn_LikePhoto_Id_BrowseUsers" Visibility="Hidden"  Content="Browse" Grid.Row="1" Grid.Column="4" Height="25" Margin="10,11" BorderBrush="Green" Click="btn_LikePhoto_Id_BrowseUsers_Click">
+=======
+                    <RadioButton Name="rdoBtn_LikeBy_PhotoId_SingleUser" IsChecked="True" Content="Single User" Grid.Row="0" Grid.Column="0" Height="25" GroupName="ScrapeByKeyWord" HorizontalAlignment="Right"  Checked="rdoBtn_LikeBy_PhotoID_SingleUser_Checked"  />
+                    <RadioButton Name="rdoBtn_LikeBy_PhotoId_MultipleUser" Content="Multiple Users" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="25" GroupName="ScrapeByKeyWord" HorizontalAlignment="Right" Checked="rdoBtn_LikeBy_PhotoId_MultipleUser_Checked"/>
+                    <Label Name="Likeby_ID" Content="PHOTO ID" Grid.Row="1" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,11" Grid.ColumnSpan="2" Width="111"/>
+                    <TextBox Name="txt_LikePhoto_Id_LoadUsersPath" Grid.Row="1" Grid.Column="2" Height="25" Text="" Margin="10,11,0,11" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
+                    <Button Name="btn_LikePhoto_Id_BrowseUsers" Content="Browse" Grid.Row="1" Grid.Column="4" Height="25" Margin="10,11" BorderBrush="Green" Click="btn_LikePhoto_Id_BrowseUsers_Click">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -53,7 +75,11 @@
                     </Button>
                 </Grid>
             </GroupBox>
+<<<<<<< HEAD
             <Button Content="Clear" Grid.Column="2" BorderBrush="Green" Name="Clear_photolike_ByID" HorizontalAlignment="Left" Margin="55,5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="82" Click="Clear_photolike_ByID_Click">
+=======
+            <Button Name="btn_LikePhoto_Id_SaveUser" BorderBrush="Green" Content="Save" Grid.Row="2" Grid.Column="3" Height="25" Click="btn_LikePhoto_Id_SaveUser_Click" Margin="0,5">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -62,6 +88,18 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+<<<<<<< HEAD
+=======
+            <Button x:Name="btn_LikePhoto_Id_Clear" BorderBrush="Blue" Content="Clear" Grid.Row="2" Height="25" Click="btn_LikePhoto_Id_Clear_Click" Margin="0,5" RenderTransformOrigin="0.296,0.52" Grid.Column="1">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderBrush="Blue" BorderThickness="1,1,1,2" Background="Azure">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         </Grid>
     </ScrollViewer>
 </UserControl>

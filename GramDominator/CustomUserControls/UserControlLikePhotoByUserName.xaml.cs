@@ -127,13 +127,19 @@ namespace GramDominator.CustomUserControls
 
                     if (rdoBtn_LikeBy_PhotoUser_SingleUser.IsChecked == true)
                     {
+<<<<<<< HEAD
                         PhotoManager.LikePhoto_username_path = string.Empty;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         PhotoManager.LikePhoto_Username = txt_LikePhoto_Username_LoadUsersPath.Text;
 
                     }
                     if (rdoBtn_LikeBy_PhotoUser_MultipleUser.IsChecked == true)
                     {
+<<<<<<< HEAD
                         PhotoManager.LikePhoto_Username = string.Empty;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         PhotoManager.LikePhoto_username_path = txt_LikePhoto_Username_LoadUsersPath.Text;
                         //ObjPhotoManager.message_comment = txtMessage_Comment_LoadMessages.Text;
                     }
@@ -171,7 +177,10 @@ namespace GramDominator.CustomUserControls
                 GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
             }
         }
+<<<<<<< HEAD
 
        
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     }
 }

@@ -1,11 +1,17 @@
 ﻿using BaseLib;
+<<<<<<< HEAD
 using BaseLibID;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 using FirstFloor.ModernUI.Windows.Controls;
 using GramDominator.CustomUserControls;
 using Photo;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Data;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -31,12 +37,18 @@ namespace GramDominator.Pages.PagePhoto
         public UserControlLikePhoto()
         {
             InitializeComponent();
+<<<<<<< HEAD
             AccountReport_PhotoLike();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         }
 
 
         Utils objUtils = new Utils();
+<<<<<<< HEAD
         QueryManager Qm = new QueryManager();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         private void btnMessage_Like_Start_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -60,8 +72,12 @@ namespace GramDominator.Pages.PagePhoto
                     }
                     catch (Exception ex)
                     {
+<<<<<<< HEAD
                         GlobusLogHelper.log.Error("Enter in Correct Formate/Fill all Field");
                         ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
+=======
+                        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         return;
                     }
 
@@ -75,9 +91,17 @@ namespace GramDominator.Pages.PagePhoto
                         threads = 25;
                     }
                     ObjPhotoManager_new.NoOfThreadsLikePoster = threads;
+<<<<<<< HEAD
                     Thread CommentPosterThread = new Thread(ObjPhotoManager_new.StartLikePoster);
                     CommentPosterThread.Start();
                     GlobusLogHelper.log.Info("------ LikePhoto Proccess Started ------");
+=======
+
+
+
+                    Thread CommentPosterThread = new Thread(ObjPhotoManager_new.StartLikePoster);
+                    CommentPosterThread.Start();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 }
             catch (Exception ex)
             {
@@ -92,6 +116,7 @@ namespace GramDominator.Pages.PagePhoto
         {
             try
             {
+<<<<<<< HEAD
                 Thread objStopLikePhoto = new Thread(stopMultiThreadLikePhoto);
                 objStopLikePhoto.Start();
             }
@@ -105,6 +130,8 @@ namespace GramDominator.Pages.PagePhoto
         {
             try
             {
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 ObjPhotoManager_new.isStopLikePoster = true;
 
                 List<Thread> lstTemp = new List<Thread>();
@@ -134,6 +161,7 @@ namespace GramDominator.Pages.PagePhoto
             GlobusLogHelper.log.Debug("Process Stopped !");
         }
 
+<<<<<<< HEAD
 
         public void closeEvent()
         {
@@ -141,12 +169,15 @@ namespace GramDominator.Pages.PagePhoto
 
         }
 
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         private void Select_To_LikePhoto_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
                 if (Select_To_LikePhoto.SelectedIndex == 1)
                 {
+<<<<<<< HEAD
                     UserControlLikePhotoByID obj_UserControlLikePhotoByID = new UserControlLikePhotoByID();
                     var window = new ModernDialog
                     {
@@ -337,6 +368,30 @@ namespace GramDominator.Pages.PagePhoto
             catch (Exception ex)
             {
                 GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
+=======
+                    var window = new ModernDialog
+                    {
+                        Content = new UserControlLikePhotoByID()
+                    };
+                    window.MinHeight = 300;
+                    window.MinWidth = 700;
+                    window.ShowDialog();
+                }
+                if (Select_To_LikePhoto.SelectedIndex == 2)
+                {
+                    var window = new ModernDialog
+                    {
+                        Content = new UserControlLikePhotoByUserName()
+                    };
+                    window.MinHeight = 300;
+                    window.MinWidth = 700;
+                    window.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+               // GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             }
         }
 

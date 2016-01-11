@@ -37,11 +37,19 @@
                         <RowDefinition Height="41*"/>
                         <RowDefinition Height="46*"/>
                     </Grid.RowDefinitions>
+<<<<<<< HEAD
                     <RadioButton Name="rdoBtn_LikeBy_PhotoUser_SingleUser" IsChecked="True" Content="Single User" Grid.Row="0" Grid.Column="2" Height="25" GroupName="ScrapeByKeyWord" HorizontalAlignment="Right"  Checked="rdoBtn_LikeBy_Username_SingleUser_Checked" Margin="0,2" Width="109"  />
                     <RadioButton Name="rdoBtn_LikeBy_PhotoUser_MultipleUser" Content="Multiple Users" Grid.Row="0" Grid.Column="3" Height="25" GroupName="ScrapeByKeyWord" HorizontalAlignment="Right" Checked="rdoBtn_LikeBy_Username_MultipleUser_Checked" Margin="0,2" Width="134"/>
                     <Label Name="Likeby_Username" Content="User Name" Grid.Row="1" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,11" Grid.ColumnSpan="2" Width="111"/>
                     <TextBox Name="txt_LikePhoto_Username_LoadUsersPath" IsReadOnly="False" Grid.Row="1" Grid.Column="2" Height="25" Text="" Margin="10,11,0,11" VerticalContentAlignment="Center" Grid.ColumnSpan="2" BorderThickness="1,1,1,2"/>
                     <Button Name="btn_LikePhoto_Username_BrowseUsers" Visibility="Hidden" Content="Browse" Grid.Row="1" Grid.Column="4" Height="25" Margin="10,11" BorderBrush="Green" Click="btn_LikePhoto_Username_BrowseUsers_Click">
+=======
+                    <RadioButton Name="rdoBtn_LikeBy_PhotoUser_SingleUser" IsChecked="True" Content="Single User" Grid.Row="0" Grid.Column="0" Height="25" GroupName="ScrapeByKeyWord" HorizontalAlignment="Right"  Checked="rdoBtn_LikeBy_Username_SingleUser_Checked"  />
+                    <RadioButton Name="rdoBtn_LikeBy_PhotoUser_MultipleUser" Content="Multiple Users" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="25" GroupName="ScrapeByKeyWord" HorizontalAlignment="Right" Checked="rdoBtn_LikeBy_Username_MultipleUser_Checked"/>
+                    <Label Name="Likeby_Username" Content="User Name" Grid.Row="1" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,11" Grid.ColumnSpan="2" Width="111"/>
+                    <TextBox Name="txt_LikePhoto_Username_LoadUsersPath" Grid.Row="1" Grid.Column="2" Height="25" Text="" Margin="10,11,0,11" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
+                    <Button Name="btn_LikePhoto_Username_BrowseUsers" Content="Browse" Grid.Row="1" Grid.Column="4" Height="25" Margin="10,11" BorderBrush="Green" Click="btn_LikePhoto_Username_BrowseUsers_Click">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -52,8 +60,22 @@
                     </Button>
                 </Grid>
             </GroupBox>
+<<<<<<< HEAD
             <Label Content="No. of Photo" Margin="5,10,360,14" Height="26" VerticalAlignment="Center" Grid.Row="2"/>
             <TextBox Name="txtMessage_Like_NoOfFollowers" Margin="130,12.06,250,15.94" TextAlignment="Center" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="2" BorderThickness="1,1,1,2" />
+=======
+            <Button Name="btn_LikePhoto_Username_SaveUser" BorderBrush="Green" Content="Save" Grid.Row="2" Grid.Column="1" Height="25" Click="btn_LikePhoto_Username_SaveUser_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Label Content="No. of Photo" Margin="5,10,360,14" Height="26" VerticalAlignment="Center" Grid.Row="2"/>
+            <TextBox Name="txtMessage_Like_NoOfFollowers" Margin="130,12.06,250,15.94" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="2"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
             <Button x:Name="btn_LikePhoto_Username_Clear" BorderBrush="Blue" Content="Clear" Grid.Row="2" Height="25" Click="btn_LikePhoto_Username_Clear_click" Margin="360,15,10,15">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">

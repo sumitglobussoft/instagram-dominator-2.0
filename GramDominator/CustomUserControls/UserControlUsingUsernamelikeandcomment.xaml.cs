@@ -116,7 +116,10 @@ namespace GramDominator.CustomUserControls
                 {
                     try
                     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                         UsingUsernameManager.likeandcomment = true;
                         UsingUsernameManager.UsingUsername_likecomment_Nouser = Convert.ToInt32(txt_UsingUsername_likecomment_nouser.Text);
                         if (string.IsNullOrEmpty(txt_UsingUserName_User.Text) && string.IsNullOrEmpty(txt_UsingUsername_commentmessage.Text))

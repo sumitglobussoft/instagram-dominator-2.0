@@ -132,9 +132,17 @@ namespace GramDominator.Pages.PageProxy
                         threads = 25;
                     }
                     obj_ProxyManager.NoOfThreadsProxy = threads;
+<<<<<<< HEAD
                     Thread CommentPosterThread = new Thread(obj_ProxyManager.StartProxyChecker);
                     CommentPosterThread.Start();
                     GlobusLogHelper.log.Info("------ Proxy Proccess Started ------");
+=======
+
+
+
+                    Thread CommentPosterThread = new Thread(obj_ProxyManager.StartProxyChecker);
+                    CommentPosterThread.Start();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
                 }
                 else
                 {
@@ -152,6 +160,7 @@ namespace GramDominator.Pages.PageProxy
 
         private void CheckProxy_Stop_Click(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             try
             {
                 Thread objStopProxy = new Thread(stopMultiThreadProxy);
@@ -193,6 +202,9 @@ namespace GramDominator.Pages.PageProxy
 
             GlobusLogHelper.log.Info("Process Stopped !");
             GlobusLogHelper.log.Debug("Process Stopped !");
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         }
 
         private void CheckProxy_Clear_click(object sender, RoutedEventArgs e)
@@ -206,6 +218,7 @@ namespace GramDominator.Pages.PageProxy
                 GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
             }
         }
+<<<<<<< HEAD
 
         private void btu_exportproxy_click(object sender, RoutedEventArgs e)
         {
@@ -218,5 +231,7 @@ namespace GramDominator.Pages.PageProxy
                 GlobusLogHelper.log.Info("Error :" + ex.StackTrace);
             }
         }
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
     }
 }
