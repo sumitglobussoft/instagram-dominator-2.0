@@ -33,6 +33,10 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="15*"/>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                         <ColumnDefinition Width="55*"/>
                         <ColumnDefinition Width="36*"/>
                         <ColumnDefinition Width="56"/>
@@ -49,6 +53,36 @@
                         <ComboBoxItem Content="Using Username"/>
                         <ComboBoxItem Content="Using Hashtag"/>
                     </ComboBox>
+<<<<<<< HEAD
+=======
+=======
+                        <ColumnDefinition Width="91*"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="27"/>
+                        <ColumnDefinition Width="56"/>
+                        <ColumnDefinition Width="19"/>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="66*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--  <TextBox Name="txtMessage_Like_LoadMessages" Margin="10,28,10,4.308" TextWrapping="Wrap" Text="" Grid.Column="1" Height="25" Grid.ColumnSpan="2"/>-->
+                    <Label Content="User Name" Margin="0,19,0,35" Grid.ColumnSpan="2"/>
+                    <TextBox Grid.Column="2"  HorizontalAlignment="Left" Height="23" Margin="0,18,0,0" TextWrapping="Wrap" Text="" Name="txt_downloadphoto_Username" VerticalAlignment="Top" Width="190" Grid.ColumnSpan="4"/>
+                    <Button BorderBrush="Green" Cursor="Hand" Name="btu_Downloadphoto_Loadfile" Content="Browse" Grid.Column="6" Height="25" Margin="0,18,5,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btu_Downloadphoto_Loadfile_Click" BorderThickness="1,1,1,2" >
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <RadioButton Content="Single User" IsChecked="True" HorizontalAlignment="Left" GroupName="downloadphoto" Name="rdo_downloadPhoto_SingleUser" Checked="rdo_downloadphoto_single_check" Margin="0,58,0,0" VerticalAlignment="Top" Width="91" Grid.Column="1"/>
+                    <RadioButton Content="Multiple User" GroupName="downloadphoto" Name="rdo_downloadPhoto_multipleUser" Checked="rdo_downloadphoto_multiple_check"  HorizontalAlignment="Left" Margin="0,58,0,0" VerticalAlignment="Top" Grid.Column="2" Width="100"/>
+                    <RadioButton Content="UserName" GroupName="using" Name="rdo_UserName" IsChecked="True"  HorizontalAlignment="Left" Margin="4,58,0,0" VerticalAlignment="Top" Grid.Column="3" Grid.ColumnSpan="3" Width="98"/>
+                    <RadioButton Content="Use Hashs"  GroupName="using" Name="rdo_HashTag" HorizontalAlignment="Left" Margin="0,58,0,0" VerticalAlignment="Top" Grid.Column="6" Grid.ColumnSpan="2" Width="85"/>
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
                 </Grid>
             </GroupBox>
@@ -70,6 +104,10 @@
                     </Grid.RowDefinitions>
 
                     <Label Content="No. of threads" Height="26" VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0" Margin="0,10"  />
+<<<<<<< HEAD
+                    <TextBox Name="txtMessage_Downloadphoto_NoOfThreads"  TextWrapping="Wrap" TextAlignment="Center" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,10" BorderThickness="1,1,1,2" />
+=======
+<<<<<<< HEAD
                     <TextBox Name="txtMessage_Downloadphoto_NoOfThreads"  TextWrapping="Wrap" TextAlignment="Center" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,10" BorderThickness="1,1,1,2" />
                     <Label Content="Delay"  VerticalAlignment="Center" Height="26" Grid.Column="0" Grid.Row="1" Margin="0,18,0,19" />
                     <TextBox Name="txtMessage_Downloadphoto_DelayMin" TextAlignment="Center" Height="26" TextWrapping="Wrap" Text="30" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,18,0,19" BorderThickness="1,1,1,2" />
@@ -78,6 +116,21 @@
                     <Label Content="(In Seconds)"  VerticalAlignment="Center" Height="26" Grid.Column="7" Grid.Row="1" Margin="0,24,0,19"/>
                     <Label Content="No.of Photo" Height="26" VerticalAlignment="Center"  Grid.Column="3" Grid.Row="0"  Margin="0,10" Grid.ColumnSpan="3"  />
                     <TextBox x:Name="txtDownload_nophoto" TextAlignment="Center"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="6" Grid.Row="0" Margin="0,10" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" />
+=======
+                    <TextBox Name="txtMessage_Downloadphoto_NoOfThreads"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,10" />
+>>>>>>> origin/master
+                    <Label Content="Delay"  VerticalAlignment="Center" Height="26" Grid.Column="0" Grid.Row="1" Margin="0,18,0,19" />
+                    <TextBox Name="txtMessage_Downloadphoto_DelayMin" Height="26" TextWrapping="Wrap" Text="30" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,18,0,19" />
+                    <Label Content="To" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Grid.Column="2" Grid.Row="1" Margin="20,18,1,19" Width="18" Grid.ColumnSpan="2" />
+                    <TextBox Name="txtMessage_Download_DelayMax" Height="26" TextWrapping="Wrap" Text="40" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5" Grid.Row="1" Margin="0,18,0,19"/>
+                    <Label Content="(In Seconds)"  VerticalAlignment="Center" Height="26" Grid.Column="7" Grid.Row="1" Margin="0,24,0,19"/>
+                    <Label Content="No.of Photo" Height="26" VerticalAlignment="Center"  Grid.Column="3" Grid.Row="0"  Margin="0,10" Grid.ColumnSpan="3"  />
+<<<<<<< HEAD
+                    <TextBox x:Name="txtDownload_nophoto" TextAlignment="Center"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="6" Grid.Row="0" Margin="0,10" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" />
+=======
+                    <TextBox x:Name="txtDownload_nophoto"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="6" Grid.Row="0" Margin="0,10" Grid.ColumnSpan="2" />
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
                 </Grid>
             </GroupBox>
@@ -90,6 +143,10 @@
                         <RowDefinition Height="6*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                         <ColumnDefinition Width="111*"/>
                         <ColumnDefinition Width="39*"/>
                         <ColumnDefinition Width="108*"/>
@@ -97,6 +154,20 @@
                         <ColumnDefinition Width="111*"/>
                     </Grid.ColumnDefinitions>
                     <Button  BorderBrush="Green" Cursor="Hand"  Name="btnMessage_downloadphoto_Start" ToolTip="Download Images using single or multiple Hash tags or Usernames ." Content="START" VerticalAlignment="Center" Height="26" Click="btnMessage_downloadphoto_Start_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,4,0,5">
+<<<<<<< HEAD
+=======
+=======
+                        <ColumnDefinition Width="48*"/>
+                        <ColumnDefinition Width="94*"/>
+                        <ColumnDefinition Width="42*"/>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="41*"/>
+                        <ColumnDefinition Width="97*"/>
+                        <ColumnDefinition Width="44*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button  BorderBrush="Green" Cursor="Hand"  Name="btnMessage_downloadphoto_Start" Content="START" VerticalAlignment="Center" Height="26" Click="btnMessage_downloadphoto_Start_Click" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -105,7 +176,15 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_downloadphoto_Stop" Content="STOP" VerticalAlignment="Center" Grid.Column="4" Height="26" Click="btnMessage_downloadphoto_Stop_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,4,0,5">
+=======
+<<<<<<< HEAD
+                    <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_downloadphoto_Stop" Content="STOP" VerticalAlignment="Center" Grid.Column="4" Height="26" Click="btnMessage_downloadphoto_Stop_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,4,0,5">
+=======
+                    <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_downloadphoto_Stop" Content="STOP" VerticalAlignment="Center" Grid.Column="4" Height="26" Click="btnMessage_downloadphoto_Stop_Click" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Red" BorderThickness="1,1,1,2" Background="Azure">
@@ -114,10 +193,24 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <Button  BorderBrush="Blue" Cursor="Hand"  x:Name="btnMessage_downloadphoto_Clear" Content="CLEAR" VerticalAlignment="Center" Height="26" Click="btnMessage_downloadphoto_Clear_Click" Grid.Column="2" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,4,0,5">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Green" BorderThickness="1,1,1,2" Background="Azure">
+=======
+<<<<<<< HEAD
+                    <Button  BorderBrush="Blue" Cursor="Hand"  x:Name="btnMessage_downloadphoto_Clear" Content="CLEAR" VerticalAlignment="Center" Height="26" Click="btnMessage_downloadphoto_Clear_Click" Grid.Column="2" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,4,0,5">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="Green" BorderThickness="1,1,1,2" Background="Azure">
+=======
+                    <Button  BorderBrush="Blue" Cursor="Hand"  x:Name="btnMessage_downloadphoto_Clear" Content="CLEAR" VerticalAlignment="Center" Height="26" Click="btnMessage_downloadphoto_Clear_Click" Grid.Column="2" Grid.ColumnSpan="3" BorderThickness="1,1,1,2" Grid.Row="2" Margin="0,5,0,0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="Blue" BorderThickness="1,1,1,2" Background="Azure">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
@@ -139,6 +232,10 @@
                 </Grid>
             </GroupBox>
             <GroupBox Header="Accounts Report" Grid.Row="1" BorderBrush="Black">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 <DataGrid Name="dtGrdDownloadImage_AccountsReport" >
                     <DataGrid.ContextMenu>
                         <ContextMenu>
@@ -150,6 +247,12 @@
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                 </DataGrid>
+<<<<<<< HEAD
+=======
+=======
+                <DataGrid Name="dtGrdMessage_ScrapeUser_AccountsReport" />
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             </GroupBox>
         </Grid>
     </Grid>

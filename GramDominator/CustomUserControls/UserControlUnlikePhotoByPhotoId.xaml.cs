@@ -104,7 +104,67 @@ namespace GramDominator.CustomUserControls
             }
         }
 
+<<<<<<< HEAD
         
+=======
+<<<<<<< HEAD
+        
+=======
+        private void btn_UnLikePhoto_Id_SaveUser_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (IGGlobals.listAccounts.Count > 0)
+                {
+                    try
+                    {
+
+                        if (string.IsNullOrEmpty(txt_UnLikePhoto_Id_LoadUsersPath.Text))
+                        {
+                            GlobusLogHelper.log.Info("Please Upload Photo ID");
+                            ModernDialog.ShowMessage("Please Upload Photo Id", "Upload Message", MessageBoxButton.OK);
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+                    }
+
+
+                    if (rdoBtn_UnLikeBy_PhotoId_SingleUser.IsChecked == true)
+                    {
+                        PhotoManager.UnLikePhoto_ID = txt_UnLikePhoto_Id_LoadUsersPath.Text;
+
+                    }
+                    if (rdoBtn_UnLikeBy_PhotoId_MultipleUser.IsChecked == true)
+                    {
+                        PhotoManager.UnLikePhoto_ID_Path = txt_UnLikePhoto_Id_LoadUsersPath.Text;
+                        //ObjPhotoManager.message_comment = txtMessage_Comment_LoadMessages.Text;
+                    }
+
+
+
+
+                    else
+                    {
+                        GlobusLogHelper.log.Info("Please Load Accounts !");
+                        GlobusLogHelper.log.Debug("Please Load Accounts !");
+
+                    }
+                    if ((!string.IsNullOrEmpty(txt_UnLikePhoto_Id_LoadUsersPath.Text)))
+                    {
+                        ModernDialog.ShowMessage("Your Data Has Been Saved Successfully!!", "Success Message", MessageBoxButton.OK);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+            }
+        }
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
         PhotoManager ObjPhotoManager = new PhotoManager();
 

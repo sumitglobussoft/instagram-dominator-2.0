@@ -1,5 +1,9 @@
 ﻿using BaseLib;
 using BaseLibID;
+<<<<<<< HEAD
+using FirstFloor.ModernUI.Windows.Controls;
+=======
+<<<<<<< HEAD
 using FirstFloor.ModernUI.Windows.Controls;
 using Globussoft;
 using GramDominator.CustomUserControls;
@@ -7,6 +11,17 @@ using Photo;
 using System;
 using System.Collections.Generic;
 using System.Data;
+=======
+>>>>>>> origin/master
+using Globussoft;
+using Photo;
+using System;
+using System.Collections.Generic;
+<<<<<<< HEAD
+using System.Data;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -32,6 +47,10 @@ namespace GramDominator.Pages.PagePhoto
         public UserControlDownloadPhoto()
         {
             InitializeComponent();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
             AccountReport_Downloadimage();
         }
 
@@ -42,6 +61,81 @@ namespace GramDominator.Pages.PagePhoto
      
         Utils objUtils = new Utils();
         QueryManager Qm = new QueryManager();
+<<<<<<< HEAD
+=======
+=======
+        }
+
+        private void btu_Downloadphoto_Loadfile_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                PhotoDwonload_progess.IsIndeterminate = true;
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                dlg.DefaultExt = ".txt";
+                dlg.Filter = "Text documents (.txt)|*.txt";
+                Nullable<bool> result = dlg.ShowDialog();
+                if (result == true)
+                {
+                    txt_downloadphoto_Username.Text = dlg.FileName.ToString();
+                    ReadLargePhotoFile(dlg.FileName);
+                }
+                //  GlobusLogHelper.log.Info(" [ " + objFollower.lstOfUserIDToFollow.Count + "] UserId Uploaded");
+                PhotoDwonload_progess.IsIndeterminate = false;
+            }
+            catch { };
+        }
+
+
+        public void ReadLargePhotoFile(string photoFilename)
+        {
+            ClGlobul.PhotoList.Clear();
+            try
+            {
+                List<string> photolist = GlobusFileHelper.ReadFile((string)photoFilename);
+                foreach (string phoyoList_item in photolist)
+                {
+                    ClGlobul.lstStoreDownloadImageKeyword.Add(phoyoList_item);
+                }
+                GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [ " + ClGlobul.lstStoreDownloadImageKeyword.Count + " UserName Uploaded. ]");
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        private void rdo_downloadphoto_single_check(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                btu_Downloadphoto_Loadfile.Visibility = Visibility.Hidden;
+            }
+            catch { };
+            try
+            {
+                txt_downloadphoto_Username.IsReadOnly = false;
+            }
+            catch { };
+        }
+
+        private void rdo_downloadphoto_multiple_check(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                btu_Downloadphoto_Loadfile.Visibility = Visibility.Visible;
+            }
+            catch { };
+            try
+            {
+                txt_downloadphoto_Username.IsReadOnly = true;
+            }
+            catch { };
+        }
+
+        Utils objUtils = new Utils();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         private void btnMessage_downloadphoto_Start_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -52,6 +146,10 @@ namespace GramDominator.Pages.PagePhoto
                     ObjPhotoManager_new.isStopDwonloadPoster = false;
                     ObjPhotoManager_new.lstThreadsDwonloadPoster.Clear();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 
                     //if(string.IsNullOrEmpty(txt_downloadphoto_Username.Text))
                     //{
@@ -59,6 +157,11 @@ namespace GramDominator.Pages.PagePhoto
                     //    return;
                     //}
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                     Regex checkNo = new Regex("^[0-9]*$");
 
                     int processorCount = objUtils.GetProcessor();
@@ -75,11 +178,39 @@ namespace GramDominator.Pages.PagePhoto
                     }
                     catch (Exception ex)
                     {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                         GlobusLogHelper.log.Info("Enter in Correct Formate/Fill all Field");
                         ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
                         return;
                     }
                     
+<<<<<<< HEAD
+=======
+=======
+                        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+                        return;
+                    }
+                    if (rdo_downloadPhoto_SingleUser.IsChecked == true)
+                    {
+                        PhotoManager.UserphotoDownload_Single = txt_downloadphoto_Username.Text;
+                    }
+                    if (rdo_downloadPhoto_multipleUser.IsChecked == true)
+                    {
+                        PhotoManager.UserphotoDownload_Multiple = txt_downloadphoto_Username.Text;
+                    }
+                    if(rdo_HashTag.IsChecked==true)
+                    {
+                        PhotoManager.IsDownLoadImageUsingHashTag = true;
+                    }
+                    if(rdo_UserName.IsChecked==true)
+                    {
+                        PhotoManager.IsDownLoadImageUsingUserName = true;
+                    }
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                     if (!string.IsNullOrEmpty(txtMessage_Downloadphoto_NoOfThreads.Text) && checkNo.IsMatch(txtMessage_Downloadphoto_NoOfThreads.Text))
                     {
                         threads = Convert.ToInt32(txtMessage_Downloadphoto_NoOfThreads.Text);
@@ -95,7 +226,14 @@ namespace GramDominator.Pages.PagePhoto
 
                     Thread CommentPosterThread = new Thread(ObjPhotoManager_new.StartLikePoster);
                     CommentPosterThread.Start();
+<<<<<<< HEAD
                     GlobusLogHelper.log.Info("------ DownloadPhoto Proccess Started ------");
+=======
+<<<<<<< HEAD
+                    GlobusLogHelper.log.Info("------ DownloadPhoto Proccess Started ------");
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 }
                 else
                 {
@@ -114,6 +252,10 @@ namespace GramDominator.Pages.PagePhoto
         {
             try
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 Thread objStopDownloadPhoto = new Thread(stopMultiThreadDownloadPhoto);
                 objStopDownloadPhoto.Start();
             }
@@ -127,6 +269,11 @@ namespace GramDominator.Pages.PagePhoto
         {
             try
             {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 ObjPhotoManager_new.isStopLikePoster = true;
 
                 List<Thread> lstTemp = new List<Thread>();
@@ -160,7 +307,15 @@ namespace GramDominator.Pages.PagePhoto
         {
             try
             {
+<<<<<<< HEAD
               //  txt_downloadphoto_Username.Text = string.Empty;
+=======
+<<<<<<< HEAD
+              //  txt_downloadphoto_Username.Text = string.Empty;
+=======
+                txt_downloadphoto_Username.Text = string.Empty;
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             }
             catch(Exception ex)
             {
@@ -168,6 +323,10 @@ namespace GramDominator.Pages.PagePhoto
             }
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
         public void AccountReport_Downloadimage()
         {
             try
@@ -384,6 +543,15 @@ namespace GramDominator.Pages.PagePhoto
                 GlobusLogHelper.log.Info("Error:" + ex.StackTrace);
             }
         }
+<<<<<<< HEAD
+=======
+=======
+
+
+
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
 
 

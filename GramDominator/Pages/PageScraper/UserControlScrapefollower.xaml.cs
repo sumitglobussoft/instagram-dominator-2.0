@@ -37,7 +37,14 @@ namespace GramDominator.Pages.PageScraper
             ScrapingManager.objaddComboDelegate = new addComboDelegate(AddtoComboboc);
             AddtoComboboc();
             ifchangeRequired = true;
+<<<<<<< HEAD
             AccountReport_Scrapefollower();
+=======
+<<<<<<< HEAD
+            AccountReport_Scrapefollower();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         }
 
 
@@ -75,8 +82,18 @@ namespace GramDominator.Pages.PageScraper
                 {
                     if (string.IsNullOrEmpty(Txt_ScrapeFolower.Text))
                     {
+<<<<<<< HEAD
                         GlobusLogHelper.log.Info("Please Upload Username ");
                         ModernDialog.ShowMessage("Please Upload Username ", "Upload Message", MessageBoxButton.OK);
+=======
+<<<<<<< HEAD
+                        GlobusLogHelper.log.Info("Please Upload Username ");
+                        ModernDialog.ShowMessage("Please Upload Username ", "Upload Message", MessageBoxButton.OK);
+=======
+                        GlobusLogHelper.log.Info("Please Upload Comment Message");
+                        ModernDialog.ShowMessage("Please Upload Comment Message", "Upload Message", MessageBoxButton.OK);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         return;
                     }
                     Obj_Scrapingg.isStopScrapeUser = false;
@@ -93,6 +110,7 @@ namespace GramDominator.Pages.PageScraper
                     {
                         ScrapingManager.Mindelay_ScarpeFollower = Convert.ToInt32(txtMessage_Scrapefollower_DelayMin.Text);
                         ScrapingManager.Maxdelay_ScarpeFollower = Convert.ToInt32(txtMessage_Scrapefollower_Delaymax.Text);
+<<<<<<< HEAD
                         ScrapingManager.No_ScrapeFollowerUser = Convert.ToInt32(txtMessage_Scrapefollower_Noofusertoscrape.Text);
                        // ScrapingManager.Username_ScrapFollower = Txt_ScrapeFolower.Text;
                        // ScrapingManager.selected_Account = Select_To_Account.Text.ToString();
@@ -134,6 +152,19 @@ namespace GramDominator.Pages.PageScraper
                     }
                     catch (Exception ex)
                     {
+=======
+                        ScrapingManager.No_ThreadFollower = Convert.ToInt32(txtMessage_Scrapefollower_NoOfThreads.Text);
+<<<<<<< HEAD
+                       // ScrapingManager.Username_ScrapFollower = Txt_ScrapeFolower.Text;
+=======
+                        ScrapingManager.Username_ScrapFollower = Txt_ScrapeFolower.Text;
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+                        ScrapingManager.selected_Account = Select_To_Account.Text.ToString();
+                    }
+                    catch (Exception ex)
+                    {
+<<<<<<< HEAD
+>>>>>>> origin/master
                         GlobusLogHelper.log.Info("Enter in Correct Formate/Fill all Field");
                         ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
                         return;
@@ -145,19 +176,46 @@ namespace GramDominator.Pages.PageScraper
                         ClGlobul.listOfScrapeFollowerUserame.Add(Txt_ScrapeFolower.Text);
                     }
 
+<<<<<<< HEAD
                     //if (!string.IsNullOrEmpty(txtMessage_Scrapefollower_NoOfThreads.Text) && checkNo.IsMatch(txtMessage_Scrapefollower_NoOfThreads.Text))
                     //{
                     //    threads = Convert.ToInt32(txtMessage_Scrapefollower_NoOfThreads.Text);
                     //}
+=======
+=======
+                        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+                        return;
+                    }
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+                    if (!string.IsNullOrEmpty(txtMessage_Scrapefollower_NoOfThreads.Text) && checkNo.IsMatch(txtMessage_Scrapefollower_NoOfThreads.Text))
+                    {
+                        threads = Convert.ToInt32(txtMessage_Scrapefollower_NoOfThreads.Text);
+                    }
+>>>>>>> origin/master
 
                     if (threads > maxThread)
                     {
                         threads = 25;
                     }
                     Obj_Scrapingg.NoOfThreadsLikePosterScarpeUser = threads;
+<<<<<<< HEAD
                     Thread CommentPosterThread = new Thread(Obj_Scrapingg.StartScrapFollower);
                     CommentPosterThread.Start();
                     GlobusLogHelper.log.Info("------ ScrapeFollower Proccess Started ------");
+=======
+<<<<<<< HEAD
+                    Thread CommentPosterThread = new Thread(Obj_Scrapingg.StartScrapFollower);
+                    CommentPosterThread.Start();
+                    GlobusLogHelper.log.Info("------ ScrapeFollower Proccess Started ------");
+=======
+
+
+
+                    Thread CommentPosterThread = new Thread(Obj_Scrapingg.StartScrapFollower);
+                    CommentPosterThread.Start();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 }
 
                 catch (Exception ex)
@@ -174,6 +232,10 @@ namespace GramDominator.Pages.PageScraper
         }
 
         ScrapingManager Obj_Scrapingg = new ScrapingManager();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
         QueryManager Qm = new QueryManager();
         
         private void btnMessage_Scrapefollower_Stop_Click(object sender, RoutedEventArgs e)
@@ -190,6 +252,11 @@ namespace GramDominator.Pages.PageScraper
         }
 
         public void stopMultiThreadScrapeFollower()
+=======
+
+
+        private void btnMessage_Scrapefollower_Stop_Click(object sender, RoutedEventArgs e)
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         {
             try
             {
@@ -297,6 +364,10 @@ namespace GramDominator.Pages.PageScraper
 
         private void btnMessage_Scrapefollower_Clear_Click(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 
             ScrapingManager.Userphotoliker_userscrape = true;
             Thread CommentPosterThread = new Thread(Obj_Scrapingg.StartScrapFollower);
@@ -370,6 +441,14 @@ namespace GramDominator.Pages.PageScraper
             try
             {
                 AccountReport_Scrapefollower();
+<<<<<<< HEAD
+=======
+=======
+            try
+            {
+                Txt_ScrapeFolower.Text = string.Empty;
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             }
             catch(Exception ex)
             {
@@ -377,6 +456,10 @@ namespace GramDominator.Pages.PageScraper
             }
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
         private void DeleteAccountModule_Scrapefollower_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -474,6 +557,11 @@ namespace GramDominator.Pages.PageScraper
                 GlobusLogHelper.log.Error("Error ==> " + ex.Message);
             }
         }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
 
     }

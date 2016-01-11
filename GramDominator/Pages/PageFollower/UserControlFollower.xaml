@@ -5,7 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mui="http://firstfloorsoftware.com/ModernUI"
               xmlns:app="clr-namespace:GramDominator.Classes"
+<<<<<<< HEAD
              mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="900">
+=======
+<<<<<<< HEAD
+             mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="900">
+=======
+             mc:Ignorable="d" 
+            d:DesignHeight="400" d:DesignWidth="900">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
 
     <Grid>
@@ -34,18 +43,42 @@
                         <RowDefinition Height="5*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                         <ColumnDefinition Width="96*"/>
                         <ColumnDefinition Width="30*"/>
                         <ColumnDefinition Width="70*"/>
                         <ColumnDefinition Width="109*"/>
+<<<<<<< HEAD
+=======
+=======
+                        <ColumnDefinition Width="126*"/>
+                        <ColumnDefinition Width="95*"/>
+                        <ColumnDefinition Width="84*"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <ColumnDefinition Width="18"/>
                         <ColumnDefinition Width="81*"/>
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <!--  <TextBox Name="txtMessage_Like_LoadMessages" Margin="10,28,10,4.308" TextWrapping="Wrap" Text="" Grid.Column="1" Height="25" Grid.ColumnSpan="2"/>-->
+<<<<<<< HEAD
                     <Label Content="User Name" Name="Name_follow" Height="25" VerticalContentAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" />
                     <TextBox Name="txt_followerUser" TextWrapping="Wrap"   Text="" Height="25" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
                     <Button BorderBrush="Green" Cursor="Hand" Content="Browse" ToolTip="Upload Follower Name ." Name="follower_browser" Grid.Column="5" VerticalAlignment="Top" Click="follower_browser_Click" Height="25" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
+=======
+<<<<<<< HEAD
+                    <Label Content="User Name" Name="Name_follow" Height="25" VerticalContentAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" />
+                    <TextBox Name="txt_followerUser" TextWrapping="Wrap"   Text="" Height="25" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
+                    <Button BorderBrush="Green" Cursor="Hand" Content="Browse" ToolTip="Upload Follower Name ." Name="follower_browser" Grid.Column="5" VerticalAlignment="Top" Click="follower_browser_Click" Height="25" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
+=======
+                    <Label Content="Name of following"  Height="25" Margin="0,2,0,38" Grid.RowSpan="2" Grid.Row="1" />
+                    <TextBox Name="txt_followerUser" TextWrapping="Wrap" Text="" Grid.ColumnSpan="2" Height="25" Grid.Column="1" Grid.Row="1" Margin="0,1"/>
+                    <Button BorderBrush="Green" Cursor="Hand" Content="Browse" Name="follower_browser" Grid.Column="4" VerticalAlignment="Top" Click="follower_browser_Click" Height="25" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,2,0,0">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -54,9 +87,20 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <RadioButton Content="Single User"   Name="rdo_SingleUser_follower" Checked="rdo_FollowInput_SingleFollow_Checked" Grid.Row="2" Height="20" Grid.Column="0"/>
                     <RadioButton Content="Multiple User" Grid.Column="1" Name="rdo_MultipleUser_follower" Checked="rdo_FollowInput_MultipleFollow_Checked" Grid.Row="2" Height="20"  Grid.ColumnSpan="2"/>
                     <CheckBox Content="Don't Send Request To Private User" Name="chk_DontSendRequest_Follower" Grid.Column="3"  Grid.Row="2" Height="20" Grid.ColumnSpan="4"  Checked="chk_DontSendRequest_Follower_Checked" />
+=======
+<<<<<<< HEAD
+                    <RadioButton Content="Single User"   Name="rdo_SingleUser_follower" Checked="rdo_FollowInput_SingleFollow_Checked" Grid.Row="2" Height="20" Grid.Column="0"/>
+                    <RadioButton Content="Multiple User" Grid.Column="1" Name="rdo_MultipleUser_follower" Checked="rdo_FollowInput_MultipleFollow_Checked" Grid.Row="2" Height="20"  Grid.ColumnSpan="2"/>
+                    <CheckBox Content="Don't Send Request To Private User" Name="chk_DontSendRequest_Follower" Grid.Column="3"  Grid.Row="2" Height="20" Grid.ColumnSpan="4"  Checked="chk_DontSendRequest_Follower_Checked" />
+=======
+                    <RadioButton Content="Single User" IsChecked="True" Name="rdo_SingleUser_follower" Checked="rdo_FollowInput_SingleFollow_Checked" HorizontalAlignment="Left" Margin="0,16,0,0" Grid.Row="2" VerticalAlignment="Top" Width="95" Grid.Column="1"/>
+                    <RadioButton Content="Multiple User" Grid.Column="2" Name="rdo_MultipleUser_follower" Checked="rdo_FollowInput_MultipleFollow_Checked" HorizontalAlignment="Left" Margin="0,16,0,0" Grid.Row="2" VerticalAlignment="Top" Width="102" Grid.ColumnSpan="2"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
                 </Grid>
             </GroupBox>
@@ -75,6 +119,10 @@
                         <RowDefinition Height="26*"/>
                     </Grid.RowDefinitions>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                     <Label Content="No. of threads" Height="26" VerticalAlignment="Center"   Grid.Column="0" Grid.Row="0" Margin="0,10"  />
                     <TextBox Name="txtMessage_follower_NoOfThreads"   TextWrapping="Wrap" Text="5" TextAlignment="Center" Height="26" VerticalAlignment="Center"  Grid.Column="1" Grid.Row="0" Margin="0,10" BorderThickness="1,1,1,2" ></TextBox>
                     <Label Content="Delay"  VerticalAlignment="Center" Height="26" Grid.Column="0" Grid.Row="1" Margin="0,18,0,19" />
@@ -84,6 +132,20 @@
                     <Label Content="(In Seconds)"  VerticalAlignment="Center" Height="26" Grid.Column="4" Grid.Row="1" Margin="5,20,0,17" Grid.ColumnSpan="2"/>
                     <Label Content="No.of follower" Height="26" VerticalAlignment="Center"  Grid.Column="3" Grid.Row="0"  Margin="0,10"  />
                     <TextBox x:Name="txtNo_Follower" TextAlignment="Center"   TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="4" Grid.Row="0" Margin="0,8,0,12" BorderThickness="1,1,1,2" Foreground="#FF317681" />
+<<<<<<< HEAD
+=======
+=======
+                    <Label Content="No. of threads" Height="26" VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0" Margin="0,10"  />
+                    <TextBox Name="txtMessage_follower_NoOfThreads"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,10" />
+                    <Label Content="Delay"  VerticalAlignment="Center" Height="26" Grid.Column="0" Grid.Row="1" Margin="0,18,0,19" />
+                    <TextBox Name="txtMessage_follower_DelayMin" Height="26" TextWrapping="Wrap" Text="30" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,18,0,19" />
+                    <Label Content="To" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Grid.Column="2" Grid.Row="1" Margin="10,18,0,19" Width="30" />
+                    <TextBox Name="txtMessage_follower_DelayMax" Height="26" TextWrapping="Wrap" Text="40" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="1" Margin="11,18,0,19"/>
+                    <Label Content="(In Seconds)"  VerticalAlignment="Center" Height="26" Grid.Column="4" Grid.Row="1" Margin="5,20,0,17" Grid.ColumnSpan="2"/>
+                    <Label Content="No.of follower" Height="26" VerticalAlignment="Center"  Grid.Column="3" Grid.Row="0"  Margin="0,10"  />
+                    <TextBox x:Name="txtNo_Follower"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="4" Grid.Row="0" Margin="0,8,0,12" />
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
                 </Grid>
             </GroupBox>
@@ -96,6 +158,10 @@
                         <RowDefinition Height="38*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                         <ColumnDefinition Width="111*"/>
                         <ColumnDefinition Width="53*"/>
                         <ColumnDefinition Width="109*"/>
@@ -103,6 +169,20 @@
                         <ColumnDefinition Width="110*"/>
                     </Grid.ColumnDefinitions>
                     <Button  BorderBrush="Green" Cursor="Hand"  Name="btnMessage_follower_Start" ToolTip="Follows single or multiple users by their usernames ." VerticalAlignment="Center" Content="START"  Height="24" Click="btnMessage_follower_Start_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,5" HorizontalAlignment="Left" Width="116" Grid.ColumnSpan="2" >
+<<<<<<< HEAD
+=======
+=======
+                        <ColumnDefinition Width="41*"/>
+                        <ColumnDefinition Width="79*"/>
+                        <ColumnDefinition Width="64*"/>
+                        <ColumnDefinition Width="26*"/>
+                        <ColumnDefinition Width="63*"/>
+                        <ColumnDefinition Width="85*"/>
+                        <ColumnDefinition Width="42*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button  BorderBrush="Green" Cursor="Hand" ToolTip="Follows single or multiple users by their usernames" Name="btnMessage_follower_Start" Content="START" VerticalAlignment="Center" Height="26" Click="btnMessage_follower_Start_Click" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -111,7 +191,15 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <Button  BorderBrush="Red" Cursor="Hand"  Name="btnMessage_follower_Stop" Content="STOP" VerticalAlignment="Center" Grid.Column="4" Height="24" Click="btnMessage_follower_Stop_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,5" >
+=======
+<<<<<<< HEAD
+                    <Button  BorderBrush="Red" Cursor="Hand"  Name="btnMessage_follower_Stop" Content="STOP" VerticalAlignment="Center" Grid.Column="4" Height="24" Click="btnMessage_follower_Stop_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,5" >
+=======
+                    <Button  BorderBrush="Red" Cursor="Hand"  Name="btnMessage_follower_Stop" Content="STOP" VerticalAlignment="Center" Grid.Column="4" Height="26" Click="btnMessage_follower_Stop_Click" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Red" BorderThickness="1,1,1,2" Background="Azure">
@@ -120,10 +208,24 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <Button  BorderBrush="Blue" Cursor="Hand"  x:Name="btnMessage_follower_Start_Copy" Content="CLEAR" Height="24" Click="btnMessage_Clear_click" Grid.Column="2" BorderThickness="1,1,1,2" Grid.Row="1"  VerticalAlignment="Center" Margin="0,5">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Green" BorderThickness="1,1,1,2" Background="Azure">
+=======
+<<<<<<< HEAD
+                    <Button  BorderBrush="Blue" Cursor="Hand"  x:Name="btnMessage_follower_Start_Copy" Content="CLEAR" Height="24" Click="btnMessage_Clear_click" Grid.Column="2" BorderThickness="1,1,1,2" Grid.Row="1"  VerticalAlignment="Center" Margin="0,5">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="Green" BorderThickness="1,1,1,2" Background="Azure">
+=======
+                    <Button  BorderBrush="Blue" Cursor="Hand"  x:Name="btnMessage_follower_Start_Copy" Content="CLEAR" VerticalAlignment="Center" Height="26" Click="btnMessage_Clear_click" Grid.Column="2" Grid.ColumnSpan="3" HorizontalAlignment="Right" Width="153" BorderThickness="1,1,1,2" Grid.Row="2" Margin="0,5,0,0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="Blue" BorderThickness="1,1,1,2" Background="Azure">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
@@ -142,6 +244,10 @@
                 <ProgressBar Height="8"  Name="followprogress" VerticalAlignment="Bottom" Background="Transparent" Foreground="#FF1313EC" Margin="0,0,0,27"/>
             </Grid>
             <GroupBox Header="Accounts Report" BorderBrush="Black" Margin="10,0,0,0" Grid.Row="1">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 <DataGrid Name="dtGrdMessage_follower_AccountsReport" >
                     <DataGrid.ContextMenu>
                         <ContextMenu>
@@ -153,6 +259,12 @@
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                 </DataGrid>
+<<<<<<< HEAD
+=======
+=======
+                <DataGrid Name="dtGrdMessage_follower_AccountsReport" />
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             </GroupBox>
         </Grid>
     </Grid>

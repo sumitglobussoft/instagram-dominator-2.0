@@ -1,11 +1,25 @@
 ﻿using BaseLib;
 using BaseLibID;
+<<<<<<< HEAD
 using FirstFloor.ModernUI.Windows.Controls;
+=======
+<<<<<<< HEAD
+using FirstFloor.ModernUI.Windows.Controls;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 using Globussoft;
 using Photo;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Data;
+=======
+<<<<<<< HEAD
+using System.Data;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -31,7 +45,14 @@ namespace GramDominator.Pages.PagePhoto
         public UserControlPhotoUserliker()
         {
             InitializeComponent();
+<<<<<<< HEAD
             AccountReport_likeLiker();
+=======
+<<<<<<< HEAD
+            AccountReport_likeLiker();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         }
 
         private void btu_UserPhoto_liker_Click(object sender, RoutedEventArgs e)
@@ -75,6 +96,10 @@ namespace GramDominator.Pages.PagePhoto
         {
             try
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 txt_UserPhoto_liker.Clear();
             }
             catch(Exception ex)
@@ -83,6 +108,11 @@ namespace GramDominator.Pages.PagePhoto
             }
             try
             {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 btu_UserPhoto_liker.Visibility = Visibility.Hidden;
             }
             catch { };
@@ -117,6 +147,10 @@ namespace GramDominator.Pages.PagePhoto
                 ObjPhotoManager_new.isStopLikerPoster = false;
                 ObjPhotoManager_new.lstThreadsLikerPoster.Clear();
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 if(string.IsNullOrEmpty(txt_UserPhoto_liker.Text))
                 {
                     GlobusLogHelper.log.Info("Uplaod Enter Username");
@@ -124,6 +158,11 @@ namespace GramDominator.Pages.PagePhoto
                     return;
                 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 Regex checkNo = new Regex("^[0-9]*$");
 
                 int processorCount = objUtils.GetProcessor();
@@ -141,18 +180,41 @@ namespace GramDominator.Pages.PagePhoto
                 }
                 catch (Exception ex)
                 {
+<<<<<<< HEAD
                     GlobusLogHelper.log.Info("Enter in Correct Formate/Fill all Field");
                     ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
+=======
+<<<<<<< HEAD
+                    GlobusLogHelper.log.Info("Enter in Correct Formate/Fill all Field");
+                    ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
+=======
+                    GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                     return;
                 }
                 if (rdo_Userphoto_liker.IsChecked == true)
                 {
+<<<<<<< HEAD
                     PhotoManager.txt_username_Liker_Multiple = string.Empty;
+=======
+<<<<<<< HEAD
+                    PhotoManager.txt_username_Liker_Multiple = string.Empty;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                     PhotoManager.txt_username_Liker_single = txt_UserPhoto_liker.Text;
                 }
                 if (rdo_Userphoto_liker_multipleUser.IsChecked ==true)
                 {
+<<<<<<< HEAD
                     PhotoManager.txt_username_Liker_single = string.Empty;
+=======
+<<<<<<< HEAD
+                    PhotoManager.txt_username_Liker_single = string.Empty;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                     PhotoManager.txt_username_Liker_Multiple = txt_UserPhoto_liker.Text;
                 }
 
@@ -166,9 +228,23 @@ namespace GramDominator.Pages.PagePhoto
                     threads = 25;
                 }
                 ObjPhotoManager_new.NoOfThreadsLikePoster = threads;
+<<<<<<< HEAD
                 Thread CommentPosterThread = new Thread(ObjPhotoManager_new.StartLikePoster);
                 CommentPosterThread.Start();
                 GlobusLogHelper.log.Info("------ PhotoUserLiker Proccess Started ------");
+=======
+<<<<<<< HEAD
+                Thread CommentPosterThread = new Thread(ObjPhotoManager_new.StartLikePoster);
+                CommentPosterThread.Start();
+                GlobusLogHelper.log.Info("------ PhotoUserLiker Proccess Started ------");
+=======
+
+
+
+                Thread CommentPosterThread = new Thread(ObjPhotoManager_new.StartLikePoster);
+                CommentPosterThread.Start();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             }
             catch (Exception ex)
             {
@@ -177,6 +253,10 @@ namespace GramDominator.Pages.PagePhoto
 
         }
         PhotoManager ObjPhotoManager_new = new PhotoManager();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
         QueryManager Qm = new QueryManager();
 
         private void btnMessage_Userphoto_liker_Stop_Click(object sender, RoutedEventArgs e)
@@ -193,6 +273,11 @@ namespace GramDominator.Pages.PagePhoto
         }
 
         public void stopMultiThreadPhotoUserLiker()
+=======
+
+
+        private void btnMessage_Userphoto_liker_Stop_Click(object sender, RoutedEventArgs e)
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
         {
             try
             {
@@ -237,6 +322,10 @@ namespace GramDominator.Pages.PagePhoto
             }
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
         public void AccountReport_likeLiker()
         {
             try
@@ -337,6 +426,12 @@ namespace GramDominator.Pages.PagePhoto
                 GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
             }
         }
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
 
     }

@@ -37,11 +37,25 @@
                         <RowDefinition Height="41*"/>
                         <RowDefinition Height="46*"/>
                     </Grid.RowDefinitions>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                     <RadioButton Name="rdoBtn_UnLikeBy_PhotoId_SingleUser" IsChecked="True" Content="Single ID" Grid.Row="0" Grid.Column="2" Height="25" GroupName="ScrapeByKeyWord" HorizontalAlignment="Left"  Checked="rdoBtn_LikeBy_UnPhotoID_SingleUser_Checked" Margin="10,4,0,4" Width="109"  />
                     <RadioButton Name="rdoBtn_UnLikeBy_PhotoId_MultipleUser" Content="Multiple ID" Grid.Row="0" Grid.Column="3" Height="25" GroupName="ScrapeByKeyWord" HorizontalAlignment="Right" Checked="rdoBtn_UnLikeBy_PhotoId_MultipleUser_Checked" Margin="0,4" Width="171"/>
                     <Label Name="UnLikeby_ID" Content="PHOTO ID" Grid.Row="1" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,11" Grid.ColumnSpan="2" Width="111"/>
                     <TextBox Name="txt_UnLikePhoto_Id_LoadUsersPath" IsReadOnly="False" Text="" Grid.Row="1" Grid.Column="2" Height="25" Margin="10,11,0,11"  VerticalContentAlignment="Center" Grid.ColumnSpan="2" BorderThickness="1,1,1,2"/>
                     <Button Name="btn_UnLikePhoto_Id_BrowseUsers" Visibility="Hidden" Content="Browse" Grid.Row="1" Grid.Column="4" Height="25" Margin="10,11" BorderBrush="Green" Click="btn_UnLikePhoto_Id_BrowseUsers_Click">
+<<<<<<< HEAD
+=======
+=======
+                    <RadioButton Name="rdoBtn_UnLikeBy_PhotoId_SingleUser" IsChecked="True" Content="Single ID" Grid.Row="0" Grid.Column="0" Height="25" GroupName="ScrapeByKeyWord" HorizontalAlignment="Right"  Checked="rdoBtn_LikeBy_UnPhotoID_SingleUser_Checked"  />
+                    <RadioButton Name="rdoBtn_UnLikeBy_PhotoId_MultipleUser" Content="Multiple ID" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="25" GroupName="ScrapeByKeyWord" HorizontalAlignment="Right" Checked="rdoBtn_UnLikeBy_PhotoId_MultipleUser_Checked"/>
+                    <Label Name="UnLikeby_ID" Content="PHOTO ID" Grid.Row="1" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,11" Grid.ColumnSpan="2" Width="111"/>
+                    <TextBox Name="txt_UnLikePhoto_Id_LoadUsersPath" Text="" Grid.Row="1" Grid.Column="2" Height="25" Margin="10,11,0,11"  VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
+                    <Button Name="btn_UnLikePhoto_Id_BrowseUsers" Content="Browse" Grid.Row="1" Grid.Column="4" Height="25" Margin="10,11" BorderBrush="Green" Click="btn_UnLikePhoto_Id_BrowseUsers_Click">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -52,7 +66,24 @@
                     </Button>
                 </Grid>
             </GroupBox>
+<<<<<<< HEAD
             <Button x:Name="btn_UnLikePhoto_Id_Clear" BorderBrush="Blue" Content="Clear" Grid.Row="2" Height="25" Click="btn_UnLikePhoto_Id_Clear_Click" Margin="0,10,0,32" Grid.Column="1">
+=======
+<<<<<<< HEAD
+            <Button x:Name="btn_UnLikePhoto_Id_Clear" BorderBrush="Blue" Content="Clear" Grid.Row="2" Height="25" Click="btn_UnLikePhoto_Id_Clear_Click" Margin="0,10,0,32" Grid.Column="1">
+=======
+            <Button Name="btn_UnLikePhoto_Id_SaveUser" BorderBrush="Green" Content="Save" Height="25" Grid.Row="2" Grid.Column="1" Click="btn_UnLikePhoto_Id_SaveUser_Click" Margin="0,22,0,20">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="btn_UnLikePhoto_Id_Clear" BorderBrush="Blue" Content="Clear" Grid.Row="2" Height="25" Click="btn_UnLikePhoto_Id_Clear_Click" Margin="360,22,10,20">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border CornerRadius="5" BorderBrush="Blue" BorderThickness="1,1,1,2" Background="Azure">

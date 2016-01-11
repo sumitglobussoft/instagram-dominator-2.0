@@ -40,10 +40,24 @@
                         <ColumnDefinition Width="33*"/>
                     </Grid.ColumnDefinitions>
                     <!--  <TextBox Name="txtMessage_Like_LoadMessages" Margin="10,28,10,4.308" TextWrapping="Wrap" Text="" Grid.Column="1" Height="25" Grid.ColumnSpan="2"/>-->
+<<<<<<< HEAD
                     <Label Content="Scrape User By" Margin="0,19,0,35"/>
                     <ComboBox Grid.ColumnSpan="4" Grid.Column="1" Name="Select_To_Scrapeuser" Margin="0,19,0,0" VerticalAlignment="Top" SelectionChanged="Select_To_ScrapeUser_SelectionChanged">
                         <ComboBoxItem IsSelected="True" Content="More Option To Scrape"/>
                         <ComboBoxItem Content="Scrape By HashTag"/>
+=======
+<<<<<<< HEAD
+                    <Label Content="Scrape User By" Margin="0,19,0,35"/>
+                    <ComboBox Grid.ColumnSpan="4" Grid.Column="1" Name="Select_To_Scrapeuser" Margin="0,19,0,0" VerticalAlignment="Top" SelectionChanged="Select_To_ScrapeUser_SelectionChanged">
+                        <ComboBoxItem IsSelected="True" Content="More Option To Scrape"/>
+                        <ComboBoxItem Content="Scrape By HashTag"/>
+=======
+                    <Label Content="User Name" Margin="0,19,0,35"/>
+                    <ComboBox Grid.ColumnSpan="4" Grid.Column="1" Name="Select_To_Scrapeuser" Margin="0,19,0,0" VerticalAlignment="Top" SelectionChanged="Select_To_ScrapeUser_SelectionChanged">
+                        <ComboBoxItem IsSelected="True" Content="More Option To Scrape"/>
+                        <ComboBoxItem Content="Scrape By Username"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <ComboBoxItem Content="Scrape By Keywords"/>
                     </ComboBox>
 
@@ -67,11 +81,25 @@
                     </Grid.RowDefinitions>
 
                     <Label Content="No. of threads" Height="26" VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0" Margin="0,10"  />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                     <TextBox Name="txtMessage_ScrapeUser_NoOfThreads"  TextWrapping="Wrap" TextAlignment="Center" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,10" BorderThickness="1,1,1,2" />
                     <Label Content="Delay"  VerticalAlignment="Center" Height="26" Grid.Column="0" Grid.Row="1" Margin="0,18,0,19" />
                     <TextBox Name="txtMessage_ScrapeUser_DelayMin" Height="26" TextAlignment="Center" TextWrapping="Wrap" Text="30" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,18,0,19" BorderThickness="1,1,1,2" />
                     <Label Content="To" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Grid.Column="2" Grid.Row="1" Margin="20,18,1,19" Width="18" Grid.ColumnSpan="2" />
                     <TextBox Name="txtMessage_ScrapeUser_DelayMax" Height="26" TextAlignment="Center" TextWrapping="Wrap" Text="40" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5" Grid.Row="1" Margin="0,18,0,19" BorderThickness="1,1,1,2"/>
+<<<<<<< HEAD
+=======
+=======
+                    <TextBox Name="txtMessage_ScrapeUser_NoOfThreads"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,10" />
+                    <Label Content="Delay"  VerticalAlignment="Center" Height="26" Grid.Column="0" Grid.Row="1" Margin="0,18,0,19" />
+                    <TextBox Name="txtMessage_ScrapeUser_DelayMin" Height="26" TextWrapping="Wrap" Text="30" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,18,0,19" />
+                    <Label Content="To" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Grid.Column="2" Grid.Row="1" Margin="20,18,1,19" Width="18" Grid.ColumnSpan="2" />
+                    <TextBox Name="txtMessage_ScrapeUser_DelayMax" Height="26" TextWrapping="Wrap" Text="40" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5" Grid.Row="1" Margin="0,18,0,19"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                     <Label Content="(In Seconds)"  VerticalAlignment="Center" Height="26" Grid.Column="7" Grid.Row="1" Margin="0,24,0,19"/>
 
                 </Grid>
@@ -79,6 +107,10 @@
             <GroupBox Header="Submit Action" Margin="0,0,10,0" Grid.Row="2" BorderBrush="Black">
                 <Grid>
                     <Grid.RowDefinitions>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                         <RowDefinition Height="42*"/>
                         <RowDefinition Height="33*"/>
                         <RowDefinition Height="35*"/>
@@ -90,6 +122,26 @@
                         <ColumnDefinition Width="75*"/>
                     </Grid.ColumnDefinitions>
                     <Button  BorderBrush="Green" Cursor="Hand"  Name="btnMessage_ScrapeUser_Start" Content="START" Height="25" Click="btnMessage_ScrapeUSer_Start_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,4,0,5">
+<<<<<<< HEAD
+=======
+=======
+                        <RowDefinition Height="8*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="6*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48*"/>
+                        <ColumnDefinition Width="94*"/>
+                        <ColumnDefinition Width="42*"/>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="41*"/>
+                        <ColumnDefinition Width="97*"/>
+                        <ColumnDefinition Width="44*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button  BorderBrush="Green" Cursor="Hand"  Name="btnMessage_ScrapeUser_Start" Content="START" VerticalAlignment="Center" Height="26" Click="btnMessage_ScrapeUSer_Start_Click" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -98,7 +150,15 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_ScrapeUser_Stop" Height="25" Content="STOP" Click="btnMessage_ScrapeUser_Stop_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,4,0,5" Grid.Column="2">
+=======
+<<<<<<< HEAD
+                    <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_ScrapeUser_Stop" Height="25" Content="STOP" Click="btnMessage_ScrapeUser_Stop_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,4,0,5" Grid.Column="2">
+=======
+                    <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_ScrapeUser_Stop" Content="STOP" VerticalAlignment="Center" Grid.Column="4" Height="26" Click="btnMessage_ScrapeUser_Stop_Click" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Red" BorderThickness="1,1,1,2" Background="Azure">
@@ -124,6 +184,10 @@
                 </Grid>
             </GroupBox>
             <GroupBox Header="Accounts Report" Grid.Row="1" BorderBrush="Black">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 <DataGrid Name="dtGrdScrapeUser_ScrapeUser_AccountsReport" >
                     <DataGrid.ContextMenu>
                         <ContextMenu>
@@ -135,6 +199,12 @@
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                 </DataGrid>
+<<<<<<< HEAD
+=======
+=======
+                <DataGrid Name="dtGrdMessage_ScrapeUser_AccountsReport" />
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             </GroupBox>
         </Grid>
     </Grid>

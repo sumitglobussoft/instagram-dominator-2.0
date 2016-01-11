@@ -85,7 +85,15 @@ namespace GramDominator
         {
             
             string startupDb = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\GramDominator.db";
+<<<<<<< HEAD
             string localAppDbPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\gramdominator_db_2.0\\GramDominator.db";
+=======
+<<<<<<< HEAD
+            string localAppDbPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\gramdominator_db_2.0\\GramDominator.db";
+=======
+            string localAppDbPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\gramdominator_db\\GramDominator.db";
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             string startAppDbPath86 = Environment.GetEnvironmentVariable("ProgramFiles(x86)") + "\\GramDominator.db";
 
             if (!File.Exists(localAppDbPath))
@@ -94,14 +102,30 @@ namespace GramDominator
                 {
                     try
                     {
+<<<<<<< HEAD
                         Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\gramdominator_db_2.0");
+=======
+<<<<<<< HEAD
+                        Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\gramdominator_db_2.0");
+=======
+                        Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\gramdominator_db");
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         File.Copy(startupDb, localAppDbPath);
                     }
                     catch (Exception ex)
                     {
                         if (ex.Message.Contains("Could not find a part of the path"))
                         {
+<<<<<<< HEAD
                             Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\gramdominator_db_2.0");
+=======
+<<<<<<< HEAD
+                            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\gramdominator_db_2.0");
+=======
+                            Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\gramdominator_db");
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                             File.Copy(startupDb, localAppDbPath);
                         }
                     }

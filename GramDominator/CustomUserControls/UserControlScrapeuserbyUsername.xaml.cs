@@ -28,7 +28,14 @@ namespace GramDominator.CustomUserControls
         public UserControlScrapeuserbyUsername()
         {
             InitializeComponent();
+<<<<<<< HEAD
             
+=======
+<<<<<<< HEAD
+            
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         }
 
         private void rdoBtn_LikeBy_ScrapeUserName_SingleUser_Checked(object sender, RoutedEventArgs e)

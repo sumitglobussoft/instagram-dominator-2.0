@@ -23,16 +23,37 @@
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                         <ColumnDefinition Width="229*"/>
                         <ColumnDefinition Width="271*"/>
                     </Grid.ColumnDefinitions>
                     <ProgressBar Name="LoadAccountProgressBar" Minimum="2" Maximum="10" IsIndeterminate="False" Margin="0,154,0,1" Grid.Row="1" Grid.ColumnSpan="2" />
+<<<<<<< HEAD
+=======
+=======
+                        <ColumnDefinition Width="27*"/>
+                        <ColumnDefinition Width="31*"/>
+                    </Grid.ColumnDefinitions>
+                    <ProgressBar Name="LoadAccountProgressBar" Minimum="2" Maximum="10" IsIndeterminate="False" Margin="0,154,0,1" Grid.ColumnSpan="2" Grid.Row="1" />
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                     <Grid Margin="24,4,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="197" Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="158*"/>
                             <ColumnDefinition Width="39*"/>
                         </Grid.ColumnDefinitions>
+<<<<<<< HEAD
                         <Button  BorderBrush="Green" Content="Load Accounts" ToolTip="Upload single or multiple accounts ." Cursor="Hand" Name="btnAccounts_ManageAccounts_LoadAccounts" Click="btnAccounts_ManageAccounts_LoadAccounts_Click" Height="25" VerticalAlignment="Top">
+=======
+<<<<<<< HEAD
+                        <Button  BorderBrush="Green" Content="Load Accounts" ToolTip="Upload single or multiple accounts ." Cursor="Hand" Name="btnAccounts_ManageAccounts_LoadAccounts" Click="btnAccounts_ManageAccounts_LoadAccounts_Click" Height="25" VerticalAlignment="Top">
+=======
+                        <Button  BorderBrush="Green" Content="Load Accounts" Cursor="Hand" Name="btnAccounts_ManageAccounts_LoadAccounts" Click="btnAccounts_ManageAccounts_LoadAccounts_Click" Height="25" VerticalAlignment="Top">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border CornerRadius="5" BorderBrush="Green" BorderThickness="1,1,1,2" Background="Azure">
@@ -41,10 +62,24 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
+<<<<<<< HEAD
                         <Label  Content="" Name="lblaccounts_ManageAccounts_LoadsAccountsCount" Margin="18,0,0,0" Grid.Column="1" RenderTransformOrigin="0.472,0.875"/>
                     </Grid>
 
                     <Button   BorderBrush="Red" Cursor="Hand" Content="Delete Accounts" ToolTip="Delete Loaded Accounts ." x:Name="btnAccounts_ManageAccounts_Delete" HorizontalAlignment="Left" Margin="24,31,0,0" VerticalAlignment="Top" Width="158" RenderTransformOrigin="0.5,0.5"  Height="27" Click="btnAccounts_ManageAccounts_Delete_Click" Grid.Row="1">
+=======
+<<<<<<< HEAD
+                        <Label  Content="" Name="lblaccounts_ManageAccounts_LoadsAccountsCount" Margin="18,0,0,0" Grid.Column="1" RenderTransformOrigin="0.472,0.875"/>
+                    </Grid>
+
+                    <Button   BorderBrush="Red" Cursor="Hand" Content="Delete Accounts" ToolTip="Delete Loaded Accounts ." x:Name="btnAccounts_ManageAccounts_Delete" HorizontalAlignment="Left" Margin="24,31,0,0" VerticalAlignment="Top" Width="158" RenderTransformOrigin="0.5,0.5"  Height="27" Click="btnAccounts_ManageAccounts_Delete_Click" Grid.Row="1">
+=======
+                        <Label  Content="" Name="lblaccounts_ManageAccounts_LoadsAccountsCount" Margin="18,-10,0,10" Grid.Column="1"/>
+                    </Grid>
+
+                    <Button   BorderBrush="Red" Cursor="Hand" Content="Delete Accounts" x:Name="btnAccounts_ManageAccounts_Delete" HorizontalAlignment="Left" Margin="24,31,0,0" VerticalAlignment="Top" Width="158" RenderTransformOrigin="0.5,0.5"  Height="27" Click="btnAccounts_ManageAccounts_Delete_Click" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Red" BorderThickness="1,1,1,2" Background="Azure">
@@ -53,7 +88,15 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <Button  BorderBrush="Green" Cursor="Hand" Content="Add Single Accounts" ToolTip="Upload Single Account ." x:Name="btnAccounts_ManageAccounts_AddSingleAccounts" HorizontalAlignment="Left" Margin="24,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.298,0.065" Click="btnAccounts_ManageAccounts_AddSingleAccounts_Click" Width="158" Height="27" Grid.Row="1">
+=======
+<<<<<<< HEAD
+                    <Button  BorderBrush="Green" Cursor="Hand" Content="Add Single Accounts" ToolTip="Upload Single Account ." x:Name="btnAccounts_ManageAccounts_AddSingleAccounts" HorizontalAlignment="Left" Margin="24,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.298,0.065" Click="btnAccounts_ManageAccounts_AddSingleAccounts_Click" Width="158" Height="27" Grid.Row="1">
+=======
+                    <Button  BorderBrush="Green" Cursor="Hand" Content="Add Single Accounts" x:Name="btnAccounts_ManageAccounts_AddSingleAccounts" HorizontalAlignment="Left" Margin="24,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.298,0.065" Click="btnAccounts_ManageAccounts_AddSingleAccounts_Click" Width="158" Height="27" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Green" BorderThickness="1,1,1,2" Background="Azure">
@@ -62,12 +105,30 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <GroupBox Header="Module Description" BorderBrush="Black" Margin="2,0,0,0" VerticalAlignment="Top" MinHeight="170" MinWidth="200" HorizontalContentAlignment="Stretch" Height="170" Grid.RowSpan="2" Grid.Column="1">
                         <TextBlock FontStyle="Oblique" HorizontalAlignment="Center" Margin="2,5,-2,-3" TextWrapping="Wrap" Text=" &#x0a;&#x0a;Welcome to  GramDominator 2.0   &#x0a;Account Manager module You can upload &#x0a;accounts from this tab with a simple &#x0a;click also can delete accounts with
 a simple click."  />
                     </GroupBox>
                     <CheckBox Content="Divide Data" Cursor="Hand" HorizontalAlignment="Left" ToolTip="Divide Content According to User or Equally to loaded Account ." Margin="24,127,0,0" Name="Divide_Data" VerticalAlignment="Top" Width="87" Checked="CheckBox_Checked" Height="17" Grid.Row="1"/>
                     <Button  BorderBrush="Green" Cursor="Hand" Content="Account Checker" ToolTip="Checks the accounts by logging in ." x:Name="Btn_Account_Checker" HorizontalAlignment="Left" Margin="24,95,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.298,0.065" Click="btnAccounts_Checker_Click" Width="158" Height="27" Grid.Row="1">
+=======
+<<<<<<< HEAD
+                    <GroupBox Header="Module Description" BorderBrush="Black" Margin="2,0,0,0" VerticalAlignment="Top" MinHeight="170" MinWidth="200" HorizontalContentAlignment="Stretch" Height="170" Grid.RowSpan="2" Grid.Column="1">
+                        <TextBlock FontStyle="Oblique" HorizontalAlignment="Center" Margin="2,5,-2,-3" TextWrapping="Wrap" Text=" &#x0a;&#x0a;Welcome to  GramDominator 2.0   &#x0a;Account Manager module You can upload &#x0a;accounts from this tab with a simple &#x0a;click also can delete accounts with
+a simple click."  />
+                    </GroupBox>
+                    <CheckBox Content="Divide Data" Cursor="Hand" HorizontalAlignment="Left" ToolTip="Divide Content According to User or Equally to loaded Account ." Margin="24,127,0,0" Name="Divide_Data" VerticalAlignment="Top" Width="87" Checked="CheckBox_Checked" Height="17" Grid.Row="1"/>
+                    <Button  BorderBrush="Green" Cursor="Hand" Content="Account Checker" ToolTip="Checks the accounts by logging in ." x:Name="Btn_Account_Checker" HorizontalAlignment="Left" Margin="24,95,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.298,0.065" Click="btnAccounts_Checker_Click" Width="158" Height="27" Grid.Row="1">
+=======
+                    <GroupBox Header="Module Description" BorderBrush="Black" Margin="10,0,0,0" VerticalAlignment="Top" MinHeight="170" MinWidth="200" HorizontalContentAlignment="Stretch" Height="170" Grid.Column="1" Grid.RowSpan="2">
+                        <TextBlock FontStyle="Oblique" HorizontalAlignment="Center" Margin="2,5,-2,-3" TextWrapping="Wrap" Text=" &#x0a;&#x0a;Welcome to  GramDominator 2.0   &#x0a;Account Manager module You can upload &#x0a;accounts from this tab with a simple &#x0a;click also can delete accounts with
+a simple click."  />
+                    </GroupBox>
+                    <CheckBox Content="Divide Data" Cursor="Hand" HorizontalAlignment="Left" Margin="24,127,0,0" Name="Divide_Data" VerticalAlignment="Top" Width="111" Checked="CheckBox_Checked" Height="17" Grid.Row="1"/>
+                    <Button  BorderBrush="Green" Cursor="Hand" Content="Account Checker" x:Name="Btn_Account_Checker" HorizontalAlignment="Left" Margin="24,95,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.298,0.065" Click="btnAccounts_Checker_Click" Width="158" Height="27" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -76,7 +137,14 @@ a simple click."  />
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <CheckBox Content="Single Account"  HorizontalAlignment="Center"  Margin="116,127,0,0" x:Name="Use_singleAccount" VerticalAlignment="Top" Width="113" Checked="SingleAccount_Checked" Height="17" Grid.Row="1"/>
+=======
+<<<<<<< HEAD
+                    <CheckBox Content="Single Account"  HorizontalAlignment="Center"  Margin="116,127,0,0" x:Name="Use_singleAccount" VerticalAlignment="Top" Width="113" Checked="SingleAccount_Checked" Height="17" Grid.Row="1"/>
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
 
                 </Grid>
@@ -84,14 +152,30 @@ a simple click."  />
             </GroupBox>
             <!--</Border>-->
             <GroupBox  Header="Account" Grid.Row="1" BorderBrush="Black" Margin="0,0,21,0" >
+<<<<<<< HEAD
                 <DataGrid  Name="grvAccounts_AccountCreator_AccountDetails" GridLinesVisibility="All" CanUserAddRows="False" IsReadOnly="True" CommandManager.PreviewCanExecute="Grid_PreviewCanExecute" >
+=======
+<<<<<<< HEAD
+                <DataGrid  Name="grvAccounts_AccountCreator_AccountDetails" GridLinesVisibility="All" CanUserAddRows="False" IsReadOnly="True" CommandManager.PreviewCanExecute="Grid_PreviewCanExecute" >
+=======
+                <DataGrid  Name="grvAccounts_AccountCreator_AccountDetails" GridLinesVisibility="All" CanUserAddRows="False" IsReadOnly="True" >
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
                     <DataGrid.ContextMenu>
                         <ContextMenu>
 
                             <MenuItem Header="Add  Single  Account" Click="addSingleAccount_Click"/>
                             <MenuItem Header="Delete Single Account" Click="DeleteSingleAccount_Click"/>
+<<<<<<< HEAD
                             <MenuItem Header="Add New UserAgent" Click="AddUserAgrnt_Account_Click"/>
+=======
+<<<<<<< HEAD
+                            <MenuItem Header="Add New UserAgent" Click="AddUserAgrnt_Account_Click"/>
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                 </DataGrid>

@@ -40,17 +40,3 @@ D:\Git_GramDominator2.0(1)\Git_GramDominator2.0\instagram-dominator-2.0\Campaign
 D:\Git_GramDominator2.0(1)\Git_GramDominator2.0\instagram-dominator-2.0\CampaignDetailsManager\obj\Debug\CampaignDetailsManager.csprojResolveAssemblyReference.cache
 D:\Git_GramDominator2.0(1)\Git_GramDominator2.0\instagram-dominator-2.0\CampaignDetailsManager\obj\Debug\CampaignDetailsManager.dll
 D:\Git_GramDominator2.0(1)\Git_GramDominator2.0\instagram-dominator-2.0\CampaignDetailsManager\obj\Debug\CampaignDetailsManager.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\bin\Debug\CampaignDetailsManager.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\bin\Debug\CampaignDetailsManager.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\bin\Debug\Accounts.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\bin\Debug\BaseLib.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\bin\Debug\BaseLibID.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\bin\Debug\log4net.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\bin\Debug\ChilkatDotNet2.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\bin\Debug\System.Data.SQLite.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\bin\Debug\Accounts.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\bin\Debug\BaseLibID.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\bin\Debug\BaseLib.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\obj\Debug\CampaignDetailsManager.csprojResolveAssemblyReference.cache
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\obj\Debug\CampaignDetailsManager.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\CampaignDetailsManager\obj\Debug\CampaignDetailsManager.pdb

@@ -10,6 +10,12 @@
 //------------------------------------------------------------------------------
 
 using De.TorstenMandelkow.MetroChart;
+using FirstFloor.ModernUI.Presentation;
+using FirstFloor.ModernUI.Windows;
+using FirstFloor.ModernUI.Windows.Controls;
+using FirstFloor.ModernUI.Windows.Converters;
+using FirstFloor.ModernUI.Windows.Navigation;
+using GramDominator;
 using System;
 using System.Diagnostics;
 using System.Windows;

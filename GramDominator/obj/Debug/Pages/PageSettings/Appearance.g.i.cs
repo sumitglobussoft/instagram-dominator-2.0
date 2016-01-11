@@ -14,6 +14,7 @@ using FirstFloor.ModernUI.Windows;
 using FirstFloor.ModernUI.Windows.Controls;
 using FirstFloor.ModernUI.Windows.Converters;
 using FirstFloor.ModernUI.Windows.Navigation;
+using GramDominator.Classes;
 using System;
 using System.Diagnostics;
 using System.Windows;

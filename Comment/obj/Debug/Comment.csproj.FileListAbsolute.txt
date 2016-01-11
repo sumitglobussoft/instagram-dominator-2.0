@@ -68,17 +68,3 @@ D:\Git_GramDominator2.0(1)\Git_GramDominator2.0\instagram-dominator-2.0\Comment\
 D:\Git_GramDominator2.0(1)\Git_GramDominator2.0\instagram-dominator-2.0\Comment\obj\Debug\Comment.csprojResolveAssemblyReference.cache
 D:\Git_GramDominator2.0(1)\Git_GramDominator2.0\instagram-dominator-2.0\Comment\obj\Debug\Comment.dll
 D:\Git_GramDominator2.0(1)\Git_GramDominator2.0\instagram-dominator-2.0\Comment\obj\Debug\Comment.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\bin\Debug\Comment.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\bin\Debug\Comment.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\bin\Debug\Accounts.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\bin\Debug\BaseLib.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\bin\Debug\BaseLibID.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\bin\Debug\ChilkatDotNet2.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\bin\Debug\log4net.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\bin\Debug\System.Data.SQLite.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\bin\Debug\Accounts.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\bin\Debug\BaseLibID.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\bin\Debug\BaseLib.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\obj\Debug\Comment.csprojResolveAssemblyReference.cache
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\obj\Debug\Comment.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\Comment\obj\Debug\Comment.pdb

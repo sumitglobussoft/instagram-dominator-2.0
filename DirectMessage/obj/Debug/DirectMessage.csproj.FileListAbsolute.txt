@@ -54,17 +54,3 @@ D:\Git_GramDominator2.0(1)\Git_GramDominator2.0\instagram-dominator-2.0\DirectMe
 D:\Git_GramDominator2.0(1)\Git_GramDominator2.0\instagram-dominator-2.0\DirectMessage\obj\Debug\DirectMessage.csprojResolveAssemblyReference.cache
 D:\Git_GramDominator2.0(1)\Git_GramDominator2.0\instagram-dominator-2.0\DirectMessage\obj\Debug\DirectMessage.dll
 D:\Git_GramDominator2.0(1)\Git_GramDominator2.0\instagram-dominator-2.0\DirectMessage\obj\Debug\DirectMessage.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\bin\Debug\DirectMessage.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\bin\Debug\DirectMessage.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\bin\Debug\Accounts.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\bin\Debug\BaseLib.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\bin\Debug\BaseLibID.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\bin\Debug\log4net.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\bin\Debug\ChilkatDotNet2.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\bin\Debug\System.Data.SQLite.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\bin\Debug\Accounts.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\bin\Debug\BaseLibID.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\bin\Debug\BaseLib.pdb
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\obj\Debug\DirectMessage.csprojResolveAssemblyReference.cache
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\obj\Debug\DirectMessage.dll
-E:\complete_project\GramDominator_Updated\instagram-dominator-2.0\DirectMessage\obj\Debug\DirectMessage.pdb

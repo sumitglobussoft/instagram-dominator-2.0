@@ -19,10 +19,19 @@ using System.Windows.Shapes;
 using System.Threading;
 using System.Text.RegularExpressions;
 using Globussoft;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 using HashTagsManager;
 using System.Data;
 using GramDominator.CustomUserControls;
 using FaceDominator3._0.PageWall;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
 namespace GramDominator.Pages.PageFollower
 {
@@ -34,7 +43,14 @@ namespace GramDominator.Pages.PageFollower
         public UserControlFollower()
         {
             InitializeComponent();
+<<<<<<< HEAD
             AccuntReport_Follow();
+=======
+<<<<<<< HEAD
+            AccuntReport_Follow();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         }
 
         private void follower_browser_Click(object sender, RoutedEventArgs e)
@@ -79,6 +95,10 @@ namespace GramDominator.Pages.PageFollower
             }
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
       
         private void rdo_FollowInput_SingleFollow_Checked(object sender, RoutedEventArgs e)
         {
@@ -120,6 +140,13 @@ namespace GramDominator.Pages.PageFollower
 
 
             txt_followerUser.Clear();
+<<<<<<< HEAD
+=======
+=======
+        private void rdo_FollowInput_SingleFollow_Checked(object sender, RoutedEventArgs e)
+        {
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             try
             {
                 ClGlobul.followingList.Clear();
@@ -128,17 +155,37 @@ namespace GramDominator.Pages.PageFollower
             try
             {
                 follower_browser.Visibility = Visibility.Hidden;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+                
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             }
             catch { };
             try
             {
                 txt_followerUser.IsReadOnly = false;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+               
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             }
             catch { };
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
         public void closeEvent()
         {
 
@@ -147,6 +194,13 @@ namespace GramDominator.Pages.PageFollower
         private void rdo_FollowInput_MultipleFollow_Checked(object sender, RoutedEventArgs e)
         {
             txt_followerUser.Clear();
+<<<<<<< HEAD
+=======
+=======
+        private void rdo_FollowInput_MultipleFollow_Checked(object sender, RoutedEventArgs e)
+        {
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             try
             {
                 follower_browser.Visibility = Visibility.Visible;
@@ -166,18 +220,40 @@ namespace GramDominator.Pages.PageFollower
         {
             try
             {
+<<<<<<< HEAD
                 
+=======
+<<<<<<< HEAD
+                
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 if (IGGlobals.listAccounts.Count > 0)
                 {
                     try
                     {
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                         //if (string.IsNullOrEmpty(txt_followerUser.Text))
                         //{
                         //    GlobusLogHelper.log.Info("Please Upload  Username");
                         //    ModernDialog.ShowMessage("Please Upload  Username", "Upload Username", MessageBoxButton.OK);
                         //    return;
                         //}
+<<<<<<< HEAD
+=======
+=======
+                        if (string.IsNullOrEmpty(txt_followerUser.Text))
+                        {
+                            GlobusLogHelper.log.Info("Please Upload  Message");
+                            ModernDialog.ShowMessage("Please Upload  Message", "Upload Message", MessageBoxButton.OK);
+                            return;
+                        }
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                     }
                     catch (Exception ex)
                     {
@@ -201,8 +277,17 @@ namespace GramDominator.Pages.PageFollower
                         }
                         catch (Exception ex)
                         {
+<<<<<<< HEAD
                             GlobusLogHelper.log.Info("Enter in Correct Format/Fill all field");
                             ModernDialog.ShowMessage("Enter in Correct Format/Fill all field", "Error", MessageBoxButton.OK);
+=======
+<<<<<<< HEAD
+                            GlobusLogHelper.log.Info("Enter in Correct Format/Fill all field");
+                            ModernDialog.ShowMessage("Enter in Correct Format/Fill all field", "Error", MessageBoxButton.OK);
+=======
+                            GlobusLogHelper.log.Info("Enter in Correct Format");
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                             return;
                         }
 
@@ -233,6 +318,10 @@ namespace GramDominator.Pages.PageFollower
                         threads = 25;
                     }
                     obj_follower.NoOfThreadsFollowerPoster = threads;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 
                     if (hash_managerlibry.DivideByUser == true)
                     {
@@ -256,6 +345,13 @@ namespace GramDominator.Pages.PageFollower
                             GlobusLogHelper.log.Info("------ Follow Proccess Started ------");
                         }
                     }
+<<<<<<< HEAD
+=======
+=======
+                    Thread CommentPosterThread = new Thread(obj_follower.StartFollowing);
+                    CommentPosterThread.Start();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 }
                 else
                 {
@@ -277,6 +373,10 @@ namespace GramDominator.Pages.PageFollower
         {
             try
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 Thread stopFollower = new Thread(stopMultiThreadFollower);
                 stopFollower.Start();
             }
@@ -292,6 +392,13 @@ namespace GramDominator.Pages.PageFollower
             {
                 obj_follower.isStopFollowerPoster = true;
                 // btnMessage_follower_Start.IsEnabled = true;
+<<<<<<< HEAD
+=======
+=======
+                obj_follower.isStopFollowerPoster = true;
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 List<Thread> lstTemp = new List<Thread>();
                 lstTemp = obj_follower.lstThreadsFollowerPoster.Distinct().ToList();
 
@@ -328,8 +435,16 @@ namespace GramDominator.Pages.PageFollower
                 txtNo_Follower.Text = string.Empty;
                 txtMessage_follower_DelayMin.Text = string.Empty;
                 txtMessage_follower_DelayMax.Text = string.Empty;
+<<<<<<< HEAD
                 FollowerFollowing.txt_UserName= string.Empty;
                 FollowerFollowing.UserName_path = string.Empty;
+=======
+<<<<<<< HEAD
+                FollowerFollowing.txt_UserName= string.Empty;
+                FollowerFollowing.UserName_path = string.Empty;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
             }
             catch(Exception ex)
@@ -338,6 +453,10 @@ namespace GramDominator.Pages.PageFollower
             }
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 
         QueryManager Qm = new QueryManager();
        public void AccuntReport_Follow()
@@ -446,6 +565,12 @@ namespace GramDominator.Pages.PageFollower
                GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
            }
        }
+<<<<<<< HEAD
+=======
+=======
+       
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
        
     }

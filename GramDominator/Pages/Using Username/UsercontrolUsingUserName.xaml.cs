@@ -3,7 +3,14 @@ using FirstFloor.ModernUI.Windows.Controls;
 using GramDominator.CustomUserControls;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Data;
+=======
+<<<<<<< HEAD
+using System.Data;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -30,7 +37,14 @@ namespace GramDominator.Pages.Using_Username
         public UsercontrolUsingUserName()
         {
             InitializeComponent();
+<<<<<<< HEAD
             AccountReport_UsingUserName();
+=======
+<<<<<<< HEAD
+            AccountReport_UsingUserName();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         }
 
         Utils objUtils = new Utils();
@@ -57,8 +71,17 @@ namespace GramDominator.Pages.Using_Username
                 }
                 catch (Exception ex)
                 {
+<<<<<<< HEAD
                     GlobusLogHelper.log.Info("Enter in Correct Formate/Fill all Field");
                     ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
+=======
+<<<<<<< HEAD
+                    GlobusLogHelper.log.Info("Enter in Correct Formate/Fill all Field");
+                    ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
+=======
+                    GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                     return;
                 }
 
@@ -72,9 +95,23 @@ namespace GramDominator.Pages.Using_Username
                     threads = 25;
                 }
                 objj_UsingUsernameManager.NoOfThreadsUsingUsername = threads;
+<<<<<<< HEAD
                 Thread CommentPosterThread = new Thread(objj_UsingUsernameManager.StartUsingUsername);
                 CommentPosterThread.Start();
                 GlobusLogHelper.log.Info("------ UsingUsrname Proccess Started ------");
+=======
+<<<<<<< HEAD
+                Thread CommentPosterThread = new Thread(objj_UsingUsernameManager.StartUsingUsername);
+                CommentPosterThread.Start();
+                GlobusLogHelper.log.Info("------ UsingUsrname Proccess Started ------");
+=======
+
+
+
+                Thread CommentPosterThread = new Thread(objj_UsingUsernameManager.StartUsingUsername);
+                CommentPosterThread.Start();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             }
             catch (Exception ex)
             {
@@ -87,6 +124,10 @@ namespace GramDominator.Pages.Using_Username
         {
             try
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 Thread objStopUsingUsername = new Thread(stopMultiThreadUsingUsername);
                 objStopUsingUsername.Start();
             }
@@ -100,6 +141,11 @@ namespace GramDominator.Pages.Using_Username
         {
             try
             {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 objj_UsingUsernameManager.isStopUsingUsername = true;
 
                 List<Thread> lstTemp = new List<Thread>();
@@ -129,15 +175,28 @@ namespace GramDominator.Pages.Using_Username
             GlobusLogHelper.log.Debug("Process Stopped !");
         }
 
+<<<<<<< HEAD
         public void closeEvent()
         { }
 
+=======
+<<<<<<< HEAD
+        public void closeEvent()
+        { }
+
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         private void Select_To_LikePhoto_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
                 if (Select_To_LikePhoto.SelectedIndex == 1)
                 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                     UsercontrolUsingUsernamelike obj_UserControlLikePhotoByUsername = new UsercontrolUsingUsernamelike();
                     var window = new ModernDialog
                     {
@@ -285,6 +344,38 @@ namespace GramDominator.Pages.Using_Username
                     {
                         GlobusLogHelper.log.Info("Error :" + ex.StackTrace);
                     }
+<<<<<<< HEAD
+=======
+=======
+                    var window = new ModernDialog
+                    {
+                        Content = new UsercontrolUsingUsernamelike()
+                    };
+                    window.MinHeight = 300;
+                    window.MinWidth = 700;
+                    window.ShowDialog();
+                }
+                if (Select_To_LikePhoto.SelectedIndex == 2)
+                {
+                    var window = new ModernDialog
+                    {
+                        Content = new UsercontrolUsingUsernamecomment()
+                    };
+                    window.MinHeight = 300;
+                    window.MinWidth = 700;
+                    window.ShowDialog();
+                }
+                if (Select_To_LikePhoto.SelectedIndex == 3)
+                {
+                    var window = new ModernDialog
+                    {
+                        Content = new UserControlUsingUsernamelikeandcomment()
+                    };
+                    window.MinHeight = 300;
+                    window.MinWidth = 700;
+                    window.ShowDialog();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 }
             }
             catch (Exception ex)
@@ -293,6 +384,10 @@ namespace GramDominator.Pages.Using_Username
             }
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
         QueryManager Qm = new QueryManager();
         public void AccountReport_UsingUserName()
         {
@@ -377,6 +472,11 @@ namespace GramDominator.Pages.Using_Username
 
         }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
        
     }
 }
