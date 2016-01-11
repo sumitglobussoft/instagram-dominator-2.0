@@ -12,7 +12,15 @@ using Comment;
 
 namespace GramDominator.Classes
 {
+<<<<<<< HEAD
     public class Validation : NotifyPropertyChanged, IDataErrorInfo
+=======
+<<<<<<< HEAD
+    public class Validation : NotifyPropertyChanged, IDataErrorInfo
+=======
+    class Validation : NotifyPropertyChanged, IDataErrorInfo
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
     {
         private string _delaymaximum = string.Empty;
         private string _delayminimum = string.Empty;
@@ -24,6 +32,10 @@ namespace GramDominator.Classes
         private string _NoFollower = string.Empty;
         private string _nounfollow = string.Empty;
         private string _NoPhoto = string.Empty;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
         private string _Usernmame = string.Empty;
         private bool _Ischecked;
 
@@ -59,6 +71,12 @@ namespace GramDominator.Classes
                 }
             }
         }
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
         public string maxi
         {
@@ -451,6 +469,10 @@ namespace GramDominator.Classes
                 {
                     return string.IsNullOrEmpty(this._password) ? "Password Required" : null;
                 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 if (columnName == "Username")
                 {
                     return string.IsNullOrEmpty(this._password) ? "Password Required" : null;
@@ -459,6 +481,11 @@ namespace GramDominator.Classes
                 {
                     //return bool.IsNullOrEmpty(this._password) ? "Password Required" : null;
                 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 return null;
             }
         }

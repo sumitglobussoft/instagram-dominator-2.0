@@ -1,11 +1,25 @@
 ﻿using BaseLib;
+<<<<<<< HEAD
 using BaseLibID;
+=======
+<<<<<<< HEAD
+using BaseLibID;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 using FirstFloor.ModernUI.Windows.Controls;
 using GramDominator.CustomUserControls;
 using Photo;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Data;
+=======
+<<<<<<< HEAD
+using System.Data;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -31,12 +45,26 @@ namespace GramDominator.Pages.PagePhoto
         public UserControlLikePhoto()
         {
             InitializeComponent();
+<<<<<<< HEAD
             AccountReport_PhotoLike();
+=======
+<<<<<<< HEAD
+            AccountReport_PhotoLike();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         }
 
 
         Utils objUtils = new Utils();
+<<<<<<< HEAD
         QueryManager Qm = new QueryManager();
+=======
+<<<<<<< HEAD
+        QueryManager Qm = new QueryManager();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         private void btnMessage_Like_Start_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -60,8 +88,17 @@ namespace GramDominator.Pages.PagePhoto
                     }
                     catch (Exception ex)
                     {
+<<<<<<< HEAD
                         GlobusLogHelper.log.Error("Enter in Correct Formate/Fill all Field");
                         ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
+=======
+<<<<<<< HEAD
+                        GlobusLogHelper.log.Error("Enter in Correct Formate/Fill all Field");
+                        ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
+=======
+                        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         return;
                     }
 
@@ -75,9 +112,23 @@ namespace GramDominator.Pages.PagePhoto
                         threads = 25;
                     }
                     ObjPhotoManager_new.NoOfThreadsLikePoster = threads;
+<<<<<<< HEAD
                     Thread CommentPosterThread = new Thread(ObjPhotoManager_new.StartLikePoster);
                     CommentPosterThread.Start();
                     GlobusLogHelper.log.Info("------ LikePhoto Proccess Started ------");
+=======
+<<<<<<< HEAD
+                    Thread CommentPosterThread = new Thread(ObjPhotoManager_new.StartLikePoster);
+                    CommentPosterThread.Start();
+                    GlobusLogHelper.log.Info("------ LikePhoto Proccess Started ------");
+=======
+
+
+
+                    Thread CommentPosterThread = new Thread(ObjPhotoManager_new.StartLikePoster);
+                    CommentPosterThread.Start();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 }
             catch (Exception ex)
             {
@@ -92,6 +143,10 @@ namespace GramDominator.Pages.PagePhoto
         {
             try
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 Thread objStopLikePhoto = new Thread(stopMultiThreadLikePhoto);
                 objStopLikePhoto.Start();
             }
@@ -105,6 +160,11 @@ namespace GramDominator.Pages.PagePhoto
         {
             try
             {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 ObjPhotoManager_new.isStopLikePoster = true;
 
                 List<Thread> lstTemp = new List<Thread>();
@@ -134,6 +194,10 @@ namespace GramDominator.Pages.PagePhoto
             GlobusLogHelper.log.Debug("Process Stopped !");
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 
         public void closeEvent()
         {
@@ -141,12 +205,21 @@ namespace GramDominator.Pages.PagePhoto
 
         }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         private void Select_To_LikePhoto_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
                 if (Select_To_LikePhoto.SelectedIndex == 1)
                 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                     UserControlLikePhotoByID obj_UserControlLikePhotoByID = new UserControlLikePhotoByID();
                     var window = new ModernDialog
                     {
@@ -337,6 +410,33 @@ namespace GramDominator.Pages.PagePhoto
             catch (Exception ex)
             {
                 GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
+<<<<<<< HEAD
+=======
+=======
+                    var window = new ModernDialog
+                    {
+                        Content = new UserControlLikePhotoByID()
+                    };
+                    window.MinHeight = 300;
+                    window.MinWidth = 700;
+                    window.ShowDialog();
+                }
+                if (Select_To_LikePhoto.SelectedIndex == 2)
+                {
+                    var window = new ModernDialog
+                    {
+                        Content = new UserControlLikePhotoByUserName()
+                    };
+                    window.MinHeight = 300;
+                    window.MinWidth = 700;
+                    window.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+               // GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             }
         }
 

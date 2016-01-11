@@ -27,9 +27,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingUsercontrol", "UsingUs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyChecker", "ProxyChecker\ProxyChecker.csproj", "{99658144-CCA4-4962-9FCD-53301E5A8B2A}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GramDominator", "GramDominator\GramDominator.csproj", "{091C18BD-F362-4E4E-ACEC-49CC627E8589}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GramDominator2.0_setup", "GramDominator2.0_setup\GramDominator2.0_setup.vdproj", "{64A270A5-C5EA-40F7-94DA-AD035C0BF59E}"
+=======
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "GramDominator 2.0 setup", "GramDominator 2.0 setup\GramDominator 2.0 setup.vdproj", "{D4226FD1-C30F-4236-BEBB-DF0555E8DB95}"
+>>>>>>> origin/master
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -169,6 +173,7 @@ Global
 		{99658144-CCA4-4962-9FCD-53301E5A8B2A}.Release|Itanium.ActiveCfg = Release|Any CPU
 		{99658144-CCA4-4962-9FCD-53301E5A8B2A}.Release|x64.ActiveCfg = Release|Any CPU
 		{99658144-CCA4-4962-9FCD-53301E5A8B2A}.Release|x86.ActiveCfg = Release|Any CPU
+<<<<<<< HEAD
 		{091C18BD-F362-4E4E-ACEC-49CC627E8589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{091C18BD-F362-4E4E-ACEC-49CC627E8589}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{091C18BD-F362-4E4E-ACEC-49CC627E8589}.Debug|Itanium.ActiveCfg = Debug|Any CPU
@@ -187,6 +192,16 @@ Global
 		{64A270A5-C5EA-40F7-94DA-AD035C0BF59E}.Release|Itanium.ActiveCfg = Release
 		{64A270A5-C5EA-40F7-94DA-AD035C0BF59E}.Release|x64.ActiveCfg = Release
 		{64A270A5-C5EA-40F7-94DA-AD035C0BF59E}.Release|x86.ActiveCfg = Release
+=======
+		{D4226FD1-C30F-4236-BEBB-DF0555E8DB95}.Debug|Any CPU.ActiveCfg = Debug
+		{D4226FD1-C30F-4236-BEBB-DF0555E8DB95}.Debug|Itanium.ActiveCfg = Debug
+		{D4226FD1-C30F-4236-BEBB-DF0555E8DB95}.Debug|x64.ActiveCfg = Debug
+		{D4226FD1-C30F-4236-BEBB-DF0555E8DB95}.Debug|x86.ActiveCfg = Debug
+		{D4226FD1-C30F-4236-BEBB-DF0555E8DB95}.Release|Any CPU.ActiveCfg = Release
+		{D4226FD1-C30F-4236-BEBB-DF0555E8DB95}.Release|Itanium.ActiveCfg = Release
+		{D4226FD1-C30F-4236-BEBB-DF0555E8DB95}.Release|x64.ActiveCfg = Release
+		{D4226FD1-C30F-4236-BEBB-DF0555E8DB95}.Release|x86.ActiveCfg = Release
+>>>>>>> origin/master
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

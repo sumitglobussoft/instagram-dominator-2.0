@@ -55,8 +55,16 @@ namespace GramDominator.Pages.PageAccount
                 uploadAccountThread.IsBackground = true;
 
                 uploadAccountThread.Start();
+<<<<<<< HEAD
                // uploadAccountThread.Join();
                
+=======
+<<<<<<< HEAD
+               // uploadAccountThread.Join();
+               
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             }
             catch (Exception ex)
             {
@@ -675,8 +683,16 @@ namespace GramDominator.Pages.PageAccount
                 }));
                 GlobusLogHelper.log.Info("[ " + DateTime.Now + " ] => [  No Accounts Loaded ]");
             }
+<<<<<<< HEAD
 
           
+=======
+<<<<<<< HEAD
+
+          
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -689,7 +705,14 @@ namespace GramDominator.Pages.PageAccount
                     Content = new UserControldividedata()
                 };
                 window.ShowInTaskbar = true;
+<<<<<<< HEAD
                // window.Topmost = true;
+=======
+<<<<<<< HEAD
+               // window.Topmost = true;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
                 window.ShowDialog();
             }           
@@ -781,14 +804,30 @@ namespace GramDominator.Pages.PageAccount
                 this.Dispatcher.Invoke(new Action(delegate
                 {
                     grvAccounts_AccountCreator_AccountDetails.ItemsSource = ds.Tables[0].DefaultView;
+<<<<<<< HEAD
                     
                 }));
                 GlobusLogHelper.log.Info("Successfully Account Checked===>" + objFacebookUser.username);
+=======
+<<<<<<< HEAD
+                    
+                }));
+                GlobusLogHelper.log.Info("Successfully Account Checked===>" + objFacebookUser.username);
+=======
+
+                }));
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             }
             catch(Exception ex)
             {
                 GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
             }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
             finally
             {
                // GlobusLogHelper.log.Info("Successfully Account Cheaked Processes Completed");
@@ -890,6 +929,14 @@ namespace GramDominator.Pages.PageAccount
 
             }
         }
+<<<<<<< HEAD
+=======
+=======
+        }
+   
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
     }
 

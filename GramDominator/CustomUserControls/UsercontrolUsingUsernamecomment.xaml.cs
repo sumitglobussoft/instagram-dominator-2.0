@@ -106,6 +106,10 @@ namespace GramDominator.CustomUserControls
             }
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
         //private void btn_UsingUsername_onlycomment_SaveUser_Click(object sender, RoutedEventArgs e)
         //{
         //    try
@@ -156,6 +160,61 @@ namespace GramDominator.CustomUserControls
         //        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
         //    }
         //}
+<<<<<<< HEAD
+=======
+=======
+        private void btn_UsingUsername_onlycomment_SaveUser_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (IGGlobals.listAccounts.Count > 0)
+                {
+                    try
+                    {
+                        UsingUsernameManager.onlyComment = true;
+                        UsingUsernameManager.UsingUsername_onlycomment_Nouser = Convert.ToInt32(txt_UsingUsername_onlycomment_nouser.Text);
+                        if (string.IsNullOrEmpty(txt_UsingUserName_onlycomment_User.Text) && string.IsNullOrEmpty(txt_UsingUsername_onlycommentmessage.Text))
+                        {
+                            GlobusLogHelper.log.Info("Please Upload UserName");
+                            ModernDialog.ShowMessage("Please Upload UserName", "Upload Message", MessageBoxButton.OK);
+                            return;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+                    }
+
+
+                    if (rdoBtn_UsingUsername_onlycomment_SingleUser.IsChecked == true)
+                    {
+                        UsingUsernameManager.UsingUsercontrol_onlycomment_single = txt_UsingUserName_onlycomment_User.Text;
+                        UsingUsernameManager.UsingUsercontrol_onlycommentmessage_single = txt_UsingUsername_onlycommentmessage.Text;
+
+                    }
+                    if (rdoBtn_UsingUsername_onlycomment_MultipleUser.IsChecked == true)
+                    {
+                        UsingUsernameManager.UsingUsercontrol_onlycomment_path = txt_UsingUserName_onlycomment_User.Text;
+                        UsingUsernameManager.UsingUsercontrol_onlycommentmessgae = txt_UsingUsername_onlycommentmessage.Text;
+                    }
+                }
+                else
+                {
+                    GlobusLogHelper.log.Info("Please Load Accounts !");
+                    GlobusLogHelper.log.Debug("Please Load Accounts !");
+                }
+                if ((!string.IsNullOrEmpty(txt_UsingUserName_onlycomment_User.Text)) && (!string.IsNullOrEmpty(txt_UsingUsername_onlycommentmessage.Text)) && (!string.IsNullOrEmpty(txt_UsingUsername_onlycomment_nouser.Text)))
+                {
+                    ModernDialog.ShowMessage("Your Data Has Been Saved Successfully!!", "Success Message", MessageBoxButton.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+            }
+        }
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
         UsingUsernameManager obj_UsingUsernameManager = new UsingUsernameManager();
 

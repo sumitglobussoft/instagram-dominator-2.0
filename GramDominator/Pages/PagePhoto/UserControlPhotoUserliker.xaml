@@ -42,8 +42,18 @@
                     </Grid.ColumnDefinitions>
                     <!--  <TextBox Name="txtMessage_Like_LoadMessages" Margin="10,28,10,4.308" TextWrapping="Wrap" Text="" Grid.Column="1" Height="25" Grid.ColumnSpan="2"/>-->
                     <Label Content="User Name" Margin="0,19,0,35"/>
+<<<<<<< HEAD
                     <TextBox Grid.Column="1"  HorizontalAlignment="Left" Height="23" Margin="0,18,0,0" TextWrapping="Wrap" Text="" Name="txt_UserPhoto_liker" VerticalAlignment="Top" Width="190" Grid.ColumnSpan="3" BorderThickness="1,1,1,2"/>
                     <Button BorderBrush="Green" Cursor="Hand" Name="btu_UserPhoto_liker" ToolTip="Upload List of Username ." Content="Browse" Grid.Column="5" Height="25" Margin="0,18,5,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btu_UserPhoto_liker_Click" BorderThickness="1,1,1,2" >
+=======
+<<<<<<< HEAD
+                    <TextBox Grid.Column="1"  HorizontalAlignment="Left" Height="23" Margin="0,18,0,0" TextWrapping="Wrap" Text="" Name="txt_UserPhoto_liker" VerticalAlignment="Top" Width="190" Grid.ColumnSpan="3" BorderThickness="1,1,1,2"/>
+                    <Button BorderBrush="Green" Cursor="Hand" Name="btu_UserPhoto_liker" ToolTip="Upload List of Username ." Content="Browse" Grid.Column="5" Height="25" Margin="0,18,5,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btu_UserPhoto_liker_Click" BorderThickness="1,1,1,2" >
+=======
+                    <TextBox Grid.Column="1"  HorizontalAlignment="Left" Height="23" Margin="0,18,0,0" TextWrapping="Wrap" Text="" Name="txt_UserPhoto_liker" VerticalAlignment="Top" Width="190" Grid.ColumnSpan="3"/>
+                    <Button BorderBrush="Green" Cursor="Hand" Name="btu_UserPhoto_liker" Content="Browse" Grid.Column="5" Height="25" Margin="0,18,5,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Click="btu_UserPhoto_liker_Click" BorderThickness="1,1,1,2" >
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -75,6 +85,10 @@
                     </Grid.RowDefinitions>
 
                     <Label Content="No. of User" Height="26" VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0" Margin="0,10"  />
+<<<<<<< HEAD
+                    <TextBox Name="txt_Userphoto_liker_NoOfUser" TextAlignment="Center"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,10" BorderThickness="1,1,1,2" />
+=======
+<<<<<<< HEAD
                     <TextBox Name="txt_Userphoto_liker_NoOfUser" TextAlignment="Center"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,10" BorderThickness="1,1,1,2" />
                     <Label Content="Delay"  VerticalAlignment="Center" Height="26" Grid.Column="0" Grid.Row="1" Margin="0,18,0,19" />
                     <TextBox Name="txt_Userphoto_liker_DelayMin" TextAlignment="Center" Height="26" TextWrapping="Wrap" Text="30" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,18,0,19" BorderThickness="1,1,1,2" />
@@ -83,6 +97,21 @@
                     <Label Content="(In Seconds)"  VerticalAlignment="Center" Height="26" Grid.Column="7" Grid.Row="1" Margin="0,24,0,19"/>
                     <Label Content="No.of Photo" Height="26" VerticalAlignment="Center"  Grid.Column="3" Grid.Row="0"  Margin="0,10" Grid.ColumnSpan="3"  />
                     <TextBox x:Name="txt_Userphoto_liker_nophoto" TextAlignment="Center"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="6" Grid.Row="0" Margin="0,10" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" />
+=======
+                    <TextBox Name="txt_Userphoto_liker_NoOfUser"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="0,10" />
+>>>>>>> origin/master
+                    <Label Content="Delay"  VerticalAlignment="Center" Height="26" Grid.Column="0" Grid.Row="1" Margin="0,18,0,19" />
+                    <TextBox Name="txt_Userphoto_liker_DelayMin" Height="26" TextWrapping="Wrap" Text="30" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,18,0,19" />
+                    <Label Content="To" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26" Grid.Column="2" Grid.Row="1" Margin="20,18,1,19" Width="18" Grid.ColumnSpan="2" />
+                    <TextBox Name="txt_Userphoto_liker_DelayMax" Height="26" TextWrapping="Wrap" Text="40" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="5" Grid.Row="1" Margin="0,18,0,19"/>
+                    <Label Content="(In Seconds)"  VerticalAlignment="Center" Height="26" Grid.Column="7" Grid.Row="1" Margin="0,24,0,19"/>
+                    <Label Content="No.of Photo" Height="26" VerticalAlignment="Center"  Grid.Column="3" Grid.Row="0"  Margin="0,10" Grid.ColumnSpan="3"  />
+<<<<<<< HEAD
+                    <TextBox x:Name="txt_Userphoto_liker_nophoto" TextAlignment="Center"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="6" Grid.Row="0" Margin="0,10" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" />
+=======
+                    <TextBox x:Name="txt_Userphoto_liker_nophoto"  TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Column="6" Grid.Row="0" Margin="0,10" Grid.ColumnSpan="2" />
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
                 </Grid>
             </GroupBox>
@@ -95,6 +124,10 @@
                         <RowDefinition Height="6*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                         <ColumnDefinition Width="112*"/>
                         <ColumnDefinition Width="43*"/>
                         <ColumnDefinition Width="111*"/>
@@ -102,6 +135,20 @@
                         <ColumnDefinition Width="110*"/>
                     </Grid.ColumnDefinitions>
                     <Button  BorderBrush="Green" Cursor="Hand"  Name="btnMessage_Userphoto_liker_Start" ToolTip="" Content="START" VerticalAlignment="Center" Height="25" Click="btnMessage_Userphoto_liker_Start_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,5" >
+<<<<<<< HEAD
+=======
+=======
+                        <ColumnDefinition Width="48*"/>
+                        <ColumnDefinition Width="94*"/>
+                        <ColumnDefinition Width="42*"/>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="41*"/>
+                        <ColumnDefinition Width="97*"/>
+                        <ColumnDefinition Width="44*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button  BorderBrush="Green" Cursor="Hand"  Name="btnMessage_Userphoto_liker_Start" Content="START" VerticalAlignment="Center" Height="26" Click="btnMessage_Userphoto_liker_Start_Click" Grid.Column="1" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -110,7 +157,15 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_Userphoto_liker_Stop" Content="STOP" VerticalAlignment="Center" Grid.Column="4" Height="25" Click="btnMessage_Userphoto_liker_Stop_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,5" >
+=======
+<<<<<<< HEAD
+                    <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_Userphoto_liker_Stop" Content="STOP" VerticalAlignment="Center" Grid.Column="4" Height="25" Click="btnMessage_Userphoto_liker_Stop_Click" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,5" >
+=======
+                    <Button  BorderBrush="Red" Cursor="Hand" Name="btnMessage_Userphoto_liker_Stop" Content="STOP" VerticalAlignment="Center" Grid.Column="4" Height="26" Click="btnMessage_Userphoto_liker_Stop_Click" Grid.ColumnSpan="2" BorderThickness="1,1,1,2" Grid.Row="1">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Red" BorderThickness="1,1,1,2" Background="Azure">
@@ -119,10 +174,24 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+<<<<<<< HEAD
                     <Button  BorderBrush="Blue" Cursor="Hand"  x:Name="btnMessage_Userphoto_liker_Clear" Content="CLEAR" VerticalAlignment="Center" Height="25" Click="btnMessage_Userphoto_liker_Clear_Click" Grid.Column="2" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,5">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="Green" BorderThickness="1,1,1,2" Background="Azure">
+=======
+<<<<<<< HEAD
+                    <Button  BorderBrush="Blue" Cursor="Hand"  x:Name="btnMessage_Userphoto_liker_Clear" Content="CLEAR" VerticalAlignment="Center" Height="25" Click="btnMessage_Userphoto_liker_Clear_Click" Grid.Column="2" BorderThickness="1,1,1,2" Grid.Row="1" Margin="0,5">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="Green" BorderThickness="1,1,1,2" Background="Azure">
+=======
+                    <Button  BorderBrush="Blue" Cursor="Hand"  x:Name="btnMessage_Userphoto_liker_Clear" Content="CLEAR" VerticalAlignment="Center" Height="26" Click="btnMessage_Userphoto_liker_Clear_Click" Grid.Column="2" Grid.ColumnSpan="3" BorderThickness="1,1,1,2" Grid.Row="2" Margin="0,5,0,0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="5" BorderBrush="Blue" BorderThickness="1,1,1,2" Background="Azure">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
@@ -144,6 +213,10 @@
                 </Grid>
             </GroupBox>
             <GroupBox Header="Accounts Report" Grid.Row="1" BorderBrush="Black">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 <DataGrid Name="dtGrdLike_LikerPhoto_AccountsReport" >
                     <DataGrid.ContextMenu>
                         <ContextMenu>
@@ -155,6 +228,12 @@
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                 </DataGrid>
+<<<<<<< HEAD
+=======
+=======
+                <DataGrid Name="dtGrdMessage_ScrapeUser_AccountsReport" />
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             </GroupBox>
         </Grid>
     </Grid>

@@ -1,11 +1,25 @@
 ﻿using BaseLib;
+<<<<<<< HEAD
 using BaseLibID;
+=======
+<<<<<<< HEAD
+using BaseLibID;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 using FirstFloor.ModernUI.Windows.Controls;
 using GramDominator.CustomUserControls;
 using Scraping;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Data;
+=======
+<<<<<<< HEAD
+using System.Data;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -31,7 +45,14 @@ namespace GramDominator.Pages.PageScraper
         public UserControlScrapeUser()
         {
             InitializeComponent();
+<<<<<<< HEAD
             AccountReport_ScrapeUser();
+=======
+<<<<<<< HEAD
+            AccountReport_ScrapeUser();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         }
 
 
@@ -59,8 +80,17 @@ namespace GramDominator.Pages.PageScraper
                 }
                 catch (Exception ex)
                 {
+<<<<<<< HEAD
                     GlobusLogHelper.log.Info("Enter in Correct Formate/Fill all Field");
                     ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
+=======
+<<<<<<< HEAD
+                    GlobusLogHelper.log.Info("Enter in Correct Formate/Fill all Field");
+                    ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
+=======
+                    GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                     return;
                 }
 
@@ -74,9 +104,23 @@ namespace GramDominator.Pages.PageScraper
                     threads = 25;
                 }
                 Obj_Scrapingg.NoOfThreadsLikePosterScarpeUser = threads;
+<<<<<<< HEAD
                 Thread CommentPosterThread = new Thread(Obj_Scrapingg.StartLikePoster);
                 CommentPosterThread.Start();
                 GlobusLogHelper.log.Info("------ ScrapeUser Proccess Started ------");
+=======
+<<<<<<< HEAD
+                Thread CommentPosterThread = new Thread(Obj_Scrapingg.StartLikePoster);
+                CommentPosterThread.Start();
+                GlobusLogHelper.log.Info("------ ScrapeUser Proccess Started ------");
+=======
+
+
+
+                Thread CommentPosterThread = new Thread(Obj_Scrapingg.StartLikePoster);
+                CommentPosterThread.Start();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             }
             catch (Exception ex)
             {
@@ -91,6 +135,10 @@ namespace GramDominator.Pages.PageScraper
         {
             try
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 Thread objScrapeUser = new Thread(stopMultiThreadScrapeUser);
                 objScrapeUser.Start();
             }
@@ -104,6 +152,11 @@ namespace GramDominator.Pages.PageScraper
         {
             try
             {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 Obj_Scrapingg.isStopScrapeUser = true;
 
                 List<Thread> lstTemp = new List<Thread>();
@@ -133,16 +186,29 @@ namespace GramDominator.Pages.PageScraper
             GlobusLogHelper.log.Debug("Process Stopped !");
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
         public void closeEvent()
         { }
 
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         private void Select_To_ScrapeUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
                 if (Select_To_Scrapeuser.SelectedIndex == 1)
                 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                     UserControlScrapeuserbyUsername obj_UserControlScrapeuserbyUsername = new UserControlScrapeuserbyUsername();
                     var window = new ModernDialog
                     {
@@ -232,6 +298,28 @@ namespace GramDominator.Pages.PageScraper
                         GlobusLogHelper.log.Info("Error :" + ex.StackTrace);
                     }
                     
+<<<<<<< HEAD
+=======
+=======
+                    var window = new ModernDialog
+                    {
+                        Content = new UserControlScrapeuserbyUsername()
+                    };
+                    window.MinHeight = 300;
+                    window.MinWidth = 700;
+                    window.ShowDialog();
+                }
+                if (Select_To_Scrapeuser.SelectedIndex == 2)
+                {
+                    var window = new ModernDialog
+                    {
+                        Content = new UserControlScarpeUser_Keyword()
+                    };
+                    window.MinHeight = 300;
+                    window.MinWidth = 700;
+                    window.ShowDialog();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 }
             }
             catch (Exception ex)
@@ -240,6 +328,10 @@ namespace GramDominator.Pages.PageScraper
             }
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
         public void AccountReport_ScrapeUser()
         {
             
@@ -342,6 +434,12 @@ namespace GramDominator.Pages.PageScraper
 
             }
         }
+<<<<<<< HEAD
+=======
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
 
     }

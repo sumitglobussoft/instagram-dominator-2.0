@@ -5,7 +5,14 @@ using Globussoft;
 using Scraping;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Data;
+=======
+<<<<<<< HEAD
+using System.Data;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -31,13 +38,24 @@ namespace GramDominator.Pages.PageScraper
         public UserControlScrapeImageUrl()
         {
             InitializeComponent();
+<<<<<<< HEAD
             AccountReport_ScrapeImageUrl();
+=======
+<<<<<<< HEAD
+            AccountReport_ScrapeImageUrl();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         }
 
         private void rdo_singleUser_ImageurlScrape(object sender, RoutedEventArgs e)
         {
             try
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 txt_scrapeImage_Url.Clear();
             }
             catch(Exception ex)
@@ -46,6 +64,11 @@ namespace GramDominator.Pages.PageScraper
             }
             try
             {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 ClGlobul.ImageTagForScrap.Clear();
             }
             catch { };
@@ -65,6 +88,10 @@ namespace GramDominator.Pages.PageScraper
         {
             try
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 txt_scrapeImage_Url.Clear();
             }
             catch(Exception ex)
@@ -73,6 +100,11 @@ namespace GramDominator.Pages.PageScraper
             }
             try
             {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 Browse_Username_ImageUrlScrape.Visibility = Visibility.Visible;
             }
             catch { };
@@ -127,8 +159,16 @@ namespace GramDominator.Pages.PageScraper
         }
 
         Utils objUtils = new Utils();
+<<<<<<< HEAD
         QueryManager Qm = new QueryManager();
 
+=======
+<<<<<<< HEAD
+        QueryManager Qm = new QueryManager();
+
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         private void btnMessage_ScrapeImageUrl_Start_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -171,8 +211,17 @@ namespace GramDominator.Pages.PageScraper
                         }
                         catch (Exception ex)
                         {
+<<<<<<< HEAD
                             GlobusLogHelper.log.Info("Enter in Correct Formate/Fill all Field");
                             ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
+=======
+<<<<<<< HEAD
+                            GlobusLogHelper.log.Info("Enter in Correct Formate/Fill all Field");
+                            ModernDialog.ShowMessage("Enter in Correct Formate/Fill all Field", "Error", MessageBoxButton.OK);
+=======
+                            GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                             return;
                         }
 
@@ -202,9 +251,23 @@ namespace GramDominator.Pages.PageScraper
                         threads = 25;
                     }
                     obj_ScrapingManager.NoOfThreadsLikePosterScarpeUser = threads;
+<<<<<<< HEAD
                     Thread CommentPosterThread = new Thread(obj_ScrapingManager.StartLikePoster);
                     CommentPosterThread.Start();
                     GlobusLogHelper.log.Info("------ ScrapeImageUrl Proccess Started ------");
+=======
+<<<<<<< HEAD
+                    Thread CommentPosterThread = new Thread(obj_ScrapingManager.StartLikePoster);
+                    CommentPosterThread.Start();
+                    GlobusLogHelper.log.Info("------ ScrapeImageUrl Proccess Started ------");
+=======
+
+
+
+                    Thread CommentPosterThread = new Thread(obj_ScrapingManager.StartLikePoster);
+                    CommentPosterThread.Start();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 }
                 else
                 {
@@ -224,6 +287,10 @@ namespace GramDominator.Pages.PageScraper
         {
             try
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 Thread objStopScrapeImageUrl = new Thread(stopMultiThreadScrapeImageUrl);
                 objStopScrapeImageUrl.Start();
             }
@@ -237,6 +304,11 @@ namespace GramDominator.Pages.PageScraper
         {
             try
             {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 obj_ScrapingManager.isStop_ScrapeImage = true;
 
                 List<Thread> lstTemp = new List<Thread>();
@@ -277,6 +349,10 @@ namespace GramDominator.Pages.PageScraper
                 GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
             }
         }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 
         public void AccountReport_ScrapeImageUrl()
         {
@@ -378,5 +454,10 @@ namespace GramDominator.Pages.PageScraper
             }
         }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
     }
 }

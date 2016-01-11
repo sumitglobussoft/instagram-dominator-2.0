@@ -5,7 +5,14 @@ using Follower;
 using Globussoft;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Data;
+=======
+<<<<<<< HEAD
+using System.Data;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -31,8 +38,16 @@ namespace GramDominator.Pages.PageFollower
         public UserControlUnfollower()
         {
             InitializeComponent();
+<<<<<<< HEAD
             AccountReport_Unfollow();
 
+=======
+<<<<<<< HEAD
+            AccountReport_Unfollow();
+
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         }
 
         private void Unfollower_browser_Click(object sender, RoutedEventArgs e)
@@ -93,7 +108,15 @@ namespace GramDominator.Pages.PageFollower
                         if (string.IsNullOrEmpty(txt_UnfollowerUser.Text))
                         {
                             GlobusLogHelper.log.Info("Please Upload  UserName");
+<<<<<<< HEAD
                             ModernDialog.ShowMessage("Please Upload  UserName", "Upload Username", MessageBoxButton.OK);
+=======
+<<<<<<< HEAD
+                            ModernDialog.ShowMessage("Please Upload  UserName", "Upload Username", MessageBoxButton.OK);
+=======
+                            ModernDialog.ShowMessage("Please Upload  UserName", "Upload Message", MessageBoxButton.OK);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                             return;
                         }
                     }
@@ -119,20 +142,46 @@ namespace GramDominator.Pages.PageFollower
                         }
                         catch (Exception ex)
                         {
+<<<<<<< HEAD
                             GlobusLogHelper.log.Info("Enter in Correct Format/Fill all Field");
                             ModernDialog.ShowMessage("Enter in Correct Format/Fill all Field", "Error", MessageBoxButton.OK);
                             return;
+=======
+<<<<<<< HEAD
+                            GlobusLogHelper.log.Info("Enter in Correct Format/Fill all Field");
+                            ModernDialog.ShowMessage("Enter in Correct Format/Fill all Field", "Error", MessageBoxButton.OK);
+                            return;
+=======
+                            GlobusLogHelper.log.Info("Enter in Correct Format");                           
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         }
 
 
                         if (rdo_Unfollow_MultipleUser.IsChecked == true)
                         {
+<<<<<<< HEAD
                             FollowerFollowing.txt_UserName_Unfollow = string.Empty;
+=======
+<<<<<<< HEAD
+                            FollowerFollowing.txt_UserName_Unfollow = string.Empty;
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                             FollowerFollowing.UserName_path_Unfollow = txt_UnfollowerUser.Text;
                         }
                         if (rdo_Unfollow_SingleUser.IsChecked == true)
                         {
+<<<<<<< HEAD
                             FollowerFollowing.UserName_path_Unfollow = string.Empty;
+=======
+<<<<<<< HEAD
+                            FollowerFollowing.UserName_path_Unfollow = string.Empty;
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                             FollowerFollowing.txt_UserName_Unfollow = txt_UnfollowerUser.Text;
                         }
 
@@ -154,8 +203,16 @@ namespace GramDominator.Pages.PageFollower
                     obj_follower.NoOfThreadsFollowerPoster = threads;
                     Thread CommentPosterThread = new Thread(obj_follower.StartFollowing);
                     CommentPosterThread.Start();
+<<<<<<< HEAD
                     GlobusLogHelper.log.Info("------ Unfollow Proccess Started ------");
                     
+=======
+<<<<<<< HEAD
+                    GlobusLogHelper.log.Info("------ Unfollow Proccess Started ------");
+                    
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 }
                 else
                 {
@@ -178,6 +235,10 @@ namespace GramDominator.Pages.PageFollower
         {
             try
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 Thread objStopUnFollower = new Thread(stopMultiThreadUnFollower);
                 objStopUnFollower.Start();
             }
@@ -191,6 +252,11 @@ namespace GramDominator.Pages.PageFollower
         {
             try
             {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 obj_follower.isStopFollowerPoster = true;
 
                 List<Thread> lstTemp = new List<Thread>();
@@ -222,7 +288,14 @@ namespace GramDominator.Pages.PageFollower
 
         private void rdo_SingleUser_Unfollower(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             txt_UnfollowerUser.Clear();
+=======
+<<<<<<< HEAD
+            txt_UnfollowerUser.Clear();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             try
             {
                 ClGlobul.lstUnfollowerList.Clear();
@@ -242,7 +315,14 @@ namespace GramDominator.Pages.PageFollower
 
         private void rdo_MultipleUser_Unfollower(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             txt_UnfollowerUser.Clear();
+=======
+<<<<<<< HEAD
+            txt_UnfollowerUser.Clear();
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             try
             {
                 Unfollower_browser.Visibility = Visibility.Visible;
@@ -271,6 +351,10 @@ namespace GramDominator.Pages.PageFollower
             }
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
         QueryManager Qm = new QueryManager();
         public void AccountReport_Unfollow()
         {
@@ -358,6 +442,12 @@ namespace GramDominator.Pages.PageFollower
         {
 
         }
+<<<<<<< HEAD
+=======
+=======
+        
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         
 
     }

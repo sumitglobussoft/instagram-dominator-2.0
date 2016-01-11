@@ -39,8 +39,18 @@
                     <RadioButton Name="rdoBtn_UsingUsername_likeSingle" IsChecked="True" Content="Single User" Grid.Row="1" Grid.Column="1" Height="25" GroupName="UserName" HorizontalAlignment="Left"   Margin="28,12,0,10" Width="141" Checked="rdoBtn_UsingUsername_likeSingle_Checked"  />
                     <RadioButton Name="rdoBtn_UsingUsername_likeMultiple" Content="Multiple Users" Grid.Row="1" Grid.Column="2" Height="25" GroupName="UserName" HorizontalAlignment="Right" Checked="rdoBtn_HashTagsfollower_MultipleUser" Margin="0,12,0,10" Width="121"/>
                     <Label Name="Username" Content="User Name" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,6,0,11" Width="111"/>
+<<<<<<< HEAD
                     <TextBox Name="txt_UsingUsername_like" Grid.Column="1" IsReadOnly="True" Height="25" Margin="0,12,0,6" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Text="" BorderThickness="1,1,1,2"/>
                     <Button Name="btn_UsingUserName_likeBrowse" Visibility="Hidden" Content="Browse" Grid.Column="4" Height="25" Margin="0,12,0,6" BorderBrush="Green" Click="btn_UsingUserName_likeBrowse_Click">
+=======
+<<<<<<< HEAD
+                    <TextBox Name="txt_UsingUsername_like" Grid.Column="1" IsReadOnly="True" Height="25" Margin="0,12,0,6" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Text="" BorderThickness="1,1,1,2"/>
+                    <Button Name="btn_UsingUserName_likeBrowse" Visibility="Hidden" Content="Browse" Grid.Column="4" Height="25" Margin="0,12,0,6" BorderBrush="Green" Click="btn_UsingUserName_likeBrowse_Click">
+=======
+                    <TextBox Name="txt_UsingUsername_like" Grid.Column="1" Height="25" Margin="0,12,0,6" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Text=""/>
+                    <Button Name="btn_UsingUserName_likeBrowse" Content="Browse" Grid.Column="4" Height="25" Margin="0,12,0,6" BorderBrush="Green" Click="btn_UsingUserName_likeBrowse_Click">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
@@ -51,9 +61,30 @@
                     </Button>
                 </Grid>
             </GroupBox>
+<<<<<<< HEAD
             <Label Content="No. of User" Margin="5,128.06,81,29" Height="26" VerticalAlignment="Center" Grid.Row="1"/>
             <TextBox Name="txtMessage_UsingUsername_NoOfuser" Margin="130,128.06,0,29" TextAlignment="Center" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="1" BorderThickness="1,1,1,2"/>
             <Button x:Name="btn_HashTagefollower_Clear" BorderBrush="Blue" Content="Clear" Grid.Column="4" Height="25" Click="btn_HashTagsfollower_Clear_Click" Margin="0,132,0,26" Grid.Row="1">
+=======
+<<<<<<< HEAD
+            <Label Content="No. of User" Margin="5,128.06,81,29" Height="26" VerticalAlignment="Center" Grid.Row="1"/>
+            <TextBox Name="txtMessage_UsingUsername_NoOfuser" Margin="130,128.06,0,29" TextAlignment="Center" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="1" BorderThickness="1,1,1,2"/>
+            <Button x:Name="btn_HashTagefollower_Clear" BorderBrush="Blue" Content="Clear" Grid.Column="4" Height="25" Click="btn_HashTagsfollower_Clear_Click" Margin="0,132,0,26" Grid.Row="1">
+=======
+            <Button Name="btn_HashTagefollower_SaveUser" BorderBrush="Green" Content="Save" Grid.Column="4" Height="25" Click="btn_HashTagsfollower_SaveUser_Click" Margin="0,132.06,0,26" Grid.Row="1">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Label Content="No. of User" Margin="5,128.06,81,29" Height="26" VerticalAlignment="Center" Grid.Row="1"/>
+            <TextBox Name="txtMessage_UsingUsername_NoOfuser" Margin="130,128.06,0,29" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="1"/>
+            <Button x:Name="btn_HashTagefollower_Clear" BorderBrush="Blue" Content="Clear" Grid.Column="2" Height="25" Click="btn_HashTagsfollower_Clear_Click" Margin="129,132,5,26" Grid.Row="1" Grid.ColumnSpan="2">
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border CornerRadius="5" BorderBrush="Blue" BorderThickness="1,1,1,2" Background="Azure">

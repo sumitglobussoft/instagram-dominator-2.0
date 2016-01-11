@@ -1,6 +1,10 @@
 ﻿using BaseLib;
 using BaseLibID;
 using Comment;
+<<<<<<< HEAD
+using FaceDominator3._0.PageWall;
+=======
+<<<<<<< HEAD
 using FaceDominator3._0.PageWall;
 using FirstFloor.ModernUI.Windows.Controls;
 using Globussoft;
@@ -9,6 +13,17 @@ using HashTagsManager;
 using System;
 using System.Collections.Generic;
 using System.Data;
+=======
+>>>>>>> origin/master
+using FirstFloor.ModernUI.Windows.Controls;
+using Globussoft;
+using System;
+using System.Collections.Generic;
+<<<<<<< HEAD
+using System.Data;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -34,6 +49,10 @@ namespace GramDominator.Pages.Pagecomment
         public UserControlCommentPhoto()
         {
             InitializeComponent();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
             Account_Report();
         }
 
@@ -42,14 +61,29 @@ namespace GramDominator.Pages.Pagecomment
         }
 
 
+<<<<<<< HEAD
+=======
+=======
+        }
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         private void rdo_CommentInput_SingleUser_Checked(object sender, RoutedEventArgs e)
         {
             try
             {
                 ClGlobul.commentMsgList.Clear();
                 ClGlobul.CommentIdsForMSG.Clear();
+<<<<<<< HEAD
                 txtMessage_Comment_LoadMessages.Clear();
                 txtMessage_Comment_PhotoID.Clear();               
+=======
+<<<<<<< HEAD
+                txtMessage_Comment_LoadMessages.Clear();
+                txtMessage_Comment_PhotoID.Clear();               
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             }
             catch { }
             try
@@ -71,6 +105,10 @@ namespace GramDominator.Pages.Pagecomment
         {
             try
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 ClGlobul.commentMsgList.Clear();
                 ClGlobul.CommentIdsForMSG.Clear();
                 txtMessage_Comment_LoadMessages.Clear();
@@ -82,6 +120,11 @@ namespace GramDominator.Pages.Pagecomment
             }
             try
             {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 btnMessage_Comment_LoadMessages.Visibility = Visibility.Visible;
                 btnMessage_Comment_LoadPhotoID.Visibility = Visibility.Visible;
                
@@ -200,8 +243,18 @@ namespace GramDominator.Pages.Pagecomment
 
                         if (string.IsNullOrEmpty(txtMessage_Comment_LoadMessages.Text) && string.IsNullOrEmpty(txtMessage_Comment_PhotoID.Text))
                         {
+<<<<<<< HEAD
                             GlobusLogHelper.log.Info("Please Upload Comment Message/PhotoId");
                             ModernDialog.ShowMessage("Please Upload Comment Message/PhotoId", "Upload Notice", MessageBoxButton.OK);
+=======
+<<<<<<< HEAD
+                            GlobusLogHelper.log.Info("Please Upload Comment Message/PhotoId");
+                            ModernDialog.ShowMessage("Please Upload Comment Message/PhotoId", "Upload Notice", MessageBoxButton.OK);
+=======
+                            GlobusLogHelper.log.Info("Please Upload Comment Message");
+                            ModernDialog.ShowMessage("Please Upload Comment Message", "Upload Message", MessageBoxButton.OK);
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                             return;
                         }
                     }
@@ -229,22 +282,47 @@ namespace GramDominator.Pages.Pagecomment
                         }
                         catch (Exception ex)
                         {
+<<<<<<< HEAD
                             GlobusLogHelper.log.Info("Enter in Correct Format/Fill all Field");
                             ModernDialog.ShowMessage("Enter in Correct Format/Fill all Field", "Error", MessageBoxButton.OK);                           
+=======
+<<<<<<< HEAD
+                            GlobusLogHelper.log.Info("Enter in Correct Format/Fill all Field");
+                            ModernDialog.ShowMessage("Enter in Correct Format/Fill all Field", "Error", MessageBoxButton.OK);                           
+=======
+                            GlobusLogHelper.log.Info("Enter in Correct Format");
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                             return;
                         }
 
                      if(rdo_CommentInput_MultipleUser.IsChecked == true)
                      {
+<<<<<<< HEAD
                          CommentManager.CommentPhoto_ID = string.Empty;
                          CommentManager.message_comment = string.Empty;
+=======
+<<<<<<< HEAD
+                         CommentManager.CommentPhoto_ID = string.Empty;
+                         CommentManager.message_comment = string.Empty;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                          CommentManager.CommentPhoto_ID_path = txtMessage_Comment_PhotoID.Text;
                          CommentManager.message_comment_path = txtMessage_Comment_LoadMessages.Text;
                      }
                         if(rdo_CommentInput_SingleUser.IsChecked==true)
                         {
+<<<<<<< HEAD
                             CommentManager.CommentPhoto_ID_path = string.Empty;
                             CommentManager.message_comment_path = string.Empty;
+=======
+<<<<<<< HEAD
+                            CommentManager.CommentPhoto_ID_path = string.Empty;
+                            CommentManager.message_comment_path = string.Empty;
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                             CommentManager.CommentPhoto_ID = txtMessage_Comment_PhotoID.Text;
                             CommentManager.message_comment = txtMessage_Comment_LoadMessages.Text;
                         }                                                                 
@@ -266,6 +344,10 @@ namespace GramDominator.Pages.Pagecomment
                     }
                     ObjCommentManager.NoOfThreadsCommentPoster = threads;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                     if (hash_managerlibry.DivideByUser == true)
                     {
                         Thread ForDivideUser = new Thread(ObjCommentManager.startCommentdividedataUser);
@@ -288,6 +370,15 @@ namespace GramDominator.Pages.Pagecomment
                             GlobusLogHelper.log.Info("------ Comment Proccess Started ------");
                         }
                     }
+<<<<<<< HEAD
+=======
+=======
+
+                   
+                    Thread CommentPosterThread = new Thread(ObjCommentManager.StartCommentPoster);
+                    CommentPosterThread.Start();
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 }
                 else
                 {
@@ -308,6 +399,10 @@ namespace GramDominator.Pages.Pagecomment
         {
             try
             {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
                 Thread stopComment = new Thread(stopMultiThreadComment);
                 stopComment.Start();
             }
@@ -323,6 +418,13 @@ namespace GramDominator.Pages.Pagecomment
             try
             {
                 ObjCommentManager.isStopCommentPoster = true;
+<<<<<<< HEAD
+=======
+=======
+                ObjCommentManager.isStopCommentPoster = true;
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                 List<Thread> lstTemp = new List<Thread>();
                 lstTemp = ObjCommentManager.lstThreadsCommentPoster.Distinct().ToList();
 
@@ -339,11 +441,25 @@ namespace GramDominator.Pages.Pagecomment
                         GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
                     }
                 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             }
             catch (Exception ex)
             {
                 GlobusLogHelper.log.Error("Error : " + ex.StackTrace);
             }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
             GlobusLogHelper.log.Info("Process Stopped !");
             GlobusLogHelper.log.Debug("Process Stopped !");
         }
@@ -364,6 +480,10 @@ namespace GramDominator.Pages.Pagecomment
             }
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> origin/master
 
 
         QueryManager Qm = new QueryManager();
@@ -472,6 +592,11 @@ namespace GramDominator.Pages.Pagecomment
                 GlobusLogHelper.log.Info("Error : " + ex.StackTrace);
             }
         }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
        
     }
 }

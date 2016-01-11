@@ -33,7 +33,15 @@
                         <RowDefinition Height="46*"/>
                     </Grid.RowDefinitions>
 
+<<<<<<< HEAD
                     <Label Name="Username" Content="Select Keyword :" Grid.Row="1" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,11" Grid.ColumnSpan="2" Width="111"/>
+=======
+<<<<<<< HEAD
+                    <Label Name="Username" Content="Select Keyword :" Grid.Row="1" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,11" Grid.ColumnSpan="2" Width="111"/>
+=======
+                    <Label Name="Username" Content="User Name" Grid.Row="1" Grid.Column="0" Height="25" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,11" Grid.ColumnSpan="2" Width="111"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
 
                     <Button Name="btn_ScrapeUserName_keyword_SubmitUsers" Content="Submit" Grid.Row="1" Grid.Column="4" Height="25" Margin="10,11" BorderBrush="Green" Click="btn_ScrapeUserName_keyword_Submit_Click">
                         <Button.Template>
@@ -45,7 +53,15 @@
                         </Button.Template>
                     </Button>
                     <ComboBox Grid.ColumnSpan="2" Name="ScrapeUser_keyword_slect" Grid.Column="2" HorizontalAlignment="Left" Margin="0,11,0,0" Grid.Row="1" VerticalAlignment="Top" Width="290">
+<<<<<<< HEAD
                         <ComboBoxItem IsSelected="True" Content=""/>
+=======
+<<<<<<< HEAD
+                        <ComboBoxItem IsSelected="True" Content=""/>
+=======
+                        <ComboBoxItem IsSelected="True" Content="Select KeyWord"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
                         <ComboBoxItem Content="Student"/>
                         <ComboBoxItem Content="Photographer"/>
                         <ComboBoxItem Content="fashion"/>
@@ -99,9 +115,29 @@
                     </ComboBox>
                 </Grid>
             </GroupBox>
+<<<<<<< HEAD
             
             <Label Content="No. of User" Margin="5,10,360,14" Height="26" VerticalAlignment="Center" Grid.Row="2"/>
             <TextBox Name="txtMessage_UserName_keyword_NoOfUser" Margin="130,12.06,250,15.94" TextAlignment="Center" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="2" BorderThickness="1,1,1,2"/>
+=======
+<<<<<<< HEAD
+            
+            <Label Content="No. of User" Margin="5,10,360,14" Height="26" VerticalAlignment="Center" Grid.Row="2"/>
+            <TextBox Name="txtMessage_UserName_keyword_NoOfUser" Margin="130,12.06,250,15.94" TextAlignment="Center" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="2" BorderThickness="1,1,1,2"/>
+=======
+            <Button Name="btn_ScrapeUsername_keyword_SaveUser" BorderBrush="Green" Content="Save" Grid.Row="2" Grid.Column="1" Height="25" Click="btn_ScrapeUsername_keyword_SaveUser_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="5" BorderBrush="SeaGreen" BorderThickness="1,1,1,2" Background="Azure">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Label Content="No. of User" Margin="5,10,360,14" Height="26" VerticalAlignment="Center" Grid.Row="2"/>
+            <TextBox Name="txtMessage_UserName_keyword_NoOfUser" Margin="130,12.06,250,15.94" TextWrapping="Wrap" Text="5" Height="26" VerticalAlignment="Center" Grid.Row="2"/>
+>>>>>>> 040a8d35fce59f25e2f75d75646c50226d83374f
+>>>>>>> origin/master
         </Grid>
     </ScrollViewer>
 </UserControl>
